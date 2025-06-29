@@ -14,7 +14,13 @@
   "dependencies": {
     "@iconify/react": "^6.0.0",
     "@phosphor-icons/web": "^2.1.2",
+    "@solana/web3.js": "^1.87.6",
+    "@solana/wallet-adapter-base": "^0.9.23",
+    "@solana/wallet-adapter-react": "^0.15.35",
+    "@solana/wallet-adapter-react-ui": "^0.9.35",
+    "@solana/wallet-adapter-wallets": "^0.19.32",
     "@tailwindcss/vite": "^4.1.8",
+    "embla-carousel": "8.6.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "eventemitter3": "^5.0.1",

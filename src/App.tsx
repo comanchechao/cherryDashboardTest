@@ -12,12 +12,13 @@ import CherryToken from "./pages/cherry";
 import Dashboard from "./pages/dashboard";
 import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
+import SolanaWalletProvider from "./components/WalletProvider";
 
 function App() {
   const location = useLocation();
 
   return (
-    <>
+    <SolanaWalletProvider>
       <ScrollToTop />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -111,7 +112,7 @@ function App() {
           />
         </Routes>
       </AnimatePresence>
-    </>
+    </SolanaWalletProvider>
   );
 }
 
