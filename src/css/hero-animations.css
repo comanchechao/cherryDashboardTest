@@ -1,0 +1,163 @@
+/* Hero Section Animations */
+
+/* Initial states for animated elements */
+.hero-content-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.vintage-paper {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-title-main {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero-description {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.hero-floor {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.decorative-elements > div {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Fade in animation for the entire hero wrapper */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Paper unfold animation */
+@keyframes unfoldPaper {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(-2deg) scale(0.95);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-5px) rotate(1deg) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(1deg) scale(1);
+  }
+}
+
+/* Title reveal animation */
+@keyframes revealTitle {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floor appear animation */
+@keyframes floorAppear {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+/* Mascot bounce in animation */
+@keyframes mascotBounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-20px) scale(1.05);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(10px) scale(0.98);
+  }
+  85% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Decorative elements pop in */
+@keyframes decorativePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(0deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) rotate(10deg);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Button pop animation */
+@keyframes buttonPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(15px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* All hero animations are now handled by GSAP to avoid conflicts */
+
+/* Paper texture animation - keeping this as it's decorative only */
+@keyframes textureMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.hero-animated .paper-texture {
+  animation: textureMove 120s linear infinite alternate;
+}

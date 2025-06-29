@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --color-cherry-cream: #e8d8ba;
+    --color-cherry-burgundy: #321017;
+    --color-cherry-red: #d6024d;
+    --color-cherry-maroon: #7e1331;
+    --color-cherry-black: #000000;
+    --color-cherry-white: #ffffff;
+  }
+}
+
+@media (min-width: 2304px) {
+  .swiper-slide {
+    width: 25rem !important;
+  }
+}
+
+@layer utilities {
+  .bg-cherry-cream {
+    background-color: var(--color-cherry-cream);
+  }
+  .bg-cherry-burgundy {
+    background-color: var(--color-cherry-burgundy);
+  }
+  .bg-cherry-red {
+    background-color: var(--color-cherry-red);
+  }
+  .bg-cherry-maroon {
+    background-color: var(--color-cherry-maroon);
+  }
+
+  .text-cherry-cream {
+    color: var(--color-cherry-cream);
+  }
+  .text-cherry-burgundy {
+    color: var(--color-cherry-burgundy);
+  }
+  .text-cherry-red {
+    color: var(--color-cherry-red);
+  }
+  .text-cherry-maroon {
+    color: var(--color-cherry-maroon);
+  }
+  .text-cherry-white {
+    color: var(--color-cherry-white);
+  }
+  .text-cherry-black {
+    color: var(--color-cherry-black);
+  }
+  .border-cherry-burgundy {
+    border-color: var(--color-cherry-burgundy);
+  }
+
+  .from-cherry-red {
+    --tw-gradient-from: var(--color-cherry-red);
+  }
+  .to-cherry-burgundy {
+    --tw-gradient-to: var(--color-cherry-burgundy);
+  }
+}
+
+@layer components {
+  .theme-cherry {
+    --color-primary: var(--color-cherry-red);
+    --color-secondary: var(--color-cherry-burgundy);
+    --color-accent: var(--color-cherry-maroon);
+    --color-background: var(--color-cherry-cream);
+  }
+}
