@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 import { Icon } from "@iconify/react";
 import Navbar from "../layouts/Navbar";
@@ -22,6 +23,39 @@ const customAnimations = `
   }
   @keyframes dash-animate {
     to { stroke-dashoffset: -100; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  }
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(214, 2, 77, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(214, 2, 77, 0.6); }
+  }
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  .referral-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200px 100%;
+    animation: shimmer 2s infinite;
+  }
+  .referral-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  .referral-bounce {
+    animation: bounce-subtle 2s ease-in-out infinite;
   }
 `;
 
@@ -105,7 +139,7 @@ const userAchievement = {
 
 const CherrySniper: React.FC = () => {
   // const [user, setUser] = useState<any>(null);
-  const [loggedIn] = useState<boolean>(false);
+  const [loggedIn] = useState<boolean>(true);
   const [toastVisible, setToastVisible] = useState(false);
   const [email, setEmail] = useState<string>("");
   // const [email2, setEmail2] = useState<string>("");
@@ -114,7 +148,9 @@ const CherrySniper: React.FC = () => {
   const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
     useState(false);
 
-  const [activeTab, setActiveTab] = useState<"depin" | "speed">("depin");
+  const [activeTab, setActiveTab] = useState<"Cherry" | "speed">("Cherry");
+  const [showDiagram, setShowDiagram] = useState(false);
+  const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
 
   // Add custom animations to document
   useEffect(() => {
@@ -192,7 +228,7 @@ const CherrySniper: React.FC = () => {
     };
 
     return (
-      <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-10 py-12">
+      <div className=" max-w-[88rem] 2xl:max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-10 pt-4 pb-12">
         <div className="relative">
           {/* Custom Toast for Copy */}
           <div
@@ -267,7 +303,7 @@ const CherrySniper: React.FC = () => {
           </div>
 
           {/* Dashboard Header */}
-          <div className="bg-cherry-cream rounded-lg border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] px-8 py-6 mb-8 relative overflow-hidden">
+          <div className="bg-cherry-cream rounded-lg   px-8 py-2 mb-4 relative overflow-hidden">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {/* {user && user.photo_url && (
@@ -277,14 +313,6 @@ const CherrySniper: React.FC = () => {
                     className="w-16 h-16 rounded-full border-2 border-cherry-burgundy"
                   />
                 )} */}
-                <div>
-                  <h2 className="maladroit-font text-3xl text-cherry-burgundy">
-                    {/* Welcome, {user ? user.first_name : "Trader"}! */}
-                  </h2>
-                  <p className="winky-sans-font text-cherry-burgundy opacity-80">
-                    Your personal Depin Sniper dashboard
-                  </p>
-                </div>
               </div>
               <div className="flex items-center justify-center gap-3">
                 <button
@@ -438,7 +466,7 @@ const CherrySniper: React.FC = () => {
                       <div className="flex justify-center items-center flex-col">
                         <div className="w-24 h-24 bg-cherry-cream rounded-full border-4 border-cherry-burgundy flex items-center justify-center mb-3 relative">
                           <img
-                            src={`/${userAchievement.badge}.png`}
+                            src={`https://storage.cherrybot.ai/${userAchievement.badge}.png`}
                             alt="Diamond Badge"
                             className="w-20 h-20 object-contain animate-pulse-slow"
                           />
@@ -669,7 +697,7 @@ const CherrySniper: React.FC = () => {
                         <div className="flex items-center">
                           {index < 3 && item.badge && (
                             <img
-                              src={`/${item.badge}.png`}
+                              src={`https://storage.cherrybot.ai/${item.badge}.png`}
                               alt={`${item.badge} Badge`}
                               className="w-6 h-6 mr-2"
                             />
@@ -789,13 +817,666 @@ const CherrySniper: React.FC = () => {
               </button>
             </div>
           </div>
+
+          <div className="w-full flex gap-10 h-auto items-start flex-col lg:flex-row justify-center">
+            <div className="mt-16 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] relative w-full lg:w-7/12">
+              <div className="bg-cherry-burgundy px-6 py-4">
+                <h3 className="maladroit-font text-lg lg:text-2xl  text-cherry-cream flex items-center gap-2">
+                  <Icon
+                    icon="mdi:account-group"
+                    width={28}
+                    height={28}
+                    className="text-cherry-cream"
+                  />
+                  Referral Program
+                </h3>
+              </div>
+
+              <div className="p-6">
+                <div className="bg-cherry-cream rounded-xl border-2 border-cherry-burgundy p-6 mb-6 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-cherry-red opacity-5 rounded-full -translate-y-8 translate-x-8"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-cherry-burgundy opacity-5 rounded-full translate-y-8 -translate-x-8"></div>
+
+                  <div className="relative z-10">
+                    <div className="text-center flex items-center justify-start gap-4 mb-6">
+                      <div className="inline-flex items-center justify-center p-2 w-auto h-auto bg-cherry-red rounded-full mb-4 relative referral-glow animate-bounce">
+                        <Icon
+                          icon="mdi:gift"
+                          width={30}
+                          height={30}
+                          className="text-cherry-cream"
+                        />
+                        <div className="absolute inset-0 rounded-full border-2 border-cherry-red opacity-30 animate-ping"></div>
+                        <div className="absolute inset-0 rounded-full border-2 border-cherry-burgundy opacity-20 animate-pulse"></div>
+                      </div>
+                      <h4 className="maladroit-font text-2xl text-cherry-burgundy mb-2">
+                        Earn Commission
+                      </h4>
+                    </div>
+
+                    <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy  p-4 mb-6">
+                      <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
+                        Your Referral Link
+                      </label>
+                      <div className="flex lg:flex-row flex-col  gap-2">
+                        <div className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy relative overflow-hidden">
+                          <div className="absolute inset-0 referral-shimmer"></div>
+                          <span className="relative z-10">
+                            https://t.me/CherrySniperBot?start=ref_GihKTmp
+                          </span>
+                        </div>
+                        <motion.button
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() =>
+                            copyToClipboard(
+                              "https://t.me/CherrySniperBot?start=ref_GihKTmp"
+                            )
+                          }
+                          className="bg-cherry-red text-white px-4 py-2 rounded-lg border border-b-4 border-r-4 border-cherry-burgundy transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] winky-sans-font flex items-center gap-2"
+                        >
+                          <Icon
+                            icon="mdi:content-copy"
+                            width={18}
+                            height={18}
+                            className="text-cherry-cream"
+                          />
+                          <span className="text-cherry-cream">Copy</span>
+                        </motion.button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                      <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 text-center hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-8 h-8 bg-cherry-red opacity-10 rounded-full"></div>
+                        <div className="text-2xl font-bold text-cherry-burgundy mb-1 relative z-10">
+                          12
+                        </div>
+                        <div className="winky-sans-font text-cherry-burgundy opacity-80 text-sm relative z-10">
+                          Total Referrals
+                        </div>
+                      </div>
+                      <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 text-center hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-8 h-8 bg-green-500 opacity-10 rounded-full"></div>
+                        <div className="text-2xl font-bold text-cherry-burgundy mb-1 relative z-10">
+                          $2,450
+                        </div>
+                        <div className="winky-sans-font text-cherry-burgundy opacity-80 text-sm relative z-10">
+                          Total Earned
+                        </div>
+                      </div>
+                      <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 text-center hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-8 h-8 bg-blue-500 opacity-10 rounded-full"></div>
+                        <div className="text-2xl font-bold text-cherry-burgundy mb-1 relative z-10">
+                          $180
+                        </div>
+                        <div className="winky-sans-font text-cherry-burgundy opacity-80 text-sm relative z-10">
+                          This Month
+                        </div>
+                      </div>
+                    </div>
+
+                    <motion.button
+                      whileHover={{ y: -2, boxShadow: "6px 6px 0px #321017" }}
+                      onClick={() => setShowHowItWorksModal(true)}
+                      className="w-full bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-5 shadow-[4px_4px_0px_#321017] transform-gpu"
+                    >
+                      <h5 className="maladroit-font text-lg text-cherry-burgundy mb-2 flex items-center justify-center gap-2">
+                        <Icon
+                          icon="mdi:lightbulb"
+                          width={20}
+                          height={20}
+                          className="text-cherry-red"
+                        />
+                        How It Works
+                      </h5>
+                      <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80">
+                        Click to learn how our referral system works
+                      </p>
+                    </motion.button>
+                  </div>
+                </div>
+                <div className="bg-cherry-cream rounded-xl border-2 border-cherry-burgundy overflow-hidden">
+                  <div className="bg-cherry-burgundy px-4 py-3">
+                    <h5 className="maladroit-font text-lg text-cherry-cream">
+                      Recent Referrals
+                    </h5>
+                  </div>
+                  <div className="p-4">
+                    <div className="overflow-x-auto">
+                      <table className="w-full winky-sans-font text-sm">
+                        <thead>
+                          <tr className="border-b border-cherry-burgundy border-opacity-20">
+                            <th className="px-3 py-2 text-left text-cherry-burgundy font-medium">
+                              User
+                            </th>
+                            <th className="px-3 py-2 text-right text-cherry-burgundy font-medium">
+                              Volume
+                            </th>
+                            <th className="px-3 py-2 text-right text-cherry-burgundy font-medium">
+                              Your Earnings
+                            </th>
+                            <th className="px-3 py-2 text-center text-cherry-burgundy font-medium">
+                              Status
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr className="border-b border-cherry-burgundy border-opacity-10">
+                            <td className="px-3 py-3 text-cherry-burgundy">
+                              <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center">
+                                  <span className="text-cherry-cream text-xs font-bold">
+                                    A
+                                  </span>
+                                </div>
+                                <span>Anonymous User</span>
+                              </div>
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy">
+                              $12,450
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy font-medium">
+                              $249.00
+                            </td>
+                            <td className="px-3 py-3 text-center">
+                              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                                Active
+                              </span>
+                            </td>
+                          </tr>
+                          <tr className="border-b border-cherry-burgundy border-opacity-10">
+                            <td className="px-3 py-3 text-cherry-burgundy">
+                              <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center">
+                                  <span className="text-cherry-cream text-xs font-bold">
+                                    B
+                                  </span>
+                                </div>
+                                <span>Anonymous User</span>
+                              </div>
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy">
+                              $8,920
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy font-medium">
+                              $178.40
+                            </td>
+                            <td className="px-3 py-3 text-center">
+                              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                                Active
+                              </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="px-3 py-3 text-cherry-burgundy">
+                              <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center">
+                                  <span className="text-cherry-cream text-xs font-bold">
+                                    C
+                                  </span>
+                                </div>
+                                <span>Anonymous User</span>
+                              </div>
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy">
+                              $3,250
+                            </td>
+                            <td className="px-3 py-3 text-right text-cherry-burgundy font-medium">
+                              $65.00
+                            </td>
+                            <td className="px-3 py-3 text-center">
+                              <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+                                Inactive
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* How It Works Modal */}
+            {showHowItWorksModal && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+                onClick={() => setShowHowItWorksModal(false)}
+              >
+                <div
+                  className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[12px_12px_0px_#321017] max-w-md w-full max-h-[90vh] overflow-y-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Modal Header */}
+                  <div className="bg-cherry-burgundy px-6 py-4 flex items-center justify-between">
+                    <h3 className="maladroit-font text-xl text-cherry-cream flex items-center gap-2">
+                      <Icon
+                        icon="mdi:lightbulb"
+                        width={24}
+                        height={24}
+                        className="text-cherry-cream"
+                      />
+                      How It Works
+                    </h3>
+                    <button
+                      onClick={() => setShowHowItWorksModal(false)}
+                      className="text-cherry-cream hover:text-cherry-red transition-colors"
+                    >
+                      <Icon icon="mdi:close" width={24} height={24} />
+                    </button>
+                  </div>
+
+                  {/* Modal Content */}
+                  <div className="p-6">
+                    <div className="space-y-4 mb-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="winky-sans-font text-sm text-cherry-cream font-bold">
+                            1
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
+                            Share Your Link
+                          </h4>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm">
+                            Share your unique referral link with friends and
+                            family
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="winky-sans-font text-sm text-cherry-cream font-bold">
+                            2
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
+                            They Start Trading
+                          </h4>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm">
+                            Your friends sign up and start trading using Cherry
+                            Sniper
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <span className="winky-sans-font text-sm text-cherry-cream font-bold">
+                            3
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
+                            You Earn Commission
+                          </h4>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm">
+                            You earn up to 55% commission on all their trading
+                            fees automatically
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Earnings Breakdown */}
+                    <div className="bg-cherry-burgundy/10 rounded-lg p-4 mb-6">
+                      <h5 className="winky-sans-font text-cherry-burgundy font-bold mb-3">
+                        Commission Breakdown:
+                      </h5>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="winky-sans-font text-cherry-burgundy">
+                            Direct Referrals:
+                          </span>
+                          <span className="winky-sans-font text-cherry-burgundy font-bold">
+                            55%
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="winky-sans-font text-cherry-burgundy">
+                            Indirect Referrals:
+                          </span>
+                          <span className="winky-sans-font text-cherry-burgundy font-bold">
+                            5%
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="winky-sans-font text-cherry-burgundy">
+                            Extended Network:
+                          </span>
+                          <span className="winky-sans-font text-cherry-burgundy font-bold">
+                            2.5%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* CTA Button */}
+                    <button
+                      onClick={() => {
+                        copyToClipboard(
+                          "https://t.me/CherrySniperBot?start=ref_GihKTmp"
+                        );
+                        setShowHowItWorksModal(false);
+                      }}
+                      className="w-full bg-cherry-red text-white font-bold py-3 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-2"
+                    >
+                      <Icon
+                        icon="mdi:content-copy"
+                        width={20}
+                        height={20}
+                        className="text-cherry-cream"
+                      />
+                      <span className="text-cherry-cream">Copy and Start</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-16 bg-cherry-burgundy rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6 w-full lg:w-5/12">
+              <h3 className="maladroit-font text-lg md:text-2xl text-cherry-cream mb-8 text-center flex items-center justify-start gap-3">
+                <Icon icon="mdi:account-group" />
+                How Our Referral System Works
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Overview Card */}
+                <div className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream h-full flex flex-col transition-transform transform hover:-translate-y-1 col-span-3  lg:col-span-3">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon
+                      icon="mdi:cash-multiple"
+                      className="text-3xl text-cherry-cream flex-shrink-0"
+                    />
+                    <h4 className="winky-sans-font text-lg md:text-xl text-cherry-cream font-bold">
+                      Invite your friends and earn up to 55% on fees
+                    </h4>
+                  </div>
+                  <p className="winky-sans-font text-cherry-cream text-xs md:text-base">
+                    Our tiered referral system rewards community growth with
+                    increasing benefits
+                  </p>
+                </div>
+                {/* Tier 1 Card */}
+                <div className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream h-full flex flex-col transition-transform transform hover:-translate-y-1 col-span-3 md:col-span-3  lg:col-span-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon
+                      icon="mdi:medal"
+                      className="text-3xl text-cherry-cream flex-shrink-0"
+                    />
+                    <h4 className="winky-sans-font text-lg md:text-xl text-cherry-cream font-bold">
+                      Tier 1 - Direct
+                    </h4>
+                  </div>
+                  <p className="winky-sans-font text-cherry-cream text-xs md:text-base mb-2">
+                    Earn{" "}
+                    <span className="bg-green-400 text-cherry-black px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-bold">
+                      55%
+                    </span>{" "}
+                    of Cherry Sniper's 1% fee on every trade
+                  </p>
+                  <p className="winky-sans-font text-cherry-cream text-xs opacity-80">
+                    Your direct referrals bring the highest rewards
+                  </p>
+                </div>
+
+                {/* Tier 2 Card */}
+                <div className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream h-full flex flex-col transition-transform transform hover:-translate-y-1 col-span-3 md:col-span-3  lg:col-span-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon
+                      icon="mdi:trophy-variant"
+                      className="text-3xl text-cherry-cream flex-shrink-0"
+                    />
+                    <h4 className="winky-sans-font text-lg md:text-xl text-cherry-cream font-bold">
+                      Tier 2 - Indirect
+                    </h4>
+                  </div>
+                  <p className="winky-sans-font text-cherry-cream text-xs md:text-base mb-2">
+                    Earn{" "}
+                    <span className="bg-blue-400 text-cherry-black px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-bold">
+                      5%
+                    </span>{" "}
+                    of Cherry Sniper's 1% fee on every trade
+                  </p>
+                  <p className="winky-sans-font text-cherry-cream text-xs opacity-80">
+                    Referrals from your direct referrals
+                  </p>
+                </div>
+
+                {/* Tier 3 Card */}
+                <div className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream h-full flex flex-col transition-transform transform hover:-translate-y-1 col-span-3 md:col-span-3  lg:col-span-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Icon
+                      icon="mdi:trophy-outline"
+                      className="text-3xl text-cherry-cream flex-shrink-0"
+                    />
+                    <h4 className="winky-sans-font text-lg md:text-xl text-cherry-cream font-bold">
+                      Tier 3 - Extended
+                    </h4>
+                  </div>
+                  <p className="winky-sans-font text-cherry-cream text-xs md:text-base mb-2">
+                    Earn{" "}
+                    <span className="bg-purple-400 text-cherry-black px-1 py-0.5 md:px-2 md:py-1 rounded-full text-xs font-bold">
+                      2.5%
+                    </span>{" "}
+                    of Cherry Sniper's 1% fee on every trade
+                  </p>
+                  <p className="winky-sans-font text-cherry-cream text-xs opacity-80">
+                    Third-level referrals in your network
+                  </p>
+                </div>
+                {/* Tier Diagram Toggle Button */}
+                <div className="col-span-3 lg:col-span-3">
+                  <button
+                    onClick={() => setShowDiagram(!showDiagram)}
+                    className="w-full bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream h-auto flex flex-col items-center justify-center transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <Icon
+                        icon="mdi:sitemap"
+                        className="text-3xl text-cherry-cream flex-shrink-0"
+                      />
+                      <h4 className="winky-sans-font text-lg md:text-xl text-cherry-cream font-bold">
+                        Referral Network Structure
+                      </h4>
+                    </div>
+                    <div className="flex items-center gap-2 text-cherry-cream">
+                      <span className="winky-sans-font text-sm">
+                        {showDiagram ? "Hide Diagram" : "See Diagram"}
+                      </span>
+                      <Icon
+                        icon={
+                          showDiagram ? "mdi:chevron-up" : "mdi:chevron-down"
+                        }
+                        width={20}
+                        height={20}
+                        className="transition-transform duration-300"
+                      />
+                    </div>
+                  </button>
+
+                  {/* Collapsible Diagram Content */}
+                  <AnimatePresence mode="wait">
+                    {showDiagram && (
+                      <motion.div
+                        key="diagram"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{
+                          height: { duration: 0.4, ease: "easeInOut" },
+                          opacity: { duration: 0.3, ease: "easeInOut" },
+                        }}
+                        className="mt-4 overflow-hidden"
+                      >
+                        <motion.div
+                          initial={{ y: -20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.1, duration: 0.3 }}
+                          className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream"
+                        >
+                          <div className="bg-cherry-burgundy/50 rounded-lg p-4">
+                            {/* You (Top Level) */}
+                            <motion.div
+                              initial={{ scale: 0.8, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              transition={{ delay: 0.2, duration: 0.3 }}
+                              className="flex justify-center mb-4"
+                            >
+                              <div className="bg-cherry-cream rounded-full w-16 h-16 flex items-center justify-center border-4 border-cherry-burgundy relative transform transition-all duration-300 hover:scale-105">
+                                <div className="text-center">
+                                  <Icon
+                                    icon="mdi:account-star"
+                                    width={24}
+                                    height={24}
+                                    className="text-cherry-burgundy"
+                                  />
+                                  <div className="winky-sans-font text-xs text-cherry-burgundy font-bold mt-1">
+                                    You
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.div>
+
+                            {/* Tier 1 - Direct Referrals */}
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.3, duration: 0.3 }}
+                              className="flex justify-center mb-2"
+                            >
+                              <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy px-3 py-1 transform transition-all duration-300 hover:scale-105">
+                                <div className="winky-sans-font text-cherry-burgundy font-bold text-center text-xs">
+                                  Direct - 55%
+                                </div>
+                              </div>
+                            </motion.div>
+
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.4, duration: 0.3 }}
+                              className="flex justify-center gap-4 mb-4"
+                            >
+                              <div className="bg-cherry-cream rounded-full w-12 h-12 flex items-center justify-center border-2 border-cherry-burgundy transform transition-all duration-300 hover:scale-110">
+                                <Icon
+                                  icon="mdi:account"
+                                  width={16}
+                                  height={16}
+                                  className="text-cherry-burgundy"
+                                />
+                              </div>
+                              <div className="bg-cherry-cream rounded-full w-12 h-12 flex items-center justify-center border-2 border-cherry-burgundy transform transition-all duration-300 hover:scale-110">
+                                <Icon
+                                  icon="mdi:account"
+                                  width={16}
+                                  height={16}
+                                  className="text-cherry-burgundy"
+                                />
+                              </div>
+                            </motion.div>
+
+                            {/* Tier 2 - Indirect Referrals */}
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.5, duration: 0.3 }}
+                              className="flex justify-center mb-2"
+                            >
+                              <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy px-3 py-1 transform transition-all duration-300 hover:scale-105">
+                                <div className="winky-sans-font text-cherry-burgundy font-bold text-center text-xs">
+                                  Indirect - 5%
+                                </div>
+                              </div>
+                            </motion.div>
+
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.6, duration: 0.3 }}
+                              className="flex justify-center gap-2 mb-4"
+                            >
+                              {[...Array(4)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ scale: 0, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  transition={{
+                                    delay: 0.7 + i * 0.1,
+                                    duration: 0.2,
+                                  }}
+                                  className="bg-cherry-cream rounded-full w-8 h-8 flex items-center justify-center border border-cherry-burgundy transform transition-all duration-300 hover:scale-110"
+                                >
+                                  <Icon
+                                    icon="mdi:account"
+                                    width={12}
+                                    height={12}
+                                    className="text-cherry-burgundy"
+                                  />
+                                </motion.div>
+                              ))}
+                            </motion.div>
+
+                            {/* Tier 3 - Extended Referrals */}
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.8, duration: 0.3 }}
+                              className="flex justify-center mb-2"
+                            >
+                              <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy px-3 py-1 transform transition-all duration-300 hover:scale-105">
+                                <div className="winky-sans-font text-cherry-burgundy font-bold text-center text-xs">
+                                  Extended - 2.5%
+                                </div>
+                              </div>
+                            </motion.div>
+
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.9, duration: 0.3 }}
+                              className="flex justify-center gap-1"
+                            >
+                              {[...Array(6)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ scale: 0, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  transition={{
+                                    delay: 1.0 + i * 0.08,
+                                    duration: 0.2,
+                                  }}
+                                  className="bg-cherry-cream rounded-full w-6 h-6 flex items-center justify-center border border-cherry-burgundy transform transition-all duration-300 hover:scale-110"
+                                >
+                                  <Icon
+                                    icon="mdi:account"
+                                    width={8}
+                                    height={8}
+                                    className="text-cherry-burgundy"
+                                  />
+                                </motion.div>
+                              ))}
+                            </motion.div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-16 p-8 w-full bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] relative overflow-hidden">
             <div className="text-center">
               <h3 className="maladroit-font text-3xl md:text-4xl text-cherry-burgundy   mb-4">
                 Your Dashboard. Your Edge.
               </h3>
               <p className="winky-sans-font text-lg text-cherry-burgundy mb-8 max-w-3xl mx-auto">
-                Track your progress in real time with the Depin Sniper
+                Track your progress in real time with the Cherry Sniper
                 dashboard.
               </p>
             </div>
@@ -868,18 +1549,18 @@ const CherrySniper: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mt-12">
-              <div className="bg-white h-80 rounded-xl border-4 border-cherry-burgundy p-2 shadow-[6px_6px_0px_#321017]">
+              <div className="bg-cherry-cream h-80 rounded-xl border-4 border-cherry-burgundy p-2 shadow-[6px_6px_0px_#321017]">
                 <img
                   src="https://storage.cherrybot.ai/screenshot1.webp"
                   className="w-full h-full object-cover"
-                  alt="Depin Sniper"
+                  alt="Cherry Sniper"
                 />
               </div>
-              <div className="bg-white h-80 rounded-xl border-4 border-cherry-burgundy p-2 shadow-[6px_6px_0px_#321017]">
+              <div className="bg-cherry-cream h-80 rounded-xl border-4 border-cherry-burgundy p-2 shadow-[6px_6px_0px_#321017]">
                 <img
                   src="https://storage.cherrybot.ai/screenshot2.webp"
                   className="w-full h-full object-cover"
-                  alt="Depin Sniper"
+                  alt="Cherry Sniper"
                 />
               </div>
             </div>
@@ -969,7 +1650,7 @@ const CherrySniper: React.FC = () => {
 
         <Navbar />
 
-        <div className="max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-10 py-20">
+        <div className=" max-w-[88rem] 2xl:max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-10 py-20">
           <div className="relative">
             {/* Success Toast for Newsletter */}
             <div
@@ -1039,7 +1720,7 @@ const CherrySniper: React.FC = () => {
                       >
                         <defs>
                           <pattern
-                            id="depinPattern"
+                            id="CherryPattern"
                             patternUnits="userSpaceOnUse"
                             width="80"
                             height="80"
@@ -1053,7 +1734,7 @@ const CherrySniper: React.FC = () => {
                         <rect
                           width="100%"
                           height="100%"
-                          fill="url(#depinPattern)"
+                          fill="url(#CherryPattern)"
                         />
                       </svg>
                     </div>
@@ -1081,17 +1762,13 @@ const CherrySniper: React.FC = () => {
                         <div className="flex items-center justify-center mb-4">
                           <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] px-6 py-3 transform -rotate-1 hover:rotate-0 transition-all duration-300">
                             <span className="text-xl md:text-xl   winky-sans-font text-cherry-burgundy">
-                              DePin Sniper
+                              Cherry Sniper
                             </span>
                           </div>
                         </div>
 
-                        <h2 className="text-xl md:text-3xl   maladroit-font text-cherry-burgundy mb-8 leading-tight">
-                          Private Trading Bots Powered by
-                          <br />
-                          <span className="text-cherry-red">
-                            Decentralized Infrastructure
-                          </span>
+                        <h2 className="text-xl md:text-3xl   maladroit-font text-cherry-red mb-8 leading-tight">
+                          Fastest Trade Executions or Trade in Privacy
                         </h2>
 
                         <div className="max-w-4xl md:px-0 px-9 mx-auto">
@@ -1100,11 +1777,11 @@ const CherrySniper: React.FC = () => {
                             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper.png')] opacity-20"></div>
 
                             <span className="winky-sans-font text-sm md:text-2xl text-cherry-burgundy leading-relaxed relative z-10">
-                              DePin Sniper will be the first trading bot that
-                              allows you to run trades through decentralized
-                              servers. No data leaks. Just a trading bot that
-                              offers traders non-custodial, private trading with
-                              rewards, and numerous other features.
+                              Cherry Sniper will be the first trading bot that
+                              offer 2 trading modes: Sniper and Stealth. Sniper
+                              mode is entirely focuses on speed and advanced
+                              trading features while Stealth focuses on privacy
+                              and being non custodial.
                             </span>
                           </div>
                         </div>
@@ -1191,9 +1868,9 @@ const CherrySniper: React.FC = () => {
                                 {/* Tab Buttons */}
                                 <div className="flex gap-2 mb-8">
                                   <button
-                                    onClick={() => setActiveTab("depin")}
+                                    onClick={() => setActiveTab("Cherry")}
                                     className={`flex-1 py-3 px-6 rounded-xl border-4 winky-sans-font transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 ${
-                                      activeTab === "depin"
+                                      activeTab === "Cherry"
                                         ? "bg-cherry-red text-white border-cherry-burgundy shadow-[4px_4px_0px_#321017]"
                                         : "bg-cherry-cream text-cherry-burgundy border-cherry-burgundy hover:bg-cherry-cream"
                                     }`}
@@ -1203,14 +1880,14 @@ const CherrySniper: React.FC = () => {
                                       width={20}
                                       height={20}
                                       className={
-                                        activeTab === "depin"
+                                        activeTab === "Cherry"
                                           ? "text-white"
                                           : "text-cherry-burgundy"
                                       }
                                     />
                                     <span
                                       className={
-                                        activeTab === "depin"
+                                        activeTab === "Cherry"
                                           ? "text-white"
                                           : "text-cherry-burgundy"
                                       }
@@ -1250,7 +1927,7 @@ const CherrySniper: React.FC = () => {
 
                                 {/* Tab Content */}
                                 <div className="min-h-[200px]">
-                                  {activeTab === "depin" && (
+                                  {activeTab === "Cherry" && (
                                     <div className="space-y-4 animate-fadeIn">
                                       {/* Stealth Mode Cards */}
                                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1671,7 +2348,7 @@ const CherrySniper: React.FC = () => {
                       Your Dashboard. Your Edge.
                     </h3>
                     <p className="winky-sans-font text-sm md:text-lg text-cherry-burgundy mb-8 max-w-3xl mx-auto">
-                      Track your progress in real time with the Depin Sniper
+                      Track your progress in real time with the Cherry Sniper
                       dashboard.
                     </p>
                   </div>
@@ -1748,14 +2425,14 @@ const CherrySniper: React.FC = () => {
                       <img
                         src="https://storage.cherrybot.ai/screenshot1.webp"
                         className="w-full h-full object-cover"
-                        alt="Depin Sniper"
+                        alt="Cherry Sniper"
                       />
                     </div>
                     <div className="  lgh-80 h-full rounded-xl border-4 border-cherry-burgundy p-2 shadow-[6px_6px_0px_#321017]">
                       <img
                         src="https://storage.cherrybot.ai/screenshot2.webp"
                         className="w-full h-full object-cover"
-                        alt="Depin Sniper"
+                        alt="Cherry Sniper"
                       />
                     </div>
                   </div>
@@ -1908,7 +2585,7 @@ const CherrySniper: React.FC = () => {
                     className="bg-cherry-cream text-cherry-burgundy   py-3 px-8 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center gap-2"
                   >
                     <span className="text-cherry-burgundy">
-                      Try Depin Sniper
+                      Try Cherry Sniper
                     </span>
                     <Icon
                       className="text-cherry-burgundy"

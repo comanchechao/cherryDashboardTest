@@ -238,7 +238,7 @@ const Features: React.FC = () => {
                           height={20}
                           className="text-cherry-cream"
                         />
-                        <span className="text-cherry-cream">DePin Sniper</span>{" "}
+                        <span className="text-cherry-cream">Cherry Sniper</span>{" "}
                         <span className="absolute -top-3 -right-7 bg-cherry-burgundy text-cherry-cream text-xs px-2 py-1 rounded-full">
                           NEW
                         </span>
@@ -257,14 +257,14 @@ const Features: React.FC = () => {
           >
             <div className="text-center mb-16">
               <h2 className="maladroit-font text-4xl md:text-5xl   text-cherry-burgundy mb-3">
-                DePin Sniper
+                Cherry Sniper
               </h2>
               <div className="h-1 w-64 md:w-96 p-1 mx-auto bg-cherry-red mb-8 rounded-full"></div>
               <p className="winky-sans-font text-sm md:text-xl max-w-3xl mx-auto text-cherry-burgundy">
-                DePin Sniper offers advanced trading tools for Web3 enthusiasts,
-                providing lightning-fast execution, rewarding participation, and
-                enhanced liquidity options to give traders a competitive edge in
-                the market.
+                Cherry Sniper offers advanced trading tools for Web3
+                enthusiasts, providing lightning-fast execution, rewarding
+                participation, and enhanced liquidity options to give traders a
+                competitive edge in the market.
               </p>
             </div>
 
@@ -334,7 +334,7 @@ const Features: React.FC = () => {
                         <div className="h-1 w-16 mx-auto bg-cherry-red mb-4 rounded-full"></div>
 
                         <p className="text-cherry-burgundy winky-sans-font text-center flex-grow">
-                          Experience lightning-fast trades with DePin Sniper's
+                          Experience lightning-fast trades with Cherry Sniper's
                           optimized routing and low-latency infrastructure.
                           Designed for rapid token launches and volatile
                           markets, our system ensures your transactions are
@@ -583,7 +583,7 @@ const Features: React.FC = () => {
                         className="text-white bg-cherry-red   md:py-4 py-3 md:px-16 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font mx-auto"
                       >
                         <span className="text-white text-lg">
-                          Try DePin Sniper
+                          Try Cherry Sniper
                         </span>
                         <Icon
                           className="text-white"
@@ -1614,7 +1614,7 @@ const Features: React.FC = () => {
                     height={20}
                     className="text-cherry-cream"
                   />
-                  <span className="text-cherry-cream">DePin Sniper</span>
+                  <span className="text-cherry-cream">Cherry Sniper</span>
                   <span className="absolute -top-3 -right-7 bg-cherry-burgundy text-cherry-cream text-xs px-2 py-1 rounded-full">
                     NEW
                   </span>

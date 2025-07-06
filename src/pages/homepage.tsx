@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
   const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
     useState(false);
 
-  const [activeTab, setActiveTab] = useState<"depin" | "speed">("depin");
+  const [activeTab, setActiveTab] = useState<"Cherry" | "speed">("Cherry");
 
   const [activePartner, setActivePartner] = useState<number>(0);
 
@@ -1405,7 +1405,7 @@ const HomePage: React.FC = () => {
                         <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-full border-4 border-cherry-burgundy shadow-lg transform transition-all duration-300 hover:rotate-6">
                           <img
                             src="https://storage.cherrybot.ai/cherrySniper.webp"
-                            alt="Depin Sniper"
+                            alt="Cherry Sniper"
                             className="w-full h-full object-contain mt-6 animate-float"
                           />
                         </div>
@@ -1416,7 +1416,7 @@ const HomePage: React.FC = () => {
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px]   mb-4 maladroit-font text-cherry-burgundy transform transition-all duration-300">
-                          Depin Sniper
+                          Cherry Sniper
                         </h3>
                         <div className="h-1 w-24 bg-cherry-red mb-4 rounded-full red-line mx-auto md:mx-0"></div>
                         <p className="text-cherry-burgundy winky-sans-font text-lg transition-all duration-300">
@@ -1465,7 +1465,7 @@ const HomePage: React.FC = () => {
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern
-                  id="depinPattern"
+                  id="CherryPattern"
                   patternUnits="userSpaceOnUse"
                   width="80"
                   height="80"
@@ -1476,7 +1476,7 @@ const HomePage: React.FC = () => {
                   <circle cx="60" cy="60" r="1.5" fill="#d6024d" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#depinPattern)" />
+              <rect width="100%" height="100%" fill="url(#CherryPattern)" />
             </svg>
           </div>
 
@@ -1500,17 +1500,13 @@ const HomePage: React.FC = () => {
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] px-6 py-3 transform -rotate-1 hover:rotate-0 transition-all duration-300">
                   <span className="text-xl md:text-xl   winky-sans-font text-cherry-burgundy">
-                    DePin Sniper
+                    Cherry Sniper
                   </span>
                 </div>
               </div>
 
-              <h2 className="text-xl md:text-3xl   maladroit-font text-cherry-burgundy mb-8 leading-tight">
-                Private Trading Bots Powered by
-                <br />
-                <span className="text-cherry-red">
-                  Decentralized Infrastructure
-                </span>
+              <h2 className="text-xl md:text-3xl   maladroit-font text-cherry-red mb-8 leading-tight">
+                Fastest Trade Executions or Trade in Privacy
               </h2>
 
               <div className="max-w-4xl mx-auto">
@@ -1519,10 +1515,10 @@ const HomePage: React.FC = () => {
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper.png')] opacity-20"></div>
 
                   <p className="winky-sans-font text-sm md:text-2xl text-cherry-burgundy leading-relaxed relative z-10">
-                    DePin Sniper will be the first trading bot that allows you
-                    to run trades through decentralized servers. No data leaks.
-                    Just a trading bot that offers traders non-custodial,
-                    private trading with rewards, and numerous other features.
+                    Cherry Sniper will be the first trading bot that offer 2
+                    trading modes: Sniper and Stealth. Sniper mode is entirely
+                    focuses on speed and advanced trading features while Stealth
+                    focuses on privacy and being non custodial.
                   </p>
                 </div>
               </div>
@@ -1572,7 +1568,7 @@ const HomePage: React.FC = () => {
 
                 {/* Tabs Section */}
                 <div className="w-full lg:w-1/2">
-                  <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden transform md:-rotate-1 hover:rotate-0 transition-all duration-300">
+                  <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] p-8 relative overflow-hidden transform md:rotate-1 hover:rotate-0 transition-all duration-300">
                     {/* Paper texture overlay */}
                     <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/paper.png')] opacity-20"></div>
 
@@ -1584,9 +1580,9 @@ const HomePage: React.FC = () => {
                       {/* Tab Buttons */}
                       <div className="flex gap-2 mb-8">
                         <button
-                          onClick={() => setActiveTab("depin")}
+                          onClick={() => setActiveTab("Cherry")}
                           className={`flex-1 py-3 px-6 rounded-xl border-4 winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeTab === "depin"
+                            activeTab === "Cherry"
                               ? "bg-cherry-red text-white border-cherry-burgundy shadow-[4px_4px_0px_#321017]"
                               : "bg-cherry-cream text-cherry-burgundy border-cherry-burgundy hover:bg-cherry-cream"
                           }`}
@@ -1607,7 +1603,7 @@ const HomePage: React.FC = () => {
 
                       {/* Tab Content */}
                       <div className="min-h-[400px]">
-                        {activeTab === "depin" && (
+                        {activeTab === "Cherry" && (
                           <div className="space-y-4 animate-fadeIn">
                             {/* Trade in Privacy Card */}
                             <div className="bg-cherry-cream rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#5d4037] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
@@ -1917,7 +1913,7 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center mb-3">
                     <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#5d4037] px-6 py-3 transform -rotate-1 hover:rotate-0 transition-all duration-300">
                       <span className="text-xl   winky-sans-font text-cherry-burgundy">
-                        DePin Trending
+                        Cherry Trending
                       </span>
                     </div>
                   </div>
@@ -1933,7 +1929,7 @@ const HomePage: React.FC = () => {
                     <p className="winky-sans-font text-sm md:text-2xl text-cherry-burgundy leading-relaxed relative z-10">
                       Most trending tools rely on third-party data sources or
                       oracles, but these sources can sometimes provide
-                      inaccurate or out-of-date information. DePin trending
+                      inaccurate or out-of-date information. Cherry trending
                       utilizes decentralized computation power to directly
                       gather, curate and present on-chain data, so that it
                       always provides accurate and real-time on-chain data.

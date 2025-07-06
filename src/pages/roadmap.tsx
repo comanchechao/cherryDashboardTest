@@ -517,7 +517,7 @@ const Roadmap: React.FC = () => {
             className="menu_nav w-button"
             id="cherryTokenBtn"
           >
-            $DEPIN
+            $Cherry
           </a>
           <a
             data-w-id="b4f5159c-2aa8-980c-c2c7-debaa8ed221d"
@@ -1066,7 +1066,7 @@ const Roadmap: React.FC = () => {
                             : "bg-cherry-cream text-cherry-burgundy"
                         }`}
                       >
-                        Depin Sniper
+                        Cherry Sniper
                       </label>
 
                       <label
@@ -1083,7 +1083,7 @@ const Roadmap: React.FC = () => {
 
                     {/* Tab content */}
                     <div className="mt-6">
-                      {/* Depin Sniper content */}
+                      {/* Cherry Sniper content */}
                       <div className="tab-content sniper-content hidden">
                         <div className="flex flex-col md:flex-row gap-8">
                           {/* Left Side - Changelog */}
@@ -1342,7 +1342,7 @@ const Roadmap: React.FC = () => {
                               </div>
                               <div className="mt-4 text-center">
                                 <h4 className="md:text-xl text-lg font-bold maladroit-font text-cherry-burgundy">
-                                  Depin Sniper Dashboard
+                                  Cherry Sniper Dashboard
                                 </h4>
                                 <p className="winky-sans-font my-2 text-cherry-burgundy">
                                   The Fastest Way to Trade on Solana.
@@ -1352,7 +1352,7 @@ const Roadmap: React.FC = () => {
                                   className="inline-block mt-4 text-white bg-cherry-red font-bold py-2 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
                                 >
                                   <span className="flex text-cherry-cream items-center gap-2">
-                                    Try Depin Sniper
+                                    Try Cherry Sniper
                                   </span>
                                 </button>
                               </div>
@@ -1434,7 +1434,7 @@ const Roadmap: React.FC = () => {
                                 the following features planned:
                               </p>
                               <ul className="space-y-2 ml-6 list-disc text-cherry-burgundy winky-sans-font">
-                                <li>Seamless integration with Depin Sniper</li>
+                                <li>Seamless integration with Cherry Sniper</li>
                                 <li>
                                   Custom trading strategies and automation
                                 </li>

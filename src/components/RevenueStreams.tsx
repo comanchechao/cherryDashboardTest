@@ -286,6 +286,38 @@ const RevenueStreams: React.FC = () => {
       },
     });
 
+    // Add hover effect for cherry
+    const cherry = cherryRef.current;
+    if (cherry) {
+      const handleMouseEnter = () => {
+        gsap.to(cherry, {
+          scale: 1.2,
+          duration: 0.4,
+          ease: "power2.out",
+          transformOrigin: "center center",
+        });
+      };
+
+      const handleMouseLeave = () => {
+        gsap.to(cherry, {
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          transformOrigin: "center center",
+        });
+      };
+
+      cherry.addEventListener("mouseenter", handleMouseEnter);
+      cherry.addEventListener("mouseleave", handleMouseLeave);
+
+      // Cleanup event listeners
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        cherry.removeEventListener("mouseenter", handleMouseEnter);
+        cherry.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
@@ -351,9 +383,12 @@ const RevenueStreams: React.FC = () => {
           />
           <img
             ref={cherryRef}
+            onClick={() => {
+              window.open("/cherry", "_blank");
+            }}
             src="/cherryRevenue.svg"
             alt="Cherry"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] z-30"
+            className="absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] z-30"
             style={{ filter: "drop-shadow(0 0 15px rgba(214, 2, 77, 0.4))" }}
           />
 

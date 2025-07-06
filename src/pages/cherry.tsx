@@ -522,7 +522,7 @@ const CherryToken: React.FC = () => {
                         $540,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        15% TGE, then linear over 12 months
+                        12 months cliff, then linear over 12 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -542,7 +542,7 @@ const CherryToken: React.FC = () => {
                         $300,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        15% TGE, then linear over 6 months
+                        12 months cliff, then linear over 6 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -622,7 +622,7 @@ const CherryToken: React.FC = () => {
                         -
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        6 month cliff, then linear over 18 months
+                        18 month cliff, then linear over 18 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -647,7 +647,7 @@ const CherryToken: React.FC = () => {
                     </tr>
                     <tr className="bg-cherry-cream">
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font   ">
-                        KOL_round
+                        KOL Round
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
                         5.00%
@@ -662,7 +662,7 @@ const CherryToken: React.FC = () => {
                         $2,500,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        30% TGE, then linear over 6 months
+                        12 months cliff, then 30%, then linear over 6 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -682,7 +682,7 @@ const CherryToken: React.FC = () => {
                         $480,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        40% TGE, then linear over 2 months
+                        12 months cliff, then 40%, then linear over 2 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -702,7 +702,7 @@ const CherryToken: React.FC = () => {
                         $150,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        100% TGE
+                        12 months cliff, then 100%
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -722,7 +722,7 @@ const CherryToken: React.FC = () => {
                         $150,030
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        15% TGE, 6 months linear
+                        12 months cliff, then linear over 12 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -742,7 +742,7 @@ const CherryToken: React.FC = () => {
                         $90,000
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        15% TGE, 12 month linear
+                        12 months cliff, then linear over 12 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -762,7 +762,7 @@ const CherryToken: React.FC = () => {
                         -
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        12 month cliff then linear over 12 months
+                        18 month cliff then linear over 12 months
                       </td>
                     </tr>
                     <tr className="bg-cherry-cream">
@@ -782,7 +782,7 @@ const CherryToken: React.FC = () => {
                         -
                       </td>
                       <td className="p-4 border-2 border-cherry-burgundy winky-sans-font">
-                        12 month cliff then linear over 12 months
+                        18 month cliff then linear over 12 months
                       </td>
                     </tr>
                   </tbody>
@@ -798,7 +798,7 @@ const CherryToken: React.FC = () => {
                     amount: "60,000,000",
                     price: "$0.0090",
                     raise: "$540,000",
-                    vesting: "15% TGE, then linear over 12 months",
+                    vesting: "12 months cliff, then Linear over 12 months",
                   },
                   {
                     allocation: "Early Community Round",
@@ -806,7 +806,7 @@ const CherryToken: React.FC = () => {
                     amount: "15,000,000",
                     price: "$0.0200",
                     raise: "$300,000",
-                    vesting: "15% TGE, then linear over 6 months",
+                    vesting: "12 months cliff, then Linear over 6 months",
                   },
                   {
                     allocation: "Community Rewards",
@@ -838,7 +838,7 @@ const CherryToken: React.FC = () => {
                     amount: "150,000,000",
                     price: "-",
                     raise: "-",
-                    vesting: "6 month cliff, then linear over 18 months",
+                    vesting: "18 month cliff, then linear over 18 months",
                   },
                   {
                     allocation: "Liquidity",
@@ -854,7 +854,8 @@ const CherryToken: React.FC = () => {
                     amount: "50,000,000",
                     price: "$0.050",
                     raise: "$2,500,000",
-                    vesting: "30% TGE, then linear over 6 months",
+                    vesting:
+                      "12 months cliff, then 30%, then linear over 6 months",
                   },
                   {
                     allocation: "Partners",
@@ -862,7 +863,8 @@ const CherryToken: React.FC = () => {
                     amount: "40,000,000",
                     price: "$0.012",
                     raise: "$480,000",
-                    vesting: "40% TGE, then linear over 2 months",
+                    vesting:
+                      "12 months cliff, then 40%, then linear over 2 months",
                   },
                   {
                     allocation: "VC #1",
@@ -870,7 +872,7 @@ const CherryToken: React.FC = () => {
                     amount: "7,500,000",
                     price: "$0.020",
                     raise: "$150,000",
-                    vesting: "100% TGE",
+                    vesting: "12 months cliff, then 100%",
                   },
                   {
                     allocation: "VC #2",
@@ -878,7 +880,7 @@ const CherryToken: React.FC = () => {
                     amount: "16,670,000",
                     price: "$0.009",
                     raise: "$150,030",
-                    vesting: "15% TGE, 6 months linear",
+                    vesting: "12 months cliff, then linear over 12months",
                   },
                   {
                     allocation: "VC #3",
@@ -886,7 +888,7 @@ const CherryToken: React.FC = () => {
                     amount: "10,000,000",
                     price: "$0.009",
                     raise: "$90,000",
-                    vesting: "15% TGE, 12 month linear",
+                    vesting: "12 months cliff, then linear over 12months",
                   },
                   {
                     allocation: "Advisory",
@@ -894,7 +896,7 @@ const CherryToken: React.FC = () => {
                     amount: "75,000,000",
                     price: "-",
                     raise: "-",
-                    vesting: "12 month cliff then linear over 12 months",
+                    vesting: "18 month cliff then linear over 12 months",
                   },
                   {
                     allocation: "Team",
@@ -902,7 +904,7 @@ const CherryToken: React.FC = () => {
                     amount: "100,000,000",
                     price: "-",
                     raise: "-",
-                    vesting: "12 month cliff then linear over 12 months",
+                    vesting: "18 month cliff then linear over 12 months",
                   },
                 ].map((item, index) => (
                   <div
@@ -1012,6 +1014,1025 @@ const CherryToken: React.FC = () => {
                       autoPlay
                       playsInline
                     ></video>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cherry Ecosystem Revenue Model */}
+            <div className="token-item relative w-full py-10 bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy rounded-2xl border-4 border-cherry-burgundy overflow-hidden">
+              {/* Background decorative elements */}
+              <div className="absolute -top-16 -left-16 w-32 h-32 bg-cherry-cream opacity-10 rounded-full"></div>
+              <div className="absolute -bottom-16 -right-16 w-40 h-40 bg-cherry-burgundy opacity-20 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-cherry-cream opacity-5 rounded-full"></div>
+
+              {/* Section Title */}
+              <div className="relative z-10 mb-16 text-center max-w-5xl mx-auto px-4">
+                <h2 className="maladroit-font text-2xl md:text-xl lg:text-2xl text-cherry-cream mb-2 relative inline-block">
+                  $CHERRY is at The Center of the Entire $CHERRY Economy
+                  <div className="absolute -bottom-3 left-0 w-full h-2 bg-cherry-cream rounded-full transform opacity-80"></div>
+                </h2>
+                <p className="winky-sans-font text-sm md:text-lg text-cherry-cream mt-2 opacity-90 leading-relaxed">
+                  Every trade, ad, promotion made using Cherry ecosystem
+                  products generates fees that add value to $CHERRY
+                </p>
+              </div>
+
+              {/* Revenue Flow Section */}
+              <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                  {/* Fee Generation */}
+                  <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#321017] overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[12px_12px_0px_#321017]">
+                    <div className="bg-cherry-burgundy p-6 relative overflow-hidden">
+                      <div className="absolute -top-8 -right-8 w-24 h-24 bg-cherry-red opacity-20 rounded-full"></div>
+                      <div className="flex items-center gap-4 relative z-10">
+                        <div className="w-16 h-16 bg-cherry-cream rounded-full border-4 border-cherry-red flex items-center justify-center shadow-[4px_4px_0px_#d6024d]">
+                          <Icon
+                            icon="mdi:cash-multiple"
+                            className="text-3xl text-cherry-burgundy"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                            Fee Generation
+                          </h3>
+                          <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                            Multiple Revenue Streams
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-4">
+                      <div className="flex items-start gap-3">
+                        <Icon
+                          icon="mdi:trending-up"
+                          className="text-xl text-cherry-red mt-1 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="winky-sans-font text-cherry-burgundy font-semibold mb-1">
+                            Trading Fees
+                          </p>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                            Generated from bot subscriptions and trading
+                            activities
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Icon
+                          icon="mdi:bullhorn"
+                          className="text-xl text-cherry-red mt-1 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="winky-sans-font text-cherry-burgundy font-semibold mb-1">
+                            Advertising Revenue
+                          </p>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                            From promoted posts and platform advertisements
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Icon
+                          icon="mdi:gamepad-variant"
+                          className="text-xl text-cherry-red mt-1 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="winky-sans-font text-cherry-burgundy font-semibold mb-1">
+                            Game Revenue
+                          </p>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                            In-game purchases and premium features
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Buyback Mechanism */}
+                  <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#321017] overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[12px_12px_0px_#321017]">
+                    <div className="bg-cherry-red p-6 relative overflow-hidden">
+                      <div className="absolute -top-8 -left-8 w-24 h-24 bg-cherry-burgundy opacity-20 rounded-full"></div>
+                      <div className="flex items-center gap-4 relative z-10">
+                        <div className="w-16 h-16 bg-cherry-cream rounded-full border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017]">
+                          <Icon
+                            icon="mdi:recycle"
+                            className="text-3xl text-cherry-red"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                            Buyback & Burn
+                          </h3>
+                          <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                            Value Creation Process
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-4">
+                      <div className="bg-cherry-burgundy bg-opacity-10 rounded-xl p-4 border-2 border-cherry-red">
+                        <p className="winky-sans-font text-cherry-cream text-center font-semibold">
+                          Most fees generated by the Cherry ecosystem are used
+                          to buyback $CHERRY tokens
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-center gap-4">
+                        <div className="text-center">
+                          <Icon
+                            icon="mdi:arrow-right-bold"
+                            className="text-3xl text-cherry-red mx-auto mb-2"
+                          />
+                          <p className="winky-sans-font text-cherry-burgundy text-sm">
+                            More fees = More buybacks
+                          </p>
+                        </div>
+                      </div>
+                      <div className="bg-green-100 rounded-xl p-4 border-2 border-green-400">
+                        <p className="winky-sans-font text-green-800 text-center font-semibold">
+                          Creating consistent value for $CHERRY holders
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Loot Pool Distribution */}
+                  <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#321017] overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[12px_12px_0px_#321017]">
+                    <div className="bg-cherry-burgundy p-6 relative overflow-hidden">
+                      <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-cherry-cream opacity-20 rounded-full"></div>
+                      <div className="flex items-center gap-4 relative z-10">
+                        <div className="w-16 h-16 bg-cherry-cream rounded-full border-4 border-cherry-red flex items-center justify-center shadow-[4px_4px_0px_#d6024d]">
+                          <Icon
+                            icon="mdi:treasure-chest"
+                            className="text-3xl text-cherry-burgundy"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                            Loot Pools
+                          </h3>
+                          <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                            Community Rewards
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-4">
+                      <div className="flex items-start gap-3">
+                        <Icon
+                          icon="mdi:star"
+                          className="text-xl text-cherry-red mt-1 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="winky-sans-font text-cherry-burgundy font-semibold mb-1">
+                            Staker Rewards
+                          </p>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                            Bought back $CHERRY tokens distributed to stakers
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Icon
+                          icon="mdi:chart-line"
+                          className="text-xl text-cherry-red mt-1 flex-shrink-0"
+                        />
+                        <div>
+                          <p className="winky-sans-font text-cherry-burgundy font-semibold mb-1">
+                            Ecosystem Growth
+                          </p>
+                          <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                            Funds used to expand the $CHERRY ecosystem
+                          </p>
+                        </div>
+                      </div>
+                      <div className="bg-cherry-burgundy bg-opacity-10 rounded-xl p-4 border-2 border-cherry-red">
+                        <p className="winky-sans-font text-cherry-cream text-center font-semibold text-sm">
+                          The more the ecosystem grows, the more value flows
+                          back to holders
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Value Flow Diagram */}
+                <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#321017] p-8 relative overflow-hidden">
+                  <div className="absolute -top-8 -left-8 w-32 h-32 bg-cherry-red opacity-10 rounded-full"></div>
+                  <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-cherry-burgundy opacity-10 rounded-full"></div>
+
+                  <h3 className="maladroit-font text-2xl md:text-4xl text-cherry-burgundy mb-8 text-center relative z-10">
+                    Cherry Ecosystem Value Flow
+                  </h3>
+
+                  <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-8">
+                    {/* Step 1 */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-20 h-20 bg-cherry-red rounded-full border-4 border-cherry-burgundy flex items-center justify-center mb-4 shadow-[4px_4px_0px_#321017]">
+                        <Icon
+                          icon="mdi:cog"
+                          className="text-3xl text-cherry-cream"
+                        />
+                      </div>
+                      <p className="winky-sans-font text-cherry-burgundy font-bold text-lg mb-2">
+                        Ecosystem Activity
+                      </p>
+                      <p className="winky-sans-font text-cherry-burgundy text-sm">
+                        Trading, Gaming, Ads
+                      </p>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="hidden lg:block">
+                      <Icon
+                        icon="mdi:arrow-right-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+                    <div className="lg:hidden">
+                      <Icon
+                        icon="mdi:arrow-down-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-20 h-20 bg-cherry-burgundy rounded-full border-4 border-cherry-red flex items-center justify-center mb-4 shadow-[4px_4px_0px_#d6024d]">
+                        <Icon
+                          icon="mdi:cash-multiple"
+                          className="text-3xl text-cherry-cream"
+                        />
+                      </div>
+                      <p className="winky-sans-font text-cherry-burgundy font-bold text-lg mb-2">
+                        Fee Generation
+                      </p>
+                      <p className="winky-sans-font text-cherry-burgundy text-sm">
+                        Revenue Collection
+                      </p>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="hidden lg:block">
+                      <Icon
+                        icon="mdi:arrow-right-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+                    <div className="lg:hidden">
+                      <Icon
+                        icon="mdi:arrow-down-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-20 h-20 bg-cherry-red rounded-full border-4 border-cherry-burgundy flex items-center justify-center mb-4 shadow-[4px_4px_0px_#321017]">
+                        <Icon
+                          icon="mdi:recycle"
+                          className="text-3xl text-cherry-cream"
+                        />
+                      </div>
+                      <p className="winky-sans-font text-cherry-burgundy font-bold text-lg mb-2">
+                        $CHERRY Buyback
+                      </p>
+                      <p className="winky-sans-font text-cherry-burgundy text-sm">
+                        Token Acquisition
+                      </p>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="hidden lg:block">
+                      <Icon
+                        icon="mdi:arrow-right-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+                    <div className="lg:hidden">
+                      <Icon
+                        icon="mdi:arrow-down-bold"
+                        className="text-4xl text-cherry-red"
+                      />
+                    </div>
+
+                    {/* Step 4 */}
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-20 h-20 bg-cherry-burgundy rounded-full border-4 border-cherry-red flex items-center justify-center mb-4 shadow-[4px_4px_0px_#d6024d]">
+                        <Icon
+                          icon="mdi:treasure-chest"
+                          className="text-3xl text-cherry-cream"
+                        />
+                      </div>
+                      <p className="winky-sans-font text-cherry-burgundy font-bold text-lg mb-2">
+                        Value Distribution
+                      </p>
+                      <p className="winky-sans-font text-cherry-burgundy text-sm">
+                        Rewards & Growth
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cherry Points & Staking System */}
+            <div className="token-item relative w-full py-16 bg-cherry-cream overflow-hidden">
+              {/* Gaming-themed background elements */}
+              <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMiIgZmlsbD0iIzMyMTAxNyIgb3BhY2l0eT0iMC4xIi8+Cjwvc3ZnPgo=')] opacity-50"></div>
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-cherry-red opacity-5 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-cherry-burgundy opacity-5 rounded-full blur-3xl"></div>
+
+              {/* Section Title */}
+              <div className="relative z-10 mb-12 text-center max-w-4xl mx-auto px-4">
+                <h2 className="maladroit-font text-3xl md:text-3xl lg:text-3xl text-cherry-burgundy mb-2 relative inline-block">
+                  Cherry Points, Staking Tiers & Loot Boxes
+                </h2>
+                <p className="winky-sans-font text-sm md:text-lg text-cherry-burgundy mt-2 opacity-80">
+                  Unlock rewards through our gamified staking system
+                </p>
+              </div>
+
+              <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                {/* Gaming Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                  {/* Cherry Points Card */}
+                  <div className="group relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-cherry-burgundy rounded-3xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[10px_10px_0px_#321017] transform transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[14px_14px_0px_#321017]">
+                      <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy p-8 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-cherry-cream rounded-full opacity-20"></div>
+                        <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-cherry-cream rounded-full opacity-30"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-20 h-20 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017] rotate-3 group-hover:rotate-6 transition-transform">
+                            <Icon
+                              icon="mdi:star-circle"
+                              className="text-4xl text-cherry-red"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-2xl md:text-3xl text-cherry-cream leading-tight">
+                              Cherry Points
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90 flex items-center gap-2 mt-2">
+                              <Icon
+                                icon="mdi:lightning-bolt"
+                                className="text-lg"
+                              />
+                              Earn & Redeem System
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-8">
+                        <div className="bg-cherry-cream rounded-2xl border-3 border-cherry-burgundy p-6 mb-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <Icon
+                              icon="mdi:account-star"
+                              className="text-2xl text-cherry-red"
+                            />
+                            <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                              How it Works
+                            </h4>
+                          </div>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                $CHERRY stakers automatically earn Cherry Points
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                Redeem points for valuable rewards from the
+                                Cherry store
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                Boost your staking tier by burning Cherry Points
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Loot Boxes Card */}
+                  <div className="group relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cherry-burgundy via-[#7e1331] to-cherry-burgundy rounded-3xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[10px_10px_0px_#321017] transform transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[14px_14px_0px_#321017]">
+                      <div className="bg-gradient-to-br from-cherry-burgundy via-[#7e1331] to-cherry-burgundy p-8 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-20 h-20 border-4 border-cherry-cream rounded-xl opacity-20 rotate-12"></div>
+                        <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-cherry-cream rounded-lg opacity-30 rotate-45"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-20 h-20 bg-cherry-cream rounded-2xl border-4 border-cherry-red flex items-center justify-center shadow-[4px_4px_0px_#d6024d] -rotate-3 group-hover:-rotate-6 transition-transform">
+                            <Icon
+                              icon="mdi:treasure-chest"
+                              className="text-4xl text-cherry-burgundy"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-2xl md:text-3xl text-cherry-cream leading-tight">
+                              Loot Boxes
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90 flex items-center gap-2 mt-2">
+                              <Icon icon="mdi:gift" className="text-lg" />
+                              Surprise Rewards
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-8">
+                        <div className="bg-cherry-cream rounded-2xl border-3 border-cherry-burgundy p-6 mb-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <Icon
+                              icon="mdi:shopping"
+                              className="text-2xl text-cherry-red"
+                            />
+                            <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                              Cherry Store
+                            </h4>
+                          </div>
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                Purchase using Cherry Points from the store
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                Sourced from the community Loot Pool
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                Can contain large amounts of $CHERRY tokens
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tiered System */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Loot Box Tiers */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[12px_12px_0px_#321017] transform transition-all duration-300 hover:-translate-y-1">
+                      <div className="bg-cherry-cream p-8 relative overflow-hidden">
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-cherry-red opacity-10 rounded-full"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-4 mb-6">
+                            <div className="w-16 h-16 bg-cherry-red rounded-xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017]">
+                              <Icon
+                                icon="mdi:package-variant"
+                                className="text-3xl text-cherry-cream"
+                              />
+                            </div>
+                            <div>
+                              <h3 className="maladroit-font text-2xl md:text-3xl text-cherry-burgundy leading-tight">
+                                Tiered Loot Boxes
+                              </h3>
+                              <p className="text-cherry-burgundy text-sm winky-sans-font opacity-80">
+                                3 Exciting Tiers
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            {/* Standard Tier */}
+                            <div className="flex items-center gap-4 bg-white rounded-xl p-4 border-2 border-gray-300">
+                              <div className="w-12 h-12 bg-gray-100 rounded-lg border-2 border-gray-400 flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:package"
+                                  className="text-2xl text-gray-600"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-gray-800 font-bold text-lg">
+                                  Standard
+                                </h4>
+                                <p className="winky-sans-font text-gray-600 text-sm">
+                                  Basic rewards, lowest cost
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm winky-sans-font">
+                                  Low Cost
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Rare Tier */}
+                            <div className="flex items-center gap-4 bg-blue-50 rounded-xl p-4 border-2 border-blue-300">
+                              <div className="w-12 h-12 bg-blue-100 rounded-lg border-2 border-blue-400 flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:package-variant"
+                                  className="text-2xl text-blue-600"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-blue-800 font-bold text-lg">
+                                  Rare
+                                </h4>
+                                <p className="winky-sans-font text-blue-600 text-sm">
+                                  Better rewards, moderate cost
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm winky-sans-font">
+                                  Mid Cost
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Legendary Tier */}
+                            <div className="flex items-center gap-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-4 border-2 border-yellow-400">
+                              <div className="w-12 h-12 bg-gradient-to-r from-yellow-300 to-orange-300 rounded-lg border-2 border-yellow-500 flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:treasure-chest"
+                                  className="text-2xl text-yellow-800"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-yellow-800 font-bold text-lg">
+                                  Legendary
+                                </h4>
+                                <p className="winky-sans-font text-yellow-700 text-sm">
+                                  Highest rewards, premium cost
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-gradient-to-r from-yellow-300 to-orange-300 text-yellow-800 px-3 py-1 rounded-full text-sm winky-sans-font">
+                                  High Cost
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Staking Tiers */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-cherry-burgundy to-[#7e1331] rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[12px_12px_0px_#321017] transform transition-all duration-300 hover:-translate-y-1">
+                      <div className="bg-cherry-cream p-8 relative overflow-hidden">
+                        <div className="absolute -top-10 -left-10 w-32 h-32 bg-cherry-burgundy opacity-10 rounded-full"></div>
+                        <div className="relative z-10">
+                          <div className="flex items-center gap-4 mb-6">
+                            <div className="w-16 h-16 bg-cherry-burgundy rounded-xl border-4 border-cherry-red flex items-center justify-center shadow-[4px_4px_0px_#d6024d]">
+                              <Icon
+                                icon="mdi:crown"
+                                className="text-3xl text-cherry-cream"
+                              />
+                            </div>
+                            <div>
+                              <h3 className="maladroit-font text-2xl md:text-3xl text-cherry-burgundy leading-tight">
+                                Staking Tiers
+                              </h3>
+                              <p className="text-cherry-burgundy text-sm winky-sans-font opacity-80">
+                                Unlock Higher Rewards
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-4">
+                            {/* Legionary */}
+                            <div className="flex items-center gap-4 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                              <div className="w-12 h-12 bg-cherry-cream rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:shield"
+                                  className="text-2xl text-cherry-burgundy"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Legionary
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80">
+                                  Base tier staking
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-cherry-cream text-cherry-burgundy px-3 py-1 rounded-full text-sm winky-sans-font border border-cherry-burgundy">
+                                  1x Rate
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Centurion */}
+                            <div className="flex items-center gap-4 bg-gradient-to-r from-cherry-cream to-cherry-red/10 rounded-xl p-4 border-2 border-cherry-red">
+                              <div className="w-12 h-12 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:shield-star"
+                                  className="text-2xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Centurion
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80">
+                                  Enhanced staking rewards
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-cherry-red text-cherry-cream px-3 py-1 rounded-full text-sm winky-sans-font">
+                                  2x Rate
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Legatus */}
+                            <div className="flex items-center gap-4 bg-gradient-to-r from-cherry-burgundy/10 to-cherry-burgundy/20 rounded-xl p-4 border-2 border-cherry-burgundy">
+                              <div className="w-12 h-12 bg-cherry-burgundy rounded-lg border-2 border-cherry-red flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:crown"
+                                  className="text-2xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Legatus
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80">
+                                  Premium tier benefits
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-cherry-burgundy text-cherry-cream px-3 py-1 rounded-full text-sm winky-sans-font">
+                                  3x Rate
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* $CHERRY Buyback & Burn Section */}
+            <div className="token-item relative w-full py-20   overflow-hidden">
+              {/* Fire/Burn themed background elements */}
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="absolute top-10 left-10 w-6 h-6 bg-cherry-red rounded-full opacity-20 animate-pulse"></div>
+                <div
+                  className="absolute top-32 right-20 w-4 h-4 bg-cherry-red rounded-full opacity-30 animate-pulse"
+                  style={{ animationDelay: "1s" }}
+                ></div>
+                <div
+                  className="absolute bottom-20 left-32 w-5 h-5 bg-cherry-red rounded-full opacity-25 animate-pulse"
+                  style={{ animationDelay: "2s" }}
+                ></div>
+                <div
+                  className="absolute bottom-40 right-10 w-3 h-3 bg-cherry-red rounded-full opacity-35 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                ></div>
+              </div>
+              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-cherry-cream opacity-5 rounded-full blur-3xl"></div>
+
+              {/* Section Title */}
+              <div className="relative z-10 mb-16 text-center max-w-5xl mx-auto px-4">
+                <div className="flex items-center justify-center gap-4 mb-2">
+                  <Icon
+                    icon="mdi:fire"
+                    className="text-4xl md:text-6xl text-cherry-red animate-pulse"
+                  />
+                  <h2 className="maladroit-font text-3xl md:text-4xl lg:text-4xl text-cherry-burgundy mb-0 relative inline-block">
+                    $CHERRY Buybacks & Burns
+                  </h2>
+                  <Icon
+                    icon="mdi:trending-up"
+                    className="text-4xl md:text-6xl text-cherry-cream"
+                  />
+                </div>
+                <p className="winky-sans-font text-lg md:text-xl text-cherry-burgundy opacity-90 leading-relaxed">
+                  Making $CHERRY deflationary and more valuable over time
+                </p>
+              </div>
+
+              <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                {/* Main Burn Mechanism */}
+                <div className="mb-16">
+                  <div className="bg-cherry-cream rounded-3xl border-4 border-cherry-red overflow-hidden shadow-[16px_16px_0px_#d6024d] transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[20px_20px_0px_#d6024d]">
+                    <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy p-8 md:p-12 relative overflow-hidden">
+                      <div className="absolute -top-20 -right-20 w-40 h-40 bg-yellow-400 opacity-10 rounded-full blur-2xl"></div>
+                      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-orange-500 opacity-10 rounded-full blur-2xl"></div>
+
+                      <div className="relative z-10 text-center">
+                        <div className="flex items-center justify-center gap-6 mb-8">
+                          <div className="w-20 h-20 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[6px_6px_0px_#321017] transform rotate-3">
+                            <Icon
+                              icon="mdi:fire-circle"
+                              className="text-4xl text-cherry-red"
+                            />
+                          </div>
+                          <h3 className="maladroit-font text-3xl md:text-3xl lg:text-3xl text-cherry-cream leading-tight">
+                            Deflationary by Design
+                          </h3>
+                          <div className="w-20 h-20 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[6px_6px_0px_#321017] transform -rotate-3">
+                            <Icon
+                              icon="mdi:chart-line"
+                              className="text-4xl text-green-600"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="bg-cherry-cream/10 backdrop-blur-sm rounded-2xl border-2 border-cherry-cream/30 p-8">
+                          <p className="winky-sans-font text-lg md:text-xl text-cherry-cream leading-relaxed mb-6">
+                            <span className="bg-cherry-cream text-cherry-burgundy px-3 py-1 rounded-full font-bold mr-2">
+                              Key Mechanism:
+                            </span>
+                            Some of the fees generated by Cherry ecosystem
+                            products will be used to buyback and burn $CHERRY.
+                            This will make $CHERRY deflationary thus making the
+                            tokens more valuable as time goes by.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Burn Process Visualization */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                  {/* Step 1: Fee Collection */}
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] transform transition-all duration-300 group-hover:-translate-y-2">
+                      <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-6 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-20 h-20 bg-cherry-cream opacity-20 rounded-full"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-16 h-16 bg-cherry-cream rounded-xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017]">
+                            <Icon
+                              icon="mdi:cash-multiple"
+                              className="text-3xl text-green-600"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-xl md:text-xl text-cherry-cream leading-tight">
+                              Fee Collection
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                              Revenue Generation
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Trading bot subscriptions
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Platform advertising revenue
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Gaming and feature fees
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 2: Token Buyback */}
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] transform transition-all duration-300 group-hover:-translate-y-2">
+                      <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 relative overflow-hidden">
+                        <div className="absolute -top-6 -left-6 w-20 h-20 bg-cherry-cream opacity-20 rounded-full"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-16 h-16 bg-cherry-cream rounded-xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017]">
+                            <Icon
+                              icon="mdi:shopping"
+                              className="text-3xl text-blue-600"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-xl md:text-xl text-cherry-cream leading-tight">
+                              Token Buyback
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                              Market Purchase
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Fees converted to buyback funds
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              $CHERRY purchased from market
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Systematic acquisition process
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Step 3: Token Burn */}
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-orange-600 rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] transform transition-all duration-300 group-hover:-translate-y-2">
+                      <div className="bg-gradient-to-br from-cherry-red to-orange-600 p-6 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-20 h-20 bg-cherry-cream opacity-20 rounded-full"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-16 h-16 bg-cherry-cream rounded-xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017]">
+                            <Icon
+                              icon="mdi:fire"
+                              className="text-3xl text-cherry-red animate-pulse"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                              Token Burn
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90">
+                              Permanent Removal
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-cherry-red rounded-full animate-pulse"></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Tokens sent to burn address
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-2 h-2 bg-cherry-red rounded-full animate-pulse"
+                              style={{ animationDelay: "0.5s" }}
+                            ></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Supply permanently reduced
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-2 h-2 bg-cherry-red rounded-full animate-pulse"
+                              style={{ animationDelay: "1s" }}
+                            ></div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm">
+                              Deflationary pressure created
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ecosystem Growth Vision */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[16px_16px_0px_#321017] transform transition-all duration-300 hover:-translate-y-2">
+                    <div className="p-8 md:p-12 relative overflow-hidden">
+                      <div className="absolute -top-16 -right-16 w-40 h-40 bg-cherry-red opacity-5 rounded-full"></div>
+                      <div className="absolute -bottom-16 -left-16 w-40 h-40 bg-cherry-burgundy opacity-5 rounded-full"></div>
+
+                      <div className="relative z-10">
+                        <div className="text-center mb-12">
+                          <div className="flex items-center justify-center gap-4 mb-6">
+                            <Icon
+                              icon="mdi:rocket-launch"
+                              className="text-5xl text-cherry-red"
+                            />
+                            <h3 className="maladroit-font text-3xl md:text-4xl lg:text-5xl text-cherry-burgundy leading-tight">
+                              Growing the Ecosystem
+                            </h3>
+                            <Icon
+                              icon="mdi:chart-timeline-variant"
+                              className="text-5xl text-green-600"
+                            />
+                          </div>
+                          <div className="w-40 h-1 bg-gradient-to-r from-cherry-red via-cherry-burgundy to-green-600 rounded-full mx-auto"></div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                          {/* New Products */}
+                          <div className="bg-white rounded-2xl border-3 border-cherry-burgundy p-6 shadow-[6px_6px_0px_#321017] transform transition-all duration-300 hover:-translate-y-1">
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="w-14 h-14 bg-cherry-red rounded-xl border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:plus-circle"
+                                  className="text-2xl text-cherry-cream"
+                                />
+                              </div>
+                              <h4 className="maladroit-font text-xl text-cherry-burgundy">
+                                New Products
+                              </h4>
+                            </div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                              Expanding the Cherry ecosystem with innovative
+                              trading tools, gaming features, and community
+                              platforms that generate additional revenue
+                              streams.
+                            </p>
+                          </div>
+
+                          {/* Monetizable Features */}
+                          <div className="bg-white rounded-2xl border-3 border-cherry-burgundy p-6 shadow-[6px_6px_0px_#321017] transform transition-all duration-300 hover:-translate-y-1">
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="w-14 h-14 bg-green-500 rounded-xl border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:currency-usd"
+                                  className="text-2xl text-white"
+                                />
+                              </div>
+                              <h4 className="maladroit-font text-xl text-cherry-burgundy">
+                                Monetizable Features
+                              </h4>
+                            </div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                              Implementing premium features, subscription tiers,
+                              and value-added services that increase fee
+                              generation across all platform touchpoints.
+                            </p>
+                          </div>
+
+                          {/* User Acquisition */}
+                          <div className="bg-white rounded-2xl border-3 border-cherry-burgundy p-6 shadow-[6px_6px_0px_#321017] transform transition-all duration-300 hover:-translate-y-1 md:col-span-2 lg:col-span-1">
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="w-14 h-14 bg-blue-500 rounded-xl border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:account-group"
+                                  className="text-2xl text-white"
+                                />
+                              </div>
+                              <h4 className="maladroit-font text-xl text-cherry-burgundy">
+                                User Acquisition
+                              </h4>
+                            </div>
+                            <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
+                              Strategic marketing campaigns and partnership
+                              initiatives to grow the user base, increasing
+                              overall platform activity and fee generation.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Value Proposition */}
+                        <div className="mt-12 text-center">
+                          <div className="bg-gradient-to-r from-cherry-red via-cherry-burgundy to-cherry-red rounded-2xl border-4 border-cherry-burgundy p-8 shadow-[12px_12px_0px_#321017]">
+                            <div className="flex items-center justify-center gap-6 mb-6">
+                              <Icon
+                                icon="mdi:fire"
+                                className="text-4xl text-cherry-cream animate-pulse"
+                              />
+                              <p className="maladroit-font text-2xl md:text-3xl text-cherry-cream">
+                                More Growth = More Fees = More Burns = Higher
+                                Value
+                              </p>
+                              <Icon
+                                icon="mdi:trending-up"
+                                className="text-4xl text-green-400"
+                              />
+                            </div>
+                            <p className="winky-sans-font text-lg text-cherry-cream opacity-90">
+                              All ecosystem growth provides more cash flow to
+                              buyback and burn more $CHERRY
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
