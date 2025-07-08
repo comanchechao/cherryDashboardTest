@@ -176,7 +176,7 @@ const Rewards: React.FC = () => {
       </div>
       <div id="triggerXoverFlow" className="wrapper_sections wrapper-container">
         <Navbar />
-        <div className=" max-w-[88rem] 2xl:max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-32 pt-28 pb-12">
+        <div className=" max-w-[88rem] 2xl:max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-9 pt-28 pb-12">
           <div className="relative">
             {/* Tab Navigation */}
             <div className="mb-8">
