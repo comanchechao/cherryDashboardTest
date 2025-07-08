@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
 import { Icon } from "@iconify/react";
 import Navbar from "../layouts/Navbar";
@@ -88,10 +87,6 @@ const CherrySniper: React.FC = () => {
       styleSheet.remove();
     };
   }, []);
-
-  const handleTrade = () => {
-    window.open("https://t.me/cherrysniperbot", "_blank");
-  };
 
   const handleNewsletterSubscribe = async (emailValue: string) => {
     if (!emailValue.trim()) {

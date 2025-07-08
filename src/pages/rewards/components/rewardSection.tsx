@@ -27,12 +27,8 @@ interface RewardSectionProps {
 
 const RewardSection: React.FC<RewardSectionProps> = ({
   toastVisible,
-  setToastVisible,
   successToastVisible,
-  setSuccessToastVisible,
   alreadySubscribedToastVisible,
-  setAlreadySubscribedToastVisible,
-  showAchievementsModal,
   setShowAchievementsModal,
   handleTrade,
   copyToClipboard,

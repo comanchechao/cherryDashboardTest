@@ -127,12 +127,9 @@ const userAchievement = {
 
 const Rewards: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
-  const [email, setEmail] = useState<string>("");
-  const [isSubscribing, setIsSubscribing] = useState(false);
   const [successToastVisible, setSuccessToastVisible] = useState(false);
   const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
     useState(false);
-  const [showDiagram, setShowDiagram] = useState(false);
   const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
   const [showAllLeaderboard, setShowAllLeaderboard] = useState(false);
   const [showAchievementsModal, setShowAchievementsModal] = useState(false);
@@ -152,49 +149,6 @@ const Rewards: React.FC = () => {
 
   const handleTrade = () => {
     window.open("https://t.me/cherrysniperbot", "_blank");
-  };
-
-  const handleNewsletterSubscribe = async (emailValue: string) => {
-    if (!emailValue.trim()) {
-      console.log("Email is required");
-      return;
-    }
-
-    setIsSubscribing(true);
-    try {
-      const response = await fetch(
-        "https://cherrytest-production.up.railway.app/email/newsletter",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: emailValue,
-          }),
-        }
-      );
-
-      const data = await response.json();
-      console.log("Newsletter subscription response:", data);
-
-      if (response.ok) {
-        console.log("Successfully subscribed to newsletter");
-        setSuccessToastVisible(true);
-        setTimeout(() => setSuccessToastVisible(false), 3000);
-        setEmail("");
-      } else {
-        console.log("Failed to subscribe:", data);
-        if (data.message === "Email already subscribed") {
-          setAlreadySubscribedToastVisible(true);
-          setTimeout(() => setAlreadySubscribedToastVisible(false), 3000);
-        }
-      }
-    } catch (error) {
-      console.error("Error subscribing to newsletter:", error);
-    } finally {
-      setIsSubscribing(false);
-    }
   };
 
   const copyToClipboard = (text: string) => {
