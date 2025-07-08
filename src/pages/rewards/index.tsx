@@ -329,7 +329,7 @@ const Rewards: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     {/* Modal Header */}
-                    <div className="bg-cherry-burgundy px-6 py-4 flex items-center justify-between">
+                    <div className="bg-black px-6 py-4 flex items-center justify-between">
                       <h3 className="maladroit-font text-xl text-cherry-cream flex items-center gap-2">
                         <Icon
                           icon="mdi:lightbulb"
