@@ -468,7 +468,7 @@ const Rewards: React.FC = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+                    className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
                     onClick={() => setShowAchievementsModal(false)}
                   >
                     <motion.div
@@ -476,11 +476,11 @@ const Rewards: React.FC = () => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.9, y: 20 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[12px_12px_0px_#321017] max-w-5xl w-full max-h-[90vh]"
+                      className="bg-cherry-cream rounded-2xl   shadow-[12px_12px_0px_#121a2a] max-w-5xl w-full max-h-[90vh]"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {/* Modal Header */}
-                      <div className="bg-cherry-burgundy px-6 py-4 flex items-center justify-between">
+                      <div className="bg-black px-6 py-4 flex items-center rounded-lg justify-between">
                         <h3 className="maladroit-font text-xl text-cherry-cream flex items-center gap-2">
                           <Icon
                             icon="ph:medal-bold"
