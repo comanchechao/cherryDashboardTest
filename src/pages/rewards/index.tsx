@@ -180,12 +180,12 @@ const Rewards: React.FC = () => {
           <div className="relative">
             {/* Tab Navigation */}
             <div className="mb-8">
-              <div className="flex items-center gap-1 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy p-2 w-fit shadow-[6px_6px_0px_#321017]">
+              <div className="flex items-center gap-1 bg-cherry-cream rounded-2xl border-4 border-black p-2 w-fit shadow-[6px_6px_0px_#121a2a]">
                 <button
                   onClick={() => setActiveTab("rewards")}
                   className={`px-6 py-3 rounded-xl winky-sans-font font-medium transition-all duration-200 flex items-center gap-2 ${
                     activeTab === "rewards"
-                      ? "bg-cherry-burgundy text-cherry-cream shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
+                      ? "bg-black text-cherry-cream shadow-[2px_2px_0px_#121a2a] transform translate-y-0.5"
                       : "text-cherry-burgundy hover:bg-cherry-burgundy/10"
                   }`}
                 >
@@ -209,7 +209,7 @@ const Rewards: React.FC = () => {
                   onClick={() => setActiveTab("leaderboard")}
                   className={`px-6 py-3 rounded-xl winky-sans-font font-medium transition-all duration-200 flex items-center gap-2 ${
                     activeTab === "leaderboard"
-                      ? "bg-cherry-burgundy text-cherry-cream shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
+                      ? "bg-black text-cherry-cream shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
                       : "text-cherry-burgundy hover:bg-cherry-burgundy/10"
                   }`}
                 >
@@ -233,7 +233,7 @@ const Rewards: React.FC = () => {
                   onClick={() => setActiveTab("airdrop")}
                   className={`px-6 py-3 rounded-xl winky-sans-font font-medium transition-all duration-200 flex items-center gap-2 ${
                     activeTab === "airdrop"
-                      ? "bg-cherry-burgundy text-cherry-cream shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
+                      ? "bg-black text-cherry-cream shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
                       : "text-cherry-burgundy hover:bg-cherry-burgundy/10"
                   }`}
                 >
