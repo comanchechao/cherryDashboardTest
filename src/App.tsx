@@ -110,6 +110,7 @@ function App() {
                 <Rewards />
               </PageLayout>
             }
+          />
           <Route
             path="*"
             element={
