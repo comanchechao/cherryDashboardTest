@@ -150,7 +150,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
           </div>
           <div className="  p-2   ">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="w-full flex items-center justify-between">
+              <div className="w-full flex items-center justify-between flex-col md:flex-row">
                 <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy  p-4 mb-6">
                   <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
                     Your Referral Link
