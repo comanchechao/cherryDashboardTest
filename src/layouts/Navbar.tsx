@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import { Icon } from "@iconify/react";
-import { useWallet } from "@solana/wallet-adapter-react";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { connected, publicKey, disconnect } = useWallet();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,23 +27,14 @@ const Navbar: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 4)}...${address.slice(-4)}`;
-  };
-
-  const handleDisconnect = async () => {
-    try {
-      await disconnect();
-    } catch (error) {
-      console.error("Failed to disconnect wallet:", error);
-    }
-  };
-
   const isActivePath = (path: string) => {
+    if (location.pathname === path) {
+      return true;
+    }
     if (path === "/") {
       return location.pathname === "/";
     }
-    return location.pathname.startsWith(path);
+    return location.pathname.startsWith(path + "/");
   };
 
   const getDesktopLinkClasses = (path: string) => {
@@ -89,19 +78,8 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex w-full  ml-20  items-center space-x-1">
-            <Link to="/" className={getDesktopLinkClasses("/")}>
-              HOME
-            </Link>
-
             <Link to="/features" className={getDesktopLinkClasses("/features")}>
               FEATURES
-            </Link>
-
-            <Link
-              to="/dashboard"
-              className={getDesktopLinkClasses("/dashboard")}
-            >
-              DASHBOARD
             </Link>
 
             <Link to="/cherrySniper">
@@ -139,6 +117,10 @@ const Navbar: React.FC = () => {
               $CHERRY
             </Link>
 
+            <Link to="/rewards" className={getDesktopLinkClasses("/rewards")}>
+              REWARDS
+            </Link>
+
             <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
               ROADMAP
             </Link>
@@ -157,7 +139,7 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Social Icons & Wallet */}
+          {/* Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="https://t.me/cherrycommunity"
@@ -190,28 +172,9 @@ const Navbar: React.FC = () => {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
-
-            {/* Wallet Section */}
-            {connected && publicKey && (
-              <div className="flex items-center space-x-3">
-                <div className="bg-cherry-cream flex items-center text-cherry-burgundy px-3 py-2 rounded-lg border-2 border-cherry-burgundy winky-sans-font text-sm font-bold">
-                  <Icon
-                    icon="mdi:wallet"
-                    className="inline mr-2"
-                    width={16}
-                    height={16}
-                  />
-                  {formatAddress(publicKey.toString())}
-                </div>
-                <button
-                  onClick={handleDisconnect}
-                  className="bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-3 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 transform hover:translate-y-1"
-                  title="Disconnect Wallet"
-                >
-                  <Icon icon="mdi:logout" width={16} height={16} />
-                </button>
-              </div>
-            )}
+            {/* <button className="bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 transform hover:translate-y-1 connect-btn">
+              <span className="winky-sans-font text-cherry-cream">Connect</span>
+            </button> */}
           </div>
 
           {/* Mobile menu button */}
@@ -252,15 +215,8 @@ const Navbar: React.FC = () => {
         }`}
       >
         <div className="px-4 pt-2 pb-4 space-y-3">
-          <Link to="/" className={getMobileLinkClasses("/")}>
-            HOME
-          </Link>
           <Link to="/features" className={getMobileLinkClasses("/features")}>
             FEATURES
-          </Link>
-
-          <Link to="/dashboard" className={getMobileLinkClasses("/dashboard")}>
-            DASHBOARD
           </Link>
 
           <Link
@@ -297,6 +253,10 @@ const Navbar: React.FC = () => {
             $CHERRY
           </Link>
 
+          <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
+            REWARDS
+          </Link>
+
           <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
             ROADMAP
           </Link>
@@ -313,28 +273,6 @@ const Navbar: React.FC = () => {
           <Link to="/aboutUs" className={getMobileLinkClasses("/aboutUs")}>
             ABOUT US
           </Link>
-
-          {/* Wallet Section Mobile */}
-          {connected && publicKey && (
-            <div className="pt-4 border-t border-cherry-cream/20">
-              <div className="bg-cherry-cream text-cherry-burgundy px-3 py-2 rounded-lg border-2 border-cherry-burgundy winky-sans-font text-sm font-bold mb-3">
-                <Icon
-                  icon="mdi:wallet"
-                  className="inline mr-2"
-                  width={16}
-                  height={16}
-                />
-                {formatAddress(publicKey.toString())}
-              </div>
-              <button
-                onClick={handleDisconnect}
-                className="w-full bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 flex items-center justify-center gap-2"
-              >
-                <Icon icon="mdi:logout" width={16} height={16} />
-                Disconnect Wallet
-              </button>
-            </div>
-          )}
 
           <div className="flex space-x-4 pt-2">
             <a
@@ -369,6 +307,9 @@ const Navbar: React.FC = () => {
               </svg>
             </a>
           </div>
+          {/* <button className="w-full bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 connect-btn">
+            Connect
+          </button> */}
         </div>
       </div>
 

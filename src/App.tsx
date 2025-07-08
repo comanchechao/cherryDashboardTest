@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashboard";
 import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import SolanaWalletProvider from "./components/WalletProvider";
+import Rewards from "./pages/rewards/index";
 
 function App() {
   const location = useLocation();
@@ -102,6 +103,13 @@ function App() {
               </PageLayout>
             }
           />
+          <Route
+            path="/rewards"
+            element={
+              <PageLayout>
+                <Rewards />
+              </PageLayout>
+            }
           <Route
             path="*"
             element={
