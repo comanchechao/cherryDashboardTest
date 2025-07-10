@@ -148,63 +148,65 @@ const RewardSection: React.FC<RewardSectionProps> = ({
               />
             </button>
           </div>
-          <div className="  p-2   ">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="w-full flex items-center justify-between flex-col md:flex-row">
-                <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy  p-4 mb-6">
-                  <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
-                    Your Referral Link
-                  </label>
-                  <div className="flex lg:flex-row flex-col  gap-2">
-                    <div className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy relative overflow-hidden">
-                      <div className="absolute inset-0 referral-shimmer"></div>
-                      <span className="relative z-10">
-                        https://t.me/CherrySniperBot?start=ref_GihKTmp
-                      </span>
-                    </div>
-                    <motion.button
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() =>
-                        copyToClipboard(
-                          "https://t.me/CherrySniperBot?start=ref_GihKTmp"
-                        )
-                      }
-                      className="bg-cherry-red text-white px-4 py-2 rounded-lg border border-b-4 border-r-4 border-cherry-burgundy transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] winky-sans-font flex items-center gap-2"
-                    >
-                      <Icon
-                        icon="mdi:content-copy"
-                        width={18}
-                        height={18}
-                        className="text-cherry-cream"
-                      />
-                      <span className="text-cherry-cream">Copy</span>
-                    </motion.button>
-                  </div>
-                </div>
-                <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy  p-4 mb-6 flex flex-col">
-                  <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
-                    Your Wallet Address
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <span className="winky-sans-font text-cherry-burgundy">
-                      W1
+          {/* Referral and Wallet Section */}
+          <div className="p-2">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+              {/* Referral Link Card */}
+              <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 w-full lg:w-auto flex-grow">
+                <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
+                  Your Referral Link
+                </label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <div className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy relative overflow-hidden">
+                    <div className="absolute inset-0 referral-shimmer"></div>
+                    <span className="relative z-10 truncate block">
+                      https://t.me/CherrySniperBot?start=ref_GihKTmp
                     </span>
-                    <div
-                      className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy hover:bg-cherry-burgundy hover:bg-opacity-10 cursor-pointer transition-colors flex items-center relative overflow-hidden"
-                      onClick={() =>
-                        copyToClipboard(
-                          "GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm"
-                        )
-                      }
-                    >
-                      <span className="truncate md:w-auto w-32 relative z-10">
-                        GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm
-                      </span>
-                      <span className="ml-2 text-xs text-cherry-burgundy opacity-70 relative z-10">
-                        (Tap to copy)
-                      </span>
-                      <div className="absolute inset-0 referral-shimmer"></div>
-                    </div>
+                  </div>
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() =>
+                      copyToClipboard(
+                        "https://t.me/CherrySniperBot?start=ref_GihKTmp"
+                      )
+                    }
+                    className="bg-cherry-red text-white px-4 py-2 rounded-lg border border-b-4 border-r-4 border-cherry-burgundy transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] winky-sans-font flex items-center justify-center gap-2"
+                  >
+                    <Icon
+                      icon="mdi:content-copy"
+                      width={18}
+                      height={18}
+                      className="text-cherry-cream"
+                    />
+                    <span className="text-cherry-cream">Copy</span>
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Wallet Address Card */}
+              <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 w-full lg:w-auto flex-grow">
+                <label className="winky-sans-font text-cherry-burgundy font-medium mb-2 block">
+                  Your Wallet Address
+                </label>
+                <div className="flex items-center gap-2">
+                  <span className="winky-sans-font text-cherry-burgundy">
+                    W1
+                  </span>
+                  <div
+                    className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy hover:bg-cherry-burgundy hover:bg-opacity-10 cursor-pointer transition-colors flex items-center relative overflow-hidden"
+                    onClick={() =>
+                      copyToClipboard(
+                        "GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm"
+                      )
+                    }
+                  >
+                    <span className="truncate relative z-10">
+                      GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm
+                    </span>
+                    <span className="ml-2 text-xs text-cherry-burgundy opacity-70 relative z-10 hidden sm:inline">
+                      (Tap to copy)
+                    </span>
+                    <div className="absolute inset-0 referral-shimmer"></div>
                   </div>
                 </div>
               </div>

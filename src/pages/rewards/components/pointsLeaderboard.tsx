@@ -81,12 +81,84 @@ const mockLeaderboardData: LeaderboardEntry[] = [
     referralPoints: 31245890,
     totalReferrals: 856742,
   },
+  // Page 2 entries
+  {
+    rank: 11,
+    userId: "c9f...2a8",
+    tradingPoints: 189234567,
+    referralPoints: 28456789,
+    totalReferrals: 456789,
+  },
+  {
+    rank: 12,
+    userId: "7b3...4e1",
+    tradingPoints: 175432108,
+    referralPoints: 25678901,
+    totalReferrals: 234567,
+  },
+  {
+    rank: 13,
+    userId: "5d8...9c2",
+    tradingPoints: 162345678,
+    referralPoints: 22345678,
+    totalReferrals: 123456,
+  },
+  {
+    rank: 14,
+    userId: "3a1...6f7",
+    tradingPoints: 149876543,
+    referralPoints: 19876543,
+    totalReferrals: 98765,
+  },
+  {
+    rank: 15,
+    userId: "8e4...1b9",
+    tradingPoints: 137654321,
+    referralPoints: 17654321,
+    totalReferrals: 76543,
+  },
+  {
+    rank: 16,
+    userId: "2c7...5d3",
+    tradingPoints: 125432109,
+    referralPoints: 15432109,
+    totalReferrals: 54321,
+  },
+  {
+    rank: 17,
+    userId: "9f2...8a6",
+    tradingPoints: 113210987,
+    referralPoints: 13210987,
+    totalReferrals: 32109,
+  },
+  {
+    rank: 18,
+    userId: "6b5...4c8",
+    tradingPoints: 101098765,
+    referralPoints: 11098765,
+    totalReferrals: 21098,
+  },
+  {
+    rank: 19,
+    userId: "4d8...7e2",
+    tradingPoints: 89876543,
+    referralPoints: 9876543,
+    totalReferrals: 10987,
+  },
+  {
+    rank: 20,
+    userId: "1a3...2f5",
+    tradingPoints: 78654321,
+    referralPoints: 8654321,
+    totalReferrals: 6543,
+  },
 ];
 
 const PointsLeaderboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(mockLeaderboardData.length / itemsPerPage);
+  const totalPagesWithDisabled = 5; // Show 5 pages total (2 active + 3 disabled)
 
   const formatNumber = (num: number): string => {
     if (num >= 1000000000) {
@@ -160,9 +232,9 @@ const PointsLeaderboard: React.FC = () => {
   return (
     <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] relative">
       {/* Header */}
-      <div className="bg-cherry-burgundy px-6 py-4 flex items-center justify-between">
+      <div className="bg-cherry-burgundy px-4 lg:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-cherry-cream rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cherry-cream rounded-full flex items-center justify-center">
             <Icon
               icon="mdi:podium-gold"
               width={28}
@@ -171,15 +243,15 @@ const PointsLeaderboard: React.FC = () => {
             />
           </div>
           <div>
-            <h3 className="maladroit-font text-2xl text-cherry-cream">
+            <h3 className="maladroit-font text-xl lg:text-2xl text-cherry-cream">
               Points Leaderboard
             </h3>
-            <p className="winky-sans-font text-sm text-cherry-cream opacity-80">
+            <p className="winky-sans-font text-xs lg:text-sm text-cherry-cream opacity-80">
               Top performers by total points earned
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-2">
           <Icon
             icon="mdi:clock"
             width={16}
@@ -193,7 +265,7 @@ const PointsLeaderboard: React.FC = () => {
       </div>
 
       {/* Pagination */}
-      <div className="bg-cherry-burgundy/10 px-6 py-3 flex items-center justify-between border-b-2 border-cherry-burgundy/20">
+      <div className="bg-cherry-burgundy/10 px-4 lg:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-2 border-b-2 border-cherry-burgundy/20">
         <div className="flex items-center gap-2">
           <Icon
             icon="mdi:account-group"
@@ -208,24 +280,43 @@ const PointsLeaderboard: React.FC = () => {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`w-8 h-8 rounded-lg winky-sans-font text-sm font-medium transition-all duration-200 ${
-                currentPage === i + 1
-                  ? "bg-cherry-burgundy text-cherry-cream"
-                  : "bg-cherry-cream text-cherry-burgundy hover:bg-cherry-burgundy/20"
-              }`}
-            >
-              {i + 1}
-            </button>
-          ))}
+          {Array.from({ length: totalPagesWithDisabled }, (_, i) => {
+            const pageNumber = i + 1;
+            const isActive = currentPage === pageNumber;
+            const isDisabled = pageNumber > totalPages;
+
+            return (
+              <button
+                key={pageNumber}
+                onClick={() => !isDisabled && setCurrentPage(pageNumber)}
+                disabled={isDisabled}
+                className={`w-8 h-8 rounded-lg winky-sans-font text-sm font-medium transition-all duration-200 ${
+                  isDisabled
+                    ? "bg-[#331118]/20 cursor-not-allowed"
+                    : isActive
+                    ? "bg-cherry-burgundy text-cherry-cream"
+                    : "bg-[#331118]/70 text-cherry-burgundy hover:bg-cherry-burgundy/20"
+                }`}
+              >
+                <span
+                  className={`winky-sans-font text-sm font-medium ${
+                    isDisabled
+                      ? "text-[#331118]/40 "
+                      : isActive
+                      ? "text-cherry-cream"
+                      : "text-cherry-cream"
+                  }`}
+                >
+                  {pageNumber}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Table for large screens */}
+      <div className="hidden lg:block overflow-x-auto">
         <table className="w-full">
           <thead className="bg-cherry-burgundy/5">
             <tr>
@@ -410,8 +501,102 @@ const PointsLeaderboard: React.FC = () => {
         </table>
       </div>
 
+      {/* Cards for small screens */}
+      <div className="lg:hidden p-4 space-y-3">
+        {currentData.map((entry, index) => (
+          <motion.div
+            key={entry.userId}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05, duration: 0.3 }}
+            className="bg-cherry-cream/60 border-2 border-cherry-burgundy/10 rounded-xl p-4"
+          >
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-10 h-10 rounded-full flex items-center justify-center ${getRankBadgeColor(
+                    entry.rank
+                  )}`}
+                >
+                  {getRankIcon(entry.rank)}
+                </div>
+                <div>
+                  <span className="winky-sans-font font-medium text-cherry-burgundy">
+                    {entry.userId}
+                  </span>
+                  {entry.rank <= 3 && (
+                    <div className="flex items-center gap-1 mt-1">
+                      <Icon
+                        icon="mdi:crown"
+                        width={12}
+                        height={12}
+                        className="text-yellow-500"
+                      />
+                      <span className="winky-sans-font text-xs text-yellow-600">
+                        Top Performer
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="flex items-center gap-1">
+                  <Icon
+                    icon="mdi:star"
+                    width={16}
+                    height={16}
+                    className="text-cherry-red"
+                  />
+                  <span className="winky-sans-font font-bold text-lg text-cherry-burgundy">
+                    {formatNumber(entry.tradingPoints + entry.referralPoints)}
+                  </span>
+                </div>
+                <span className="winky-sans-font text-xs text-cherry-burgundy/60">
+                  Total Points
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-cherry-burgundy/10">
+              <div className="flex flex-col items-start">
+                <div className="flex items-center gap-2">
+                  <Icon
+                    icon="mdi:chart-line"
+                    width={16}
+                    height={16}
+                    className="text-cherry-red"
+                  />
+                  <span className="winky-sans-font font-medium text-cherry-burgundy">
+                    {formatNumber(entry.tradingPoints)}
+                  </span>
+                </div>
+                <span className="winky-sans-font text-xs text-cherry-burgundy/60 mt-1">
+                  Trading
+                </span>
+              </div>
+              <div className="flex flex-col items-start">
+                <div className="flex items-center gap-2">
+                  <Icon
+                    icon="mdi:account-group"
+                    width={16}
+                    height={16}
+                    className="text-cherry-red"
+                  />
+                  <span className="winky-sans-font font-medium text-cherry-burgundy">
+                    {formatNumber(entry.totalReferrals)}
+                  </span>
+                </div>
+                <span className="winky-sans-font text-xs text-cherry-burgundy/60 mt-1">
+                  Referrals
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
       {/* Footer */}
-      <div className="bg-cherry-burgundy/5 px-6 py-4 flex items-center justify-between border-t-2 border-cherry-burgundy/20">
+      <div className="bg-cherry-burgundy/5 px-4 lg:px-6 py-3 flex flex-col md:flex-row items-center justify-between text-center md:text-left gap-4 md:gap-2 border-t-2 border-cherry-burgundy/20">
         <div className="flex items-center gap-2">
           <Icon
             icon="mdi:information"
@@ -425,13 +610,13 @@ const PointsLeaderboard: React.FC = () => {
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-cherry-burgundy rounded-full"></div>
+            <div className="w-3 h-3 bg-cherry-red rounded-full"></div>
             <span className="winky-sans-font text-xs text-cherry-burgundy">
               Trading Points
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-cherry-burgundy rounded-full"></div>
+            <div className="w-3 h-3 bg-cherry-red rounded-full"></div>
             <span className="winky-sans-font text-xs text-cherry-burgundy">
               Referral Points
             </span>

@@ -166,7 +166,6 @@ const Rewards: React.FC = () => {
   return (
     <>
       {" "}
-      <div className="overlay"></div>
       <div className="hider top"></div>
       <div className="hider"></div>
       <div id="triggerXoverFlow1" className="wrapper_main h-full">
