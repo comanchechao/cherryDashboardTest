@@ -24,7 +24,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
     <div className="bg-cherry-cream rounded-2xl border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
       {/* Header */}
       <div className="bg-black px-4 lg:px-6 py-4 flex items-center justify-between">
-        <h3 className="maladroit-font text-xl lg:text-2xl text-cherry-cream flex items-center gap-2">
+        <h3 className="maladroit-font text-sm lg:text-2xl text-cherry-cream flex items-center gap-2">
           <Icon
             icon="tabler:trophy"
             width={28}
