@@ -218,7 +218,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
             <div className="flex items-center justify-center w-full">
               {/* Left side - Current Achievement */}
               <div className="w-full">
-                <h4 className="maladroit-font text-xl text-cherry-burgundy mb-3 flex items-center gap-2">
+                <h4 className="maladroit-font lg:text-xl text-sm text-cherry-burgundy mb-3 flex items-center gap-2">
                   <Icon
                     icon="ph:trophy-bold"
                     className="text-cherry-red"
