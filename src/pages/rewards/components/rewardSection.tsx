@@ -112,7 +112,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
       <div className="bg-cherry-cream rounded-2xl border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
         {/* Header */}
         <div className="bg-black px-6 py-4">
-          <h3 className="maladroit-font text-2xl text-cherry-cream flex items-center gap-2">
+          <h2 className="maladroit-font text-lg lg:text-2xl text-cherry-cream flex items-center gap-2">
             <Icon
               icon="solar:card-bold"
               width={28}
@@ -120,7 +120,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
               className="text-cherry-cream"
             />
             Rewards Dashboard
-          </h3>
+          </h2>
         </div>
 
         {/* Wallet Content */}
@@ -149,7 +149,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
             </button>
           </div>
           {/* Referral and Wallet Section */}
-          <div className="p-2">
+          <div className="my-4">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
               {/* Referral Link Card */}
               <div className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 w-full lg:w-auto flex-grow">
