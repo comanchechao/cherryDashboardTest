@@ -62,17 +62,6 @@ const customAnimations = `
   }
 `;
 
-const userAchievement = {
-  badge: "Diamond",
-  level: 5,
-  points: 98400,
-  volume: "$100,000+",
-  nextBadge: "Ruby",
-  nextVolume: "$250,000",
-  nextPoints: 8000,
-  progress: 85,
-};
-
 const Rewards: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [successToastVisible, setSuccessToastVisible] = useState(false);
