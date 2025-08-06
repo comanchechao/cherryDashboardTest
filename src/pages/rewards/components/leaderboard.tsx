@@ -1,7 +1,7 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import Skeleton, {
+import {
   TableRowSkeleton,
   CardSkeleton,
   HeaderSkeleton,
