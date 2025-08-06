@@ -1,6 +1,5 @@
 import React, { createContext, useContext, ReactNode, useEffect } from "react";
 import useLoginModal from "../hooks/useLoginModal";
-import LoginModal from "../components/LoginModal";
 import { useAuth } from "../components/AuthProvider";
 
 type LoginModalContextType = ReturnType<typeof useLoginModal>;
@@ -28,11 +27,6 @@ export const LoginModalProvider: React.FC<{ children: ReactNode }> = ({
   return (
     <LoginModalContext.Provider value={loginModalState}>
       {children}
-      <LoginModal
-        open={loginModalState.isLoginModalOpen}
-        onClose={loginModalState.closeLoginModal}
-        hasPendingAction={loginModalState.hasPendingAction}
-      />
     </LoginModalContext.Provider>
   );
 };
