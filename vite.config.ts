@@ -19,7 +19,19 @@ export default defineConfig({
   server: {
     open: true,
     port: 3000,
-    proxy: {},
+    proxy: {
+      "/api": {
+        target: "http://localhost:3010",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/auth-api": {
+        target: "https://sniper.cherrybot.ai/api/v1",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/auth-api/, ""),
+      },
+    },
   },
 
   preview: {

@@ -7,6 +7,7 @@ export interface ToastState {
   message: string;
   visible: boolean;
   duration?: number;
+  txSignature?: string;
 }
 
 export const useToast = () => {
@@ -17,25 +18,29 @@ export const useToast = () => {
       type: ToastState["type"],
       title: string,
       message: string,
-      duration: number = 3000
+      duration: number = 3000,
+      txSignature?: string
     ) => {
       const id = Date.now().toString();
+
+      const actualDuration = txSignature ? 10000 : duration;
+
       const newToast: ToastState = {
         id,
         type,
         title,
         message,
         visible: true,
-        duration,
+        duration: actualDuration,
+        txSignature,
       };
 
       setToasts((prev) => [...prev, newToast]);
 
-      // Auto remove after duration
-      if (duration > 0) {
+      if (actualDuration > 0) {
         setTimeout(() => {
           hideToast(id);
-        }, duration);
+        }, actualDuration);
       }
 
       return id;
@@ -53,29 +58,49 @@ export const useToast = () => {
 
   // Convenience methods
   const showSuccess = useCallback(
-    (title: string, message: string, duration?: number) => {
-      return showToast("success", title, message, duration);
+    (
+      title: string,
+      message: string,
+      duration?: number,
+      txSignature?: string
+    ) => {
+      return showToast("success", title, message, duration, txSignature);
     },
     [showToast]
   );
 
   const showError = useCallback(
-    (title: string, message: string, duration?: number) => {
-      return showToast("error", title, message, duration);
+    (
+      title: string,
+      message: string,
+      duration?: number,
+      txSignature?: string
+    ) => {
+      return showToast("error", title, message, duration, txSignature);
     },
     [showToast]
   );
 
   const showWarning = useCallback(
-    (title: string, message: string, duration?: number) => {
-      return showToast("warning", title, message, duration);
+    (
+      title: string,
+      message: string,
+      duration?: number,
+      txSignature?: string
+    ) => {
+      return showToast("warning", title, message, duration, txSignature);
     },
     [showToast]
   );
 
   const showInfo = useCallback(
-    (title: string, message: string, duration?: number) => {
-      return showToast("info", title, message, duration);
+    (
+      title: string,
+      message: string,
+      duration?: number,
+      txSignature?: string
+    ) => {
+      return showToast("info", title, message, duration, txSignature);
     },
     [showToast]
   );

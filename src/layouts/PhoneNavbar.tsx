@@ -13,9 +13,6 @@ const PhoneNavbar: React.FC = () => {
       <Link to="/features" className="menu_nav w-button" id="featuresBtn">
         FEATURES
       </Link>
-      <Link to="/dashboard" className="menu_nav w-button">
-        DASHBOARD
-      </Link>
       <a id="partnersBtn" className="menu_nav w-button">
         PARTNERS
       </a>
@@ -28,7 +25,7 @@ const PhoneNavbar: React.FC = () => {
         IDO
       </a>
       <Link to="/cherry" className="menu_nav w-button">
-        $CHERRY
+        $AIBOT
       </Link>
       <a
         href="https://docs.cherrybot.co/"

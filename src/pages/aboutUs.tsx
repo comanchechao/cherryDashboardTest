@@ -138,7 +138,7 @@ const AboutUs: React.FC = () => {
             className="menu_nav w-button"
             id="cherryTokenBtn"
           >
-            $cherryAI
+            $AIBOT
           </a>
           <a
             data-w-id="b4f5159c-2aa8-980c-c2c7-debaa8ed221d"
@@ -768,7 +768,7 @@ const AboutUs: React.FC = () => {
                       </h3>
                     </div>
                     <p className="winky-sans-font text-sm lg:text-base text-cherry-burgundy">
-                      Get paid in USDC + $CHERRY equity options. You're not just
+                      Get paid in USDC + $AIBOT equity options. You're not just
                       an employee—you're part of the upside.
                     </p>
                   </div>

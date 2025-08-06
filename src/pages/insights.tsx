@@ -1491,7 +1491,7 @@ const Insights: React.FC = () => {
               ref={tokenomicsTitleRef}
               className="maladroit-font text-5xl md:text-6xl text-cherry-cream mb-6 relative inline-block"
             >
-              Why $CHERRY?
+              Why $AIBOT?
               <div className="absolute -bottom-3 left-0 w-full h-2 bg-cherry-red rounded-full transform"></div>
             </h2>
             <p className="winky-sans-font text-2xl text-cherry-cream mt-6">
@@ -1527,7 +1527,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       Allocated to automated buybacks and burns to support
-                      $CHERRY AI's deflationary mechanism.
+                      $AIBOT's deflationary mechanism.
                     </p>
                   </div>
                   <div className="flex items-start gap-2">
@@ -1615,7 +1615,7 @@ const Insights: React.FC = () => {
                       className="text-cherry-cream text-xl flex-shrink-0 mt-1"
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
-                      Will be used to buy $CHERRY and offer unique staking
+                      Will be used to buy $AIBOT and offer unique staking
                       opportunities with high APR. Stakers can access
                       third-party airdrops, which will be delivered to the
                       highest stakers by pool size.
@@ -1657,7 +1657,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       To access Cherry AI's platform features, including ads and
-                      project promotions, users must purchase $CHERRY.
+                      project promotions, users must purchase $AIBOT.
                     </p>
                   </div>
                 </div>
@@ -1685,7 +1685,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       Platform votes, bounties, and other governance activities
-                      will be available to all $CHERRY holders.
+                      will be available to all $AIBOT holders.
                     </p>
                   </div>
                   <div className="flex items-start gap-2">

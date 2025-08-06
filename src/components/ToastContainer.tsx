@@ -12,13 +12,15 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   onHideToast,
 }) => {
   return (
-    <div className="fixed top-10 max-w-[88rem] w-full right-10 z-50 space-y-3">
+    <div className="fixed top-4 left-4 right-4 lg:top-6 lg:right-6 lg:left-auto lg:max-w-md z-[200] space-y-1 lg:space-y-2">
       {toasts.map((toast, index) => (
         <div
           key={toast.id}
           style={{
-            transform: `translateY(${index * 80}px)`,
-            transition: "transform 0.3s ease-in-out",
+            transform: `translateY(${
+              index * (window.innerWidth >= 1024 ? 60 : 50)
+            }px)`,
+            transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           <Toast
@@ -28,6 +30,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
             visible={toast.visible}
             onClose={() => onHideToast(toast.id)}
             duration={0} // Duration is handled by the hook
+            txSignature={toast.txSignature} // Pass the transaction signature
           />
         </div>
       ))}

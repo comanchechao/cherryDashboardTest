@@ -6,8 +6,10 @@ import Footer from "../../layouts/Footer";
 import RewardSection from "./components/rewardSection";
 import StatCards from "./components/statCards";
 import Leaderboard from "./components/leaderboard";
-import PointsLeaderboard from "./components/pointsLeaderboard";
+// import PointsLeaderboard from "./components/pointsLeaderboard";
 import CherryAirdrop from "./components/cherryAirdrop";
+import { useAuth } from "../../components/AuthProvider";
+import rewardsService from "../../services/rewardsService";
 
 const customAnimations = `
   @keyframes float-slow {
@@ -60,60 +62,6 @@ const customAnimations = `
   }
 `;
 
-const mockLeaderboardData = [
-  {
-    wallet: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-    type: "tier 1",
-    solEarn: 45.8,
-  },
-  {
-    wallet: "0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF",
-    type: "tier 2",
-    solEarn: 32.4,
-    isUser: true,
-  },
-  {
-    wallet: "0x6813Eb9362372EEF6200f3b1dbC3f819671cBA69",
-    type: "tier 1",
-    solEarn: 28.7,
-  },
-  {
-    wallet: "0x1efF47bc3a10a45D4B230B5d10E37751FE6AA718",
-    type: "tier 3",
-    solEarn: 15.2,
-  },
-  {
-    wallet: "0xB8c77482e45F1F44dE1745F52C74426C631bDD52",
-    type: "tier 2",
-    solEarn: 12.9,
-  },
-  {
-    wallet: "0x85f8578EaE6f4D931fa80F8F0e2A4Cb3148DB4Cf",
-    type: "tier 1",
-    solEarn: 8.6,
-  },
-  {
-    wallet: "0x3E3a3D69dc33BAc797814EF91909D40a1356cfB3",
-    type: "tier 3",
-    solEarn: 7.3,
-  },
-  {
-    wallet: "0x4B5565c1CD1DEFEb31042606B673182F085Efe2D",
-    type: "tier 2",
-    solEarn: 5.1,
-  },
-  {
-    wallet: "0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE",
-    type: "tier 1",
-    solEarn: 3.8,
-  },
-  {
-    wallet: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-    type: "tier 3",
-    solEarn: 2.4,
-  },
-];
-
 const userAchievement = {
   badge: "Diamond",
   level: 5,
@@ -131,11 +79,28 @@ const Rewards: React.FC = () => {
   const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
     useState(false);
   const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
-  const [showAllLeaderboard, setShowAllLeaderboard] = useState(false);
   const [showAchievementsModal, setShowAchievementsModal] = useState(false);
   const [activeTab, setActiveTab] = useState<
     "rewards" | "leaderboard" | "airdrop"
   >("rewards");
+  const [leaderboardData, setLeaderboardData] = useState<any[]>([]);
+  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const { isAuthenticated, accessToken, telegramId } = useAuth();
+
+  const userAchievement = {
+    badge: "Diamond",
+    level: 5,
+    points: 98400,
+    volume: "$100,000",
+    nextBadge: "Ruby",
+    nextVolume: "$250,000",
+    nextPoints: 150000,
+    progress: 75,
+  };
 
   useEffect(() => {
     const styleSheet = document.createElement("style");
@@ -146,6 +111,73 @@ const Rewards: React.FC = () => {
       styleSheet.remove();
     };
   }, []);
+
+  // Fetch leaderboards on page enter
+  useEffect(() => {
+    const fetchLeaderboards = async () => {
+      if (!isAuthenticated || !accessToken) {
+        console.log("🔒 [Rewards] User not authenticated, skipping API call");
+        return;
+      }
+
+      try {
+        setLeaderboardLoading(true);
+
+        if (!telegramId) {
+          console.log(
+            "📱 [Rewards] No telegram ID in auth context, skipping API call"
+          );
+          return;
+        }
+
+        console.log(
+          "🏆 [Rewards] Fetching leaderboards for telegram ID:",
+          telegramId
+        );
+
+        const response = await rewardsService.getLeaderboards(
+          telegramId.toString(),
+          currentPage, // pageNumber
+          10, // pageSize
+          accessToken
+        );
+
+        console.log("✅ [Rewards] Leaderboards API response:", {
+          success: response.success,
+          totalUsers: response.result?.totalCount,
+          usersInPage: response.result?.leaderboards?.length,
+          pageInfo: {
+            pageNumber: response.result?.pageNumber,
+            pageSize: response.result?.pageSize,
+            totalPages: response.result?.totalPages,
+            isLastPage: response.result?.isLastPage,
+          },
+          sampleUser: response.result?.leaderboards?.[0],
+        });
+
+        // Store the leaderboard data and pagination info
+        if (response.success && response.result?.leaderboards) {
+          setLeaderboardData(response.result.leaderboards);
+          setTotalPages(response.result.totalPages || 1);
+          setTotalCount(response.result.totalCount || 0);
+        }
+      } catch (error: any) {
+        console.error("❌ [Rewards] Failed to fetch leaderboards:", {
+          error: error.message,
+          status: error.response?.status,
+          data: error.response?.data,
+        });
+      } finally {
+        setLeaderboardLoading(false);
+      }
+    };
+
+    fetchLeaderboards();
+  }, [isAuthenticated, accessToken, telegramId, currentPage]);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   const handleTrade = () => {
     window.open("https://t.me/cherrysniperbot", "_blank");
@@ -237,7 +269,7 @@ const Rewards: React.FC = () => {
                   }`}
                 >
                   <Icon
-                    icon="mdi:parachute"
+                    icon="mdi:airplane"
                     className={`${
                       activeTab === "airdrop" ? "text-cherry-cream" : ""
                     }`}
@@ -249,7 +281,7 @@ const Rewards: React.FC = () => {
                       activeTab === "airdrop" ? "text-cherry-cream" : ""
                     }`}
                   >
-                    Cherry Airdrop
+                    Airdrop
                   </span>
                 </button>
               </div>
@@ -264,6 +296,7 @@ const Rewards: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
+                  className="space-y-8"
                 >
                   <RewardSection
                     toastVisible={toastVisible}
@@ -283,11 +316,6 @@ const Rewards: React.FC = () => {
                     userAchievement={userAchievement}
                   />
                   <StatCards />
-                  <Leaderboard
-                    mockLeaderboardData={mockLeaderboardData}
-                    showAllLeaderboard={showAllLeaderboard}
-                    setShowAllLeaderboard={setShowAllLeaderboard}
-                  />
                 </motion.div>
               )}
 
@@ -298,8 +326,17 @@ const Rewards: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
+                  className="space-y-8"
                 >
-                  <PointsLeaderboard />
+                  <Leaderboard
+                    leaderboardData={leaderboardData}
+                    loading={leaderboardLoading}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    totalCount={totalCount}
+                    onPageChange={handlePageChange}
+                  />
+                  {/* <PointsLeaderboard /> */}
                 </motion.div>
               )}
 
@@ -310,6 +347,7 @@ const Rewards: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
+                  className="space-y-8"
                 >
                   <CherryAirdrop />
                 </motion.div>
@@ -475,12 +513,12 @@ const Rewards: React.FC = () => {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.9, y: 20 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="bg-cherry-cream rounded-2xl   shadow-[12px_12px_0px_#121a2a] max-w-5xl w-full max-h-[90vh]"
+                      className="bg-cherry-cream rounded-2xl shadow-[12px_12px_0px_#121a2a] max-w-5xl w-full max-h-[90vh] flex flex-col"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {/* Modal Header */}
-                      <div className="bg-black px-6 py-4 flex items-center rounded-lg justify-between">
-                        <h3 className="maladroit-font text-xl text-cherry-cream flex items-center gap-2">
+                      <div className="bg-black px-4 sm:px-6 py-4 flex items-center rounded-lg justify-between">
+                        <h3 className="maladroit-font text-lg sm:text-xl text-cherry-cream flex items-center gap-2">
                           <Icon
                             icon="ph:medal-bold"
                             width={24}
@@ -498,7 +536,7 @@ const Rewards: React.FC = () => {
                       </div>
 
                       {/* Modal Content */}
-                      <div className="p-4">
+                      <div className="p-4 overflow-y-auto">
                         <div className="mb-4">
                           <p className="winky-sans-font text-cherry-burgundy text-sm mb-3">
                             Unlock achievements by reaching trading volume
@@ -513,19 +551,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Bronze.png"
                               alt="Bronze Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Bronze
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $1,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Bronze
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $1,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +50 Points
                             </span>
@@ -535,19 +575,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Silver.png"
                               alt="Silver Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Silver
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $5,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Silver
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $5,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +200 Points
                             </span>
@@ -557,19 +599,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Gold.png"
                               alt="Gold Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Gold
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $10,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Gold
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $10,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +500 Points
                             </span>
@@ -579,19 +623,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Platinum.png"
                               alt="Platinum Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Platinum
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $50,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Platinum
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $50,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +1,500 Points
                             </span>
@@ -601,19 +647,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Diamond.png"
                               alt="Diamond Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Diamond
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $100,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Diamond
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $100,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +3,500 Points
                             </span>
@@ -623,19 +671,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Ruby.png"
                               alt="Ruby Badge"
-                              className="w-14 h-14 object-contain mb-2"
+                              className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Ruby
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $250,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Ruby
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $250,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +8,000 Points
                             </span>
@@ -645,19 +695,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Emerald.png"
                               alt="Emerald Badge"
-                              className="w-16 h-16 object-contain mb-3"
+                              className="w-12 h-12 sm:w-16 sm:h-16 object-contain sm:mb-3"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Emerald
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $500,000 Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Emerald
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $500,000 Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +20,000 Points
                             </span>
@@ -667,19 +719,21 @@ const Rewards: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8, duration: 0.3 }}
-                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex flex-col items-center text-center"
+                            className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
                           >
                             <img
                               src="https://storage.cherrybot.ai/Legendary.png"
                               alt="Legendary Badge"
-                              className="w-16 h-16 object-contain mb-3"
+                              className="w-12 h-12 sm:w-16 sm:h-16 object-contain sm:mb-3"
                             />
-                            <h4 className="winky-sans-font text-cherry-burgundy font-bold mb-1">
-                              Legendary
-                            </h4>
-                            <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 mb-2">
-                              $1,000,000+ Volume
-                            </p>
+                            <div className="flex-grow text-left sm:text-center">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold sm:mb-1">
+                                Legendary
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm opacity-80 sm:mb-2">
+                                $1,000,000+ Volume
+                              </p>
+                            </div>
                             <span className="winky-sans-font text-cherry-red font-bold">
                               +50,000 Points
                             </span>

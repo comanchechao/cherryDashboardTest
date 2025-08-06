@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import { Icon } from "@iconify/react";
+import TelegramAuth from "../components/TelegramAuth";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -77,7 +78,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex w-full  ml-20  items-center space-x-1">
+          <div className="hidden md:flex w-fit  ml-20  items-center space-x-1">
             <Link to="/features" className={getDesktopLinkClasses("/features")}>
               FEATURES
             </Link>
@@ -114,12 +115,12 @@ const Navbar: React.FC = () => {
             </Link>
 
             <Link to="/cherry" className={getDesktopLinkClasses("/cherry")}>
-              $CHERRY
+              $AIBOT
             </Link>
 
-            <Link to="/rewards" className={getDesktopLinkClasses("/rewards")}>
+            {/* <Link to="/rewards" className={getDesktopLinkClasses("/rewards")}>
               REWARDS
-            </Link>
+            </Link> */}
 
             <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
               ROADMAP
@@ -172,6 +173,7 @@ const Navbar: React.FC = () => {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
+            <TelegramAuth />
             {/* <button className="bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 transform hover:translate-y-1 connect-btn">
               <span className="winky-sans-font text-cherry-cream">Connect</span>
             </button> */}
@@ -250,12 +252,12 @@ const Navbar: React.FC = () => {
           </Link>
 
           <Link to="/cherry" className={getMobileLinkClasses("/cherry")}>
-            $CHERRY
+            $AIBOT
           </Link>
 
-          <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
+          {/* <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
             REWARDS
-          </Link>
+          </Link> */}
 
           <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
             ROADMAP
@@ -273,39 +275,39 @@ const Navbar: React.FC = () => {
           <Link to="/aboutUs" className={getMobileLinkClasses("/aboutUs")}>
             ABOUT US
           </Link>
-
-          <div className="flex space-x-4 pt-2">
-            <a
-              href="https://t.me/cherrycommunity"
-              target="_blank"
-              rel="noreferrer"
-              className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
-              aria-label="Telegram"
+          <a
+            href="https://t.me/cherrycommunity"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
+            aria-label="Telegram"
+          >
+            <Icon
+              icon="ic:baseline-telegram"
+              width={24}
+              height={24}
+              className="text-cherry-cream"
+            />
+          </a>
+          <a
+            href="https://x.com/cherrytgbot"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
+            aria-label="X/Twitter"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
             >
-              <Icon
-                icon="ic:baseline-telegram"
-                width={24}
-                height={24}
-                className="text-cherry-cream"
-              />
-            </a>
-            <a
-              href="https://x.com/cherrytgbot"
-              target="_blank"
-              rel="noreferrer"
-              className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
-              aria-label="X/Twitter"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <div className="flex flex-col space-y-2 pt-4">
+            <TelegramAuth />
           </div>
           {/* <button className="w-full bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 connect-btn">
             Connect

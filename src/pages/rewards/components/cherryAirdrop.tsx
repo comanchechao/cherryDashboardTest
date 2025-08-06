@@ -26,7 +26,7 @@ const CherryAirdrop: React.FC = () => {
         </h2>
 
         <p className="winky-sans-font text-cherry-burgundy/70 mb-8">
-          Convert your points to $CHERRY tokens
+          Convert your points to $AIBOT tokens
         </p>
 
         <div className="grid grid-cols-2 gap-6 mb-8">
@@ -44,7 +44,7 @@ const CherryAirdrop: React.FC = () => {
               {formatNumber(estimatedTokens)}
             </div>
             <div className="winky-sans-font text-sm text-cherry-burgundy/70">
-              Est. $CHERRY
+              Est. $AIBOT
             </div>
           </div>
         </div>

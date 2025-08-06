@@ -734,7 +734,7 @@ const HomePage: React.FC = () => {
             IDO
           </a>
           <a id="cherryTokenBtn" className="menu_nav w-button">
-            $CHERRY
+            $AIBOT
           </a>
           <a
             href="https://docs.cherrybot.co/"
@@ -1517,7 +1517,7 @@ const HomePage: React.FC = () => {
                   <p className="winky-sans-font text-sm md:text-2xl text-cherry-burgundy leading-relaxed relative z-10">
                     Cherry Sniper will be the first trading bot that offer 2
                     trading modes: Sniper and Stealth. Sniper mode is entirely
-                    focuses on speed and advanced trading features while Stealth
+                    focused on speed and advanced trading features while Stealth
                     focuses on privacy and being non custodial.
                   </p>
                 </div>
@@ -2173,7 +2173,7 @@ const HomePage: React.FC = () => {
 
                   <p className="winky-sans-font text-xl text-cherry-burgundy mb-8">
                     The Cherry Game is your daily dose of degen dopamine. Mine
-                    coins, upgrade cards, and raid to win $CHERRY.
+                    coins, upgrade cards, and raid to win $AIBOT.
                   </p>
 
                   <button

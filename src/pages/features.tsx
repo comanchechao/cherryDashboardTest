@@ -113,7 +113,7 @@ const Features: React.FC = () => {
             className="menu_nav w-button"
             id="cherryTokenBtn"
           >
-            $CHERRY
+            $AIBOT
           </a>
           <a
             data-w-id="b4f5159c-2aa8-980c-c2c7-debaa8ed221d"

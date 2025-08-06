@@ -57,7 +57,7 @@ const milestones = [
       "Finalizing the token economy, building community, and driving global growth.",
     completed: false,
     items: [
-      "Finalize $CHERRY economy architecture",
+      "Finalize $AIBOT economy architecture",
       "Build Community for Airdrop Campaign",
       "Strategic Partnerships for Token Launch",
       "Global Expansion & Ecosystem Growth",
@@ -66,11 +66,11 @@ const milestones = [
   {
     quarter: "Q2 2025",
     title: "Token & Trading Platform Launch",
-    description: "Public launch of $CHERRY token and trading platform",
+    description: "Public launch of $AIBOT token and trading platform",
     completed: false,
     items: [
       "Cherry Trader Bot Launch on Telegram",
-      "$CHERRY Token Public IDO",
+      "$AIBOT Token Public IDO",
       "Cherry Web Trading Platform Beta (with integrated Sniper Tool)",
       "Product Expansion Campaign & CEX Listings",
     ],
@@ -82,8 +82,8 @@ const milestones = [
       "Introducing AI-powered features and launching the full web trading platform.",
     completed: false,
     items: [
-      "$CHERRY Token Public Launch",
-      "$CHERRY Airdrop Distribution Begins",
+      "$AIBOT Token Public Launch",
+      "$AIBOT Airdrop Distribution Begins",
       "AI Integration Beta Launch",
       "Best Token Performance Detection",
       "Market Sentiment Tracking",
@@ -517,7 +517,7 @@ const Roadmap: React.FC = () => {
             className="menu_nav w-button"
             id="cherryTokenBtn"
           >
-            $Cherry
+            $AIBOT
           </a>
           <a
             data-w-id="b4f5159c-2aa8-980c-c2c7-debaa8ed221d"

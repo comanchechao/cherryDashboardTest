@@ -115,7 +115,7 @@ const CherryToken: React.FC = () => {
       <div id="triggerXoverFlow" className="wrapper_sections wrapper-container">
         <Navbar />
 
-        {/* $CHERRY Token Section */}
+        {/* $AIBOT Token Section */}
         <div
           ref={tokenSectionRef}
           id="tokenSection"
@@ -127,7 +127,7 @@ const CherryToken: React.FC = () => {
               ref={tokenTitleRef}
               className="maladroit-font text-xl md:text-6xl text-cherry-burgundy mb-6 relative inline-block"
             >
-              $CHERRY Token
+              $AIBOT Token
               <div className="absolute -bottom-3 left-0 w-full h-2 bg-cherry-red rounded-full transform"></div>
             </h2>
             <p className="winky-sans-font lg:text-xl text-sm text-cherry-burgundy mt-6">
@@ -138,21 +138,21 @@ const CherryToken: React.FC = () => {
 
           {/* Token Content */}
           <div className="max-w-6xl mx-auto px-4 space-y-12">
-            {/* What is $CHERRY */}
+            {/* What is $AIBOT */}
             <div className="flex flex-col items-start gap-8 token-item">
               <div className="lg:w-full">
                 <div className="bg-cherry-red rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
                   <h3 className="maladroit-font text-lg md:text-2xl text-cherry-cream mb-4">
-                    🧩 What is $CHERRY?
+                    🧩 What is $AIBOT?
                   </h3>
                   <p className="winky-sans-font text-sm md:text-lg text-cherry-cream mb-4">
-                    $CHERRY is the native token of the CHERRY ecosystem. From
-                    trading bots to community tools and gamified quests, $CHERRY
+                    $AIBOT is the native token of the CHERRY ecosystem. From
+                    trading bots to community tools and gamified quests, $AIBOT
                     is what ties it all together.
                   </p>
                   <p className="winky-sans-font text-sm md:text-lg text-cherry-cream">
                     Whether you're a trader, project founder, or degen gamer —
-                    $CHERRY gives you utility, access, and rewards.
+                    $AIBOT gives you utility, access, and rewards.
                   </p>
                 </div>
               </div>
@@ -160,7 +160,7 @@ const CherryToken: React.FC = () => {
                 <div className="bg-cherry-burgundy rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
                   <h3 className="maladroit-font text-3xl md:text-4xl text-cherry-cream mb-8 text-center flex items-center justify-center gap-3">
                     <Icon icon="fa-solid:cogs" />
-                    $CHERRY Utility
+                    $AIBOT Utility
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
                     {/* Card 1: Bot Upgrades & Features */}
@@ -175,7 +175,7 @@ const CherryToken: React.FC = () => {
                         </h4>
                       </div>
                       <p className="winky-sans-font text-cherry-cream text-sm md:text-base">
-                        Use $CHERRY to unlock advanced trade tools, priority
+                        Use $AIBOT to unlock advanced trade tools, priority
                         trending slots, and more.
                       </p>
                     </div>
@@ -192,7 +192,7 @@ const CherryToken: React.FC = () => {
                         </h4>
                       </div>
                       <p className="winky-sans-font text-cherry-cream text-sm md:text-base">
-                        Earn and spend $CHERRY inside the Cherry Tap Game. Use
+                        Earn and spend $AIBOT inside the Cherry Tap Game. Use
                         it for mining boosts, card upgrades, and power-ups.
                       </p>
                     </div>
@@ -209,7 +209,7 @@ const CherryToken: React.FC = () => {
                         </h4>
                       </div>
                       <p className="winky-sans-font text-cherry-cream text-sm md:text-base">
-                        Holding or earning $CHERRY through trading and game
+                        Holding or earning $AIBOT through trading and game
                         activities increases your airdrop and reward chances.
                       </p>
                     </div>
@@ -248,7 +248,7 @@ const CherryToken: React.FC = () => {
                       </div>
                       <p className="winky-sans-font text-cherry-cream text-sm md:text-base mb-2">
                         All profits from Cherry Trending (via ads and promoted
-                        posts) are used to buy back and burn $CHERRY tokens.
+                        posts) are used to buy back and burn $AIBOT tokens.
                       </p>
                     </div>
 
@@ -267,7 +267,7 @@ const CherryToken: React.FC = () => {
                         <div className="lg:col-span-1">
                           <p className="winky-sans-font text-cherry-cream text-sm md:text-base mb-2">
                             All profits from the cherry Trading Bot (from
-                            subscriptions and fees) are used to reward $CHERRY
+                            subscriptions and fees) are used to reward $AIBOT
                             stakers.
                           </p>
                         </div>
@@ -314,7 +314,7 @@ const CherryToken: React.FC = () => {
                   ref={tokenomicsTitleRef}
                   className="maladroit-font text-xl md:text-6xl text-cherry-cream mb-6 relative inline-block"
                 >
-                  Why $CHERRY?
+                  Why $AIBOT?
                   <div className="absolute -bottom-3 left-0 w-full h-2 bg-cherry-red rounded-full transform"></div>
                 </h2>
                 <p className="winky-sans-font text-lg md:text-2xl text-cherry-cream mt-6">
@@ -361,7 +361,7 @@ const CherryToken: React.FC = () => {
                         <div className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-cherry-red rounded-full mt-2 flex-shrink-0"></div>
                           <p className="winky-sans-font text-cherry-burgundy leading-relaxed">
-                            Will be used to buy $CHERRY and offer unique staking
+                            Will be used to buy $AIBOT and offer unique staking
                             opportunities with high APR. Stakers can access
                             third-party airdrops, which will be delivered to the
                             highest stakers by pool size.
@@ -410,7 +410,7 @@ const CherryToken: React.FC = () => {
                           <div className="w-2 h-2 bg-cherry-red rounded-full mt-2 flex-shrink-0"></div>
                           <p className="winky-sans-font text-cherry-burgundy leading-relaxed">
                             To access CHERRY's platform features, including ads
-                            and project promotions, users must purchase $CHERRY.
+                            and project promotions, users must purchase $AIBOT.
                           </p>
                         </div>
                       </div>
@@ -450,7 +450,7 @@ const CherryToken: React.FC = () => {
                             <div className="w-2 h-2 bg-cherry-red rounded-full mt-2 flex-shrink-0"></div>
                             <p className="winky-sans-font text-cherry-burgundy leading-relaxed">
                               Platform votes, bounties, and other governance
-                              activities will be available to all $CHERRY
+                              activities will be available to all $AIBOT
                               holders.
                             </p>
                           </div>
@@ -977,12 +977,12 @@ const CherryToken: React.FC = () => {
               </div>
             </div>
 
-            {/* Why Hold $CHERRY */}
+            {/* Why Hold $AIBOT */}
             <div className="token-item flex flex-col-reverse lg:flex-row items-center justify-center gap-12">
               <div className="lg:w-1/2">
                 <div className="bg-cherry-red rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
                   <h3 className="maladroit-font text-xl md:text-3xl text-cherry-cream mb-4 text-center">
-                    Why Hold $CHERRY?
+                    Why Hold $AIBOT?
                   </h3>
                   <div className="space-y-4">
                     <div className="bg-[#7e1331] rounded-xl p-4 border-2 border-cherry-cream">
@@ -1029,12 +1029,12 @@ const CherryToken: React.FC = () => {
               {/* Section Title */}
               <div className="relative z-10 mb-16 text-center max-w-5xl mx-auto px-4">
                 <h2 className="maladroit-font text-2xl md:text-xl lg:text-2xl text-cherry-cream mb-2 relative inline-block">
-                  $CHERRY is at The Center of the Entire $CHERRY Economy
+                  $AIBOT is at The Center of the Entire $AIBOT Economy
                   <div className="absolute -bottom-3 left-0 w-full h-2 bg-cherry-cream rounded-full transform opacity-80"></div>
                 </h2>
                 <p className="winky-sans-font text-sm md:text-lg text-cherry-cream mt-2 opacity-90 leading-relaxed">
                   Every trade, ad, promotion made using Cherry ecosystem
-                  products generates fees that add value to $CHERRY
+                  products generates fees that add value to $AIBOT
                 </p>
               </div>
 
@@ -1134,7 +1134,7 @@ const CherryToken: React.FC = () => {
                       <div className="bg-cherry-burgundy bg-opacity-10 rounded-xl p-4 border-2 border-cherry-red">
                         <p className="winky-sans-font text-cherry-cream text-center font-semibold">
                           Most fees generated by the Cherry ecosystem are used
-                          to buyback $CHERRY tokens
+                          to buyback $AIBOT tokens
                         </p>
                       </div>
                       <div className="flex items-center justify-center gap-4">
@@ -1150,7 +1150,7 @@ const CherryToken: React.FC = () => {
                       </div>
                       <div className="bg-green-100 rounded-xl p-4 border-2 border-green-400">
                         <p className="winky-sans-font text-green-800 text-center font-semibold">
-                          Creating consistent value for $CHERRY holders
+                          Creating consistent value for $AIBOT holders
                         </p>
                       </div>
                     </div>
@@ -1188,7 +1188,7 @@ const CherryToken: React.FC = () => {
                             Staker Rewards
                           </p>
                           <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
-                            Bought back $CHERRY tokens distributed to stakers
+                            Bought back $AIBOT tokens distributed to stakers
                           </p>
                         </div>
                       </div>
@@ -1202,7 +1202,7 @@ const CherryToken: React.FC = () => {
                             Ecosystem Growth
                           </p>
                           <p className="winky-sans-font text-cherry-burgundy text-sm leading-relaxed">
-                            Funds used to expand the $CHERRY ecosystem
+                            Funds used to expand the $AIBOT ecosystem
                           </p>
                         </div>
                       </div>
@@ -1295,7 +1295,7 @@ const CherryToken: React.FC = () => {
                         />
                       </div>
                       <p className="winky-sans-font text-cherry-burgundy font-bold text-lg mb-2">
-                        $CHERRY Buyback
+                        $AIBOT Buyback
                       </p>
                       <p className="winky-sans-font text-cherry-burgundy text-sm">
                         Token Acquisition
@@ -1399,7 +1399,7 @@ const CherryToken: React.FC = () => {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
                               <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                $CHERRY stakers automatically earn Cherry Points
+                                $AIBOT stakers automatically earn Cherry Points
                               </p>
                             </div>
                             <div className="flex items-center gap-3">
@@ -1473,7 +1473,7 @@ const CherryToken: React.FC = () => {
                             <div className="flex items-center gap-3">
                               <div className="w-2 h-2 bg-cherry-red rounded-full"></div>
                               <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                Can contain large amounts of $CHERRY tokens
+                                Can contain large amounts of $AIBOT tokens
                               </p>
                             </div>
                           </div>
@@ -1684,7 +1684,7 @@ const CherryToken: React.FC = () => {
               </div>
             </div>
 
-            {/* $CHERRY Buyback & Burn Section */}
+            {/* $AIBOT Buyback & Burn Section */}
             <div className="token-item relative w-full py-20   overflow-hidden">
               {/* Fire/Burn themed background elements */}
               <div className="absolute top-0 left-0 w-full h-full">
@@ -1712,7 +1712,7 @@ const CherryToken: React.FC = () => {
                     className="text-4xl md:text-6xl text-cherry-red animate-pulse"
                   />
                   <h2 className="maladroit-font text-3xl md:text-4xl lg:text-4xl text-cherry-burgundy mb-0 relative inline-block">
-                    $CHERRY Buybacks & Burns
+                    $AIBOT Buybacks & Burns
                   </h2>
                   <Icon
                     icon="mdi:trending-up"
@@ -1720,7 +1720,7 @@ const CherryToken: React.FC = () => {
                   />
                 </div>
                 <p className="winky-sans-font text-lg md:text-xl text-cherry-burgundy opacity-90 leading-relaxed">
-                  Making $CHERRY deflationary and more valuable over time
+                  Making $AIBOT deflationary and more valuable over time
                 </p>
               </div>
 
@@ -1757,8 +1757,8 @@ const CherryToken: React.FC = () => {
                               Key Mechanism:
                             </span>
                             Some of the fees generated by Cherry ecosystem
-                            products will be used to buyback and burn $CHERRY.
-                            This will make $CHERRY deflationary thus making the
+                            products will be used to buyback and burn $AIBOT.
+                            This will make $AIBOT deflationary thus making the
                             tokens more valuable as time goes by.
                           </p>
                         </div>
@@ -1851,7 +1851,7 @@ const CherryToken: React.FC = () => {
                           <div className="flex items-center gap-3">
                             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                             <p className="winky-sans-font text-cherry-burgundy text-sm">
-                              $CHERRY purchased from market
+                              $AIBOT purchased from market
                             </p>
                           </div>
                           <div className="flex items-center gap-3">
@@ -2027,7 +2027,7 @@ const CherryToken: React.FC = () => {
                             </div>
                             <p className="winky-sans-font text-lg text-cherry-cream opacity-90">
                               All ecosystem growth provides more cash flow to
-                              buyback and burn more $CHERRY
+                              buyback and burn more $AIBOT
                             </p>
                           </div>
                         </div>
