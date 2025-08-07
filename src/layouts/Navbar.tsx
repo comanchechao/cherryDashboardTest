@@ -3,13 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import { Icon } from "@iconify/react";
 import TelegramAuth from "../components/TelegramAuth";
-import { useAuth } from "../components/AuthProvider";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {

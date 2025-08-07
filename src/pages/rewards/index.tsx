@@ -62,17 +62,6 @@ const customAnimations = `
   }
 `;
 
-const userAchievement = {
-  badge: "Diamond",
-  level: 5,
-  points: 98400,
-  volume: "$100,000+",
-  nextBadge: "Ruby",
-  nextVolume: "$250,000",
-  nextPoints: 8000,
-  progress: 85,
-};
-
 const Rewards: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [successToastVisible, setSuccessToastVisible] = useState(false);
@@ -132,7 +121,7 @@ const Rewards: React.FC = () => {
         setLeaderboardLoading(true);
 
         let response;
-        
+
         if (isAuthenticated && accessToken && telegramId) {
           console.log(
             "🏆 [Rewards] Fetching authenticated leaderboards for telegram ID:",
@@ -429,7 +418,8 @@ const Rewards: React.FC = () => {
                             Login Required
                           </h4>
                           <p className="winky-sans-font text-cherry-burgundy text-lg mb-6">
-                            Please log in to your account to view your personal rewards dashboard
+                            Please log in to your account to view your personal
+                            rewards dashboard
                           </p>
                         </div>
 
@@ -439,27 +429,58 @@ const Rewards: React.FC = () => {
                           </h5>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <Icon icon="mdi:check-circle" className="text-cherry-red" width={16} height={16} />
-                              <span className="winky-sans-font text-cherry-burgundy">Your trading points and achievements</span>
+                              <Icon
+                                icon="mdi:check-circle"
+                                className="text-cherry-red"
+                                width={16}
+                                height={16}
+                              />
+                              <span className="winky-sans-font text-cherry-burgundy">
+                                Your trading points and achievements
+                              </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Icon icon="mdi:check-circle" className="text-cherry-red" width={16} height={16} />
-                              <span className="winky-sans-font text-cherry-burgundy">Wallet balance and token holdings</span>
+                              <Icon
+                                icon="mdi:check-circle"
+                                className="text-cherry-red"
+                                width={16}
+                                height={16}
+                              />
+                              <span className="winky-sans-font text-cherry-burgundy">
+                                Wallet balance and token holdings
+                              </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Icon icon="mdi:check-circle" className="text-cherry-red" width={16} height={16} />
-                              <span className="winky-sans-font text-cherry-burgundy">Referral earnings and commission</span>
+                              <Icon
+                                icon="mdi:check-circle"
+                                className="text-cherry-red"
+                                width={16}
+                                height={16}
+                              />
+                              <span className="winky-sans-font text-cherry-burgundy">
+                                Referral earnings and commission
+                              </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Icon icon="mdi:check-circle" className="text-cherry-red" width={16} height={16} />
-                              <span className="winky-sans-font text-cherry-burgundy">Exclusive rewards and airdrops</span>
+                              <Icon
+                                icon="mdi:check-circle"
+                                className="text-cherry-red"
+                                width={16}
+                                height={16}
+                              />
+                              <span className="winky-sans-font text-cherry-burgundy">
+                                Exclusive rewards and airdrops
+                              </span>
                             </div>
                           </div>
                         </div>
 
                         <button
                           onClick={() => {
-                            window.open("https://t.me/cherrysniperbot?start=login_cherry", "_blank");
+                            window.open(
+                              "https://t.me/cherrysniperbot?start=login_cherry",
+                              "_blank"
+                            );
                           }}
                           className="bg-cherry-red text-cherry-cream font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-3 mx-auto"
                         >
@@ -469,7 +490,9 @@ const Rewards: React.FC = () => {
                             height={24}
                             className="text-cherry-cream"
                           />
-                          <span className="text-cherry-cream">Login with Telegram</span>
+                          <span className="text-cherry-cream">
+                            Login with Telegram
+                          </span>
                         </button>
                       </div>
                     </div>
