@@ -345,15 +345,9 @@ const CherrySniper: React.FC = () => {
                       </span>
                       <div
                         className="bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-1 font-mono text-sm hover:bg-cherry-burgundy hover:bg-opacity-10 cursor-pointer transition-colors flex items-center"
-                        onClick={() =>
-                          copyToClipboard(
-                            "GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm"
-                          )
-                        }
+                        onClick={() => copyToClipboard("")}
                       >
-                        <span className="truncate md:w-auto w-32">
-                          GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm
-                        </span>
+                        <span className="truncate md:w-auto w-32"></span>
                         <span className="ml-2 text-xs text-cherry-burgundy opacity-70">
                           (Tap to copy)
                         </span>

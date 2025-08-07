@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import { Icon } from "@iconify/react";
 import TelegramAuth from "../components/TelegramAuth";
+import { useAuth } from "../components/AuthProvider";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -118,9 +120,9 @@ const Navbar: React.FC = () => {
               $AIBOT
             </Link>
 
-            {/* <Link to="/rewards" className={getDesktopLinkClasses("/rewards")}>
-              REWARDS
-            </Link> */}
+            <Link to="/rewards" className={getDesktopLinkClasses("/rewards")}>
+              DASHBOARD
+            </Link>
 
             <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
               ROADMAP
@@ -142,41 +144,7 @@ const Navbar: React.FC = () => {
 
           {/* Social Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <a
-              href="https://t.me/cherrycommunity"
-              target="_blank"
-              rel="noreferrer"
-              className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
-              aria-label="Telegram"
-            >
-              <Icon
-                icon="ic:baseline-telegram"
-                width={24}
-                height={24}
-                className="text-cherry-cream"
-              />
-            </a>
-            <a
-              href="https://x.com/cherrytgbot"
-              target="_blank"
-              rel="noreferrer"
-              className="text-cherry-cream hover:text-cherry-red transition-colors duration-200"
-              aria-label="X/Twitter"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
             <TelegramAuth />
-            {/* <button className="bg-cherry-red hover:bg-cherry-burgundy text-white winky-sans-font font-bold py-2 px-4 rounded-lg border-2 border-cherry-burgundy transition-all duration-200 transform hover:translate-y-1 connect-btn">
-              <span className="winky-sans-font text-cherry-cream">Connect</span>
-            </button> */}
           </div>
 
           {/* Mobile menu button */}
@@ -255,9 +223,9 @@ const Navbar: React.FC = () => {
             $AIBOT
           </Link>
 
-          {/* <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
-            REWARDS
-          </Link> */}
+          <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
+            DASHBOARD
+          </Link>
 
           <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
             ROADMAP

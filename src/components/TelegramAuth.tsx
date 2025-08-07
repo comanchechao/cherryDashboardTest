@@ -105,7 +105,7 @@ const TelegramAuth: React.FC = () => {
                     className="w-5 h-5 text-cherry-burgundy group-hover:text-cherry-red transition-colors duration-300"
                   />
                   <span className="winky-sans-font text-sm text-cherry-burgundy group-hover:text-cherry-red transition-colors duration-300">
-                    Rewards
+                    Dashboard
                   </span>
                   <Icon
                     icon="material-symbols:arrow-forward-ios"
@@ -142,7 +142,7 @@ const TelegramAuth: React.FC = () => {
 
   return (
     <a
-      href="https://t.me/cherrysniperbot?start=login_koltracker"
+      href="https://t.me/cherrysniperbot?start=login_cherry"
       target="_blank"
       rel="noopener noreferrer"
       className="flex items-center cursor-pointer space-x-2 bg-cherry-red hover:bg-cherry-red/90 border border-0 !border-cherry-cream px-4 py-2.5 rounded-xl transition-all duration-200   nav-link relative"

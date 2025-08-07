@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
+import rewardsService from "../../../services/rewardsService";
 
 interface RewardSectionProps {
   toastVisible: boolean;
@@ -23,6 +24,21 @@ interface RewardSectionProps {
     nextPoints: number;
     progress: number;
   };
+  userWalletInfo?: {
+    solAddress: string;
+    solBalance: string;
+    solBalanceUSD: string;
+    tokens: Array<{
+      symbol: string;
+      balance: string;
+      name: string;
+    }>;
+    userPoints: number;
+    totalUsdVolume: number;
+    tier: string;
+  } | null;
+  telegramId?: string;
+  accessToken?: string;
 }
 
 const RewardSection: React.FC<RewardSectionProps> = ({
@@ -33,7 +49,116 @@ const RewardSection: React.FC<RewardSectionProps> = ({
   handleTrade,
   copyToClipboard,
   userAchievement,
+  userWalletInfo,
+  telegramId,
+  accessToken,
 }) => {
+  const [referralInfo, setReferralInfo] = useState<{
+    referralCode: string;
+    referralLink: string;
+    refId?: string;
+    totalReferrals?: number;
+    totalEarnings?: number;
+  } | null>(null);
+  const [referralLoading, setReferralLoading] = useState(false);
+
+  // Fetch referral info when component mounts
+  useEffect(() => {
+    const fetchReferralInfo = async () => {
+      if (!telegramId || !accessToken) {
+        console.log(
+          "⚠️ [RewardSection] No telegramId or accessToken available for referral info"
+        );
+        return;
+      }
+
+      setReferralLoading(true);
+      try {
+        console.log("🔄 [RewardSection] Fetching referral info...", {
+          telegramId,
+        });
+        const referralData = await rewardsService.getReferralInfo(
+          telegramId,
+          accessToken
+        );
+        setReferralInfo(referralData);
+        console.log("✅ [RewardSection] Referral info fetched:", referralData);
+      } catch (error) {
+        console.error(
+          "❌ [RewardSection] Failed to fetch referral info:",
+          error
+        );
+        // Set a fallback referral link
+        setReferralInfo({
+          referralCode: "ref_default",
+          referralLink: "https://t.me/CherrySniperBot?start=ref_default",
+        });
+      } finally {
+        setReferralLoading(false);
+      }
+    };
+
+    fetchReferralInfo();
+  }, [telegramId, accessToken]);
+
+  const getAchievementData = () => {
+    if (!userWalletInfo) {
+      return userAchievement;
+    }
+
+    const volume = userWalletInfo.totalUsdVolume;
+    const points = userWalletInfo.userPoints;
+    const tier = userWalletInfo.tier;
+
+    // Define achievement thresholds
+    const achievements = [
+      { name: "Default", volume: 0, points: 0 },
+      { name: "Bronze", volume: 1000, points: 50 },
+      { name: "Silver", volume: 5000, points: 200 },
+      { name: "Gold", volume: 10000, points: 500 },
+      { name: "Platinum", volume: 50000, points: 1500 },
+      { name: "Diamond", volume: 100000, points: 3500 },
+      { name: "Ruby", volume: 250000, points: 8000 },
+      { name: "Emerald", volume: 500000, points: 20000 },
+      { name: "Legendary", volume: 1000000, points: 50000 },
+    ];
+
+    // Find current achievement
+    const currentAchievement =
+      achievements.find((achievement) => achievement.name === tier) ||
+      achievements[0];
+
+    // Find next achievement
+    const nextAchievement =
+      achievements.find((achievement) => achievement.volume > volume) ||
+      achievements[achievements.length - 1];
+
+    // Calculate progress
+    const progress =
+      nextAchievement.volume > currentAchievement.volume
+        ? Math.min(
+            100,
+            ((volume - currentAchievement.volume) /
+              (nextAchievement.volume - currentAchievement.volume)) *
+              100
+          )
+        : 100;
+
+    return {
+      badge: currentAchievement.name,
+      level: achievements.findIndex((a) => a.name === tier) + 1,
+      points: points,
+      volume: `$${volume.toLocaleString()}`,
+      nextBadge: nextAchievement.name,
+      nextVolume: `$${nextAchievement.volume.toLocaleString()}`,
+      nextPoints: nextAchievement.points,
+      progress: Math.round(progress),
+    };
+  };
+
+  const achievementData = getAchievementData();
+  const walletAddress = userWalletInfo?.solAddress || " ";
+
   return (
     <div className="relative">
       {/* Custom Toast for Copy */}
@@ -160,17 +285,28 @@ const RewardSection: React.FC<RewardSectionProps> = ({
                   <div className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy relative overflow-hidden">
                     <div className="absolute inset-0 referral-shimmer"></div>
                     <span className="relative z-10 truncate block">
-                      https://t.me/CherrySniperBot?start=ref_GihKTmp
+                      {referralLoading ? (
+                        <span className="text-cherry-burgundy opacity-70">
+                          Loading referral link...
+                        </span>
+                      ) : referralInfo?.refId ? (
+                        `https://t.me/cherrysniperbot?start=r-${referralInfo.refId}`
+                      ) : (
+                        "https://t.me/cherrysniperbot?start=r-default"
+                      )}
                     </span>
                   </div>
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() =>
                       copyToClipboard(
-                        "https://t.me/CherrySniperBot?start=ref_GihKTmp"
+                        referralInfo?.refId
+                          ? `https://t.me/cherrysniperbot?start=r-${referralInfo.refId}`
+                          : "https://t.me/cherrysniperbot?start=r-default"
                       )
                     }
-                    className="bg-cherry-red text-white px-4 py-2 rounded-lg border border-b-4 border-r-4 border-cherry-burgundy transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] winky-sans-font flex items-center justify-center gap-2"
+                    disabled={referralLoading}
+                    className="bg-cherry-red text-white px-4 py-2 rounded-lg border border-b-4 border-r-4 border-cherry-burgundy transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] winky-sans-font flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Icon
                       icon="mdi:content-copy"
@@ -194,14 +330,10 @@ const RewardSection: React.FC<RewardSectionProps> = ({
                   </span>
                   <div
                     className="flex-1 bg-cherry-cream border-2 border-cherry-burgundy rounded-lg px-3 py-2 font-mono text-sm text-cherry-burgundy hover:bg-cherry-burgundy hover:bg-opacity-10 cursor-pointer transition-colors flex items-center relative overflow-hidden"
-                    onClick={() =>
-                      copyToClipboard(
-                        "GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm"
-                      )
-                    }
+                    onClick={() => copyToClipboard(walletAddress)}
                   >
                     <span className="truncate relative z-10">
-                      GihKTmpw8rUFaoYn55vvAgvpXCLfPuDrMGuqg1ZJxXHm
+                      {walletAddress}
                     </span>
                     <span className="ml-2 text-xs text-cherry-burgundy opacity-70 relative z-10 hidden sm:inline">
                       (Tap to copy)
@@ -231,45 +363,223 @@ const RewardSection: React.FC<RewardSectionProps> = ({
                 <div className="bg-cherry-cream rounded-lg p-5     mb-4">
                   <div className="flex justify-center items-center flex-col">
                     <div className="w-24 h-24 bg-cherry-cream rounded-full border-4 border-cherry-burgundy flex items-center justify-center mb-3 relative">
-                      <img
-                        src={`https://storage.cherrybot.ai/${userAchievement.badge}.png`}
-                        alt="Diamond Badge"
-                        className="w-20 h-20 object-contain animate-pulse-slow"
-                      />
+                      {achievementData.badge === "Default" ? (
+                        <Icon
+                          icon="mdi:account-circle"
+                          className="text-cherry-burgundy animate-pulse-slow"
+                          width={80}
+                          height={80}
+                        />
+                      ) : (
+                        <img
+                          src={`https://storage.cherrybot.ai/${achievementData.badge}.png`}
+                          alt={`${achievementData.badge} Badge`}
+                          className="w-20 h-20 object-contain animate-pulse-slow"
+                        />
+                      )}
                       <div className="absolute -top-2 -right-2 w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center border-2 border-cherry-burgundy">
                         <span className="winky-sans-font text-xs text-white">
-                          {userAchievement.level}
+                          {achievementData.level}
                         </span>
                       </div>
                     </div>
                     <p className="winky-sans-font text-[#111929] text-center mb-1">
-                      {userAchievement.badge} Level Achieved!
+                      {achievementData.badge} Level Achieved!
                     </p>
                     <p className="winky-sans-font text-[#111929] text-opacity-70 text-sm text-center">
-                      {userAchievement.volume} trading volume reached
+                      {achievementData.volume} trading volume reached
                     </p>
 
                     {/* Progress to next level */}
                     <div className="w-full mt-4">
                       <div className="flex justify-between items-center winky-sans-font text-sm text-[#111929] mb-2">
-                        <span>Progress to {userAchievement.nextBadge}</span>
-                        <span>{userAchievement.progress}%</span>
+                        <span>Progress to {achievementData.nextBadge}</span>
+                        <span>{achievementData.progress}%</span>
                       </div>
                       <div className="w-full h-3 bg-cherry-cream border border-cherry-burgundy rounded-full overflow-hidden">
                         <div
                           className="h-full bg-cherry-red"
                           style={{
-                            width: `${userAchievement.progress}%`,
+                            width: `${achievementData.progress}%`,
                           }}
                         ></div>
                       </div>
                       <div className="flex justify-between items-center winky-sans-font text-xs text-cherry-burgundy mt-1 opacity-70">
-                        <span>Current: {userAchievement.volume}</span>
-                        <span>Next: {userAchievement.nextVolume}</span>
+                        <span>Current: {achievementData.volume}</span>
+                        <span>Next: {achievementData.nextVolume}</span>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Wallet Stats Section styled like gaming cards */}
+                {userWalletInfo && (
+                  <div className="group relative mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-cherry-burgundy rounded-3xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="relative bg-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[2px_2px_0px_#321017] transform transition-all duration-300  ">
+                      <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy p-6 relative overflow-hidden">
+                        <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-cherry-cream rounded-full opacity-20"></div>
+                        <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-cherry-cream rounded-full opacity-30"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className="w-16 h-16 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017] rotate-3 group-hover:rotate-6 transition-transform">
+                            <Icon
+                              icon="mdi:wallet"
+                              className="text-3xl text-cherry-red"
+                            />
+                          </div>
+                          <div>
+                            <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                              Your Wallet Stats
+                            </h3>
+                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90 flex items-center gap-2 mt-1">
+                              <Icon icon="mdi:chart-line" className="text-lg" />
+                              Trading Performance
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <div className="bg-cherry-cream rounded-2xl border-3 border-cherry-burgundy p-6 mb-4">
+                          {/* SOL Balance Card */}
+                          <div className="flex items-center gap-4 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy mb-4">
+                            <div className="w-12 h-12 bg-cherry-cream rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                              <Icon
+                                icon="token-branded:solana"
+                                className="text-2xl text-cherry-cream"
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                SOL Balance
+                              </h4>
+                              <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                {parseFloat(userWalletInfo.solBalance).toFixed(
+                                  3
+                                )}{" "}
+                                SOL
+                              </p>
+                              <p className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                {userWalletInfo.solAddress.substring(0, 6)}...
+                                {userWalletInfo.solAddress.substring(
+                                  userWalletInfo.solAddress.length - 4
+                                )}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <span className="bg-cherry-red text-cherry-cream px-3 py-1 rounded-full text-xl winky-sans-font font-bold">
+                                $
+                                {parseFloat(
+                                  userWalletInfo.solBalanceUSD
+                                ).toFixed(2)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Stats Grid */}
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* Points Card */}
+                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:star-circle"
+                                  className="text-xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Points
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                  {userWalletInfo.userPoints.toLocaleString()}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Volume Card */}
+                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:chart-line"
+                                  className="text-xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Volume
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                  $
+                                  {userWalletInfo.totalUsdVolume.toLocaleString()}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Tier Card */}
+                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="mdi:medal"
+                                  className="text-xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Tier
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                  {userWalletInfo.tier}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Tokens Section */}
+                          {userWalletInfo.tokens.length > 0 && (
+                            <div className="mt-4">
+                              <div className="flex items-center gap-3 mb-3">
+                                <Icon
+                                  icon="mdi:coins"
+                                  className="text-xl text-cherry-red"
+                                />
+                                <h5 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  Your Tokens ({userWalletInfo.tokens.length})
+                                </h5>
+                              </div>
+                              <div className="space-y-2">
+                                {userWalletInfo.tokens.map((token, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex items-center gap-3 bg-cherry-cream rounded-xl p-3 border-2 border-cherry-burgundy"
+                                  >
+                                    <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                      <Icon
+                                        icon="mdi:coin"
+                                        className="text-lg text-cherry-cream"
+                                      />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                        ${token.symbol}
+                                      </div>
+                                      <div className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                        {token.name}
+                                      </div>
+                                    </div>
+                                    <div className="text-right">
+                                      <div className="winky-sans-font text-cherry-red font-bold text-sm">
+                                        {parseFloat(token.balance).toFixed(2)}
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="  ">
                   {" "}
