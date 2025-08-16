@@ -105,14 +105,7 @@ function App() {
                   </PageLayout>
                 }
               />
-              <Route
-                path="/bridge"
-                element={
-                  <PageLayout>
-                    <Bridge />
-                  </PageLayout>
-                }
-              />
+
               <Route
                 path="*"
                 element={
