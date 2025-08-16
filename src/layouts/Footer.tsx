@@ -3,71 +3,119 @@ import { Icon } from "@iconify/react";
 
 const Footer: React.FC = () => {
   return (
-    <div className="bg-[#cbb997]  footer  rounded-2xl  mx-auto relative py-12  overflow-hidden">
-      <div className="  mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center">
-          <img
-            src="https://storage.cherrybot.ai/eat_cherry.svg"
-            loading="lazy"
-            alt="Cherry mascot"
-            className="w-64 h-64 mb-8 animate-float"
-          />
+    <footer className="relative overflow-hidden bg-gradient-to-b from-[#01030f] via-[#011020] to-[#01030f] py-20">
+      {/* Advanced Background Effects */}
+      <div className="absolute inset-0">
+        {/* Multi-layered Radial Gradients */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(67,103,201,0.15)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(67,103,201,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(67,103,201,0.08)_0%,transparent_70%)]"></div>
 
-          <div className="   bg-cherry-cream rounded-lg border-4 border-cherry-burgundy shadow-[6px_6px_0px_#5d4037] p-6 relative mb-8 max-w-xl w-full transform rotate-1">
-            <h3 className="text-center winky-sans-font text-2xl md:text-5xl font-bold text-cherry-burgundy mb-6">
-              Connect With Us
-            </h3>
+        {/* Animated Grid Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(rgba(67,103,201,0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(67,103,201,0.1) 1px, transparent 1px)`,
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
+        </div>
+      </div>
 
-            <div className="grid grid-cols-4 gap-1 place-items-center">
-              <button
-                onClick={() => {
-                  window.open("https://t.me/cherrycommunity", "_blank");
-                }}
-                className="w-14 h-14 flex items-center justify-center bg-cherry-red rounded-full border-2 border-cherry-burgundy hover:bg-cherry-burgundy transition-all duration-300 transform hover:scale-110 hover:-rotate-6 shadow-[3px_3px_0px_#321017]"
-                aria-label="Telegram Community"
-              >
-                <Icon
-                  icon="ic:baseline-telegram"
-                  className="w-8 h-8 text-white"
-                />
-              </button>
-              <button
-                onClick={() => {
-                  window.open("https://x.com/cherrytgbot", "_blank");
-                }}
-                className="w-14 h-14 flex items-center justify-center bg-cherry-red rounded-full border-2 border-cherry-burgundy hover:bg-cherry-burgundy transition-all duration-300 transform hover:scale-110 hover:rotate-6 shadow-[3px_3px_0px_#321017]"
-                aria-label="Twitter"
-              >
-                <Icon icon="mdi:twitter" className="w-8 h-8 text-white" />
-              </button>
-              <button
-                onClick={() => {
-                  window.open("https://t.me/CherryTGBot", "_blank");
-                }}
-                className="w-14 h-14 flex items-center justify-center bg-cherry-red rounded-full border-2 border-cherry-burgundy hover:bg-cherry-burgundy transition-all duration-300 transform hover:scale-110 hover:-rotate-6 shadow-[3px_3px_0px_#321017]"
-                aria-label="Cherry Bot"
-              >
-                <Icon icon="mdi:robot" className="w-8 h-8 text-white" />
-              </button>
-              <button
-                onClick={() => {
-                  window.open("https://t.me/cherrytrending", "_blank");
-                }}
-                className="w-14 h-14 flex items-center justify-center bg-cherry-red rounded-full border-2 border-cherry-burgundy hover:bg-cherry-burgundy transition-all duration-300 transform hover:scale-110 hover:rotate-6 shadow-[3px_3px_0px_#321017]"
-                aria-label="Cherry Trending"
-              >
-                <Icon icon="mdi:chart-line" className="w-8 h-8 text-white" />
-              </button>
-            </div>
+      {/* Floating Elements Layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Orbital Rings */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-96 h-96 border border-[#4367c9]/20 rounded-full animate-spin-slow"></div>
+          <div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-[#4367c9]/15 rounded-full animate-spin-slow"
+            style={{ animationDirection: "reverse", animationDuration: "30s" }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-[#4367c9]/10 rounded-full animate-spin-slow"
+            style={{ animationDuration: "20s" }}
+          ></div>
+        </div>
+
+        {/* Floating Particles */}
+        <div className="absolute top-20 left-20 w-4 h-4 bg-[#4367c9] rounded-full animate-ping"></div>
+        <div
+          className="absolute top-40 right-32 w-3 h-3 bg-[#4367c9]/80 rounded-full animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-1/3 w-2 h-2 bg-[#4367c9]/60 rounded-full animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/3 right-20 w-5 h-5 bg-[#4367c9]/40 rounded-full animate-ping"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
+
+        {/* Energy Waves */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#4367c9]/10 via-transparent to-transparent"></div>
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <div className="inline-block relative">
+            <img
+              src="/eat_cherry.png"
+              loading="lazy"
+              alt="Cherry mascot"
+              className="w-32 h-32 object-contain animate-float relative z-10"
+            />
+            {/* Glow Effect */}
+            <div className="absolute inset-0 w-32 h-32 bg-[#4367c9]/30 rounded-full blur-2xl animate-pulse"></div>
           </div>
 
-          {/* Copyright text */}
-          <div className="winky-sans-font mt-7 text-cherry-burgundy text-center relative">
-            COPYRIGHT © 2025. ALL RIGHTS RESERVED.
+          <h2 className="maladroit-font text-4xl md:text-6xl font-bold text-white mt-8 mb-4">
+            Join the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4367c9] to-[#8baafe]">
+              Revolution
+            </span>
+          </h2>
+          <p className="winky-sans-font text-lg text-[#a0a0a0] max-w-2xl mx-auto">
+            Connect with the Cherry AI community and stay updated with the
+            latest developments in AI-powered trading
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
+          <div className="w-3 h-3 bg-[#4367c9] rounded-full mx-4 animate-pulse"></div>
+          <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
+        </div>
+
+        {/* Copyright & Legal */}
+        <div className="text-center">
+          <div className="bg-[#011020]/60 backdrop-blur-xl border border-[#4367c9]/20 rounded-2xl p-6 max-w-2xl mx-auto">
+            <p className="winky-sans-font text-[#a0a0a0] mb-3">
+              COPYRIGHT © 2025 CHERRY AI. ALL RIGHTS RESERVED.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-[#808080]">
+              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
+                Privacy Policy
+              </span>
+              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
+                Terms of Service
+              </span>
+              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
+                Cookie Policy
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Bottom Energy Field */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
+    </footer>
   );
 };
 

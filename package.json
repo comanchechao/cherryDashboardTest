@@ -13,16 +13,32 @@
   "description": "",
   "dependencies": {
     "@iconify/react": "^6.0.0",
+    "@layerzerolabs/lz-definitions": "^3.0.124",
+    "@layerzerolabs/lz-v2-utilities": "^3.0.124",
+    "@layerzerolabs/oft-v2-solana-sdk": "^3.0.124",
+    "@metaplex-foundation/umi": "^1.2.0",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.2.0",
+    "@metaplex-foundation/umi-signer-wallet-adapters": "^1.2.0",
     "@phosphor-icons/web": "^2.1.2",
+    "@reown/appkit": "latest",
+    "@reown/appkit-adapter-solana": "latest",
+    "@reown/appkit-adapter-wagmi": "latest",
+    "@solana-mobile/wallet-standard-mobile": "^0.3.0",
+    "@solana/wallet-adapter-backpack": "^0.1.14",
+    "@solana/wallet-adapter-base": "^0.9.27",
+    "@solana/wallet-adapter-ledger": "^0.9.29",
+    "@solana/wallet-adapter-phantom": "^0.9.28",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/wallet-adapter-react-ui": "^0.9.39",
+    "@solana/wallet-adapter-solflare": "^0.6.32",
+    "@solana/wallet-adapter-wallets": "^0.19.37",
+    "@solana/web3.js": "~1.95.8",
     "@tailwindcss/vite": "^4.1.8",
+    "@tanstack/react-query": "^5.0.0",
     "axios": "^1.11.0",
+    "bs58": "^6.0.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "@solana/web3.js": "^1.87.6",
-    "@solana/wallet-adapter-base": "^0.9.23",
-    "@solana/wallet-adapter-react": "^0.15.35",
-    "@solana/wallet-adapter-react-ui": "^0.9.35",
-    "@solana/wallet-adapter-wallets": "^0.19.32",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
     "framer-motion": "^12.16.0",
@@ -32,9 +48,12 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^6.20.1",
-    "swiper": "^11.2.8"
+    "swiper": "^11.2.8",
+    "viem": "^2.0.0",
+    "wagmi": "^2.0.0"
   },
   "devDependencies": {
+    "@types/node": "^24.2.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
@@ -42,6 +61,12 @@
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.2.2",
-    "vite": "^5.4.7"
+    "vite": "^5.4.7",
+    "vite-plugin-node-polyfills": "^0.21.0",
+    "stream-browserify": "^3.0.0",
+    "crypto-browserify": "^3.12.0"
+  },
+  "overrides": {
+    "@solana/web3.js": "~1.95.8"
   }
 }

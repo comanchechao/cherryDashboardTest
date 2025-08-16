@@ -328,21 +328,98 @@ const RevenueStreams: React.FC = () => {
       ref={containerRef}
       className="min-h-screen  flex flex-col justify-center items-center   w-full py-20 relative overflow-hidden"
     >
-      {/* Background texture */}
-      <div
-        className="absolute top-0 left-0 w-full h-full opacity-30"
-        style={{
-          backgroundImage:
-            "url('https://www.transparenttextures.com/patterns/paper.png')",
-        }}
-      />
+      {/* Advanced Background Effects */}
+      <div className="absolute inset-0">
+        {/* Multi-layered Radial Gradients */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(67,103,201,0.19)_0%,transparent_40%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_60%,rgba(67,103,201,0.13)_0%,transparent_40%)]"></div>
+
+        {/* Animated Grid Pattern */}
+        <div className="absolute inset-0 opacity-28">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(rgba(67,103,201,0.13) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(67,103,201,0.13) 1px, transparent 1px)`,
+              backgroundSize: "35px 35px",
+            }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Floating Elements Layer */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Orbital Rings */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="w-[1000px] h-[1000px] border border-[#4367c9]/28 rounded-full animate-spin-slow"
+            style={{ animationDuration: "26s" }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4367c9]/23 rounded-full animate-spin-slow"
+            style={{ animationDirection: "reverse", animationDuration: "22s" }}
+          ></div>
+        </div>
+
+        {/* Floating Particles */}
+        <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float blur-3xl"></div>
+        <div
+          className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float blur-3xl"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+      </div>
+
+      {/* Connection Lines SVG Background */}
+      <div className="absolute inset-0 pointer-events-none opacity-15">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient
+              id="revenueStreamsConnectionGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stopColor="var(--color-accent)"
+                stopOpacity="0.2"
+              />
+              <stop
+                offset="100%"
+                stopColor="var(--color-accent)"
+                stopOpacity="0.05"
+              />
+            </linearGradient>
+          </defs>
+          <path
+            d="M50 50 Q 150 30 250 50 T 450 50"
+            stroke="url(#revenueStreamsConnectionGradient)"
+            strokeWidth="1"
+            fill="none"
+            className="animate-pulse"
+          />
+          <path
+            d="M50 100 Q 150 80 250 100 T 450 100"
+            stroke="url(#revenueStreamsConnectionGradient)"
+            strokeWidth="1"
+            fill="none"
+            className="animate-pulse"
+            style={{ animationDelay: "0.7s" }}
+          />
+        </svg>
+      </div>
 
       {/* Title */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 mb-16">
-        <h2 className="revenue-title maladroit-font text-2xl md:text-6xl text-cherry-burgundy mb-6">
+        <h2 className="revenue-title maladroit-font text-2xl md:text-6xl text-[var(--color-text-primary)] mb-6">
           $AIBOT Economy
         </h2>
-        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-2/3 md:w-full h-2 bg-cherry-red rounded-full" />
+        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full" />
       </div>
 
       {/* Desktop Layout */}
@@ -366,10 +443,11 @@ const RevenueStreams: React.FC = () => {
                   key={index}
                   ref={(el) => (lineRefs.current[index] = el)}
                   d={`M${startX},${startY} L${endX},${endY}`}
-                  stroke="#5d4037"
-                  strokeWidth="3"
+                  stroke="var(--color-accent)"
+                  strokeWidth="2"
                   fill="none"
                   strokeLinecap="round"
+                  opacity="0.3"
                 />
               );
             })}
@@ -378,7 +456,7 @@ const RevenueStreams: React.FC = () => {
           {/* Central Cherry */}
           <div
             ref={auraRef}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-cherry-red rounded-full z-20"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-[var(--color-accent)]/30 rounded-full z-20"
             style={{ filter: "blur(30px)" }}
           />
           <img
@@ -406,28 +484,32 @@ const RevenueStreams: React.FC = () => {
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#5d4037] hover:shadow-[12px_12px_0px_#5d4037] transition-all duration-300 transform hover:-translate-y-2">
+                <div className="bg-[var(--color-glass)] backdrop-blur-[16px] border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 relative">
+                  {/* Floating Decorative Elements */}
+                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+
                   {/* Card Header */}
-                  <div className="bg-cherry-red p-4 relative overflow-hidden">
-                    <div className="absolute -top-6 -right-6 w-20 h-20 bg-cherry-burgundy opacity-20 rounded-full" />
-                    <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cherry-burgundy opacity-10 rounded-full" />
+                  <div className="bg-[var(--color-accent)]/20 p-4 relative overflow-hidden">
+                    <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/20 rounded-full" />
+                    <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
 
                     <div className="flex items-center gap-3 relative z-10">
-                      <div className="w-12 h-12 bg-cherry-cream rounded-full border-4 border-cherry-burgundy flex items-center justify-center flex-shrink-0 shadow-[3px_3px_0px_#321017]">
+                      <div className="w-12 h-12 bg-[var(--color-glass)] backdrop-blur-[16px] rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
                         <Icon
                           icon={stream.icon}
-                          className="text-2xl text-cherry-burgundy"
+                          className="text-2xl text-[var(--color-accent)]"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="maladroit-font text-lg text-cherry-cream leading-tight">
+                        <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
                           {stream.title}
                         </h3>
-                        <p className="winky-sans-font text-sm text-cherry-cream opacity-90">
+                        <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90">
                           {stream.subtitle}
                         </p>
                         {stream.badge && (
-                          <span className="inline-block bg-yellow-400 text-cherry-burgundy px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
+                          <span className="inline-block bg-yellow-400 text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                             {stream.badge}
                           </span>
                         )}
@@ -437,10 +519,13 @@ const RevenueStreams: React.FC = () => {
 
                   {/* Card Content */}
                   <div className="p-4 space-y-3">
-                    <p className="winky-sans-font text-cherry-burgundy text-xs font-medium leading-relaxed">
+                    <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium leading-relaxed">
                       {stream.description}
                     </p>
                   </div>
+
+                  {/* Bottom Decorative Bar */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
                 </div>
               </div>
             );
@@ -457,27 +542,31 @@ const RevenueStreams: React.FC = () => {
               ref={(el) => (streamRefs.current[index] = el)}
               className="group"
             >
-              <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden h-full shadow-[8px_8px_0px_#5d4037] hover:shadow-[12px_12px_0px_#5d4037] transition-all duration-300 transform hover:-translate-y-2">
-                <div className="bg-cherry-red p-4 relative overflow-hidden">
-                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-cherry-burgundy opacity-20 rounded-full" />
-                  <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cherry-burgundy opacity-10 rounded-full" />
+              <div className="bg-[var(--color-glass)] backdrop-blur-[16px] border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 h-full relative">
+                {/* Floating Decorative Elements */}
+                <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+                <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+
+                <div className="bg-[var(--color-accent)]/20 p-4 relative overflow-hidden">
+                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/20 rounded-full" />
+                  <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
 
                   <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-12 h-12 bg-cherry-cream rounded-full border-4 border-cherry-burgundy flex items-center justify-center flex-shrink-0 shadow-[3px_3px_0px_#321017]">
+                    <div className="w-12 h-12 bg-[var(--color-glass)] backdrop-blur-[16px] rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
                       <Icon
                         icon={stream.icon}
-                        className="text-2xl text-cherry-burgundy"
+                        className="text-2xl text-[var(--color-accent)]"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="maladroit-font text-lg text-cherry-cream leading-tight">
+                      <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
                         {stream.title}
                       </h3>
-                      <p className="winky-sans-font text-sm text-cherry-cream opacity-90">
+                      <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90">
                         {stream.subtitle}
                       </p>
                       {stream.badge && (
-                        <span className="inline-block bg-yellow-400 text-cherry-burgundy px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
+                        <span className="inline-block bg-yellow-400 text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                           {stream.badge}
                         </span>
                       )}
@@ -486,22 +575,25 @@ const RevenueStreams: React.FC = () => {
                 </div>
 
                 <div className="p-4 space-y-3">
-                  <p className="winky-sans-font text-cherry-burgundy text-xs font-medium leading-relaxed">
+                  <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium leading-relaxed">
                     {stream.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {stream.details.map((detail, detailIndex) => (
                       <div
                         key={detailIndex}
-                        className="bg-cherry-burgundy/10 border border-cherry-burgundy/20 rounded-lg px-2 py-1 text-center"
+                        className="bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-lg px-2 py-1 text-center"
                       >
-                        <p className="winky-sans-font text-cherry-burgundy text-xs font-medium whitespace-nowrap">
+                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium whitespace-nowrap">
                           {detail}
                         </p>
                       </div>
                     ))}
                   </div>
                 </div>
+
+                {/* Bottom Decorative Bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
               </div>
             </div>
           ))}

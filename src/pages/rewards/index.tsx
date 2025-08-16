@@ -91,7 +91,77 @@ const Rewards: React.FC = () => {
     tier: string;
   } | null>(null);
 
-  const { isAuthenticated, accessToken, telegramId } = useAuth();
+  const { isAuthenticated, accessToken, telegramId, logout } = useAuth();
+
+  // Fetch and process the latest wallet balance and user points
+  const updateUserBalance = async () => {
+    if (!isAuthenticated || !accessToken || !telegramId) {
+      console.log(
+        "🔒 [Rewards] User not authenticated, skipping balance update"
+      );
+      return;
+    }
+
+    try {
+      console.log(
+        "💰 [Rewards] Updating user balance for telegram ID:",
+        telegramId
+      );
+
+      const balanceResponse = await rewardsService.updateBalance(
+        telegramId.toString(),
+        accessToken
+      );
+
+      console.log("✅ [Rewards] UpdateBalance API response:", {
+        success: balanceResponse.success,
+        result: balanceResponse.result,
+      });
+
+      if (balanceResponse.success && balanceResponse.result) {
+        // Find the SOL wallet (parentId is null for SOL)
+        const solWallet = balanceResponse.result.find(
+          (wallet) => wallet.parentId === null
+        );
+        const tokenWallets = balanceResponse.result.filter(
+          (wallet) => wallet.parentId !== null
+        );
+
+        if (solWallet) {
+          const processedWalletInfo = {
+            solAddress: solWallet.address,
+            solBalance: solWallet.confirmedBalance,
+            solBalanceUSD: solWallet.confirmedBalanceUSD || "0",
+            tokens: tokenWallets.map((wallet) => ({
+              symbol: wallet.token.symbol,
+              balance: wallet.confirmedBalance,
+              name: wallet.token.name,
+            })),
+            userPoints: balanceResponse.userPoint?.points || 0,
+            totalUsdVolume: balanceResponse.userPoint?.totalUsdVolume || 0,
+            tier: balanceResponse.userPoint?.tier || "Default",
+          };
+
+          setUserWalletInfo(processedWalletInfo);
+
+          console.log("💰 [Rewards] Processed wallet info:", {
+            solAddress: processedWalletInfo.solAddress,
+            solBalance: processedWalletInfo.solBalance,
+            solBalanceUSD: processedWalletInfo.solBalanceUSD,
+            tokensCount: processedWalletInfo.tokens.length,
+            userPoints: processedWalletInfo.userPoints,
+            tier: processedWalletInfo.tier,
+          });
+        }
+      }
+    } catch (error: any) {
+      console.error("❌ [Rewards] Failed to update balance:", {
+        error: error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+      });
+    }
+  };
 
   const userAchievement = {
     badge: "Diamond",
@@ -173,78 +243,16 @@ const Rewards: React.FC = () => {
       }
     };
 
-    const updateUserBalance = async () => {
-      if (!isAuthenticated || !accessToken || !telegramId) {
-        console.log(
-          "🔒 [Rewards] User not authenticated, skipping balance update"
-        );
-        return;
-      }
-
-      try {
-        console.log(
-          "💰 [Rewards] Updating user balance for telegram ID:",
-          telegramId
-        );
-
-        const balanceResponse = await rewardsService.updateBalance(
-          telegramId.toString(),
-          accessToken
-        );
-
-        console.log("✅ [Rewards] UpdateBalance API response:", {
-          success: balanceResponse.success,
-          result: balanceResponse.result,
-        });
-
-        if (balanceResponse.success && balanceResponse.result) {
-          // Find the SOL wallet (parentId is null for SOL)
-          const solWallet = balanceResponse.result.find(
-            (wallet) => wallet.parentId === null
-          );
-          const tokenWallets = balanceResponse.result.filter(
-            (wallet) => wallet.parentId !== null
-          );
-
-          if (solWallet) {
-            const processedWalletInfo = {
-              solAddress: solWallet.address,
-              solBalance: solWallet.confirmedBalance,
-              solBalanceUSD: solWallet.confirmedBalanceUSD || "0",
-              tokens: tokenWallets.map((wallet) => ({
-                symbol: wallet.token.symbol,
-                balance: wallet.confirmedBalance,
-                name: wallet.token.name,
-              })),
-              userPoints: balanceResponse.userPoint?.points || 0,
-              totalUsdVolume: balanceResponse.userPoint?.totalUsdVolume || 0,
-              tier: balanceResponse.userPoint?.tier || "Default",
-            };
-
-            setUserWalletInfo(processedWalletInfo);
-
-            console.log("💰 [Rewards] Processed wallet info:", {
-              solAddress: processedWalletInfo.solAddress,
-              solBalance: processedWalletInfo.solBalance,
-              solBalanceUSD: processedWalletInfo.solBalanceUSD,
-              tokensCount: processedWalletInfo.tokens.length,
-              userPoints: processedWalletInfo.userPoints,
-              tier: processedWalletInfo.tier,
-            });
-          }
-        }
-      } catch (error: any) {
-        console.error("❌ [Rewards] Failed to update balance:", {
-          error: error.message,
-          status: error.response?.status,
-          data: error.response?.data,
-        });
-      }
-    };
-
     fetchLeaderboards();
     updateUserBalance();
   }, [isAuthenticated, accessToken, telegramId, currentPage]);
+
+  // Ensure wallet points are fresh when opening the Airdrop tab
+  useEffect(() => {
+    if (activeTab === "airdrop") {
+      updateUserBalance();
+    }
+  }, [activeTab]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -264,6 +272,15 @@ const Rewards: React.FC = () => {
       .catch((err) => {
         console.error("Failed to copy: ", err);
       });
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // The logout function already shows a success toast
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   return (
@@ -512,6 +529,7 @@ const Rewards: React.FC = () => {
                         showAchievementsModal={showAchievementsModal}
                         setShowAchievementsModal={setShowAchievementsModal}
                         handleTrade={handleTrade}
+                        handleLogout={handleLogout}
                         copyToClipboard={copyToClipboard}
                         userAchievement={userAchievement}
                         userWalletInfo={userWalletInfo}
@@ -533,7 +551,65 @@ const Rewards: React.FC = () => {
                   transition={{ duration: 0.3 }}
                   className="space-y-8"
                 >
-                  <CherryAirdrop />
+                  {!isAuthenticated ? (
+                    <div className="bg-cherry-cream rounded-2xl border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
+                      {/* Header */}
+                      <div className="bg-black px-4 lg:px-6 py-4 flex items-center justify-between">
+                        <h3 className="maladroit-font text-sm lg:text-2xl text-cherry-cream flex items-center gap-2">
+                          <Icon
+                            icon="mdi:airplane"
+                            width={28}
+                            height={28}
+                            className="text-cherry-red animate-pulse"
+                          />
+                          Airdrop – Login Required
+                        </h3>
+                      </div>
+
+                      {/* Login Prompt */}
+                      <div className="p-8 text-center">
+                        <div className="mb-6">
+                          <Icon
+                            icon="mdi:lock"
+                            width={64}
+                            height={64}
+                            className="text-cherry-burgundy mx-auto mb-4"
+                          />
+                          <h4 className="maladroit-font text-2xl text-cherry-burgundy mb-4">
+                            Login to View Your Points
+                          </h4>
+                          <p className="winky-sans-font text-cherry-burgundy text-lg mb-6">
+                            Sign in with Telegram to see your points and
+                            estimated $AIBOT tokens
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            window.open(
+                              "https://t.me/cherrysniperbot?start=login_cherry",
+                              "_blank"
+                            );
+                          }}
+                          className="bg-cherry-red text-cherry-cream font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-3 mx-auto"
+                        >
+                          <Icon
+                            icon="ic:baseline-telegram"
+                            width={24}
+                            height={24}
+                            className="text-cherry-cream"
+                          />
+                          <span className="text-cherry-cream">
+                            Login with Telegram
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <CherryAirdrop
+                      userPoints={userWalletInfo?.userPoints || 0}
+                    />
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

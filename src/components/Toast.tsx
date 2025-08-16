@@ -16,6 +16,7 @@ const Toast: React.FC<ToastProps> = ({
   title,
   message,
   visible,
+
   txSignature,
 }) => {
   if (!visible) return null;

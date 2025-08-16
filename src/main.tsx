@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
-import "./css/normalize.css";
 import "./css/cherry.css";
 import "./css/cherrybot.css";
 import "./css/index.css";

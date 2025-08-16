@@ -2,12 +2,14 @@
 
 @layer theme {
   :root {
-    --color-cherry-cream: #e8d8ba;
-    --color-cherry-burgundy: #321017;
-    --color-cherry-red: #d6024d;
-    --color-cherry-maroon: #7e1331;
-    --color-cherry-black: #000000;
-    --color-cherry-white: #ffffff;
+    --color-bg-primary: #01030f;
+    --color-bg-secondary: #011020;
+    --color-accent: #4367c9;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #a0a0a0;
+    --color-border: rgba(67, 103, 201, 0.2);
+    --color-glass: rgba(1, 16, 32, 0.8);
+    --color-glass-border: rgba(67, 103, 201, 0.3);
   }
 }
 
@@ -18,54 +20,466 @@
 }
 
 @layer utilities {
-  .bg-cherry-cream {
-    background-color: var(--color-cherry-cream);
+  .bg-primary {
+    background-color: var(--color-bg-primary);
   }
-  .bg-cherry-burgundy {
-    background-color: var(--color-cherry-burgundy);
+  .bg-secondary {
+    background-color: var(--color-bg-secondary);
   }
-  .bg-cherry-red {
-    background-color: var(--color-cherry-red);
+  .bg-accent {
+    background-color: var(--color-accent);
   }
-  .bg-cherry-maroon {
-    background-color: var(--color-cherry-maroon);
-  }
-
-  .text-cherry-cream {
-    color: var(--color-cherry-cream);
-  }
-  .text-cherry-burgundy {
-    color: var(--color-cherry-burgundy);
-  }
-  .text-cherry-red {
-    color: var(--color-cherry-red);
-  }
-  .text-cherry-maroon {
-    color: var(--color-cherry-maroon);
-  }
-  .text-cherry-white {
-    color: var(--color-cherry-white);
-  }
-  .text-cherry-black {
-    color: var(--color-cherry-black);
-  }
-  .border-cherry-burgundy {
-    border-color: var(--color-cherry-burgundy);
+  .bg-glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
-  .from-cherry-red {
-    --tw-gradient-from: var(--color-cherry-red);
+  .text-primary {
+    color: var(--color-text-primary);
   }
-  .to-cherry-burgundy {
-    --tw-gradient-to: var(--color-cherry-burgundy);
+  .text-secondary {
+    color: var(--color-text-secondary);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+
+  .border-accent {
+    border-color: var(--color-accent);
+  }
+  .border-glass {
+    border-color: var(--color-glass-border);
+  }
+
+  .from-accent {
+    --tw-gradient-from: var(--color-accent);
+  }
+  .to-secondary {
+    --tw-gradient-to: var(--color-bg-secondary);
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* Glassmorphism effects */
+  .glass-effect {
+    background: var(--color-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card {
+    background: rgba(1, 16, 32, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Smooth transitions */
+  .transition-glass {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Hover effects */
+  .hover-glass {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glass:hover {
+    background: rgba(1, 16, 32, 0.9);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(67, 103, 201, 0.2);
+  }
+
+  /* Custom animations for hero section */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  .animate-ping {
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Hero section specific styles */
+  .hero_section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero_section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at center top,
+      rgba(67, 103, 201, 0.1) 0%,
+      rgba(1, 16, 32, 0.3) 40%,
+      rgba(1, 4, 19, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
   }
 }
 
 @layer components {
-  .theme-cherry {
-    --color-primary: var(--color-cherry-red);
-    --color-secondary: var(--color-cherry-burgundy);
-    --color-accent: var(--color-cherry-maroon);
-    --color-background: var(--color-cherry-cream);
+  .theme-modern {
+    --color-primary: var(--color-accent);
+    --color-secondary: var(--color-bg-secondary);
+    --color-background: var(--color-bg-primary);
   }
+}
+
+/* Custom keyframe animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Additional hero animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation classes */
+.animate-fade-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-float-in {
+  animation: floatIn 0.4s ease-out forwards;
+}
+
+/* Wave Button Styles */
+.btn-wave-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 2rem;
+  overflow: hidden;
+  letter-spacing: -0.025em;
+  color: white;
+  background-color: var(--color-accent);
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-wave-primary:hover {
+  box-shadow: 0 8px 32px rgba(67, 103, 201, 0.3);
+}
+
+.btn-wave-primary .wave-bg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: all 0.5s ease-out;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.btn-wave-primary:hover .wave-bg {
+  width: 14rem;
+  height: 14rem;
+}
+
+.btn-wave-primary .wave-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  margin-left: -0.5rem;
+}
+
+.btn-wave-primary .wave-left svg {
+  width: auto;
+  height: 100%;
+  opacity: 1;
+  object-fit: stretch;
+}
+
+.btn-wave-primary .wave-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  margin-right: -0.75rem;
+}
+
+.btn-wave-primary .wave-right svg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-wave-primary .wave-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -0.25rem;
+  border-radius: 0.5rem;
+  opacity: 0.3;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent,
+    rgba(255, 255, 255, 0.2)
+  );
+}
+
+.btn-wave-primary .btn-text {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Secondary Wave Button */
+.btn-wave-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 2rem;
+  overflow: hidden;
+  letter-spacing: -0.025em;
+  color: var(--color-accent);
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-wave-secondary:hover {
+  box-shadow: 0 8px 32px rgba(67, 103, 201, 0.2);
+  color: white;
+}
+
+.btn-wave-secondary .wave-bg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: all 0.5s ease-out;
+  background-color: var(--color-accent);
+  border-radius: 9999px;
+}
+
+.btn-wave-secondary:hover .wave-bg {
+  width: 14rem;
+  height: 14rem;
+}
+
+.btn-wave-secondary .wave-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  margin-left: -0.5rem;
+}
+
+.btn-wave-secondary .wave-left svg {
+  width: auto;
+  height: 100%;
+  opacity: 1;
+  object-fit: stretch;
+}
+
+.btn-wave-secondary .wave-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  margin-right: -0.75rem;
+}
+
+.btn-wave-secondary .wave-right svg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-wave-secondary .wave-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -0.25rem;
+  border-radius: 0.5rem;
+  opacity: 0.1;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent,
+    var(--color-accent)
+  );
+}
+
+.btn-wave-secondary .btn-text {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Borderless Alternative Wave Button */
+.btn-wave-alternative {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 2rem;
+  overflow: hidden;
+  letter-spacing: -0.025em;
+  color: var(--color-accent);
+  background-color: transparent;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-wave-alternative:hover {
+  box-shadow: 0 8px 32px rgba(67, 103, 201, 0.2);
+  color: white;
+}
+
+.btn-wave-alternative .wave-bg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transition: all 0.5s ease-out;
+  background-color: var(--color-accent);
+  border-radius: 9999px;
+}
+
+.btn-wave-alternative:hover .wave-bg {
+  width: 14rem;
+  height: 14rem;
+}
+
+.btn-wave-alternative .wave-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  margin-left: -0.5rem;
+}
+
+.btn-wave-alternative .wave-left svg {
+  width: auto;
+  height: 100%;
+  opacity: 1;
+  object-fit: stretch;
+}
+
+.btn-wave-alternative .wave-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  margin-right: -0.75rem;
+}
+
+.btn-wave-alternative .wave-right svg {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-wave-alternative .wave-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: -0.25rem;
+  border-radius: 0.5rem;
+  opacity: 0.1;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent,
+    var(--color-accent)
+  );
+}
+
+.btn-wave-alternative .btn-text {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
 }

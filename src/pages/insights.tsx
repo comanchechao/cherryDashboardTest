@@ -1605,8 +1605,7 @@ const Insights: React.FC = () => {
               </div>
               <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
-                  Staking (<span className="text-green-400">10%</span> of
-                  Revenue)
+                  Staking
                 </h3>
                 <div className="pl-4 space-y-3">
                   <div className="flex items-start gap-2">

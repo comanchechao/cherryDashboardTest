@@ -150,11 +150,11 @@ const TelegramAuth: React.FC = () => {
       <Icon
         icon="logos:telegram"
         className="text-cherry-cream group-hover:text-cherry-cream transition-all duration-300"
-        width={23}
-        height={23}
+        width={20}
+        height={20}
       />
       <span className="winky-sans-font text-base text-cherry-cream group-hover:text-cherry-cream transition-colors duration-300">
-        Login with Telegram
+        Login
       </span>
 
       {/* Add CSS for nav-link hover underline effect */}
@@ -171,9 +171,7 @@ const TelegramAuth: React.FC = () => {
             background-color: var(--color-cherry-red);
             transition: width 0.3s ease;
           }
-          .nav-link:hover::after {
-            width: 100%;
-          }
+        
         `}
       </style>
     </a>

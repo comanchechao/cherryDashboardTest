@@ -13,6 +13,7 @@ interface RewardSectionProps {
   showAchievementsModal: boolean;
   setShowAchievementsModal: (show: boolean) => void;
   handleTrade: () => void;
+  handleLogout: () => void;
   copyToClipboard: (text: string) => void;
   userAchievement: {
     badge: string;
@@ -47,6 +48,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
   alreadySubscribedToastVisible,
   setShowAchievementsModal,
   handleTrade,
+  handleLogout,
   copyToClipboard,
   userAchievement,
   userWalletInfo,
@@ -249,9 +251,12 @@ const RewardSection: React.FC<RewardSectionProps> = ({
         </div>
 
         {/* Wallet Content */}
-        <div className="p-6">
+        <div className="lg:p-6 p-3">
           <div className="flex items-center w-full mb-3 justify-start gap-3">
-            <button className="bg-cherry-red   py-2 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]">
+            <button
+              onClick={handleLogout}
+              className="bg-cherry-red   py-2 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
+            >
               <span className="winky-sans-font text-cherry-cream">Logout</span>
               <Icon
                 icon="mdi:logout"
@@ -346,11 +351,11 @@ const RewardSection: React.FC<RewardSectionProps> = ({
           </div>
 
           {/* Achievement System */}
-          <div className="bg-cherry-cream rounded-xl border-2 border-cherry-burgundy p-5 relative">
+          <div className="bg-cherry-cream rounded-xl border-2 border-cherry-burgundy lg:p-5 relative">
             <div className="flex items-center justify-center w-full">
               {/* Left side - Current Achievement */}
               <div className="w-full">
-                <h4 className="maladroit-font lg:text-xl text-sm text-cherry-burgundy mb-3 flex items-center gap-2">
+                <h4 className="maladroit-font m-2 lg:text-xl text-sm text-cherry-burgundy mb-3 flex items-center gap-2">
                   <Icon
                     icon="ph:trophy-bold"
                     className="text-cherry-red"
@@ -414,171 +419,353 @@ const RewardSection: React.FC<RewardSectionProps> = ({
 
                 {/* Wallet Stats Section styled like gaming cards */}
                 {userWalletInfo && (
-                  <div className="group relative mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-cherry-burgundy rounded-3xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-                    <div className="relative bg-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[2px_2px_0px_#321017] transform transition-all duration-300  ">
-                      <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy p-6 relative overflow-hidden">
-                        <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-cherry-cream rounded-full opacity-20"></div>
-                        <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-cherry-cream rounded-full opacity-30"></div>
-                        <div className="flex items-center gap-4 relative z-10">
-                          <div className="w-16 h-16 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017] rotate-3 group-hover:rotate-6 transition-transform">
-                            <Icon
-                              icon="mdi:wallet"
-                              className="text-3xl text-cherry-red"
-                            />
-                          </div>
-                          <div>
-                            <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
-                              Your Wallet Stats
-                            </h3>
-                            <p className="text-cherry-cream text-sm winky-sans-font opacity-90 flex items-center gap-2 mt-1">
-                              <Icon icon="mdi:chart-line" className="text-lg" />
-                              Trading Performance
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <div className="bg-cherry-cream rounded-2xl border-3 border-cherry-burgundy p-6 mb-4">
-                          {/* SOL Balance Card */}
-                          <div className="flex items-center gap-4 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy mb-4">
-                            <div className="w-12 h-12 bg-cherry-cream rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                  <>
+                    {/* Mobile Design */}
+                    <div className="lg:hidden group relative mb-4">
+                      <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-cherry-burgundy rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                      <div className="relative bg-cherry-burgundy rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[4px_4px_0px_#321017] transform transition-all duration-300">
+                        {/* Header */}
+                        <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy p-4 relative overflow-hidden">
+                          <div className="absolute -top-4 -right-4 w-16 h-16 border-2 border-cherry-cream rounded-full opacity-20"></div>
+                          <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-cherry-cream rounded-full opacity-30"></div>
+                          <div className="flex items-center gap-3 relative z-10">
+                            <div className="w-12 h-12 bg-cherry-cream rounded-xl border-2 border-cherry-burgundy flex items-center justify-center shadow-[2px_2px_0px_#321017] rotate-2 group-hover:rotate-4 transition-transform">
                               <Icon
-                                icon="token-branded:solana"
-                                className="text-2xl text-cherry-cream"
+                                icon="mdi:wallet"
+                                className="text-2xl text-cherry-red"
                               />
                             </div>
-                            <div className="flex-1">
-                              <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                SOL Balance
-                              </h4>
-                              <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                {parseFloat(userWalletInfo.solBalance).toFixed(
-                                  3
-                                )}{" "}
-                                SOL
-                              </p>
-                              <p className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
-                                {userWalletInfo.solAddress.substring(0, 6)}...
-                                {userWalletInfo.solAddress.substring(
-                                  userWalletInfo.solAddress.length - 4
-                                )}
-                              </p>
-                            </div>
-                            <div className="text-right">
-                              <span className="bg-cherry-red text-cherry-cream px-3 py-1 rounded-full text-xl winky-sans-font font-bold">
-                                $
-                                {parseFloat(
-                                  userWalletInfo.solBalanceUSD
-                                ).toFixed(2)}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Stats Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Points Card */}
-                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
-                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
-                                <Icon
-                                  icon="mdi:star-circle"
-                                  className="text-xl text-cherry-cream"
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                  Points
-                                </h4>
-                                <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                  {userWalletInfo.userPoints.toLocaleString()}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Volume Card */}
-                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
-                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                            <div>
+                              <h3 className="maladroit-font text-lg text-cherry-cream leading-tight">
+                                Your Wallet Stats
+                              </h3>
+                              <p className="text-cherry-cream text-xs winky-sans-font opacity-90 flex items-center gap-1 mt-1">
                                 <Icon
                                   icon="mdi:chart-line"
-                                  className="text-xl text-cherry-cream"
+                                  className="text-sm"
                                 />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                  Volume
-                                </h4>
-                                <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                  $
-                                  {userWalletInfo.totalUsdVolume.toLocaleString()}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Tier Card */}
-                            <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
-                              <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
-                                <Icon
-                                  icon="mdi:medal"
-                                  className="text-xl text-cherry-cream"
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                  Tier
-                                </h4>
-                                <p className="winky-sans-font text-cherry-burgundy text-sm">
-                                  {userWalletInfo.tier}
-                                </p>
-                              </div>
+                                Trading Performance
+                              </p>
                             </div>
                           </div>
+                        </div>
 
-                          {/* Tokens Section */}
-                          {userWalletInfo.tokens.length > 0 && (
-                            <div className="mt-4">
-                              <div className="flex items-center gap-3 mb-3">
-                                <Icon
-                                  icon="mdi:coins"
-                                  className="text-xl text-cherry-red"
-                                />
-                                <h5 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                  Your Tokens ({userWalletInfo.tokens.length})
-                                </h5>
-                              </div>
-                              <div className="space-y-2">
-                                {userWalletInfo.tokens.map((token, index) => (
-                                  <div
-                                    key={index}
-                                    className="flex items-center gap-3 bg-cherry-cream rounded-xl p-3 border-2 border-cherry-burgundy"
-                                  >
-                                    <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
-                                      <Icon
-                                        icon="mdi:coin"
-                                        className="text-lg text-cherry-cream"
-                                      />
-                                    </div>
-                                    <div className="flex-1">
-                                      <div className="winky-sans-font text-cherry-burgundy font-bold text-lg">
-                                        ${token.symbol}
-                                      </div>
-                                      <div className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
-                                        {token.name}
-                                      </div>
-                                    </div>
-                                    <div className="text-right">
-                                      <div className="winky-sans-font text-cherry-red font-bold text-sm">
-                                        {parseFloat(token.balance).toFixed(2)}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
+                        {/* Content */}
+                        <div className="p-4">
+                          <div className="bg-cherry-cream rounded-xl border-2 border-cherry-burgundy p-4 mb-4">
+                            {/* SOL Balance Card */}
+                            <div className="bg-cherry-cream rounded-lg p-3 border-2 border-cherry-burgundy mb-4">
+                              <div className="flex items-center gap-3 flex-col">
+                                <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="token-branded:solana"
+                                    className="text-lg text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                    SOL Balance
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-xs">
+                                    {parseFloat(
+                                      userWalletInfo.solBalance
+                                    ).toFixed(3)}{" "}
+                                    SOL
+                                  </p>
+                                  <p className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                    {userWalletInfo.solAddress.substring(0, 6)}
+                                    ...
+                                    {userWalletInfo.solAddress.substring(
+                                      userWalletInfo.solAddress.length - 4
+                                    )}
+                                  </p>
+                                </div>
+                                <div className="text-right">
+                                  <span className="bg-cherry-red text-cherry-cream px-2 py-1 rounded-full text-sm winky-sans-font font-bold">
+                                    $
+                                    {parseFloat(
+                                      userWalletInfo.solBalanceUSD
+                                    ).toFixed(2)}
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          )}
+
+                            {/* Stats Cards */}
+                            <div className="space-y-3">
+                              {/* Points Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-lg p-3 border-2 border-cherry-burgundy">
+                                <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:star-circle"
+                                    className="text-lg text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                    Points
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-xs">
+                                    {userWalletInfo.userPoints.toLocaleString()}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Volume Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-lg p-3 border-2 border-cherry-burgundy">
+                                <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:chart-line"
+                                    className="text-lg text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                    Volume
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-xs">
+                                    $
+                                    {userWalletInfo.totalUsdVolume.toLocaleString()}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Tier Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-lg p-3 border-2 border-cherry-burgundy">
+                                <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:medal"
+                                    className="text-lg text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                    Tier
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-xs">
+                                    {userWalletInfo.tier}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Tokens Section */}
+                            {userWalletInfo.tokens.length > 0 && (
+                              <div className="mt-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                  <Icon
+                                    icon="mdi:coins"
+                                    className="text-lg text-cherry-red"
+                                  />
+                                  <h5 className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                    Your Tokens ({userWalletInfo.tokens.length})
+                                  </h5>
+                                </div>
+                                <div className="space-y-2">
+                                  {userWalletInfo.tokens.map((token, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex items-center flex-col gap-3 bg-cherry-cream rounded-lg p-3 border-2 border-cherry-burgundy"
+                                    >
+                                      <div className="w-6 h-6 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                        <Icon
+                                          icon="mdi:coin"
+                                          className="text-sm text-cherry-cream"
+                                        />
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="winky-sans-font text-cherry-burgundy font-bold text-sm">
+                                          ${token.symbol}
+                                        </div>
+                                        <div className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                          {token.name}
+                                        </div>
+                                      </div>
+                                      <div className="text-right">
+                                        <div className="winky-sans-font text-cherry-red font-bold text-sm">
+                                          {parseFloat(token.balance).toFixed(2)}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+
+                    {/* Desktop Design */}
+                    <div className="hidden lg:block group relative mb-4">
+                      <div className="absolute inset-0 bg-gradient-to-r from-cherry-red to-cherry-burgundy rounded-3xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                      <div className="relative bg-cherry-burgundy rounded-3xl border-4 border-cherry-burgundy overflow-hidden shadow-[2px_2px_0px_#321017] transform transition-all duration-300">
+                        <div className="bg-gradient-to-br from-cherry-red via-[#7e1331] to-cherry-burgundy     relative overflow-hidden">
+                          <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-cherry-cream rounded-full opacity-20"></div>
+                          <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-cherry-cream rounded-full opacity-30"></div>
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-16 h-16 bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy flex items-center justify-center shadow-[4px_4px_0px_#321017] rotate-3 group-hover:rotate-6 transition-transform">
+                              <Icon
+                                icon="mdi:wallet"
+                                className="text-3xl text-cherry-red"
+                              />
+                            </div>
+                            <div>
+                              <h3 className="maladroit-font text-xl md:text-2xl text-cherry-cream leading-tight">
+                                Your Wallet Stats
+                              </h3>
+                              <p className="text-cherry-cream text-sm winky-sans-font opacity-90 flex items-center gap-2 mt-1">
+                                <Icon
+                                  icon="mdi:chart-line"
+                                  className="text-lg"
+                                />
+                                Trading Performance
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <div className="bg-cherry-cream rounded-2xl border-3 border-cherry-burgundy p-6 mb-4">
+                            {/* SOL Balance Card */}
+                            <div className="flex items-center gap-4 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy mb-4">
+                              <div className="w-12 h-12 bg-cherry-cream rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                <Icon
+                                  icon="token-branded:solana"
+                                  className="text-2xl text-cherry-cream"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                  SOL Balance
+                                </h4>
+                                <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                  {parseFloat(
+                                    userWalletInfo.solBalance
+                                  ).toFixed(3)}{" "}
+                                  SOL
+                                </p>
+                                <p className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                  {userWalletInfo.solAddress.substring(0, 6)}...
+                                  {userWalletInfo.solAddress.substring(
+                                    userWalletInfo.solAddress.length - 4
+                                  )}
+                                </p>
+                              </div>
+                              <div className="text-right">
+                                <span className="bg-cherry-red text-cherry-cream px-3 py-1 rounded-full text-xl winky-sans-font font-bold">
+                                  $
+                                  {parseFloat(
+                                    userWalletInfo.solBalanceUSD
+                                  ).toFixed(2)}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Stats Grid */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              {/* Points Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                                <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:star-circle"
+                                    className="text-xl text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                    Points
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                    {userWalletInfo.userPoints.toLocaleString()}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Volume Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                                <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:chart-line"
+                                    className="text-xl text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                    Volume
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                    $
+                                    {userWalletInfo.totalUsdVolume.toLocaleString()}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Tier Card */}
+                              <div className="flex items-center gap-3 bg-cherry-cream rounded-xl p-4 border-2 border-cherry-burgundy">
+                                <div className="w-10 h-10 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                  <Icon
+                                    icon="mdi:medal"
+                                    className="text-xl text-cherry-cream"
+                                  />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                    Tier
+                                  </h4>
+                                  <p className="winky-sans-font text-cherry-burgundy text-sm">
+                                    {userWalletInfo.tier}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Tokens Section */}
+                            {userWalletInfo.tokens.length > 0 && (
+                              <div className="mt-4">
+                                <div className="flex items-center gap-3 mb-3">
+                                  <Icon
+                                    icon="mdi:coins"
+                                    className="text-xl text-cherry-red"
+                                  />
+                                  <h5 className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                    Your Tokens ({userWalletInfo.tokens.length})
+                                  </h5>
+                                </div>
+                                <div className="space-y-2">
+                                  {userWalletInfo.tokens.map((token, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex items-center gap-3 bg-cherry-cream rounded-xl p-3 border-2 border-cherry-burgundy"
+                                    >
+                                      <div className="w-8 h-8 bg-cherry-red rounded-lg border-2 border-cherry-burgundy flex items-center justify-center">
+                                        <Icon
+                                          icon="mdi:coin"
+                                          className="text-lg text-cherry-cream"
+                                        />
+                                      </div>
+                                      <div className="flex-1">
+                                        <div className="winky-sans-font text-cherry-burgundy font-bold text-lg">
+                                          ${token.symbol}
+                                        </div>
+                                        <div className="winky-sans-font text-cherry-burgundy text-xs opacity-70">
+                                          {token.name}
+                                        </div>
+                                      </div>
+                                      <div className="text-right">
+                                        <div className="winky-sans-font text-cherry-red font-bold text-sm">
+                                          {parseFloat(token.balance).toFixed(2)}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
                 )}
 
                 <div className="  ">

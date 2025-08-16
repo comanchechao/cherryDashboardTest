@@ -14,110 +14,124 @@ import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./components/AuthProvider";
+import UnifiedWalletProvider from "./components/UnifiedWalletProvider";
+import Bridge from "./pages/bridge";
+import WalletModalButton from "./components/WalletModalButton";
 
 function App() {
   const location = useLocation();
 
   return (
-    <ToastProvider>
-      <AuthProvider>
-        <>
-          <ScrollToTop />
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-              <Route
-                path="/"
-                element={
-                  <PageLayout>
-                    <HomePage />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/homepage"
-                element={
-                  <PageLayout>
-                    <HomePage />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/careers"
-                element={
-                  <PageLayout>
-                    <Careers />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/features"
-                element={
-                  <PageLayout>
-                    <Features />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/aboutUs"
-                element={
-                  <PageLayout>
-                    <AboutUs />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/roadmap"
-                element={
-                  <PageLayout>
-                    <Roadmap />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/userGrowth"
-                element={
-                  <PageLayout>
-                    <UserGrowth />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/cherrySniper"
-                element={
-                  <PageLayout>
-                    <CherrySniper />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/cherry"
-                element={
-                  <PageLayout>
-                    <CherryToken />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="/rewards"
-                element={
-                  <PageLayout>
-                    <Rewards />
-                  </PageLayout>
-                }
-              />
-              <Route
-                path="*"
-                element={
-                  <PageLayout>
-                    <HomePage />
-                  </PageLayout>
-                }
-              />
-            </Routes>
-          </AnimatePresence>
-        </>
-      </AuthProvider>
-    </ToastProvider>
+    <UnifiedWalletProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <>
+            <ScrollToTop />
+            <WalletModalButton />
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                <Route
+                  path="/"
+                  element={
+                    <PageLayout>
+                      <HomePage />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/homepage"
+                  element={
+                    <PageLayout>
+                      <HomePage />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/careers"
+                  element={
+                    <PageLayout>
+                      <Careers />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/features"
+                  element={
+                    <PageLayout>
+                      <Features />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/aboutUs"
+                  element={
+                    <PageLayout>
+                      <AboutUs />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/roadmap"
+                  element={
+                    <PageLayout>
+                      <Roadmap />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/userGrowth"
+                  element={
+                    <PageLayout>
+                      <UserGrowth />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/cherrySniper"
+                  element={
+                    <PageLayout>
+                      <CherrySniper />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/cherry"
+                  element={
+                    <PageLayout>
+                      <CherryToken />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/rewards"
+                  element={
+                    <PageLayout>
+                      <Rewards />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="/bridge"
+                  element={
+                    <PageLayout>
+                      <Bridge />
+                    </PageLayout>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <PageLayout>
+                      <HomePage />
+                    </PageLayout>
+                  }
+                />
+              </Routes>
+            </AnimatePresence>
+          </>
+        </AuthProvider>
+      </ToastProvider>
+    </UnifiedWalletProvider>
   );
 }
 

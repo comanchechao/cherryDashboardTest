@@ -26,10 +26,6 @@ interface LeaderboardProps {
 const Leaderboard: React.FC<LeaderboardProps> = ({
   leaderboardData,
   loading,
-  currentPage,
-  totalPages,
-  totalCount,
-  onPageChange,
 }) => {
   const formatWallet = (wallet: string) => {
     return `${wallet.substring(0, 6)}...${wallet.substring(wallet.length - 4)}`;
@@ -67,9 +63,9 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
     }
   };
 
-  // Calculate the starting rank for the current page
+  // Calculate the rank for the top 10
   const getRankForIndex = (index: number) => {
-    return (currentPage - 1) * 10 + index + 1;
+    return index + 1;
   };
 
   if (loading) {
@@ -129,7 +125,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
             height={28}
             className="text-cherry-red animate-pulse"
           />
-          Trader Leaderboard
+          Top 10 Traders
         </h3>
         <div className="winky-sans-font text-sm text-cherry-cream opacity-80 hidden sm:block">
           Updated hourly
@@ -205,7 +201,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
             className="bg-cherry-burgundy bg-opacity-5 rounded-lg p-3 border border-cherry-burgundy border-opacity-20"
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="winky-sans-font text-cherry-burgundy font-bold">
+              <span className="winky-sans-font text-cherry-cream font-bold">
                 #{getRankForIndex(index)}
               </span>
               <div
@@ -216,37 +212,34 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
                 {item.tier}
               </div>
             </div>
-            <div className="text-sm text-cherry-burgundy mb-1">
+            <div className="text-sm text-cherry-cream mb-1">
               {formatWallet(item.wallet)}
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-cherry-burgundy">
+              <span className="text-cherry-cream">
                 <span className="font-bold">
                   {parseInt(item.points).toLocaleString()}
                 </span>{" "}
                 points
               </span>
-              <span className="text-cherry-burgundy">
-                {formatVolume(item.totalUsdVolume)}
+              <span className="text-cherry-cream">
+                {formatVolume(item.totalUsdVolume)} Volume
               </span>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Pagination Controls */}
-      {totalPages > 1 && (
-        <div className="p-4 border-t border-cherry-burgundy border-opacity-20">
+      {/* Pagination Controls - Commented out for top 10 only */}
+      {/* {totalPages > 1 && (
+        <div className="p-4 border-t lg:block hidden border-cherry-burgundy border-opacity-20">
           <div className="flex items-center justify-between">
-            {/* Page Info */}
             <div className="winky-sans-font text-sm text-cherry-burgundy">
               Showing {(currentPage - 1) * 10 + 1} -{" "}
               {Math.min(currentPage * 10, totalCount)} of {totalCount} users
             </div>
 
-            {/* Pagination Buttons */}
             <div className="flex items-center gap-2">
-              {/* Previous Button */}
               <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -260,7 +253,6 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
                 Prev
               </button>
 
-              {/* Page Numbers */}
               <div className="flex items-center gap-1">
                 {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                   let pageNum;
@@ -290,7 +282,6 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
                 })}
               </div>
 
-              {/* Next Button */}
               <button
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
@@ -308,18 +299,14 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
         </div>
       )}
 
-      {/* Mobile Pagination */}
       {totalPages > 1 && (
         <div className="lg:hidden p-4 border-t border-cherry-burgundy border-opacity-20">
           <div className="flex flex-col gap-3">
-            {/* Page Info */}
             <div className="winky-sans-font text-sm text-cherry-burgundy text-center">
               Page {currentPage} of {totalPages} • {totalCount} total users
             </div>
 
-            {/* Mobile Pagination Buttons */}
             <div className="flex items-center justify-center gap-2">
-              {/* Previous Button */}
               <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -333,12 +320,10 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
                 Prev
               </button>
 
-              {/* Current Page Indicator */}
               <div className="px-4 py-2 bg-cherry-red text-cherry-cream rounded-lg border-2 border-cherry-red font-bold winky-sans-font">
                 {currentPage}
               </div>
 
-              {/* Next Button */}
               <button
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
@@ -354,7 +339,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
