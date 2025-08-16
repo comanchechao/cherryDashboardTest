@@ -2190,7 +2190,7 @@ const HomePage: React.FC = () => {
                   {/* Community AI Tabs */}
                   <div className="w-full">
                     <div className="flex flex-wrap gap-3 mb-6">
-                      {["V1", "V2", "V3"].map((version, index) => (
+                      {["V1", "V2", "V3"].map((version) => (
                         <button
                           key={version}
                           onClick={() => setActiveCommunityTab(version)}
