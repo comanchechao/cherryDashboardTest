@@ -7,8 +7,6 @@ import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import ToastContainer from "../components/ToastContainer";
 import { useToast } from "../hooks/useToast";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 interface TokenInfo {
   name: string;
@@ -357,33 +355,6 @@ const Dashboard: React.FC = () => {
     },
   ];
 
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 4)}...${address.slice(-4)}`;
-  };
-
-  const handleConnect = () => {
-    setVisible(true);
-  };
-
-  // Show success message when wallet connects
-  useEffect(() => {
-    if (connected && publicKey) {
-      showSuccess(
-        "Welcome to Cherry AI Dashboard!",
-        "Your wallet is connected. Let's create your first AI project!"
-      );
-    }
-  }, [connected, publicKey, showSuccess]);
-
-  const handleDisconnect = async () => {
-    try {
-      await disconnect();
-      showSuccess("Wallet Disconnected", "Your wallet has been disconnected.");
-    } catch (error) {
-      showError("Disconnect Failed", "Failed to disconnect wallet.");
-    }
-  };
-
   const renderEmptyDashboard = () => (
     <motion.div
       key="empty-dashboard"
@@ -434,110 +405,31 @@ const Dashboard: React.FC = () => {
               </p>
 
               {/* Wallet Connection Section */}
-              {!connected ? (
-                <div className="space-y-6">
-                  <div className="bg-cherry-cream rounded-xl border-4 border-yellow-400 p-6 mb-6">
-                    <div className="flex items-center justify-center mb-4">
-                      <Icon
-                        icon="mdi:wallet"
-                        className="text-cherry-red mr-3"
-                        width={32}
-                        height={32}
-                      />
-                      <h3 className="maladroit-font text-xl text-cherry-burgundy">
-                        Connect Wallet to Continue
-                      </h3>
-                    </div>
-                    <p className="winky-sans-font text-cherry-burgundy mb-4">
-                      Connect your Solana wallet to start creating AI projects
-                    </p>
-                  </div>
 
-                  <motion.button
-                    onClick={handleConnect}
-                    disabled={connecting}
-                    className="text-white bg-cherry-red py-4 px-8 rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-3 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font mx-auto disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {connecting ? (
-                      <>
-                        <Icon
-                          icon="mdi:loading"
-                          className="animate-spin text-cherry-cream"
-                          width={24}
-                          height={24}
-                        />
-                        <span className="text-cherry-cream">Connecting...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Icon
-                          icon="mdi:wallet-plus"
-                          className="text-cherry-cream"
-                          width={24}
-                          height={24}
-                        />
-                        <span className="text-cherry-cream">
-                          Connect Wallet
-                        </span>
-                      </>
-                    )}
-                  </motion.button>
+              <div className="space-y-6">
+                <div className="bg-cherry-cream rounded-xl border-4 border-yellow-400 p-6 mb-6">
+                  <div className="flex items-center justify-center mb-4">
+                    <Icon
+                      icon="mdi:wallet"
+                      className="text-cherry-red mr-3"
+                      width={32}
+                      height={32}
+                    />
+                    <h3 className="maladroit-font text-xl text-cherry-burgundy">
+                      Connect Wallet to Continue
+                    </h3>
+                  </div>
+                  <p className="winky-sans-font text-cherry-burgundy mb-4">
+                    Connect your Solana wallet to start creating AI projects
+                  </p>
                 </div>
-              ) : (
-                <div className="space-y-6">
-                  {/* Connected Wallet Info */}
-                  <div className="bg-cherry-cream rounded-xl border-4 border-green-400 p-6 mb-6">
-                    <div className="flex items-center justify-center mb-4">
-                      <Icon
-                        icon="mdi:check-circle"
-                        className="text-green-600 mr-3"
-                        width={32}
-                        height={32}
-                      />
-                      <h3 className="maladroit-font text-xl text-cherry-burgundy">
-                        Wallet Connected
-                      </h3>
-                    </div>
-                    <div className="bg-cherry-burgundy rounded-lg p-4 mb-4">
-                      <p className="winky-sans-font text-sm text-cherry-cream opacity-80 mb-2">
-                        Connected Address:
-                      </p>
-                      <p className="winky-sans-font text-lg font-mono text-yellow-400">
-                        {publicKey && formatAddress(publicKey.toString())}
-                      </p>
-                    </div>
-                  </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <motion.button
-                      onClick={handleCreateProject}
-                      className="text-white bg-cherry-red py-4 px-8 rounded-xl border border-b-8 border-r-8 border-cherry-burgundy  hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-3 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
-                    >
-                      <Icon
-                        icon="mdi:plus"
-                        className="text-cherry-cream"
-                        width={24}
-                        height={24}
-                      />
-                      <span className="text-cherry-cream">Create Project</span>
-                    </motion.button>
-
-                    <div
-                      onClick={handleDisconnect}
-                      className="bg-cherry-burgundy cursor-pointer text-cherry-cream py-4 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-red  hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font flex items-center gap-2"
-                    >
-                      <Icon
-                        icon="mdi:logout"
-                        className="text-cherry-cream"
-                        width={20}
-                        height={20}
-                      />
-                      <span className="text-cherry-cream">Disconnect</span>
-                    </div>
-                  </div>
-                </div>
-              )}
+                <motion.button className="text-white bg-cherry-red py-4 px-8 rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-3 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font mx-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                  <>
+                    <span className="text-cherry-cream">Connect Wallet</span>
+                  </>
+                </motion.button>
+              </div>
             </div>
           </div>
         </div>
