@@ -85,6 +85,41 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
+        {/* Social Links Grid */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16 max-w-4xl mx-auto">
+          {[
+            {
+              icon: "ic:baseline-telegram",
+              label: "Community",
+              url: "https://t.me/cherrycommunity",
+            },
+            {
+              icon: "mdi:twitter",
+              label: "Twitter",
+              url: "https://x.com/cherrytgbot",
+            },
+            {
+              icon: "mdi:robot",
+              label: "Bot",
+              url: "https://t.me/CherryTGBot",
+            },
+            {
+              icon: "mdi:chart-line",
+              label: "Trending",
+              url: "https://t.me/cherrytrending",
+            },
+          ].map((social, index) => (
+            <button
+              key={index}
+              onClick={() => window.open(social.url, "_blank")}
+              className="px-4 py-2 bg-[#011020]/60 cursor-pointer backdrop-blur-xl border border-[#4367c9]/20 rounded-lg hover:bg-[#4367c9]/20 hover:border-[#4367c9]/40 transition-all duration-300 text-white text-sm winky-sans-font flex items-center gap-2"
+            >
+              <Icon icon={social.icon} className="w-4 h-4" />
+              {social.label}
+            </button>
+          ))}
+        </div>
+
         {/* Divider */}
         <div className="flex items-center justify-center mb-12">
           <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
@@ -94,21 +129,10 @@ const Footer: React.FC = () => {
 
         {/* Copyright & Legal */}
         <div className="text-center">
-          <div className="bg-[#011020]/60 backdrop-blur-xl border border-[#4367c9]/20 rounded-2xl p-6 max-w-2xl mx-auto">
-            <p className="winky-sans-font text-[#a0a0a0] mb-3">
+          <div className="bg-[#011020]/60  flex items-center justify-center backdrop-blur-xl border border-[#4367c9]/20 rounded-2xl p-3 max-w-2xl mx-auto">
+            <p className="winky-sans-font text-[#a0a0a0]  ">
               COPYRIGHT © 2025 CHERRY AI. ALL RIGHTS RESERVED.
             </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-[#808080]">
-              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
-                Privacy Policy
-              </span>
-              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
-                Terms of Service
-              </span>
-              <span className="hover:text-[#4367c9] cursor-pointer transition-colors duration-300">
-                Cookie Policy
-              </span>
-            </div>
           </div>
         </div>
       </div>

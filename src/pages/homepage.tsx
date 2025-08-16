@@ -151,6 +151,7 @@ const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"Cherry" | "speed">("speed");
 
   const [activePartner, setActivePartner] = useState<number>(0);
+  const [activeCommunityTab, setActiveCommunityTab] = useState<string>("V1");
 
   // Embla carousel setup
   const [emblaRef] = useEmblaCarousel(
@@ -760,8 +761,8 @@ const HomePage: React.FC = () => {
                     </h1>
 
                     <p className="hero-description text-left text-lg lg:text-2xl text-[var(--color-text-secondary)]/80 mb-9 max-w-3xl mx-auto leading-7">
-                      Trade faster. Grow louder. Earn more. Trading tools,
-                      trending boosts, raids and rewards — all powered by AI.
+                      AI powered ecosystem for digital robotics that empowers
+                      Web3 traders and communities.
                     </p>
                   </div>
 
@@ -956,7 +957,7 @@ const HomePage: React.FC = () => {
         <div className=" ">
           <div
             ref={partnersContainerRef}
-            className="min-h-[50rem] relative w-full py-20 md:px-0 px-4 overflow-hidden"
+            className=" h-full relative w-full py-44 md:px-0 px-4 overflow-hidden"
           >
             {/* Advanced Background Effects */}
             <div className="absolute inset-0">
@@ -1018,10 +1019,6 @@ const HomePage: React.FC = () => {
                 Partners & Integrations
                 <div className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
               </h2>
-              <p className="winky-sans-font text-xl mt-10 text-[var(--color-text-secondary)]/80 max-w-3xl">
-                Strategic alliances that help CHERRY expand its reach and
-                enhance its ecosystem
-              </p>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row z-30 gap-8">
@@ -1191,7 +1188,7 @@ const HomePage: React.FC = () => {
           <div className="w-full px-8 md:px-10 lg:px-24 bg-transparent   py-12   mx-auto">
             <div
               ref={featureCardsRef}
-              className="relative gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+              className="relative gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
               id="features"
             >
               <div
@@ -1253,11 +1250,12 @@ const HomePage: React.FC = () => {
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
-                          Management Bot
+                          Community Bots
                         </h3>
-                        <div className="h-1 w-24 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
+                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
                         <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Mod your TG & track buys live.
+                          Digital robots that use AI to manage and communicate
+                          with your community.
                         </p>
                       </div>
 
@@ -1306,15 +1304,12 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
-              {/* Feature Card 2 - Cherry Quest */}
-              <div
+              {/* <div
                 ref={featureCard2Ref}
                 className="feature-card opacity-0 transform translate-y-16 h-full"
               >
                 <div className="relative h-full group">
-                  {/* Card Body */}
                   <div className="flex flex-col items-center bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[4px] overflow-hidden hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)] transition-all duration-300 transform hover:-translate-y-2 card-body relative h-full p-6">
-                    {/* Floating Decorative Elements */}
                     <div
                       className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"
                       style={{ animationDelay: "0.5s" }}
@@ -1324,7 +1319,6 @@ const HomePage: React.FC = () => {
                       style={{ animationDelay: "1s" }}
                     ></div>
 
-                    {/* Connection Lines SVG */}
                     <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
                       <defs>
                         <linearGradient
@@ -1356,7 +1350,6 @@ const HomePage: React.FC = () => {
                       />
                     </svg>
 
-                    {/* Left Side with Image */}
                     <div className="p-4 flex items-center justify-center w-full md:w-auto relative z-10">
                       <div className="relative image-container">
                         <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
@@ -1369,7 +1362,6 @@ const HomePage: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Right Side with Content */}
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
@@ -1420,12 +1412,11 @@ const HomePage: React.FC = () => {
                         </button>
                       </div>
 
-                      {/* Bottom Decorative Bar */}
                       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               {/* Feature Card 3 - Cherry AI Trending */}
               <div
                 ref={featureCard3Ref}
@@ -1493,11 +1484,12 @@ const HomePage: React.FC = () => {
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
-                          AI Trending
+                          Analytics AI
                         </h3>
-                        <div className="h-1 w-24 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
+                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
                         <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Boost token momentum with exposure.
+                          elegram channel run by an AI powered bot that finds
+                          and analyzes trending tokens.
                         </p>
                       </div>
 
@@ -1612,11 +1604,12 @@ const HomePage: React.FC = () => {
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
-                          Cherry Sniper
+                          SniperAI Bot
                         </h3>
-                        <div className="h-1 w-24 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
+                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
                         <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Fastest Solana sniper, trade-to-earn
+                          Telegram based trading bot that offers an AI chatbot
+                          to automate trading.
                         </p>
                       </div>
 
@@ -1707,13 +1700,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Floating Particles */}
-            <div className="absolute top-20 left-10 w-20 h-20 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"></div>
+            <div className="absolute top-20 left-10 w-20 h-20 bg-[var(--color-accent)]/10 rounded-full animate-float   "></div>
             <div
-              className="absolute bottom-40 right-10 w-16 h-16 bg-[var(--color-accent)]/8 rounded-full animate-float blur-3xl"
+              className="absolute bottom-40 right-10 w-16 h-16 bg-[var(--color-accent)]/8 rounded-full animate-float   "
               style={{ animationDelay: "1s" }}
             ></div>
             <div
-              className="absolute top-1/3 right-1/4 w-12 h-12 bg-[var(--color-accent)]/6 rounded-full animate-float blur-3xl"
+              className="absolute top-1/3 right-1/4 w-12 h-12 bg-[var(--color-accent)]/6 rounded-full animate-float   "
               style={{ animationDelay: "1.5s" }}
             ></div>
           </div>
@@ -1766,14 +1759,14 @@ const HomePage: React.FC = () => {
               <div className="flex items-center justify-center mb-8">
                 <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform -  hover:rotate-0 transition-all duration-300">
                   <span className="text-sm md:text-lg winky-sans-font text-[var(--color-accent)]">
-                    Cherry Sniper
+                    SniperAI Bot
                   </span>
                 </div>
               </div>
 
               {/* Main Title */}
               <h2 className="text-xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-8 leading-tight max-w-4xl mx-auto">
-                Fastest Trade Executions And AI Powered Data & Assistance
+                Fastest Trade Executions And AI Powered Trading
               </h2>
 
               {/* Description Card */}
@@ -1784,10 +1777,13 @@ const HomePage: React.FC = () => {
                   <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
                   <p className="winky-sans-font text-sm md:text-xl text-[var(--color-text-secondary)]/90 leading-relaxed relative z-10">
-                    Cherry Sniper will be the first trading bot that will use AI
-                    to provide real time filtered data and suggestions. The
-                    Sniper has 2 modes: Sniper and Stealth and both these modes
-                    will be supercharged using AI.
+                    SniperAI Bot is a digital robot that offers traders and
+                    snipers with 2 modes: Manual and Autobot mode. Manual is a
+                    classic Telegram based trading bot. Autobot mode offers
+                    traders with a Telegram based chat robot that you can give
+                    details and parameters for trading tokens and it will use
+                    automatically begin trading or even yield farming based on
+                    your parameters.
                   </p>
 
                   {/* Bottom Decorative Bar */}
@@ -2124,13 +2120,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Floating Particles */}
-            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"></div>
+            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float   "></div>
             <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float blur-3xl"
+              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float   "
               style={{ animationDelay: "1s" }}
             ></div>
             <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float blur-3xl"
+              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float   "
               style={{ animationDelay: "1.5s" }}
             ></div>
           </div>
@@ -2224,28 +2220,132 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center justify-start mb-6">
                     <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[20px] px-6 py-3 transform -  hover:rotate-0 transition-all duration-300">
                       <span className="text-xl md:text-xl winky-sans-font text-[var(--color-accent)]">
-                        Management AI
+                        Community AI
                       </span>
                     </div>
                   </div>
 
                   {/* Main Title */}
                   <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
-                    Auto-mod your TG. Track buys. Launch raids.
+                    AI Powered Telegram Bots For Communities
                   </h2>
 
                   {/* Description */}
                   <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 mb-8">
-                    Keep your Telegram sharp — track buys live, trigger raid
-                    calls, and manage your community like a pro. Uses machine
-                    learning and AI to automatically adapt and update its
-                    database.
+                    CherryAI Bot will be creating AI powered digital robots to
+                    help manage Telegram communities. These will be launched in
+                    3 versions - V1 is already deployed.
                   </p>
+
+                  {/* Community AI Tabs */}
+                  <div className="w-full">
+                    <div className="flex flex-wrap gap-3 mb-6">
+                      {["V1", "V2", "V3"].map((version, index) => (
+                        <button
+                          key={version}
+                          onClick={() => setActiveCommunityTab(version)}
+                          className={`px-6 py-3 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
+                            activeCommunityTab === version
+                              ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
+                              : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-2 border-[var(--color-glass-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10"
+                          }`}
+                        >
+                          Community AI {version}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
+                      {/* Floating Decorative Elements */}
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+                      <div className="absolute bottom-4 left-4 w-6 h-6 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+
+                      <div className="relative z-10">
+                        {activeCommunityTab === "V1" && (
+                          <div className="space-y-4 animate-fadeIn">
+                            <div className="flex items-start gap-4">
+                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                                <Icon
+                                  icon="mdi:robot"
+                                  className="text-white object-contain"
+                                  width={24}
+                                  height={24}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                                  Community AI V1
+                                </h4>
+                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                                  The V1 is already launched its a community
+                                  management bot that uses machine learning to
+                                  upgrade its database.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {activeCommunityTab === "V2" && (
+                          <div className="space-y-4 animate-fadeIn">
+                            <div className="flex items-start gap-4">
+                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                                <Icon
+                                  icon="mdi:chat-processing"
+                                  className="text-white object-contain"
+                                  width={24}
+                                  height={24}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                                  Community AI V2
+                                </h4>
+                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                                  Community AI bots will be able to not only
+                                  manage the community but also will be able to
+                                  answer specific questions related to the
+                                  project like a regular person.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {activeCommunityTab === "V3" && (
+                          <div className="space-y-4 animate-fadeIn">
+                            <div className="flex items-start gap-4">
+                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                                <Icon
+                                  icon="mdi:blockchain"
+                                  className="text-white object-contain"
+                                  width={24}
+                                  height={24}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                                  Community AI V3
+                                </h4>
+                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                                  Community AI bots will be able to scrape real
+                                  time data from blockchains so they can answer
+                                  token and smart contract related questions as
+                                  well.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
 
                   {/* CTA Button */}
                   <button
                     onClick={handleExploreBot}
-                    className="btn-wave-primary cursor-pointer flex items-center gap-2 text-xl"
+                    className="btn-wave-primary cursor-pointer flex items-center mt-4 gap-2 text-xl"
                   >
                     <span className="wave-bg"></span>
                     <span className="wave-left">
@@ -2339,13 +2439,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Floating Particles */}
-            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"></div>
+            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float   "></div>
             <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float blur-3xl"
+              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float   "
               style={{ animationDelay: "1s" }}
             ></div>
             <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float blur-3xl"
+              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float   "
               style={{ animationDelay: "1.5s" }}
             ></div>
           </div>
@@ -2403,26 +2503,26 @@ const HomePage: React.FC = () => {
                   <div className="flex items-center mb-6">
                     <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[20px] px-6 py-3 transform -  hover:rotate-0 transition-all duration-300">
                       <span className="text-xl winky-sans-font text-[var(--color-accent)]">
-                        AI Trending
+                        AI Analytics
                       </span>
                     </div>
                   </div>
 
                   {/* Main Title */}
                   <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
-                    Accurate Data, Gathered and Filtered By AI.
+                    AI Bot That Presents and Analyzes Trending Token.
                   </h2>
 
                   {/* Description Card */}
-                  <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] p-6 mb-8 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+                  <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[4px] p-6 mb-8 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                     {/* Floating Decorative Elements */}
                     <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
                     <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
                     <p className="winky-sans-font text-sm md:text-2xl text-[var(--color-text-secondary)]/90 leading-relaxed relative z-10">
-                      Uses AI to automatically gather and filter onchain/oracle
-                      data to present a list of trending tokens and their price
-                      fluctuations.
+                      Uses AI to automatically find and filter onchain data to
+                      find trending tokens. Also offers a chat bot where you can
+                      ask questions and details about trending tokens.
                     </p>
 
                     {/* Bottom Decorative Bar */}
@@ -2635,15 +2735,11 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* Cherry Quest Section */}
-        <div className="section_sniper_spotlight lg:px-0 px-4 py-24 relative overflow-hidden">
-          {/* Advanced Background Effects */}
+        {/* <div className="section_sniper_spotlight lg:px-0 px-4 py-24 relative overflow-hidden">
           <div className="absolute inset-0">
-            {/* Multi-layered Radial Gradients */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(67,103,201,0.15)_0%,transparent_52%)]"></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(67,103,201,0.09)_0%,transparent_52%)]"></div>
 
-            {/* Animated Grid Pattern */}
             <div className="absolute inset-0 opacity-20">
               <div
                 className="absolute inset-0"
@@ -2656,9 +2752,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Floating Elements Layer */}
           <div className="absolute inset-0 pointer-events-none">
-            {/* Orbital Rings */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div
                 className="w-84 h-84 border border-[#4367c9]/20 rounded-full animate-spin-slow"
@@ -2673,23 +2767,21 @@ const HomePage: React.FC = () => {
               ></div>
             </div>
 
-            {/* Floating Particles */}
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full   "></div>
             <div
-              className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"
+              className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float   "
               style={{ animationDelay: "0.5s" }}
             ></div>
             <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float blur-3xl"
+              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float   "
               style={{ animationDelay: "1s" }}
             ></div>
             <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float blur-3xl"
+              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float   "
               style={{ animationDelay: "1.5s" }}
             ></div>
           </div>
 
-          {/* Connection Lines SVG */}
           <div className="absolute inset-0 pointer-events-none opacity-15">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -2732,7 +2824,6 @@ const HomePage: React.FC = () => {
 
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row lg:px-32 gap-12 items-center justify-center">
-              {/* Left side - Image */}
               <div className="order-1 lg:order-2" data-spotlight-video>
                 <div className="bg-[var(--color-glass)] lg:h-[37rem] lg:w-[20rem] w-full   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform   transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                   <div className="relative w-full h-full transform rounded-[16px] border-2 border-[var(--color-accent)]/30">
@@ -2743,34 +2834,28 @@ const HomePage: React.FC = () => {
                     />
                   </div>
 
-                  {/* Floating Decorative Elements */}
                   <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
                   <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
                 </div>
               </div>
 
-              {/* Right side - Content */}
               <div className="order-2" data-spotlight-content>
                 <div className="spotlight-content-wrapper">
-                  {/* Eyebrow Badge */}
                   <div className="flex items-center mb-6">
                     <span className="text-3xl winky-sans-font text-[var(--color-accent)]">
                       Cherry Quest
                     </span>
                   </div>
 
-                  {/* Main Title */}
                   <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
                     Click. Raid. Earn. Repeat.
                   </h2>
 
-                  {/* Description */}
                   <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 mb-8">
                     The Cherry Game is your daily dose of degen dopamine. Mine
                     coins, upgrade cards, and raid to win $AIBOT.
                   </p>
 
-                  {/* CTA Button */}
                   <button
                     onClick={handleStartQuesting}
                     className="btn-wave-primary cursor-pointer flex items-center gap-2 text-xl"
@@ -2826,7 +2911,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Cherry AI in the News Section */}
         <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
           {/* Floating Elements Layer */}
@@ -3574,17 +3659,13 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* Upcoming Features Section */}
-        <div className="mt-32 relative transform translate-y-16 transition-all duration-1000">
+        {/* <div className="mt-32 relative transform translate-y-16 transition-all duration-1000">
           <div className="relative w-full py-20 bg-gradient-to-b from-[var(--color-accent)]/20 to-[var(--color-accent)]/10 border-y border-[var(--color-accent)]/20 overflow-hidden">
-            {/* Advanced Background Effects */}
-            <div className="absolute inset-0">
-              {/* Multi-layered Radial Gradients */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(67,103,201,0.17)_0%,transparent_45%)]"></div>
+             <div className="absolute inset-0">
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(67,103,201,0.17)_0%,transparent_45%)]"></div>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(67,103,201,0.11)_0%,transparent_45%)]"></div>
 
-              {/* Animated Grid Pattern */}
-              <div className="absolute inset-0 opacity-24">
+               <div className="absolute inset-0 opacity-24">
                 <div
                   className="absolute inset-0"
                   style={{
@@ -3596,10 +3677,8 @@ const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Floating Elements Layer */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Orbital Rings */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+             <div className="absolute inset-0 pointer-events-none">
+               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div
                   className="w-92 h-92 border border-[#4367c9]/24 rounded-full animate-spin-slow"
                   style={{ animationDuration: "32s" }}
@@ -3613,20 +3692,18 @@ const HomePage: React.FC = () => {
                 ></div>
               </div>
 
-              {/* Floating Particles */}
-              <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float blur-3xl"></div>
+               <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float   "></div>
               <div
-                className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float blur-3xl"
+                className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float   "
                 style={{ animationDelay: "1s" }}
               ></div>
               <div
-                className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"
+                className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float   "
                 style={{ animationDelay: "1.5s" }}
               ></div>
             </div>
 
-            {/* Connection Lines SVG */}
-            <div className="absolute inset-0 pointer-events-none opacity-15">
+             <div className="absolute inset-0 pointer-events-none opacity-15">
               <svg
                 width="100%"
                 height="100%"
@@ -3670,8 +3747,7 @@ const HomePage: React.FC = () => {
               </svg>
             </div>
 
-            {/* Section Title */}
-            <div className="relative z-10 mb-16 text-center max-w-4xl mx-auto px-4">
+             <div className="relative z-10 mb-16 text-center max-w-4xl mx-auto px-4">
               <h2 className="maladroit-font text-xl md:text-6xl text-[var(--color-text-primary)] mb-6 relative inline-block">
                 Upcoming Features
                 <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
@@ -3682,31 +3758,28 @@ const HomePage: React.FC = () => {
               </p>
             </div>
 
-            {/* Features Grid */}
-            <div className="max-w-7xl mx-auto px-4">
+             <div className="max-w-7xl mx-auto px-4">
               <div className="w-full lg:px-44 my-3">
                 <div className="relative rounded-[28px] bg-[var(--color-glass)]   border border-[var(--color-glass-border)] overflow-hidden shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transform hover:-translate-y-2 transition-all duration-300">
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+                   <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
                   <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
 
                   <div className="block md:hidden">
                     <VideoPlayer
-                      src="https://storage.cherrybot.ai/cherryTrade_compressed.mp4"
+                      src="/output.mp4"
                       className="w-full h-auto max-h-[60vh] object-cover"
                       autoPlay={true}
                     />
                   </div>
                   <div className="hidden md:block">
                     <VideoPlayer
-                      src="https://storage.cherrybot.ai/cherryTrade.mp4"
+                      src="/output.mp4"
                       className="w-full h-auto max-h-[60vh] object-cover"
                       autoPlay={true}
                     />
                   </div>
 
-                  {/* Info Bar */}
-                  <div className="absolute bottom-0 z-30 left-0 right-0 p-3 bg-[var(--color-glass)]/90 backdrop-blur-sm border-t border-[var(--color-accent)]/30 flex flex-col md:flex-row justify-between items-center gap-4">
+                   <div className="absolute bottom-0 z-30 left-0 right-0 p-3 bg-[var(--color-glass)]/90 backdrop-blur-sm border-t border-[var(--color-accent)]/30 flex flex-col md:flex-row justify-between items-center gap-4">
                     <button
                       className="bg-[var(--color-accent)] text-white py-2 px-4 rounded-[16px] border border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/90 hover:scale-105 transition-all duration-300 winky-sans-font flex items-center gap-2 whitespace-nowrap shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
                       onClick={() =>
@@ -3726,17 +3799,14 @@ const HomePage: React.FC = () => {
                     </button>
                   </div>
 
-                  {/* Bottom Decorative Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
                 </div>
               </div>
             </div>
 
-            {/* Newsletter signup */}
-            <div className="relative z-10 mt-16 max-w-2xl mx-auto px-4">
+             <div className="relative z-10 mt-16 max-w-2xl mx-auto px-4">
               <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)]  rounded-[4px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] p-8 relative overflow-hidden">
-                {/* Floating Decorative Elements */}
-                <div className="absolute -top-16 -right-16 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
+                 <div className="absolute -top-16 -right-16 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
                 <div
                   className="absolute -bottom-16 -left-16 w-32 h-32 bg-[var(--color-accent)]/15 rounded-full animate-float"
                   style={{ animationDelay: "1s" }}
@@ -3775,13 +3845,11 @@ const HomePage: React.FC = () => {
                   </button>
                 </div>
 
-                {/* Bottom Decorative Bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
               </div>
             </div>
           </div>
-        </div>
-        {/* Cherry Revenue Growth Section */}
+        </div> */}
         <div
           ref={heroSectionRef}
           className="scroll-container1 h-fit flex items-center justify-center relative overflow-hidden"
@@ -3805,13 +3873,13 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Floating Particles */}
-            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float blur-3xl"></div>
+            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float   "></div>
             <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float blur-3xl"
+              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float   "
               style={{ animationDelay: "1s" }}
             ></div>
             <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"
+              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float   "
               style={{ animationDelay: "1.5s" }}
             ></div>
           </div>
