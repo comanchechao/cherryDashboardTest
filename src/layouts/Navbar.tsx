@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../css/navbar.css";
 import { Icon } from "@iconify/react";
-import { useReownWallet } from "../hooks/useReownWallet";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,41 +56,6 @@ const Navbar: React.FC = () => {
 
     return `${baseClasses} ${activeClasses}`;
   };
-
-  // Use Reown AppKit wallet hook
-  const {
-    bscAddress,
-    solanaAddress,
-    connect,
-    disconnect,
-    isConnected,
-    isBscConnected,
-    isSolanaConnected,
-    solanaWallet,
-  } = useReownWallet();
-
-  // Debug logging
-  console.log("Navbar wallet state:", {
-    isConnected,
-    bscAddress,
-    solanaAddress,
-    isBscConnected,
-    isSolanaConnected,
-    solanaWallet: solanaWallet?.formattedAddress,
-  });
-
-  // Get the appropriate address for display
-  const getDisplayAddress = () => {
-    if (solanaWallet?.formattedAddress) {
-      return solanaWallet.formattedAddress;
-    }
-    if (bscAddress) {
-      return `${bscAddress.slice(0, 6)}...${bscAddress.slice(-4)}`;
-    }
-    return "WALLET";
-  };
-
-  const addressShort = getDisplayAddress();
 
   return (
     <nav
@@ -198,118 +162,6 @@ const Navbar: React.FC = () => {
                 />
                 Dashboard
               </Link>
-
-              {/* Wallet Section */}
-              <div className="relative">
-                {isConnected ? (
-                  // Connected state
-                  <div className="flex items-center gap-3">
-                    <div className="px-4 py-2.5 winky-sans-font text-[15px] text-primary font-medium glass-card border border-accent rounded-lg flex items-center gap-2">
-                      <Icon
-                        icon="ph:wallet"
-                        className="text-accent"
-                        width={16}
-                        height={16}
-                      />
-                      {addressShort}
-                    </div>
-                    <button
-                      onClick={async () => {
-                        try {
-                          await disconnect();
-                        } catch (error: any) {
-                          console.error("Wallet disconnection error:", error);
-                        }
-                      }}
-                      className="btn-wave-secondary cursor-pointer"
-                    >
-                      <span className="wave-bg"></span>
-                      <span className="wave-left">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-auto h-full opacity-100 object-stretch"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="currentColor"
-                            d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-right">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="object-cover w-full h-full"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="currentColor"
-                            d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-overlay"></span>
-                      <span className="btn-text">Disconnect</span>
-                    </button>
-                  </div>
-                ) : (
-                  // Connect button
-                  <button
-                    onClick={async () => {
-                      try {
-                        await connect();
-                      } catch (error: any) {
-                        console.error("Wallet connection error:", error);
-                      }
-                    }}
-                    className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                  >
-                    <span className="wave-bg"></span>
-                    <span className="wave-left">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-auto h-full opacity-100 object-stretch"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-right">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="object-cover w-full h-full"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-overlay"></span>
-                    <span className="btn-text flex items-center gap-2">
-                      <Icon
-                        icon="ph:wallet"
-                        className="text-primary"
-                        width={16}
-                        height={16}
-                      />
-                      Connect
-                    </span>
-                  </button>
-                )}
-              </div>
             </div>
 
             {/* Mobile menu button */}
@@ -383,110 +235,6 @@ const Navbar: React.FC = () => {
               <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
                 Dashboard
               </Link>
-
-              {/* Mobile Wallet Section */}
-              <div className="pt-4 space-y-3">
-                {isConnected ? (
-                  // Connected state
-                  <div className="space-y-3">
-                    <div className="w-full px-4 py-3 winky-sans-font text-sm font-medium glass-card border border-accent text-primary rounded-lg flex items-center gap-2">
-                      <Icon
-                        icon="ph:wallet"
-                        className="text-accent"
-                        width={16}
-                        height={16}
-                      />
-                      {addressShort}
-                    </div>
-                    <button
-                      onClick={async () => {
-                        try {
-                          await disconnect();
-                        } catch (error) {
-                          console.error("Wallet disconnection error:", error);
-                        }
-                      }}
-                      className="btn-wave-secondary cursor-pointer w-full"
-                    >
-                      <span className="wave-bg"></span>
-                      <span className="wave-left">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-auto h-full opacity-100 object-stretch"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="currentColor"
-                            d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-right">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="object-cover w-full h-full"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="currentColor"
-                            d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-overlay"></span>
-                      <span className="btn-text">Disconnect</span>
-                    </button>
-                  </div>
-                ) : (
-                  // Connect button
-                  <button
-                    onClick={async () => {
-                      try {
-                        await connect();
-                      } catch (error) {
-                        console.error("Wallet action error:", error);
-                      }
-                    }}
-                    className="btn-wave-primary cursor-pointer w-full"
-                  >
-                    <span className="wave-bg"></span>
-                    <span className="wave-left">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-auto h-full opacity-100 object-stretch"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-right">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="object-cover w-full h-full"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-overlay"></span>
-                    <span className="btn-text">Connect Wallet</span>
-                  </button>
-                )}
-              </div>
             </div>
           </div>
         </div>
