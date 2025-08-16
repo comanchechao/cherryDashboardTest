@@ -8,7 +8,6 @@ import "../css/homepage.css";
 import "../css/index.css";
 import "../css/feature-cards.css";
 import "../css/hero-animations.css";
-import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "../layouts/Navbar";
@@ -139,14 +138,13 @@ const HomePage: React.FC = () => {
 
   const partnersContainerRef = useRef<HTMLDivElement>(null);
   const partnersTitleRef = useRef<HTMLHeadingElement>(null);
-  const partnersContentRef = useRef<HTMLDivElement>(null);
 
   // Newsletter subscription states
-  const [email, setEmail] = useState<string>("");
-  const [isSubscribing, setIsSubscribing] = useState(false);
-  const [successToastVisible, setSuccessToastVisible] = useState(false);
-  const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
-    useState(false);
+  // const [email, setEmail] = useState<string>("");
+  // const [isSubscribing, setIsSubscribing] = useState(false);
+  // const [successToastVisible, setSuccessToastVisible] = useState(false);
+  // const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
+  //   useState(false);
 
   const [activeTab, setActiveTab] = useState<"Cherry" | "speed">("speed");
 
@@ -171,9 +169,9 @@ const HomePage: React.FC = () => {
     window.open("https://t.me/CherryTGBot", "_blank");
   };
 
-  const handleStartQuesting = () => {
-    window.open("https://t.me/cherrygame_io_bot", "_blank");
-  };
+  // const handleStartQuesting = () => {
+  //     window.open("https://t.me/cherrygame_io_bot", "_blank");
+  //   };
 
   const handleViewTrending = () => {
     window.open("https://t.me/cherrytrending", "_blank");
@@ -183,49 +181,49 @@ const HomePage: React.FC = () => {
     window.open("https://t.me/cherrySniperBot", "_blank");
   };
 
-  const handleNewsletterSubscribe = async (emailValue: string) => {
-    if (!emailValue.trim()) {
-      console.log("Email is required");
-      return;
-    }
+  // const handleNewsletterSubscribe = async (emailValue: string) => {
+  //   if (!emailValue.trim()) {
+  //     console.log("Email is required");
+  //     return;
+  //   }
 
-    setIsSubscribing(true);
-    try {
-      const response = await fetch(
-        "https://cherrytest-production.up.railway.app/email/newsletter",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: emailValue,
-          }),
-        }
-      );
+  //   setIsSubscribing(true);
+  //   try {
+  //     const response = await fetch(
+  //       "https://cherrytest-production.up.railway.app/email/newsletter",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           email: emailValue,
+  //         }),
+  //       }
+  //     );
 
-      const data = await response.json();
-      console.log("Newsletter subscription response:", data);
+  //     const data = await response.json();
+  //     console.log("Newsletter subscription response:", data);
 
-      if (response.ok) {
-        console.log("Successfully subscribed to newsletter");
-        setSuccessToastVisible(true);
-        setTimeout(() => setSuccessToastVisible(false), 3000);
-        setEmail("");
-      } else {
-        console.log("Failed to subscribe:", data);
-        // Check if email is already subscribed
-        if (data.message === "Email already subscribed") {
-          setAlreadySubscribedToastVisible(true);
-          setTimeout(() => setAlreadySubscribedToastVisible(false), 3000);
-        }
-      }
-    } catch (error) {
-      console.error("Error subscribing to newsletter:", error);
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
+  //     if (response.ok) {
+  //       console.log("Successfully subscribed to newsletter");
+  //       setSuccessToastVisible(true);
+  //       setTimeout(() => setSuccessToastVisible(false), 3000);
+  //       setEmail("");
+  //     } else {
+  //       console.log("Failed to subscribe:", data);
+  //       // Check if email is already subscribed
+  //       if (data.message === "Email already subscribed") {
+  //         setAlreadySubscribedToastVisible(true);
+  //         setTimeout(() => setAlreadySubscribedToastVisible(false), 3000);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error subscribing to newsletter:", error);
+  //   } finally {
+  //     setIsSubscribing(false);
+  //   }
+  // };
 
   // Refs for all videos
 
@@ -657,54 +655,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <div id="triggerXoverFlow" className=" ">
-        {/* Success Toast for Newsletter */}
-        <div
-          className={`fixed top-20 right-10 z-50 bg-green-100 border-4 border-green-500 rounded-xl shadow-[4px_4px_0px_#22c55e] px-5 py-3 flex items-center gap-3 transition-all duration-300 transform ${
-            successToastVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-10 pointer-events-none"
-          }`}
-        >
-          <Icon
-            icon="mdi:check-circle"
-            className="text-green-600"
-            width={24}
-            height={24}
-          />
-          <div className="flex flex-col">
-            <span className="winky-sans-font font-medium text-green-800">
-              Success!
-            </span>
-            <span className="winky-sans-font text-sm text-green-700 opacity-90">
-              Successfully subscribed to newsletter
-            </span>
-          </div>
-        </div>
-
-        {/* Already Subscribed Toast */}
-        <div
-          className={`fixed top-10 right-10 z-50 bg-orange-100 border-4 border-orange-500 rounded-xl shadow-[4px_4px_0px_#f97316] px-5 py-3 flex items-center gap-3 transition-all duration-300 transform ${
-            alreadySubscribedToastVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-10 pointer-events-none"
-          }`}
-        >
-          <Icon
-            icon="mdi:information"
-            className="text-orange-600"
-            width={24}
-            height={24}
-          />
-          <div className="flex flex-col">
-            <span className="winky-sans-font font-medium text-orange-800">
-              Already Subscribed!
-            </span>
-            <span className="winky-sans-font text-sm text-orange-700 opacity-90">
-              This email is already subscribed to our newsletter
-            </span>
-          </div>
-        </div>
-
         <div
           ref={heroSectionRef}
           className={`hero_section  scroll-container1 ${
