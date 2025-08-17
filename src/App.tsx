@@ -2,9 +2,9 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import Careers from "./pages/careers";
-import Features from "./pages/features";
 import HomePage from "./pages/homepage";
 import AboutUs from "./pages/aboutUs";
+import Features from "./pages/features";
 import Roadmap from "./pages/roadmap";
 import UserGrowth from "./pages/userGrowth";
 import CherrySniper from "./pages/cherrySniper";
@@ -14,7 +14,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./components/AuthProvider";
-
+import WebTrending from "./pages/webTrending";
 function App() {
   const location = useLocation();
 
@@ -57,6 +57,7 @@ function App() {
                   </PageLayout>
                 }
               />
+
               <Route
                 path="/aboutUs"
                 element={
@@ -105,7 +106,14 @@ function App() {
                   </PageLayout>
                 }
               />
-
+              <Route
+                path="/webTrending"
+                element={
+                  <PageLayout>
+                    <WebTrending />
+                  </PageLayout>
+                }
+              />
               <Route
                 path="*"
                 element={

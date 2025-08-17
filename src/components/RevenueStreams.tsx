@@ -484,7 +484,7 @@ const RevenueStreams: React.FC = () => {
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <div className="bg-[var(--color-glass)] backdrop-blur-[16px] border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 relative">
+                <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 relative">
                   {/* Floating Decorative Elements */}
                   <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
                   <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
@@ -495,7 +495,7 @@ const RevenueStreams: React.FC = () => {
                     <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
 
                     <div className="flex items-center gap-3 relative z-10">
-                      <div className="w-12 h-12 bg-[var(--color-glass)] backdrop-blur-[16px] rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
+                      <div className="w-12 h-12 bg-[var(--color-glass)]   rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
                         <Icon
                           icon={stream.icon}
                           className="text-2xl text-[var(--color-accent)]"
@@ -542,7 +542,7 @@ const RevenueStreams: React.FC = () => {
               ref={(el) => (streamRefs.current[index] = el)}
               className="group"
             >
-              <div className="bg-[var(--color-glass)] backdrop-blur-[16px] border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 h-full relative">
+              <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 h-full relative">
                 {/* Floating Decorative Elements */}
                 <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
                 <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
@@ -552,7 +552,7 @@ const RevenueStreams: React.FC = () => {
                   <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
 
                   <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-12 h-12 bg-[var(--color-glass)] backdrop-blur-[16px] rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
+                    <div className="w-12 h-12 bg-[var(--color-glass)]   rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
                       <Icon
                         icon={stream.icon}
                         className="text-2xl text-[var(--color-accent)]"

@@ -7,129 +7,136 @@ interface StatCardsProps {
 
 const StatCards: React.FC<StatCardsProps> = ({ userPoints = 0 }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
       {/* Points Section */}
-      <div className="bg-black rounded-xl border border-gray-700 overflow-hidden shadow-lg relative">
-        <div className="bg-gray-900 px-4 py-2">
-          <h3 className="winky-sans-font text-sm text-white flex items-center gap-2">
-            <Icon
-              icon="mdi:check-circle"
-              width={16}
-              height={16}
-              className="text-cherry-red"
-            />
-            Points
-          </h3>
-        </div>
+      <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] p-6 relative overflow-hidden transform hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+        <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
+        <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
-        <div className="p-4 w-full  mt-4 flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center h-28">
-            <Icon
-              icon="mdi:account-group"
-              width={77}
-              height={77}
-              className="text-cherry-red mb-2"
-            />
-            <span className="winky-sans-font text-4xl font-bold text-white">
-              {userPoints.toLocaleString()} Points
-            </span>
+        <div className="relative z-10">
+          <div className="bg-[var(--color-accent)]/20 rounded-lg px-4 py-2 mb-4">
+            <h3 className="winky-sans-font text-sm text-[var(--color-accent)] flex items-center gap-2">
+              <Icon
+                icon="mdi:check-circle"
+                width={16}
+                height={16}
+                className="text-[var(--color-accent)]"
+              />
+              Points
+            </h3>
           </div>
-        </div>
-      </div>
 
-      {/* Quests Section */}
-      <div className="bg-black rounded-xl border border-gray-700 overflow-hidden shadow-lg relative">
-        <div className="bg-gray-900 px-4 py-2 flex items-center justify-between">
-          <h3 className="winky-sans-font text-sm text-white flex items-center gap-2">
-            <Icon
-              icon="mdi:sword"
-              width={16}
-              height={16}
-              className="text-cherry-red"
-            />
-            Quests
-          </h3>
-          <div className="bg-gray-700 rounded-full px-2 py-1">
-            <span className="winky-sans-font text-xs text-gray-300">
-              Points Breakdown
-            </span>
+          <div className="p-4 w-full flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center h-28">
+              <Icon
+                icon="mdi:account-group"
+                width={77}
+                height={77}
+                className="text-[var(--color-accent)] mb-2"
+              />
+              <span className="winky-sans-font text-4xl font-bold text-[var(--color-text-primary)]">
+                {userPoints.toLocaleString()} Points
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className="p-4">
-          {/* Quest List */}
-          <div className="space-y-2 mb-4">
-            {/* New Quests */}
-            <div className="bg-gray-900 rounded p-2 border border-gray-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon
-                    icon="mdi:chart-line"
-                    width={12}
-                    height={12}
-                    className="text-gray-500"
-                  />
-                  <span className="winky-sans-font text-xs font-bold text-white">
-                    TRADE $10 in volume
-                  </span>
-                </div>
-                <span className="winky-sans-font text-xs text-gray-400">
-                  +1 point
+        {/* Quests Section */}
+        <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] p-6 relative overflow-hidden transform hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+          <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
+
+          <div className="relative z-10">
+            <div className="bg-[var(--color-accent)]/20 rounded-lg px-4 py-2 mb-4 flex items-center justify-between">
+              <h3 className="winky-sans-font text-sm text-[var(--color-accent)] flex items-center gap-2">
+                <Icon
+                  icon="mdi:sword"
+                  width={16}
+                  height={16}
+                  className="text-[var(--color-accent)]"
+                />
+                Quests
+              </h3>
+              <div className="bg-[var(--color-accent)]/30 rounded-full px-2 py-1">
+                <span className="winky-sans-font text-xs text-[var(--color-accent)]">
+                  Points Breakdown
                 </span>
               </div>
             </div>
-            <div className="bg-gray-900 rounded p-2 border border-gray-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon
-                    icon="mdi:chart-line"
-                    width={12}
-                    height={12}
-                    className="text-gray-500"
-                  />
-                  <span className="winky-sans-font text-xs font-bold text-white">
-                    Trade $1,000 more in Volume
+
+            <div className="space-y-3">
+              {/* New Quests */}
+              <div className="bg-[var(--color-glass)] rounded-lg p-3 border border-[var(--color-glass-border)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="mdi:chart-line"
+                      width={12}
+                      height={12}
+                      className="text-[var(--color-accent)]"
+                    />
+                    <span className="winky-sans-font text-xs font-bold text-[var(--color-text-primary)]">
+                      TRADE $10 in volume
+                    </span>
+                  </div>
+                  <span className="winky-sans-font text-xs text-[var(--color-accent)]">
+                    +1 point
                   </span>
                 </div>
-                <span className="winky-sans-font text-xs text-gray-400">
-                  +50 Points
-                </span>
               </div>
-            </div>
-            <div className="bg-gray-900 rounded p-2 border border-gray-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon
-                    icon="mdi:chart-line"
-                    width={12}
-                    height={12}
-                    className="text-gray-500"
-                  />
-                  <span className="winky-sans-font text-xs font-bold text-white">
-                    Trade $5,000 more in Volume
+              <div className="bg-[var(--color-glass)] rounded-lg p-3 border border-[var(--color-glass-border)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="mdi:chart-line"
+                      width={12}
+                      height={12}
+                      className="text-[var(--color-accent)]"
+                    />
+                    <span className="winky-sans-font text-xs font-bold text-[var(--color-text-primary)]">
+                      Trade $1,000 more in Volume
+                    </span>
+                  </div>
+                  <span className="winky-sans-font text-xs text-[var(--color-accent)]">
+                    +50 Points
                   </span>
                 </div>
-                <span className="winky-sans-font text-xs text-gray-400">
-                  200 Points
-                </span>
               </div>
-            </div>
-            <div className="bg-gray-900 rounded p-2 border border-gray-700">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Icon
-                    icon="mdi:account-group"
-                    width={12}
-                    height={12}
-                    className="text-gray-500"
-                  />
-                  <span className="winky-sans-font text-xs font-bold text-white">
-                    Refer and earn 50 point on every $100 trade
+              <div className="bg-[var(--color-glass)] rounded-lg p-3 border border-[var(--color-glass-border)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="mdi:chart-line"
+                      width={12}
+                      height={12}
+                      className="text-[var(--color-accent)]"
+                    />
+                    <span className="winky-sans-font text-xs font-bold text-[var(--color-text-primary)]">
+                      Trade $5,000 more in Volume
+                    </span>
+                  </div>
+                  <span className="winky-sans-font text-xs text-[var(--color-accent)]">
+                    200 Points
                   </span>
                 </div>
-                <span className="winky-sans-font text-xs text-gray-400">
-                  +50 Points
-                </span>
+              </div>
+              <div className="bg-[var(--color-glass)] rounded-lg p-3 border border-[var(--color-glass-border)]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      icon="mdi:account-group"
+                      width={12}
+                      height={12}
+                      className="text-[var(--color-accent)]"
+                    />
+                    <span className="winky-sans-font text-xs font-bold text-[var(--color-text-primary)]">
+                      Refer and earn 50 point on every $100 trade
+                    </span>
+                  </div>
+                  <span className="winky-sans-font text-xs text-[var(--color-accent)]">
+                    +50 Points
+                  </span>
+                </div>
               </div>
             </div>
           </div>

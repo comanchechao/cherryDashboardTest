@@ -132,6 +132,13 @@ const Navbar: React.FC = () => {
                 $AIBOT
               </Link>
 
+              <Link
+                to="/webTrending"
+                className={getDesktopLinkClasses("/webTrending")}
+              >
+                Web Trending
+              </Link>
+
               <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
                 Roadmap
               </Link>
@@ -162,6 +169,8 @@ const Navbar: React.FC = () => {
                 />
                 Dashboard
               </Link>
+
+              {/* Wallet Section */}
             </div>
 
             {/* Mobile menu button */}

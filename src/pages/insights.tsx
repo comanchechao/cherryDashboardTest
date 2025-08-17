@@ -771,7 +771,7 @@ const Insights: React.FC = () => {
             <button
               onClick={() => window.open("https://pad.cherrybot.ai/", "_blank")}
               rel="noreferrer"
-              className="  bg-cherry-red font-bold py-4 px-12 rounded-xl border border-b-6 border-r-6 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-2 hover:translate-x-2 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[6px_6px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font text-white"
+              className="  bg-cherry-red font-bold py-4 px-12 rounded-xl border border-b-6 border-r-6 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-2 hover:translate-x-2 transition-all duration-200 transform-gpu flex items-center gap-2  ] hover:shadow-[2px_2px_0px_#321017] winky-sans-font text-white"
             >
               <span className="winky-sans-font text-lg text-cherry-cream">
                 View Our Investor Deck
@@ -1117,7 +1117,7 @@ const Insights: React.FC = () => {
             {/* Monetization Model */}
             <div className="business-item flex flex-col lg:flex-row justify-center items-center gap-8">
               <div className="lg:w-1/2">
-                <div className="p-4 bg-cherry-red rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017]">
+                <div className="p-4 bg-cherry-red rounded-2xl border-4 border-cherry-burgundy  ]">
                   <div className="bg-[#7e1331] rounded-xl border-2 border-cherry-burgundy p-6">
                     <p className="winky-sans-font text-xl text-cherry-cream">
                       Cherry AI monetizes Web3 services through ads, trending
@@ -1132,7 +1132,7 @@ const Insights: React.FC = () => {
                   <img
                     src="https://storage.cherrybot.ai/googlecherry.webp"
                     alt="Google Cherry Comparison"
-                    className=" h-[10rem]  rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017]"
+                    className=" h-[10rem]  rounded-xl border-4 border-cherry-burgundy  ]"
                   />
                 </div>{" "}
               </div>
@@ -1141,7 +1141,7 @@ const Insights: React.FC = () => {
             {/* Revenue Projection */}
             <div className="business-item flex flex-col lg:flex-row justify-center items-center gap-8">
               <div className="lg:w-1/2">
-                <div className="p-4 bg-cherry-red rounded-2xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017]">
+                <div className="p-4 bg-cherry-red rounded-2xl border-4 border-cherry-burgundy  ]">
                   <div className="bg-[#7e1331] rounded-xl border-2 border-cherry-burgundy p-6">
                     <p className="winky-sans-font text-xl text-cherry-cream">
                       Cherry AI is projected to generate{" "}
@@ -1156,7 +1156,7 @@ const Insights: React.FC = () => {
                   <img
                     src="https://storage.cherrybot.ai/growthchart.webp"
                     alt="Growth Chart"
-                    className="h-[10rem] rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017]"
+                    className="h-[10rem] rounded-xl border-4 border-cherry-burgundy  ]"
                   />
                 </div>
               </div>
@@ -1466,7 +1466,7 @@ const Insights: React.FC = () => {
                   <img
                     src="https://storage.cherrybot.ai/futuregrowthchart.png"
                     alt="Future Growth Chart"
-                    className="h-[15rem]  mt-14 w-[30rem] rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017]"
+                    className="h-[15rem]  mt-14 w-[30rem] rounded-xl border-4 border-cherry-burgundy  ]"
                   />
                 </div>
               </div>
@@ -1513,7 +1513,7 @@ const Insights: React.FC = () => {
                   className="w-24 h-24 object-contain hidden lg:block"
                 />
               </div>
-              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
+              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Automated Buybacks & Burns (
                   <span className="text-green-400">20%</span> of Cherry AI
@@ -1564,7 +1564,7 @@ const Insights: React.FC = () => {
                   className="w-24 h-24 object-contain hidden lg:block"
                 />
               </div>
-              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
+              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Cherry Bomb (<span className="text-green-400">20%</span> of
                   Cherry AI Revenue)
@@ -1603,7 +1603,7 @@ const Insights: React.FC = () => {
                   className="w-24 h-24 object-contain hidden lg:block"
                 />
               </div>
-              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
+              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Staking
                 </h3>
@@ -1644,7 +1644,7 @@ const Insights: React.FC = () => {
                   className="w-24 h-24 object-contain hidden lg:block"
                 />
               </div>
-              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
+              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Ads, Project Promotions, & More
                 </h3>
@@ -1672,7 +1672,7 @@ const Insights: React.FC = () => {
                   className="w-24 h-24 object-contain hidden lg:block"
                 />
               </div>
-              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy shadow-[6px_6px_0px_#321017] p-6">
+              <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Token Governance
                 </h3>

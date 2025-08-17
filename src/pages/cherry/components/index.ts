@@ -1,0 +1,8 @@
+export { default as HeroSection } from "./HeroSection";
+export { default as TokenOverviewSection } from "./TokenOverviewSection";
+export { default as TokenomicsSection } from "./TokenomicsSection";
+export { default as TokenomicsTableSection } from "./TokenomicsTableSection";
+export { default as WhyHoldSection } from "./WhyHoldSection";
+export { default as RevenueModelSection } from "./RevenueModelSection";
+export { default as StakingSystemSection } from "./StakingSystemSection";
+export { default as BuybackBurnSection } from "./BuybackBurnSection";

@@ -697,10 +697,10 @@ const HomePage: React.FC = () => {
             ></div>
           </div>
 
-          <div className=" w-full flex pt-48 lg:flex-row flex-col items-end lg:items-start h-screen relative z-10">
+          <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-screen relative z-10">
             <div className="  w-full mx-auto">
-              <div className="hero-content-wrapper flex items-center h-screen lg:h-auto mb-16 relative z-10 px-10">
-                <div className="flex w-1/2 items-start justify-center flex-col px-16">
+              <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-screen lg:h-auto mb-16 relative z-10 px-10">
+                <div className="flex lg:w-1/2 w-full items-start justify-center flex-col px-16">
                   <div className=" mb-16">
                     <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-8xl font-bold text-[var(--color-text-primary)] leading-tight mb-2 max-w-4xl mx-auto">
                       Cherry
@@ -797,7 +797,7 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="relative w-1/2 max-w-4xl mx-auto">
+                <div className="relative lg:w-1/2 w-full max-w-4xl mx-auto">
                   <div className="w-full aspect-[16/9] bg-transparent rounded-[36px] relative overflow-hidden">
                     {/* Panel Content Placeholder */}
                     <div className="relative w-full h-full pt-12">
@@ -815,89 +815,6 @@ const HomePage: React.FC = () => {
                   </div>
 
                   {/* Floating Left Toolbar */}
-                  <div className="absolute -left-6 top-1/2 transform -translate-y-1/2 bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-3 shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
-                    <div className="flex flex-col gap-2">
-                      <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                        <svg
-                          className="w-5 h-5 text-[var(--color-accent)]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                        <svg
-                          className="w-5 h-5 text-[var(--color-accent)]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          />
-                        </svg>
-                      </div>
-                      <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                        <svg
-                          className="w-5 h-5 text-[var(--color-accent)]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                          />
-                        </svg>
-                      </div>
-                      <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                        <svg
-                          className="w-5 h-5 text-[var(--color-accent)]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 4v16m8-8H4"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating Right Toast */}
-                  <div className="absolute right-24 -top-11 bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.25)] max-w-[200px]">
-                    <div className="flex items-start gap-3">
-                      <div className="flex -space-x-2">
-                        <div className="w-6 h-6 bg-[var(--color-accent)] rounded-full"></div>
-                        <div className="w-6 h-6 bg-[var(--color-accent)]/80 rounded-full"></div>
-                        <div className="w-6 h-6 bg-[var(--color-accent)]/60 rounded-full"></div>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-[var(--color-text-primary)] text-sm font-medium">
-                          Fast Trade
-                        </div>
-                        <div className="text-[var(--color-text-secondary)] text-xs">
-                          just now
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -964,7 +881,7 @@ const HomePage: React.FC = () => {
             <div className="relative z-10 mb-16 text-center max-w-4xl flex flex-col items-center mx-auto px-4">
               <h2
                 ref={partnersTitleRef}
-                className="maladroit-font text-2xl md:text-5xl text-[var(--color-text-primary)] mb-6 relative inline-block"
+                className="maladroit-font text-3xl md:text-5xl text-[var(--color-text-primary)] mb-6 relative inline-block"
               >
                 Partners & Integrations
                 <div className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
@@ -973,7 +890,7 @@ const HomePage: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row z-30 gap-8">
               {/* Partners Tabs - Left Side */}
-              <div className="lg:w-full grid grid-cols-5 place-items-center gap-3  ">
+              <div className="lg:w-full grid lg:grid-cols-5 grid-cols-2 place-items-center gap-3  ">
                 {partners.map((partner, index) => (
                   <button
                     key={partner.name}
@@ -992,7 +909,7 @@ const HomePage: React.FC = () => {
                         : "bg-[var(--color-glass)]   text-[var(--color-text-primary)] border-[var(--color-glass-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10"
                     }`}
                   >
-                    <span className="winky-sans-font hidden md:block text-lg font-medium">
+                    <span className="winky-sans-font    text-sm md:text-lg font-medium">
                       {partner.name}
                     </span>
                     <img
@@ -1543,7 +1460,7 @@ const HomePage: React.FC = () => {
                         <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
                           <img
                             src="https://storage.cherrybot.ai/cherrySniper.webp"
-                            alt="Cherry Sniper"
+                            alt="SniperAI Bot"
                             className="w-full h-full object-contain mt-6 animate-float"
                           />
                         </div>
@@ -2168,8 +2085,8 @@ const HomePage: React.FC = () => {
                 <div className="spotlight-content-wrapper">
                   {/* Eyebrow Badge */}
                   <div className="flex items-center justify-start mb-6">
-                    <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[20px] px-6 py-3 transform -  hover:rotate-0 transition-all duration-300">
-                      <span className="text-xl md:text-xl winky-sans-font text-[var(--color-accent)]">
+                    <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform -  hover:rotate-0 transition-all duration-300">
+                      <span className="text-xl md:text-lg winky-sans-font text-[var(--color-accent)]">
                         Community AI
                       </span>
                     </div>
@@ -2451,8 +2368,8 @@ const HomePage: React.FC = () => {
                 <div className="spotlight-content-wrapper">
                   {/* Eyebrow Badge */}
                   <div className="flex items-center mb-6">
-                    <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[20px] px-6 py-3 transform -  hover:rotate-0 transition-all duration-300">
-                      <span className="text-xl winky-sans-font text-[var(--color-accent)]">
+                    <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform -  hover:rotate-0 transition-all duration-300">
+                      <span className="text-sm md:text-lg winky-sans-font text-[var(--color-accent)]">
                         AI Analytics
                       </span>
                     </div>
