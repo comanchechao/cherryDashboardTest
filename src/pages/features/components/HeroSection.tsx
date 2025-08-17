@@ -10,7 +10,6 @@ interface HeroSectionProps {
 const HeroSection: React.FC<HeroSectionProps> = ({
   handleExploreBot,
   handleViewTrending,
-  handleStartQuesting,
 }) => {
   return (
     <div

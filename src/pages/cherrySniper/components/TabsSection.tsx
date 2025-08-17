@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
-import VideoPlayer from "../../../components/VideoPlayer";
 
 const TabsSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"manual" | "autobot">("autobot");

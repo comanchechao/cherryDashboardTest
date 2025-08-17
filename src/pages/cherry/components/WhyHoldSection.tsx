@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "@iconify/react";
 
 interface WhyHoldSectionProps {
   // Add any props if needed

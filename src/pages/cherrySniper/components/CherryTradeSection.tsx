@@ -1,48 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "../../../components/VideoPlayer";
 
 const CherryTradeSection: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [isSubscribing, setIsSubscribing] = useState(false);
-
-  const handleNewsletterSubscribe = async (emailValue: string) => {
-    if (!emailValue.trim()) {
-      console.log("Email is required");
-      return;
-    }
-
-    setIsSubscribing(true);
-    try {
-      const response = await fetch(
-        "https://cherrytest-production.up.railway.app/email/newsletter",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: emailValue,
-          }),
-        }
-      );
-
-      const data = await response.json();
-      console.log("Newsletter subscription response:", data);
-
-      if (response.ok) {
-        console.log("Successfully subscribed to newsletter");
-        setEmail("");
-      } else {
-        console.log("Failed to subscribe:", data);
-      }
-    } catch (error) {
-      console.error("Error subscribing to newsletter:", error);
-    } finally {
-      setIsSubscribing(false);
-    }
-  };
-
   return (
     <div className="section_sniper_spotlight py-24 relative overflow-hidden">
       {/* Advanced Background Effects */}

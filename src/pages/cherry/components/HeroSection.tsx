@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "@iconify/react";
 
 interface HeroSectionProps {
   // Add any props if needed
