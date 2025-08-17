@@ -12,7 +12,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
-import VideoPlayer from "../components/VideoPlayer";
 import RevenueStreams from "../components/RevenueStreams";
 
 const customAnimations = `
