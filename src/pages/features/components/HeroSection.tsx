@@ -165,55 +165,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
               </div>
             </div>
-
-            <div className="relative w-1/2 max-w-4xl mx-auto">
-              <div className="w-full aspect-[16/9] bg-transparent rounded-[36px] relative overflow-hidden">
-                <div className="absolute inset-0 rounded-[36px] shadow-[inset_0_0_24px_rgba(67,103,201,0.3)] pointer-events-none"></div>
-              </div>
-
-              {/* Floating Left Toolbar */}
-              <div className="absolute -left-6 top-1/2 transform -translate-y-1/2 bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] p-3 shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
-                <div className="flex flex-col gap-2">
-                  <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                    <Icon
-                      icon="lucide:bot"
-                      className="w-5 h-5 text-[var(--color-accent)]"
-                    />
-                  </div>
-                  <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                    <Icon
-                      icon="icon-park-twotone:blockchain"
-                      className="w-5 h-5 text-[var(--color-accent)]"
-                    />
-                  </div>
-                  <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                    <Icon
-                      icon="mdi:trophy-outline"
-                      className="w-5 h-5 text-[var(--color-accent)]"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Right Toast */}
-              <div className="absolute right-24 -top-11 bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] p-4 shadow-[0_4px_12px_rgba(0,0,0,0.25)] max-w-[200px]">
-                <div className="flex items-start gap-3">
-                  <div className="flex -space-x-2">
-                    <div className="w-6 h-6 bg-[var(--color-accent)] rounded-full"></div>
-                    <div className="w-6 h-6 bg-[var(--color-accent)]/80 rounded-full"></div>
-                    <div className="w-6 h-6 bg-[var(--color-accent)]/60 rounded-full"></div>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[var(--color-text-primary)] text-sm font-medium">
-                      Features Ready
-                    </div>
-                    <div className="text-[var(--color-text-secondary)] text-xs">
-                      Explore now
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

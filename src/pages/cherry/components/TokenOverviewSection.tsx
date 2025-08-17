@@ -55,7 +55,24 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
+      <div className="w-full flex pt-48 lg:flex-row flex-col items-end lg:items-start  relative z-10">
+        <div className="w-full mx-auto">
+          <div className="  flex flex-col  items-center h-screen lg:h-auto mb-4 relative z-10 px-10">
+            <div className="flex w-1/2 items-start justify-center flex-col px-16">
+              <div className="mb-16">
+                <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-5xl font-bold text-[var(--color-text-primary)] leading-tight mb-2 max-w-4xl mx-auto">
+                  $AIBOT
+                </h1>
 
+                <p className="  text-left text-lg lg:text-xl text-[var(--color-text-secondary)]/80 mb-1 max-w-3xl mx-auto leading-5">
+                  The fuel of the Cherry ecosystem — powering trades, rewards,
+                  and growth across all our tools
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-6">
         {/* What is $AIBOT */}
         <div className="flex flex-col items-start gap-8 mb-16">
