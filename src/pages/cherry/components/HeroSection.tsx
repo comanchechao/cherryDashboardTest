@@ -39,8 +39,6 @@ const HeroSection: React.FC<HeroSectionProps> = () => {
           style={{ animationDelay: "4s" }}
         ></div>
       </div>
-
-    
     </div>
   );
 };

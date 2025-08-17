@@ -154,7 +154,7 @@ const TabsSection: React.FC = () => {
                           <div className="group">
                             <div className="bg-[var(--color-glass)] rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:shadow-[4px_4px_0px_#321017] hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Automate Yield Farming
+                              Automate Yield Farming
                               </h4>
                               <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
                                 Instruct the AI to take all profits from trading

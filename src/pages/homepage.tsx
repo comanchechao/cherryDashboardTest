@@ -146,7 +146,7 @@ const HomePage: React.FC = () => {
   // const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
   //   useState(false);
 
-  const [activeTab, setActiveTab] = useState<"Cherry" | "speed">("speed");
+  const [activeTab, setActiveTab] = useState<"manual" | "autobot">("manual");
 
   const [activePartner, setActivePartner] = useState<number>(0);
   const [activeCommunityTab, setActiveCommunityTab] = useState<string>("V1");
@@ -1664,26 +1664,11 @@ const HomePage: React.FC = () => {
               <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
                 {/* Video Container */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
-                  {/* Mobile Video Container */}
-                  <div className="relative block md:hidden bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] overflow-hidden shadow-[0_20px_40px_rgba(67,103,201,0.2)] transform hover:-translate-y-2 transition-all duration-300">
-                    <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/20 to-transparent z-10 pointer-events-none"></div>
-
-                    <img
-                      src="https://storage.cherrybot.ai/sniperImage.webp"
-                      className="w-full h-full object-contain"
-                      alt=""
-                    />
-
-                    {/* Floating Decorative Elements */}
-                    <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-4 left-4 w-6 h-6 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-                  </div>
-
                   {/* Desktop Video Container */}
                   <div className="md:block hidden bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                     <div className="relative aspect-video overflow-hidden rounded-[16px] border-2 border-[var(--color-accent)]/30">
                       <img
-                        src="https://storage.cherrybot.ai/sniperImage.webp"
+                        src="/sniperModes.webp"
                         alt="cherrySniper"
                         className="w-full h-full object-contain"
                       />
@@ -1752,36 +1737,36 @@ const HomePage: React.FC = () => {
 
                     <div className="relative z-10">
                       <h3 className="text-2xl md:text-3xl maladroit-font text-[var(--color-text-primary)] mb-8 text-center">
-                        Two Modes: Stealth & Sniper
+                        SniperAI Bot Offers Manual & Autobot Modes
                       </h3>
 
                       {/* Tab Buttons */}
                       <div className="flex gap-2 mb-8">
                         <button
-                          onClick={() => setActiveTab("speed")}
+                          onClick={() => setActiveTab("manual")}
                           className={`flex-1 py-3 px-6 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeTab === "speed"
+                            activeTab === "manual"
                               ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
                               : "bg-[var(--color-accent)]/10 text-[var(--color-accent)] border-2 border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/20"
                           }`}
                         >
-                          Sniper
+                          Manual
                         </button>
                         <button
-                          onClick={() => setActiveTab("Cherry")}
+                          onClick={() => setActiveTab("autobot")}
                           className={`flex-1 py-3 px-6 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeTab === "Cherry"
+                            activeTab === "autobot"
                               ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
                               : "bg-[var(--color-accent)]/10 text-[var(--color-accent)] border-2 border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/20"
                           }`}
                         >
-                          Stealth
+                          Autobot
                         </button>
                       </div>
 
                       {/* Tab Content */}
                       <div className="min-h-[400px]">
-                        {activeTab === "Cherry" && (
+                        {activeTab === "autobot" && (
                           <div className="space-y-4 animate-fadeIn">
                             {/* Trade in Privacy Card */}
                             <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
@@ -1798,11 +1783,12 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Trade in Privacy
+                                    Automate Buys/Sells
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Your trades stay completely private with
-                                    decentralized servers
+                                    Set custom parameters with the AI for buys
+                                    and sells and it will automatically follow
+                                    them.
                                   </p>
                                 </div>
                               </div>
@@ -1823,11 +1809,12 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Non custodial
+                                    Automate Yield Farming
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    You maintain full control of your private
-                                    keys and funds
+                                    Instruct the AI to take all profits from
+                                    trading activity and stake, LP mine or lend
+                                    them out.
                                   </p>
                                 </div>
                               </div>
@@ -1848,12 +1835,12 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    AI Powered Data Feed
+                                    Automatic Arbitrage
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    AI powered data feed that gathers and
-                                    filters news/updates regarding privacy in
-                                    Web3.
+                                    Give the AI a list of tokens to arbitrage
+                                    and the AI will automatically look for arb
+                                    opportunities across DEXes.
                                   </p>
                                 </div>
                               </div>
@@ -1861,7 +1848,7 @@ const HomePage: React.FC = () => {
                           </div>
                         )}
 
-                        {activeTab === "speed" && (
+                        {activeTab === "manual" && (
                           <div className="space-y-4 animate-fadeIn">
                             {/* Fastest Trading Bot Card */}
                             <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
@@ -2039,37 +2026,17 @@ const HomePage: React.FC = () => {
             </svg>
           </div>
 
-          <div className="max-w-7xl mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 h-full">
             <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
               {/* Left side - Video Container */}
-              <div
-                className="w-full flex justify-center items-center"
-                data-spotlight-video
-              >
-                {/* Mobile Video Container */}
-                <div className="relative block md:hidden bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] overflow-hidden shadow-[0_20px_40px_rgba(67,103,201,0.2)] transform hover:-translate-y-2 transition-all duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-accent)]/20 to-transparent z-10 pointer-events-none"></div>
-
-                  <VideoPlayer
-                    src="https://storage.cherrybot.ai/cherryManage_compressed.mp4"
-                    className="w-full h-auto max-h-[60vh] object-cover"
-                    autoPlay={true}
-                  />
-
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-4 left-4 w-6 h-6 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-                </div>
-
+              <div className="w-full flex h-full  justify-center items-center">
                 {/* Desktop Video Container */}
-                <div className="bg-[var(--color-glass)] md:block hidden   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform -  hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-                  <div className="relative aspect-video overflow-hidden rounded-[16px] border-2 border-[var(--color-accent)]/30">
-                    <img
-                      src="https://storage.cherrybot.ai/sniperImage.webp"
-                      alt="cherrySniper"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                <div className="relative h-full   overflow-hidden ">
+                  <img
+                    src="/phone.webp"
+                    alt="cherrySniper"
+                    className="  h-full object-contain"
+                  />
 
                   {/* Floating Decorative Elements */}
                   <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
