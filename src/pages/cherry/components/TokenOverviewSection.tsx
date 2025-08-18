@@ -1,5 +1,4 @@
 import React from "react";
-import { Icon } from "@iconify/react";
 
 interface TokenOverviewSectionProps {
   // Add any props if needed
