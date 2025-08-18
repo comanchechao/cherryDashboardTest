@@ -1061,7 +1061,7 @@ const HomePage: React.FC = () => {
 
                     <div className="relative z-10 flex flex-col items-center gap-6">
                       <div className="w-full text-center">
-                        <h3 className="text-[32px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
                           Community AI Bot
                         </h3>
                         <div className="grid grid-cols-1 gap-2">
@@ -1127,7 +1127,7 @@ const HomePage: React.FC = () => {
 
                     <div className="relative z-10 flex flex-col items-center gap-6">
                       <div className="w-full text-center">
-                        <h3 className="text-[32px] leading-4 maladroit-font text-[var(--color-text-primary)] mb-3">
+                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
                           AI Analytics
                         </h3>
                         <div className="grid grid-cols-1 gap-2 mt-2">
@@ -1259,7 +1259,7 @@ const HomePage: React.FC = () => {
 
                     <div className="relative z-10 flex flex-col items-center gap-6">
                       <div className="w-full text-center">
-                        <h3 className="text-[32px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
                           CherryAI Web App
                         </h3>
                         <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-lg leading-relaxed mb-2">
