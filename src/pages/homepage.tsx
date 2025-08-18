@@ -960,14 +960,8 @@ const HomePage: React.FC = () => {
 
             {/* Main Title */}
             <h2 className="transform translate-y-8 text-center maladroit-font text-xl lg:text-5xl text-[var(--color-text-primary)] mb-8 relative z-10 max-w-6xl">
-              Built for Traders, Devs, and Degens
+              CherryAI Bot Ecosystem Users
               <div className="absolute -bottom-5 left-1/2  transform -translate-x-1/2 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
-            </h2>
-
-            {/* Subtitle */}
-            <h2 className="text-[var(--color-text-secondary)]/80 my-10 winky-sans-font md:text-xl text-sm text-center max-w-3xl leading-relaxed relative mt-10 z-10">
-              Explore our powerful Web3 suite — from real-time trading tools to
-              viral discovery bots and gamified earning.
             </h2>
 
             {/* Floating Decorative Elements */}
@@ -1116,12 +1110,14 @@ const HomePage: React.FC = () => {
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
                         <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
-                          Community Bots
+                          Community AI Bot
                         </h3>
                         <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Digital robots that use AI to manage and communicate
-                          with your community.
+                        <p className="text-green-600 winky-sans-font text-lg transition-all duration-300">
+                          200k+ Communities
+                        </p>{" "}
+                        <p className="text-green-600 winky-sans-font text-lg transition-all duration-300">
+                          800k+ Users | 15k+ Active Users
                         </p>
                       </div>
 
@@ -1160,7 +1156,7 @@ const HomePage: React.FC = () => {
                             </svg>
                           </span>
                           <span className="wave-overlay"></span>
-                          <span className="btn-text">Explore CherryBot</span>
+                          <span className="btn-text">Learn More</span>
                         </button>
                       </div>
 
@@ -1349,13 +1345,12 @@ const HomePage: React.FC = () => {
                     {/* Right Side with Content */}
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
-                        <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
+                        <p className="text-4xl mb-1 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
                           Analytics AI
-                        </h3>
+                        </p>
                         <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          elegram channel run by an AI powered bot that finds
-                          and analyzes trending tokens.
+                        <p className="text-green-600 winky-sans-font text-2xl transition-all duration-300">
+                          800k+ Users
                         </p>
                       </div>
 
@@ -1394,7 +1389,7 @@ const HomePage: React.FC = () => {
                             </svg>
                           </span>
                           <span className="wave-overlay"></span>
-                          <span className="btn-text">View Trending</span>
+                          <span className="btn-text">Learn More</span>
                         </button>
                       </div>
 
@@ -1469,13 +1464,12 @@ const HomePage: React.FC = () => {
                     {/* Right Side with Content */}
                     <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
                       <div className="mb-6">
-                        <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
+                        <p className="text-2xl mb-1 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
                           SniperAI Bot
-                        </h3>
+                        </p>
                         <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Telegram based trading bot that offers an AI chatbot
-                          to automate trading.
+                        <p className="text-green-600 winky-sans-font text-2xl transition-all duration-300">
+                          15k+ Active Users
                         </p>
                       </div>
 
@@ -1514,7 +1508,7 @@ const HomePage: React.FC = () => {
                             </svg>
                           </span>
                           <span className="wave-overlay"></span>
-                          <span className="btn-text">Trade Now</span>
+                          <span className="btn-text">Learn More</span>
                         </button>
                       </div>
 
@@ -1937,13 +1931,13 @@ const HomePage: React.FC = () => {
         {/* Management AI Section */}
         <div className="section_sniper_spotlight lg:py-24 relative overflow-hidden">
           {/* Advanced Background Effects */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 pointer-events-none">
             {/* Multi-layered Radial Gradients */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_60%,rgba(67,103,201,0.11)_0%,transparent_70%)]"></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(67,103,201,0.07)_0%,transparent_70%)]"></div>
 
             {/* Animated Grid Pattern */}
-            <div className="absolute inset-0 opacity-14">
+            <div className="absolute inset-0 opacity-14 pointer-events-none">
               <div
                 className="absolute inset-0"
                 style={{

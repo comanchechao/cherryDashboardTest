@@ -226,8 +226,8 @@ const RevenueStreams: React.FC = () => {
           "circle"
         );
         dot.setAttribute("r", "6"); // Bigger base size
-        dot.setAttribute("fill", "#d6024d");
-        dot.style.filter = "drop-shadow(0 0 12px rgba(214, 2, 77, 0.9))";
+        dot.setAttribute("fill", "var(--color-accent)");
+        dot.style.filter = "drop-shadow(0 0 12px rgba(67, 103, 201, 0.9))";
         path.parentElement.appendChild(dot);
 
         const dotDelay = delay + i * dotSpacing;
@@ -260,9 +260,8 @@ const RevenueStreams: React.FC = () => {
           }
         );
 
-        // Pulsing effect
         gsap.to(dot, {
-          attr: { r: 8 }, // Bigger pulse size
+          attr: { r: 8 },
           duration: 0.6,
           yoyo: true,
           repeat: -1,
@@ -272,7 +271,6 @@ const RevenueStreams: React.FC = () => {
       }
     };
 
-    // Start dot animations after initial animation completes
     ScrollTrigger.create({
       trigger: container,
       start: "top 60%",
@@ -286,7 +284,6 @@ const RevenueStreams: React.FC = () => {
       },
     });
 
-    // Add hover effect for cherry
     const cherry = cherryRef.current;
     if (cherry) {
       const handleMouseEnter = () => {
@@ -310,7 +307,6 @@ const RevenueStreams: React.FC = () => {
       cherry.addEventListener("mouseenter", handleMouseEnter);
       cherry.addEventListener("mouseleave", handleMouseLeave);
 
-      // Cleanup event listeners
       return () => {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         cherry.removeEventListener("mouseenter", handleMouseEnter);
@@ -362,13 +358,13 @@ const RevenueStreams: React.FC = () => {
         </div>
 
         {/* Floating Particles */}
-        <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float  "></div>
         <div
-          className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float blur-3xl"
+          className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float  "
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float blur-3xl"
+          className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float  "
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
@@ -453,11 +449,9 @@ const RevenueStreams: React.FC = () => {
             })}
           </svg>
 
-          {/* Central Cherry */}
           <div
             ref={auraRef}
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-[var(--color-accent)]/30 rounded-full z-20"
-            style={{ filter: "blur(30px)" }}
           />
           <img
             ref={cherryRef}
@@ -467,7 +461,7 @@ const RevenueStreams: React.FC = () => {
             src="/cherryRevenue.svg"
             alt="Cherry"
             className="absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] z-30"
-            style={{ filter: "drop-shadow(0 0 15px rgba(214, 2, 77, 0.4))" }}
+            style={{ filter: "drop-shadow(0 0 15px rgba(67, 103, 201, 0.3))" }}
           />
 
           {/* Stream Cards */}
@@ -509,7 +503,7 @@ const RevenueStreams: React.FC = () => {
                           {stream.subtitle}
                         </p>
                         {stream.badge && (
-                          <span className="inline-block bg-yellow-400 text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
+                          <span className="inline-block bg-yellow-400 !text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                             {stream.badge}
                           </span>
                         )}
@@ -566,7 +560,7 @@ const RevenueStreams: React.FC = () => {
                         {stream.subtitle}
                       </p>
                       {stream.badge && (
-                        <span className="inline-block bg-yellow-400 text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
+                        <span className="inline-block bg-yellow-400 !text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                           {stream.badge}
                         </span>
                       )}
