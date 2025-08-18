@@ -66,7 +66,7 @@ const StatsSection: React.FC = () => {
               <div className="flex items-center gap-4 md:justify-center">
                 <div className="w-14 h-14 rounded-xl bg-[var(--color-glass)] border border-[var(--color-glass-border)] flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.15)]">
                   <Icon
-                    icon="mdi:badge-check"
+                    icon="mdi:badge"
                     className="text-[var(--color-accent)]"
                     width={28}
                     height={28}

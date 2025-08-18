@@ -148,7 +148,6 @@ const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"manual" | "autobot">("manual");
 
   const [activePartner, setActivePartner] = useState<number>(0);
-  const [activeCommunityTab, setActiveCommunityTab] = useState<string>("V1");
 
   // Embla carousel setup
   const [emblaRef] = useEmblaCarousel(
@@ -171,6 +170,10 @@ const HomePage: React.FC = () => {
   // const handleStartQuesting = () => {
   //     window.open("https://t.me/cherrygame_io_bot", "_blank");
   //   };
+
+  const handleViewWeb = () => {
+    window.open("/webTrending");
+  };
 
   const handleViewTrending = () => {
     window.open("https://t.me/cherrytrending", "_blank");
@@ -1048,7 +1051,7 @@ const HomePage: React.FC = () => {
           <div className="w-full px-8 md:px-10 lg:px-24 bg-transparent   py-12   mx-auto">
             <div
               ref={featureCardsRef}
-              className="relative gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              className="relative gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
               id="features"
             >
               <div
@@ -1065,16 +1068,6 @@ const HomePage: React.FC = () => {
                     </div>
 
                     <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="flex flex-col items-center md:items-start">
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
-                          <img
-                            src="/community.png"
-                            alt="Management Bot"
-                            className="w-5/6 h-5/6 object-contain"
-                          />
-                        </div>
-                      </div>
-
                       <div className="w-full md:flex-1 text-center md:text-left">
                         <h3 className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           Community AI Bot
@@ -1155,14 +1148,6 @@ const HomePage: React.FC = () => {
                     </div>
 
                     <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
-                        <img
-                          src="/analytics.png"
-                          alt="Cherry AI Trending"
-                          className="w-5/6 h-5/6 object-contain"
-                        />
-                      </div>
-
                       <div className="w-full md:flex-1 text-center md:text-left">
                         <h3 className="text-[25px] leading-4 maladroit-font text-[var(--color-text-primary)] mb-3">
                           Analytics AI
@@ -1244,14 +1229,6 @@ const HomePage: React.FC = () => {
                     </div>
 
                     <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
-                        <img
-                          src="/sniper.png"
-                          alt="SniperAI Bot"
-                          className="w-5/6 h-5/6 object-contain"
-                        />
-                      </div>
-
                       <div className="w-full md:flex-1 text-center md:text-left">
                         <p className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           SniperAI Bot
@@ -1279,6 +1256,70 @@ const HomePage: React.FC = () => {
                         <div className="mt-6">
                           <button
                             onClick={handleSnipeNow}
+                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
+                          >
+                            <span className="wave-bg"></span>
+                            <span className="wave-left">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-auto h-full opacity-100 object-stretch"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-right">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="object-cover w-full h-full"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-overlay"></span>
+                            <span className="btn-text">Learn More</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Feature Card 5 - CherryAI Web App */}
+              <div className="feature-card opacity-0 transform translate-y-16 h-full">
+                <div className="group relative h-full">
+                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                    </div>
+
+                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                      <div className="w-full md:flex-1 text-center md:text-left">
+                        <h3 className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                          CherryAI Web App
+                        </h3>
+                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
+                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed mb-2">
+                          Coming Soon
+                        </p>
+
+                        <div className="mt-10">
+                          <button
+                            onClick={handleViewWeb}
                             className="btn-wave-primary cursor-pointer flex items-center gap-2"
                           >
                             <span className="wave-bg"></span>
@@ -1865,107 +1906,83 @@ const HomePage: React.FC = () => {
                     3 versions - V1 is already deployed.
                   </p>
 
-                  {/* Community AI Tabs */}
+                  {/* Community AI - Always-visible Cards */}
                   <div className="w-full">
-                    <div className="flex flex-wrap gap-3 mb-6">
-                      {["V1", "V2", "V3"].map((version) => (
-                        <button
-                          key={version}
-                          onClick={() => setActiveCommunityTab(version)}
-                          className={`px-6 py-3 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeCommunityTab === version
-                              ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
-                              : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-2 border-[var(--color-glass-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10"
-                          }`}
-                        >
-                          Community AI {version}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Tab Content */}
-                    <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
-                      {/* Floating Decorative Elements */}
-                      <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                      <div className="absolute bottom-4 left-4 w-6 h-6 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-
-                      <div className="relative z-10">
-                        {activeCommunityTab === "V1" && (
-                          <div className="space-y-4 animate-fadeIn">
-                            <div className="flex items-start gap-4">
-                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                                <Icon
-                                  icon="mdi:robot"
-                                  className="text-white object-contain"
-                                  width={24}
-                                  height={24}
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                                  Community AI V1
-                                </h4>
-                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
-                                  The V1 is already launched its a community
-                                  management bot that uses machine learning to
-                                  upgrade its database.
-                                </p>
-                              </div>
-                            </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                        <div className="flex flex-col items-start gap-4 relative z-10">
+                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                            <Icon
+                              icon="mdi:robot"
+                              className="text-white object-contain"
+                              width={24}
+                              height={24}
+                            />
                           </div>
-                        )}
-
-                        {activeCommunityTab === "V2" && (
-                          <div className="space-y-4 animate-fadeIn">
-                            <div className="flex items-start gap-4">
-                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                                <Icon
-                                  icon="mdi:chat-processing"
-                                  className="text-white object-contain"
-                                  width={24}
-                                  height={24}
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                                  Community AI V2
-                                </h4>
-                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
-                                  Community AI bots will be able to not only
-                                  manage the community but also will be able to
-                                  answer specific questions related to the
-                                  project like a regular person.
-                                </p>
-                              </div>
-                            </div>
+                          <div className="flex-1">
+                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                              Community AI V1
+                            </h4>
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                              The V1 is already launched its a community
+                              management bot that uses machine learning to
+                              upgrade its database.
+                            </p>
                           </div>
-                        )}
+                        </div>
+                      </div>
 
-                        {activeCommunityTab === "V3" && (
-                          <div className="space-y-4 animate-fadeIn">
-                            <div className="flex items-start gap-4">
-                              <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                                <Icon
-                                  icon="mdi:blockchain"
-                                  className="text-white object-contain"
-                                  width={24}
-                                  height={24}
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                                  Community AI V3
-                                </h4>
-                                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
-                                  Community AI bots will be able to scrape real
-                                  time data from blockchains so they can answer
-                                  token and smart contract related questions as
-                                  well.
-                                </p>
-                              </div>
-                            </div>
+                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                        <div className="flex flex-col items-start gap-4 relative z-10">
+                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                            <Icon
+                              icon="mdi:chat-processing"
+                              className="text-white object-contain"
+                              width={24}
+                              height={24}
+                            />
                           </div>
-                        )}
+                          <div className="flex-1">
+                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                              Community AI V2
+                            </h4>
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                              Community AI bots will be able to not only manage
+                              the community but also will be able to answer
+                              specific questions related to the project like a
+                              regular person.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                        <div className="flex flex-col items-start gap-4 relative z-10">
+                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
+                            <Icon
+                              icon="mdi:robot-outline"
+                              className="text-white object-contain"
+                              width={24}
+                              height={24}
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                              Community AI V3
+                            </h4>
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                              Community AI bots will be able to scrape real time
+                              data from blockchains so they can answer token and
+                              smart contract related questions as well.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
