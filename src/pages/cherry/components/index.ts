@@ -6,3 +6,4 @@ export { default as WhyHoldSection } from "./WhyHoldSection";
 export { default as RevenueModelSection } from "./RevenueModelSection";
 export { default as StakingSystemSection } from "./StakingSystemSection";
 export { default as BuybackBurnSection } from "./BuybackBurnSection";
+export { default as AIBOTUtilitySection } from "./AIBOTUtilitySection";

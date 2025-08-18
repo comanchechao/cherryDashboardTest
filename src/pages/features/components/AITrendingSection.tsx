@@ -254,10 +254,6 @@ const AITrendingSection: React.FC<AITrendingSectionProps> = ({
               Growth Stats
             </h3>
             <div className="h-1 w-64 md:w-96 p-1 mx-auto bg-[var(--color-accent)] mb-8 rounded-full"></div>
-            <p className="text-center text-[var(--color-text-secondary)] winky-sans-font text-lg mb-8">
-              Trusted by top launchpads, traders, and meme creators to drive
-              early momentum.
-            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="stat-card text-center p-6 bg-[var(--color-accent)]/20 backdrop-blur-sm rounded-xl border border-[var(--color-accent)]/30">

@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import VideoPlayer from "../../../components/VideoPlayer";
+import { Link } from "react-router-dom";
 
 const HeroSection: React.FC = () => {
   const handleSnipeNow = () => {
@@ -76,14 +77,23 @@ const HeroSection: React.FC = () => {
                 <Icon icon="mdi:rocket" className="text-xl" />
                 Snipe Now
               </span>
-            </button>
-
-            <button className="btn-wave-secondary cursor-pointer w-full">
-              <span className="flex items-center gap-2">
-                <Icon icon="mdi:play-circle" className="text-xl" />
-                Watch Demo
-              </span>
-            </button>
+            </button>{" "}
+            <Link
+              to="/rewards"
+              className={`btn-wave-secondary w-full ${
+                window.location.pathname === "/rewards"
+                  ? "text-accent bg-glass border border-accent shadow-lg"
+                  : "text-primary hover:text-accent hover:bg-glass hover:border-glass"
+              } flex items-center gap-2`}
+            >
+              <Icon
+                icon="duo-icons:dashboard"
+                className="text-accent group-hover:text-accent transition-all duration-300"
+                width={18}
+                height={18}
+              />
+              Dashboard
+            </Link>
           </div>
         </div>
 

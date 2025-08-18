@@ -138,13 +138,6 @@ const TradeEarnRewards: React.FC = () => {
         </div>
 
         {/* Bottom accent */}
-        <div className="text-center mt-12">
-          <div className="bg-[var(--color-glass)] rounded-full border border-[var(--color-accent)] px-6 py-3 inline-block shadow-[2px_2px_0px_rgba(67,103,201,0.2)]">
-            <span className="winky-sans-font text-[var(--color-text-primary)] font-medium">
-              Whether you win or lose — you still earn
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );

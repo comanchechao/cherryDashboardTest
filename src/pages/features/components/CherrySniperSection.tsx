@@ -145,13 +145,7 @@ const CherrySniperSection: React.FC = () => {
               <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
               <div className="relative z-10 text-center">
-                <div className="w-28 h-28 mx-auto mb-6 overflow-hidden rounded-full border-4 border-[var(--color-accent)]/30 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
-                  <img
-                    src="https://storage.cherrybot.ai/cherrySniper.webp"
-                    alt="Instant Swap Execution"
-                    className="w-20 h-20 object-contain animate-float mt-7"
-                  />
-                </div>
+            
 
                 <h3 className="text-2xl mb-4 maladroit-font text-[var(--color-text-primary)]">
                   Instant Swap Execution

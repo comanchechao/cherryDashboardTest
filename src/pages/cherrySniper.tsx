@@ -85,9 +85,9 @@ const CherrySniper: React.FC = () => {
 
           {/* Tabs Section - Stealth/Sniper Modes */}
           <TabsSection />
+          <TradeEarnRewards />
           <DashboardPreview />
           {/* Cherry Web Trading Platform Section */}
-          <TradeEarnRewards />
 
           {/* Newsletter signup section */}
           <NewsletterSignupSection />

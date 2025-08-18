@@ -117,11 +117,6 @@ const NewsletterSignupSection: React.FC = () => {
           <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-[var(--color-accent)] opacity-10 rounded-full"></div>
 
           <div className="relative z-10 text-center">
-            <img
-              src="https://storage.cherrybot.ai/cherrySniper.webp"
-              alt="Cherry AI"
-              className="w-20 h-20 mx-auto mb-4"
-            />
             <h3 className="maladroit-font md:text-3xl text-xl font-bold text-[var(--color-text-primary)] mb-4">
               Join the Cherry Trade Waitlist
             </h3>

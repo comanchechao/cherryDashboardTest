@@ -162,7 +162,7 @@ const RewardSection: React.FC<RewardSectionProps> = ({
   const walletAddress = userWalletInfo?.solAddress || " ";
 
   return (
-    <div className="section_sniper_spotlight py-24 w-full flex flex-col items-center justify-center   relative overflow-hidden">
+    <div className="section_sniper_spotlight pb-24 w-full flex flex-col items-center justify-center   relative overflow-hidden">
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_65%,rgba(67,103,201,0.14)_0%,transparent_55%)]"></div>

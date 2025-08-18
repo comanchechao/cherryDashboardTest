@@ -5,12 +5,11 @@ import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import {
   TokenOverviewSection,
-  TokenomicsSection,
   TokenomicsTableSection,
-  WhyHoldSection,
   RevenueModelSection,
   StakingSystemSection,
   BuybackBurnSection,
+  AIBOTUtilitySection,
 } from "./cherry/components";
 
 const CherryToken: React.FC = () => {
@@ -21,13 +20,8 @@ const CherryToken: React.FC = () => {
 
         <TokenOverviewSection />
 
-        <TokenomicsSection />
-
-        {/* Tokenomics Table Section */}
-        <TokenomicsTableSection />
-
-        {/* Why Hold $AIBOT */}
-        <WhyHoldSection />
+        {/* $AIBOT Utility Section */}
+        <AIBOTUtilitySection />
 
         {/* Cherry Ecosystem Revenue Model */}
         <RevenueModelSection />
@@ -37,7 +31,8 @@ const CherryToken: React.FC = () => {
 
         {/* $AIBOT Buyback & Burn Section */}
         <BuybackBurnSection />
-
+        {/* Tokenomics Table Section */}
+        <TokenomicsTableSection />
         <Footer />
       </div>
     </>

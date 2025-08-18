@@ -79,13 +79,12 @@ const Navbar: React.FC = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-2">
-              <Link
+              {/* <Link
                 to="/features"
                 className={getDesktopLinkClasses("/features")}
               >
                 Features
-              </Link>
-
+              </Link> */}
               <Link to="/cherrySniper">
                 <button
                   className={`btn-wave-alternative cursor-pointer ${
@@ -126,43 +125,39 @@ const Navbar: React.FC = () => {
                   <span className="wave-overlay"></span>
                   <span className="btn-text">Sniper</span>
                 </button>
-              </Link>
-              <Link to="/cherry" className={getDesktopLinkClasses("/cherry")}>
-                $AIBOT
-              </Link>
-
-              <Link
-                to="/communityAI"
-                className={getDesktopLinkClasses("/communityAI")}
-              >
-                Community AI
-              </Link>
+              </Link>{" "}
               <Link
                 to="/ai-analytics"
                 className={getDesktopLinkClasses("/ai-analytics")}
               >
                 AI Analytics
               </Link>
-
-              <Link
+              <Link to="/cherry" className={getDesktopLinkClasses("/cherry")}>
+                $AIBOT
+              </Link>
+              {/* <Link
+                to="/communityAI"
+                className={getDesktopLinkClasses("/communityAI")}
+              >
+                Community AI
+              </Link> */}
+              {/* <Link
                 to="/webTrending"
                 className={getDesktopLinkClasses("/webTrending")}
               >
                 Web Trending
-              </Link>
-
-              <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
+              </Link> */}
+              {/* <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
                 Roadmap
-              </Link>
-
-              <a
+              </Link> */}
+              {/* <a
                 href="https://pad.cherrybot.ai/"
                 target="_blank"
                 rel="noreferrer"
                 className="px-4 py-2.5 winky-sans-font text-[15px] font-medium text-primary hover:text-accent hover:bg-glass hover:border-glass transition-all duration-300 rounded-lg nav-link"
               >
                 IDO
-              </a>
+              </a> */}
             </div>
 
             {/* Right Section - Dashboard and Wallet */}
@@ -222,12 +217,12 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="glass-effect rounded-2xl border border-glass px-6 py-4">
             <div className="space-y-2">
-              <Link
+              {/* <Link
                 to="/features"
                 className={getMobileLinkClasses("/features")}
               >
                 Features
-              </Link>
+              </Link> */}
 
               <Link
                 to="/cherrySniper"
@@ -236,22 +231,29 @@ const Navbar: React.FC = () => {
                 Sniper
               </Link>
 
+              <Link
+                to="/ai-analytics"
+                className={getMobileLinkClasses("/ai-analytics")}
+              >
+                AI Analytics
+              </Link>
+
               <Link to="/cherry" className={getMobileLinkClasses("/cherry")}>
                 $AIBOT
               </Link>
-
+              {/* 
               <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
                 Roadmap
-              </Link>
+              </Link> */}
 
-              <a
+              {/* <a
                 href="https://pad.cherrybot.ai/"
                 target="_blank"
                 rel="noreferrer"
                 className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent hover:bg-glass transition-all duration-300 rounded-lg"
               >
                 IDO
-              </a>
+              </a> */}
 
               <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
                 Dashboard

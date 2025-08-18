@@ -9,7 +9,7 @@ const TabsSection: React.FC = () => {
   };
 
   return (
-    <div className="section_sniper_spotlight py-24 relative overflow-hidden">
+    <div className="section_sniper_spotlight pt-24 relative overflow-hidden">
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_65%,rgba(67,103,201,0.14)_0%,transparent_55%)]"></div>
@@ -22,6 +22,9 @@ const TabsSection: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
             {/* Video Container */}
             <div className="w-full">
+              <h3 className="text-lg md:text-3xl maladroit-font text-[var(--color-text-primary)] mb-8 text-center">
+                SniperAI Bot Offers Manual & Autobot Modes
+              </h3>
               <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] md:p-8 p-4 relative overflow-hidden transform transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                 {/* Paper texture overlay */}
 
@@ -67,15 +70,11 @@ const TabsSection: React.FC = () => {
                 </svg>
 
                 <div className="relative z-10">
-                  <h3 className="text-lg md:text-3xl maladroit-font text-[var(--color-text-primary)] mb-8 text-center">
-                    SniperAI Bot Offers Manual & Autobot Modes
-                  </h3>
-
                   {/* Tab Buttons */}
                   <div className="flex gap-2 mb-8">
                     <button
                       onClick={() => setActiveTab("autobot")}
-                      className={`flex-1 py-3 px-6 rounded-xl border-4 winky-sans-font transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 ${
+                      className={`flex-1 py-3 px-6 rounded-sm border winky-sans-font transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 ${
                         activeTab === "autobot"
                           ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)]  "
                           : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-[var(--color-accent)] hover:bg-[var(--color-glass)]"
@@ -103,7 +102,7 @@ const TabsSection: React.FC = () => {
                     </button>
                     <button
                       onClick={() => setActiveTab("manual")}
-                      className={`flex-1 py-3 px-6 rounded-xl border-4 winky-sans-font transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 ${
+                      className={`flex-1 py-3 px-6 rounded-sm border winky-sans-font transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2 ${
                         activeTab === "manual"
                           ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)]  "
                           : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-[var(--color-accent)] hover:bg-[var(--color-glass)]"
@@ -139,7 +138,7 @@ const TabsSection: React.FC = () => {
                         <div className="grid grid-cols-1 gap-6">
                           {/* Trade in Privacy Card */}
                           <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
+                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                 Automate Buys/Sells
                               </h4>
@@ -152,7 +151,7 @@ const TabsSection: React.FC = () => {
 
                           {/* Non-custodial Wallet Card */}
                           <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
+                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                 Automate Yield Farming
                               </h4>
@@ -165,7 +164,7 @@ const TabsSection: React.FC = () => {
 
                           {/* Key Security Card */}
                           <div className="group md:col-span-2">
-                            <div className="bg-[var(--color-glass)] rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
+                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                 Automatic Arbitrage
                               </h4>
@@ -186,7 +185,7 @@ const TabsSection: React.FC = () => {
                         <div className="grid grid-cols-1  gap-6">
                           {/* Extremely Fast Trade Execution Card */}
                           <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
+                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                 Fastest trading bot
                               </h4>
@@ -200,7 +199,7 @@ const TabsSection: React.FC = () => {
 
                           {/* Advanced Trading Features Card */}
                           <div className="group">
-                            <div className="bg-[var(--color-glass)]   rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
+                            <div className="bg-[var(--color-glass)]   rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
                               <div>
                                 <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                   Advanced trading features
@@ -215,7 +214,7 @@ const TabsSection: React.FC = () => {
 
                           {/* Scales with Volume Card */}
                           <div className="group md:col-span-2 ">
-                            <div className="bg-[var(--color-glass)]  rounded-xl border-4 border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
+                            <div className="bg-[var(--color-glass)]  rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
                               <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
                                 Scales with volume
                               </h4>
@@ -279,17 +278,6 @@ const TabsSection: React.FC = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <div className="bg-[var(--color-glass)] px-6 py-2 rounded-full border-2 border-[var(--color-accent)] winky-sans-font text-[var(--color-text-primary)] font-medium">
-            Instant Execution
-          </div>
-          <div className="bg-[var(--color-glass)] px-6 py-2 rounded-full border-2 border-[var(--color-accent)] winky-sans-font text-[var(--color-text-primary)] font-medium">
-            Trade-to-Earn
-          </div>
-          <div className="bg-[var(--color-glass)] px-6 py-2 rounded-full border-2 border-[var(--color-accent)] winky-sans-font text-[var(--color-text-primary)] font-medium">
-            Boosted Pool Rewards
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 const DashboardPreview: React.FC = () => {
   return (
-    <div className="bg-[var(--color-glass)] max-w-7xl mx-auto mb-24 border border-[var(--color-glass-border)] rounded-[4px] p-8 relative overflow-hidden transform hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+    <div className="bg-[var(--color-glass)] max-w-7xl mx-auto mt-24 border border-[var(--color-glass-border)] rounded-[4px] p-8 relative overflow-hidden transform hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
       {/* Floating Background Elements */}
       <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
       <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
@@ -101,7 +101,7 @@ const DashboardPreview: React.FC = () => {
           <div className="bg-[var(--color-glass)] h-80 rounded-xl border-2 border-[var(--color-accent)] p-2 shadow-[4px_4px_0px_rgba(67,103,201,0.3)] hover:shadow-[6px_6px_0px_rgba(67,103,201,0.4)] transition-all duration-300 group">
             <div className="w-full h-full overflow-hidden rounded-lg">
               <img
-                src="https://storage.cherrybot.ai/screenshot1.webp"
+                src="/screenshot.jpg"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 alt="SniperAI Bot"
               />
@@ -111,7 +111,7 @@ const DashboardPreview: React.FC = () => {
           <div className="bg-[var(--color-glass)] h-80 rounded-xl border-2 border-[var(--color-accent)] p-2 shadow-[4px_4px_0px_rgba(67,103,201,0.3)] hover:shadow-[6px_6px_0px_rgba(67,103,201,0.4)] transition-all duration-300 group">
             <div className="w-full h-full overflow-hidden rounded-lg">
               <img
-                src="https://storage.cherrybot.ai/screenshot2.webp"
+                src="/screenshot2.jpg"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 alt="SniperAI Bot"
               />

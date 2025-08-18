@@ -13,6 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import RevenueStreams from "../components/RevenueStreams";
+import VideoPlayer from "../components/VideoPlayer";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -36,13 +37,6 @@ const customAnimations = `
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .animate-floatExtra {
-    animation: floatExtra 2s ease-in-out infinite;
-  }
-  .animate-fadeIn {
-    animation: fadeIn 0.4s ease-out;
   }
 `;
 
@@ -699,12 +693,12 @@ const HomePage: React.FC = () => {
             ></div>
           </div>
 
-          <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-screen relative z-10">
+          <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-full relative z-10">
             <div className="  w-full mx-auto">
-              <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-screen lg:h-auto mb-16 relative z-10 px-10">
+              <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-full lg:h-auto mb-16 relative z-10 px-10">
                 <div className="flex lg:w-1/2 w-full items-start justify-center flex-col px-16">
-                  <div className=" mb-16">
-                    <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-8xl font-bold text-[var(--color-text-primary)] leading-tight mb-2 max-w-4xl mx-auto">
+                  <div className="  ">
+                    <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-8xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
                       Cherry
                       <span className="text-[var(--color-accent)]">AI</span>
                       <span className="block relative">
@@ -712,7 +706,7 @@ const HomePage: React.FC = () => {
                       </span>
                     </h1>
 
-                    <p className="hero-description text-left text-lg lg:text-2xl text-[var(--color-text-secondary)]/80 mb-9 max-w-3xl mx-auto leading-7">
+                    <p className="hero-description my-10 text-left text-lg lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
                       AI powered ecosystem for digital robotics that empowers
                       Web3 traders and communities.
                     </p>
@@ -826,7 +820,7 @@ const HomePage: React.FC = () => {
         <div className=" ">
           <div
             ref={partnersContainerRef}
-            className=" h-full relative w-full py-44 md:px-0 px-4 overflow-hidden"
+            className=" h-full relative w-full py-12 md:px-0 px-4 overflow-hidden"
           >
             {/* Advanced Background Effects */}
             <div className="absolute inset-0">
@@ -1067,33 +1061,19 @@ const HomePage: React.FC = () => {
                       <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-full md:flex-1 text-center md:text-left">
-                        <h3 className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                    <div className="relative z-10 flex flex-col items-center gap-6">
+                      <div className="w-full text-center">
+                        <h3 className="text-[32px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           Community AI Bot
                         </h3>
-                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
                         <div className="grid grid-cols-1 gap-2">
-                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
-                            <svg
-                              width="18"
-                              height="18"
-                              viewBox="0 0 24 24"
-                              className="text-[var(--color-accent)]"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3m-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3m0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13m8 0c-.29 0-.62.02-.97.05c1.16.84 1.97 1.93 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
-                              />
-                            </svg>
-                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
-                              200k+ Communities
-                            </span>
-                          </div>
+                          <span className="maladroit-font text-2xl text-[var(--color-text-primary)]">
+                            200k+ Communities
+                          </span>
                         </div>{" "}
                         <button
                           onClick={handleExploreBot}
-                          className="btn-wave-primary mt-4 cursor-pointer flex items-center gap-2"
+                          className="btn-wave-primary mt-6 cursor-pointer flex items-center gap-2"
                         >
                           <span className="wave-bg"></span>
                           <span className="wave-left">
@@ -1139,7 +1119,7 @@ const HomePage: React.FC = () => {
                 className="feature-card opacity-0 transform translate-y-16 h-full"
               >
                 <div className="group relative h-full">
-                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
+                  <div className="relative  h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
                     <div className="absolute inset-0 pointer-events-none">
                       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
                       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
@@ -1147,29 +1127,15 @@ const HomePage: React.FC = () => {
                       <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-full md:flex-1 text-center md:text-left">
-                        <h3 className="text-[25px] leading-4 maladroit-font text-[var(--color-text-primary)] mb-3">
-                          Analytics AI
+                    <div className="relative z-10 flex flex-col items-center gap-6">
+                      <div className="w-full text-center">
+                        <h3 className="text-[32px] leading-4 maladroit-font text-[var(--color-text-primary)] mb-3">
+                          AI Analytics
                         </h3>
-                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
                         <div className="grid grid-cols-1 gap-2 mt-2">
-                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
-                            <svg
-                              width="18"
-                              height="18"
-                              viewBox="0 0 24 24"
-                              className="text-[var(--color-accent)]"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3m-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3m0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13m8 0c-.29 0-.62.02-.97.05c1.16.84 1.97 1.93 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
-                              />
-                            </svg>
-                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
-                              800k+ Users
-                            </span>
-                          </div>
+                          <span className="text-2xl maladroit-font text-[var(--color-text-primary)]">
+                            800k+ Users
+                          </span>
                         </div>
 
                         <div className="mt-6">
@@ -1228,29 +1194,15 @@ const HomePage: React.FC = () => {
                       <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-full md:flex-1 text-center md:text-left">
-                        <p className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                    <div className="relative z-10 flex flex-col items-center gap-6">
+                      <div className="w-full text-center">
+                        <p className="text-[32px] maladroit-font leading-9  text-[var(--color-text-primary)] mb-3">
                           SniperAI Bot
                         </p>
-                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
                         <div className="grid grid-cols-1 gap-2 mt-2">
-                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
-                            <svg
-                              width="18"
-                              height="18"
-                              viewBox="0 0 24 24"
-                              className="text-[var(--color-accent)]"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M3 3v18h18v-2H5V3H3m16 14l-4.5-6l-3.5 4.5l-2.5-3L6 15v2h13v-2z"
-                              />
-                            </svg>
-                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
-                              15k+ Active Users
-                            </span>
-                          </div>
+                          <span className="maladroit-font text-2xl text-[var(--color-text-primary)]">
+                            15k+ Active Users
+                          </span>
                         </div>
 
                         <div className="mt-6">
@@ -1307,13 +1259,12 @@ const HomePage: React.FC = () => {
                       <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
-                      <div className="w-full md:flex-1 text-center md:text-left">
-                        <h3 className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
+                    <div className="relative z-10 flex flex-col items-center gap-6">
+                      <div className="w-full text-center">
+                        <h3 className="text-[32px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           CherryAI Web App
                         </h3>
-                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
-                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed mb-2">
+                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-lg leading-relaxed mb-2">
                           Coming Soon
                         </p>
 
@@ -1483,9 +1434,7 @@ const HomePage: React.FC = () => {
                     snipers with 2 modes: Manual and Autobot mode. Manual is a
                     classic Telegram based trading bot. Autobot mode offers
                     traders with a Telegram based chat robot that you can give
-                    details and parameters for trading tokens and it will use
-                    automatically begin trading or even yield farming based on
-                    your parameters.
+                    details and parameters for trading tokens.
                   </p>
 
                   {/* Bottom Decorative Bar */}
@@ -1502,10 +1451,10 @@ const HomePage: React.FC = () => {
                   {/* Desktop Video Container */}
                   <div className="md:block hidden bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                     <div className="relative aspect-video overflow-hidden rounded-[16px] border-2 border-[var(--color-accent)]/30">
-                      <img
-                        src="/sniperModes.webp"
-                        alt="cherrySniper"
-                        className="w-full h-full object-contain"
+                      <VideoPlayer
+                        src="/sniperAd.mp4"
+                        className="w-full h-auto max-h-[60vh] object-cover"
+                        autoPlay={true}
                       />
                     </div>
 
@@ -1515,52 +1464,6 @@ const HomePage: React.FC = () => {
                   </div>
 
                   {/* CTA Section */}
-                  <div className="text-center mt-10" data-spotlight-cta>
-                    <div className="inline-block">
-                      <button
-                        onClick={handleSnipeNow}
-                        className="btn-wave-primary cursor-pointer flex items-center gap-3"
-                      >
-                        <span className="wave-bg"></span>
-                        <span className="wave-left">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="w-auto h-full opacity-100 object-stretch"
-                            viewBox="0 0 487 487"
-                          >
-                            <path
-                              fillOpacity=".1"
-                              fillRule="nonzero"
-                              fill="#FFF"
-                              d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                            ></path>
-                          </svg>
-                        </span>
-                        <span className="wave-right">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="object-cover w-full h-full"
-                            viewBox="0 0 487 487"
-                          >
-                            <path
-                              fillOpacity=".1"
-                              fillRule="nonzero"
-                              fill="#FFF"
-                              d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                            ></path>
-                          </svg>
-                        </span>
-                        <span className="wave-overlay"></span>
-                        <span className="btn-text text-xl">Learn More</span>
-                        <Icon
-                          icon="mdi:arrow-right"
-                          className="text-white"
-                          width={24}
-                          height={24}
-                        />
-                      </button>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Tabs Section */}
@@ -1682,7 +1585,6 @@ const HomePage: React.FC = () => {
                             </div>
                           </div>
                         )}
-
                         {activeTab === "manual" && (
                           <div className="space-y-4 animate-fadeIn">
                             {/* Fastest Trading Bot Card */}
@@ -1761,7 +1663,55 @@ const HomePage: React.FC = () => {
                               </div>
                             </div>
                           </div>
-                        )}
+                        )}{" "}
+                        <div className="text-center mt-10" data-spotlight-cta>
+                          <div className="inline-block">
+                            <button
+                              onClick={handleSnipeNow}
+                              className="btn-wave-primary cursor-pointer flex items-center gap-3"
+                            >
+                              <span className="wave-bg"></span>
+                              <span className="wave-left">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="w-auto h-full opacity-100 object-stretch"
+                                  viewBox="0 0 487 487"
+                                >
+                                  <path
+                                    fillOpacity=".1"
+                                    fillRule="nonzero"
+                                    fill="#FFF"
+                                    d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
+                                  ></path>
+                                </svg>
+                              </span>
+                              <span className="wave-right">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="object-cover w-full h-full"
+                                  viewBox="0 0 487 487"
+                                >
+                                  <path
+                                    fillOpacity=".1"
+                                    fillRule="nonzero"
+                                    fill="#FFF"
+                                    d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
+                                  ></path>
+                                </svg>
+                              </span>
+                              <span className="wave-overlay"></span>
+                              <span className="btn-text text-xl">
+                                Learn More
+                              </span>
+                              <Icon
+                                icon="mdi:arrow-right"
+                                className="text-white"
+                                width={24}
+                                height={24}
+                              />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1863,23 +1813,7 @@ const HomePage: React.FC = () => {
 
           <div className="max-w-7xl mx-auto px-6 h-full">
             <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
-              {/* Left side - Video Container */}
-              <div className="w-full flex h-full  justify-center items-center">
-                {/* Desktop Video Container */}
-                <div className="relative h-full   overflow-hidden ">
-                  <img
-                    src="/phone.webp"
-                    alt="cherrySniper"
-                    className="  h-[39rem] object-contain"
-                  />
-
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-                </div>
-              </div>
-
-              {/* Right side - Content */}
+              {/* Left side - Video Container */}{" "}
               <div
                 className="w-full flex justify-center items-center"
                 data-spotlight-content
@@ -1907,79 +1841,87 @@ const HomePage: React.FC = () => {
                   </p>
 
                   {/* Community AI - Always-visible Cards */}
-                  <div className="w-full">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                  <div className="w-full flex flex-col">
+                    <div className="grid grid-cols-1  gap-8">
+                      <div className="relative rounded-[20px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-3 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(67,103,201,0.2)] hover:border-[var(--color-accent)]/50">
                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                        <div className="flex flex-col items-start gap-4 relative z-10">
-                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                            <Icon
-                              icon="mdi:robot"
-                              className="text-white object-contain"
-                              width={24}
-                              height={24}
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                        <div className="flex flex-col gap-6 relative z-10">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center flex-shrink-0">
+                              <Icon
+                                icon="mdi:robot"
+                                className="text-white object-contain"
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                            <h4 className="winky-sans-font text-xl font-semibold text-[var(--color-text-primary)]">
                               Community AI V1
                             </h4>
-                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
-                              The V1 is already launched its a community
-                              management bot that uses machine learning to
-                              upgrade its database.
+                          </div>
+                          <div className="space-y-3">
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-base leading-relaxed">
+                              The V1 is already launched and operational. It's a
+                              community management bot that uses machine
+                              learning to continuously upgrade its database and
+                              improve community interactions.
                             </p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                      <div className="relative rounded-[20px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-3 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(67,103,201,0.2)] hover:border-[var(--color-accent)]/50">
                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                        <div className="flex flex-col items-start gap-4 relative z-10">
-                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                            <Icon
-                              icon="mdi:chat-processing"
-                              className="text-white object-contain"
-                              width={24}
-                              height={24}
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                        <div className="flex flex-col gap-6 relative z-10">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center flex-shrink-0">
+                              <Icon
+                                icon="mdi:chat-processing"
+                                className="text-white object-contain"
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                            <h4 className="winky-sans-font text-xl font-semibold text-[var(--color-text-primary)]">
                               Community AI V2
                             </h4>
-                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
+                          </div>
+                          <div className="space-y-3">
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-base leading-relaxed">
                               Community AI bots will be able to not only manage
-                              the community but also will be able to answer
-                              specific questions related to the project like a
-                              regular person.
+                              the community but also answer specific questions
+                              related to the project like a regular person,
+                              providing personalized assistance.
                             </p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="relative rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(67,103,201,0.16)] hover:border-[var(--color-accent)]/40">
+                      <div className="relative rounded-[20px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-3 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(67,103,201,0.2)] hover:border-[var(--color-accent)]/50">
                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                        <div className="flex flex-col items-start gap-4 relative z-10">
-                          <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center flex-shrink-0">
-                            <Icon
-                              icon="mdi:robot-outline"
-                              className="text-white object-contain"
-                              width={24}
-                              height={24}
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="winky-sans-font text-lg font-semibold text-[var(--color-text-primary)] mb-2">
+                        <div className="flex flex-col gap-6 relative z-10">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center flex-shrink-0">
+                              <Icon
+                                icon="mdi:robot-outline"
+                                className="text-white object-contain"
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                            <h4 className="winky-sans-font text-xl font-semibold text-[var(--color-text-primary)]">
                               Community AI V3
                             </h4>
-                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm leading-relaxed">
-                              Community AI bots will be able to scrape real time
+                          </div>
+                          <div className="space-y-3">
+                            <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-base leading-relaxed">
+                              Community AI bots will be able to scrape real-time
                               data from blockchains so they can answer token and
-                              smart contract related questions as well.
+                              smart contract related questions with live market
+                              information.
                             </p>
                           </div>
                         </div>
@@ -2041,6 +1983,21 @@ const HomePage: React.FC = () => {
                   </button>
                 </div>
               </div>
+              <div className="w-full flex h-full  justify-center items-center">
+                {/* Desktop Video Container */}
+                <div className="relative h-full   overflow-hidden ">
+                  <img
+                    src="/phone.webp"
+                    alt="cherrySniper"
+                    className="  h-[39rem] object-contain"
+                  />
+
+                  {/* Floating Decorative Elements */}
+                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+                </div>
+              </div>
+              {/* Right side - Content */}
             </div>
           </div>
         </div>

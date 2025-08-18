@@ -11,7 +11,7 @@ const ChatbotSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
               <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 leading-relaxed">
-                Analytics AI will be adding in a chatbot feature to the product.
+                AI Analytics will be adding in a chatbot feature to the product.
                 Users will be able to subscribe to the channel by paying a fee
                 to use the chatbot. This AI chatbot will use AI to analyze
                 trending tokens and answer user questions.
