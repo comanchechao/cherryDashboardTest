@@ -53,7 +53,7 @@ const NewsletterSignupSection: React.FC = () => {
   };
 
   return (
-    <div className="section_sniper_spotlight py-24 relative overflow-hidden">
+    <div className="section_sniper_spotlight py-5 relative overflow-hidden">
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_65%,rgba(67,103,201,0.14)_0%,transparent_55%)]"></div>
@@ -114,7 +114,6 @@ const NewsletterSignupSection: React.FC = () => {
           <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-[var(--color-accent)] opacity-10 rounded-full"></div>
 
           <div className="relative z-10 text-center">
-           
             <h3 className="maladroit-font md:text-3xl text-xl font-bold text-[var(--color-text-primary)] mb-4">
               Stay Updated with SniperAI Bot
             </h3>
