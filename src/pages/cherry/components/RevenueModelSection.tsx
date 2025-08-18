@@ -277,7 +277,13 @@ const RevenueModelSection: React.FC<RevenueModelSectionProps> = () => {
             </div>
           </div>
         </div>
-
+        <div className="flex items-center justify-center mb-8">
+          <div className="bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform hover:rotate-0 transition-all duration-300">
+            <span className="text-sm md:text-lg winky-sans-font text-[var(--color-accent)]">
+              Ecosystem Growth
+            </span>
+          </div>
+        </div>
         {/* Value Flow Diagram */}
         <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] p-8 relative overflow-hidden">
           {/* Floating Decorative Elements */}

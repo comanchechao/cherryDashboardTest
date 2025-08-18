@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
                     </svg>
                   </span>
                   <span className="wave-overlay"></span>
-                  <span className="btn-text">Sniper</span>
+                  <span className="btn-text">SniperAI Bot</span>
                 </button>
               </Link>{" "}
               <Link
@@ -228,7 +228,7 @@ const Navbar: React.FC = () => {
                 to="/cherrySniper"
                 className={getMobileLinkClasses("/cherrySniper")}
               >
-                Sniper
+                SniperAI Bot
               </Link>
 
               <Link
@@ -241,6 +241,7 @@ const Navbar: React.FC = () => {
               <Link to="/cherry" className={getMobileLinkClasses("/cherry")}>
                 $AIBOT
               </Link>
+
               {/* 
               <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
                 Roadmap

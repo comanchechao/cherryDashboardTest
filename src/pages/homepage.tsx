@@ -14,6 +14,7 @@ import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
+import CherryWebApp from "./cherryWebApp";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -174,7 +175,7 @@ const HomePage: React.FC = () => {
   };
 
   const handleSnipeNow = () => {
-    window.open("https://t.me/cherrySniperBot", "_blank");
+    window.open("/cherrySniper");
   };
 
   // const handleNewsletterSubscribe = async (emailValue: string) => {
@@ -794,16 +795,13 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <div className="relative lg:w-1/2 w-full max-w-4xl mx-auto">
-                  <div className="w-full aspect-[16/9] bg-transparent rounded-[36px] relative overflow-hidden">
+                  <div className="w-full aspect-[16/9] bg-transparent  relative overflow-hidden">
                     {/* Panel Content Placeholder */}
                     <div className="relative w-full h-full pt-12">
-                      <video
-                        src="/output.mp4"
-                        className="absolute transform overflow-hidden   inset-0 w-full   h-full object-cover rounded-[36px]"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
+                      <img
+                        src="/homepagebots.webp"
+                        alt="Cherry Web App"
+                        className="    w-full   h-full object-cover  "
                       />
                     </div>
                     {/* Inner Glow Effect */}
@@ -2333,183 +2331,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* <div className="section_sniper_spotlight lg:px-0 px-4 py-24 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(67,103,201,0.15)_0%,transparent_52%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(67,103,201,0.09)_0%,transparent_52%)]"></div>
-
-            <div className="absolute inset-0 opacity-20">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `linear-gradient(rgba(67,103,201,0.09) 1px, transparent 1px),
-                                  linear-gradient(90deg, rgba(67,103,201,0.09) 1px, transparent 1px)`,
-                  backgroundSize: "55px 55px",
-                }}
-              ></div>
-            </div>
-          </div>
-
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div
-                className="w-84 h-84 border border-[#4367c9]/20 rounded-full animate-spin-slow"
-                style={{ animationDuration: "38s" }}
-              ></div>
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 border border-[#4367c9]/15 rounded-full animate-spin-slow"
-                style={{
-                  animationDirection: "reverse",
-                  animationDuration: "33s",
-                }}
-              ></div>
-            </div>
-
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--color-accent)]/10 rounded-full   "></div>
-            <div
-              className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float   "
-              style={{ animationDelay: "0.5s" }}
-            ></div>
-            <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float   "
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/6 rounded-full animate-float   "
-              style={{ animationDelay: "1.5s" }}
-            ></div>
-          </div>
-
-          <div className="absolute inset-0 pointer-events-none opacity-15">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient
-                  id="questConnectionGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.2"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.05"
-                  />
-                </linearGradient>
-              </defs>
-              <path
-                d="M50 50 Q 150 30 250 50 T 450 50"
-                stroke="url(#questConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-              />
-              <path
-                d="M50 100 Q 150 80 250 100 T 450 100"
-                stroke="url(#questConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-                style={{ animationDelay: "0.7s" }}
-              />
-            </svg>
-          </div>
-
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col lg:flex-row lg:px-32 gap-12 items-center justify-center">
-              <div className="order-1 lg:order-2" data-spotlight-video>
-                <div className="bg-[var(--color-glass)] lg:h-[37rem] lg:w-[20rem] w-full   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform   transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-                  <div className="relative w-full h-full transform rounded-[16px] border-2 border-[var(--color-accent)]/30">
-                    <img
-                      src="https://storage.cherrybot.ai/cherryGame.webp"
-                      alt="Cherry Quest Game"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-                </div>
-              </div>
-
-              <div className="order-2" data-spotlight-content>
-                <div className="spotlight-content-wrapper">
-                  <div className="flex items-center mb-6">
-                    <span className="text-3xl winky-sans-font text-[var(--color-accent)]">
-                      Cherry Quest
-                    </span>
-                  </div>
-
-                  <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
-                    Click. Raid. Earn. Repeat.
-                  </h2>
-
-                  <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 mb-8">
-                    The Cherry Game is your daily dose of degen dopamine. Mine
-                    coins, upgrade cards, and raid to win $AIBOT.
-                  </p>
-
-                  <button
-                    onClick={handleStartQuesting}
-                    className="btn-wave-primary cursor-pointer flex items-center gap-2 text-xl"
-                  >
-                    <span className="wave-bg"></span>
-                    <span className="wave-left">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-auto h-full opacity-100 object-stretch"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-right">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="object-cover w-full h-full"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-overlay"></span>
-                    <span className="btn-text">S2 Coming Soon</span>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M5 12H19M19 12L12 5M19 12L12 19"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
+        <CherryWebApp />
         {/* Cherry AI in the News Section */}
         <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
           {/* Floating Elements Layer */}
@@ -3448,178 +3270,7 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div> */}
-        <div
-          ref={heroSectionRef}
-          className="scroll-container1 h-fit flex items-center justify-center relative overflow-hidden"
-          id="home"
-        >
-          {/* Floating Elements Layer */}
-          <div className="absolute inset-0 pointer-events-none">
-            {/* Orbital Rings */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div
-                className="w-96 h-96 border border-[#4367c9]/26 rounded-full animate-spin-slow"
-                style={{ animationDuration: "29s" }}
-              ></div>
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 border border-[#4367c9]/21 rounded-full animate-spin-slow"
-                style={{
-                  animationDirection: "reverse",
-                  animationDuration: "25s",
-                }}
-              ></div>
-            </div>
 
-            {/* Floating Particles */}
-            <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float   "></div>
-            <div
-              className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float   "
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float   "
-              style={{ animationDelay: "1.5s" }}
-            ></div>
-          </div>
-
-          {/* Connection Lines SVG */}
-          <div className="absolute inset-0 pointer-events-none opacity-15">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient
-                  id="revenueConnectionGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.2"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.05"
-                  />
-                </linearGradient>
-              </defs>
-              <path
-                d="M50 50 Q 150 30 250 50 T 450 50"
-                stroke="url(#revenueConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-              />
-              <path
-                d="M50 100 Q 150 80 250 100 T 450 100"
-                stroke="url(#revenueConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-                style={{ animationDelay: "0.7s" }}
-              />
-            </svg>
-          </div>
-
-          <div className="relative z-10 max-w-8xl my-28 px-4 lg:px-20 my-10">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              {/* Left Side Content */}
-              <div className="md:w-3/5">
-                <div className="flex flex-col justify-center items-start bg-[var(--color-glass)]   border border-[var(--color-glass-border)]  rounded-[4px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] p-6 md:p-8 relative overflow-hidden transform mb-8 hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300">
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-
-                  <span className="maladroit-font text-xl md:text-3xl lg:text-4xl font-extrabold text-[var(--color-text-primary)] leading-tight animate-[wiggle_7s_ease-in-out_infinite] origin-center">
-                    Cherry Revenue Growth
-                  </span>
-
-                  <span className="winky-sans-font text-lg md:text-2xl text-[var(--color-accent)] relative mb-6">
-                    Market Analytics & Revenue Data
-                  </span>
-
-                  <p className="winky-sans-font text-sm md:text-xl text-[var(--color-text-secondary)]/90 mb-6 max-w-3xl relative">
-                    Explore in-depth market analytics, revenue projections, and
-                    upcoming features that make Cherry AI a{" "}
-                    <span className="relative text-[var(--color-accent)]">
-                      revolutionary platform
-                    </span>{" "}
-                    in the crypto space.
-                  </p>
-
-                  {/* Bottom Decorative Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-6 relative z-20">
-                  <button
-                    onClick={() => {
-                      window.location.href = "/userGrowth";
-                    }}
-                    className="btn-wave-primary cursor-pointer flex items-center gap-2 text-xl"
-                  >
-                    <span className="wave-bg"></span>
-                    <span className="wave-left">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-auto h-full opacity-100 object-stretch"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-right">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="object-cover w-full h-full"
-                        viewBox="0 0 487 487"
-                      >
-                        <path
-                          fillOpacity=".1"
-                          fillRule="nonzero"
-                          fill="#FFF"
-                          d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                        ></path>
-                      </svg>
-                    </span>
-                    <span className="wave-overlay"></span>
-                    <span className="btn-text">Learn More</span>
-                    <Icon
-                      className="text-white"
-                      icon="tabler:chart-pie"
-                      width={20}
-                      height={20}
-                    />
-                  </button>
-                </div>
-              </div>
-
-              {/* Right Side - Floating Mascot/Chart */}
-              <div className="w-full max-w-4xl relative lg:p-10 p-4">
-                <div className="relative z-10 float-element">
-                  <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)]  rounded-[4px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] p-10 hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2">
-                    {/* Floating Decorative Elements */}
-                    <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-4 left-4 w-6 h-6 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-
-                    <img
-                      src="https://storage.cherrybot.ai/chart.png"
-                      alt="Cherry Analytics"
-                      className="h-full mx-auto"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <RevenueStreams />
         <Footer />
       </div>

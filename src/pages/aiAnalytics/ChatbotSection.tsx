@@ -18,9 +18,11 @@ const ChatbotSection: React.FC = () => {
               </p>
             </div>
             <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-xl h-56 flex items-center justify-center">
-              <span className="winky-sans-font text-[var(--color-text-secondary)]">
-                Just a static image of a chatbot
-              </span>
+              <img
+                src="/chatbot.webp"
+                alt="Chatbot"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
