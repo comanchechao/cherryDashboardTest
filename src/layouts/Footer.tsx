@@ -64,10 +64,10 @@ const Footer: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-block relative">
             <img
-              src="/eat_cherry.png"
+              src="/footer.png"
               loading="lazy"
               alt="Cherry mascot"
-              className="w-32 h-32 object-contain animate-float relative z-10"
+              className="w-[28rem]  object-contain animate-float relative z-10"
             />
             {/* Glow Effect */}
             <div className="absolute inset-0 w-32 h-32 bg-[#4367c9]/30 rounded-full blur-2xl animate-pulse"></div>
