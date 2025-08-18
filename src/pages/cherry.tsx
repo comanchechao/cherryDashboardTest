@@ -4,7 +4,6 @@ import "../css/hero-animations.css";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import {
-  HeroSection,
   TokenOverviewSection,
   TokenomicsSection,
   TokenomicsTableSection,
