@@ -20,9 +20,6 @@ const CherryToken: React.FC = () => {
       <div className=" ">
         <Navbar />
 
-        {/* Hero Section */}
-        <HeroSection />
-
         <TokenOverviewSection />
 
         <TokenomicsSection />

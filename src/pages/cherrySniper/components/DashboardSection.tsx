@@ -94,7 +94,7 @@ const DashboardSection: React.FC = () => {
 
       {/* Custom Toast for Copy */}
       <div
-        className={`fixed top-10 right-10 z-50 bg-[var(--color-glass)] border-4 border-[var(--color-accent)] rounded-xl shadow-[4px_4px_0px_#321017] px-5 py-3 flex items-center gap-3 transition-all duration-300 transform ${
+        className={`fixed top-10 right-10 z-50 bg-[var(--color-glass)] border-4 border-[var(--color-accent)] rounded-xl   px-5 py-3 flex items-center gap-3 transition-all duration-300 transform ${
           toastVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-10 pointer-events-none"

@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
 import RewardSection from "./components/rewardSection";
+import AchievementsModal from "./components/AchievementsModal";
 import StatCards from "./components/statCards";
 import Leaderboard from "./components/leaderboard";
 // import PointsLeaderboard from "./components/pointsLeaderboard";
@@ -362,7 +363,7 @@ const Rewards: React.FC = () => {
                     onClick={() => setActiveTab("airdrop")}
                     className={`px-6 py-3 rounded-xl winky-sans-font font-medium transition-all duration-200 flex items-center gap-2 ${
                       activeTab === "airdrop"
-                        ? "bg-black text-white shadow-[2px_2px_0px_#321017] transform translate-y-0.5"
+                        ? "bg-black text-white   transform translate-y-0.5"
                         : "text-white hover:bg-cherry-burgundy/10"
                     }`}
                   >
@@ -418,7 +419,7 @@ const Rewards: React.FC = () => {
                     className="space-y-8"
                   >
                     {!isAuthenticated ? (
-                      <div className="bg-cherry-cream rounded-2xl border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
+                      <div className="bg-cherry-cream w-full rounded-2xl border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
                         {/* Header */}
                         <div className="bg-black px-4 lg:px-6 py-4 flex items-center justify-between">
                           <h3 className="maladroit-font text-sm lg:text-2xl text-white flex items-center gap-2">
@@ -509,7 +510,7 @@ const Rewards: React.FC = () => {
                                 "_blank"
                               );
                             }}
-                            className="bg-cherry-red text-white font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-3 mx-auto"
+                            className="bg-cherry-red text-white font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-3 mx-auto"
                           >
                             <Icon
                               icon="ic:baseline-telegram"
@@ -603,7 +604,7 @@ const Rewards: React.FC = () => {
                                 "_blank"
                               );
                             }}
-                            className="bg-cherry-red text-white font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-3 mx-auto"
+                            className="bg-cherry-red text-white font-bold py-4 px-8 rounded-xl border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-3 mx-auto"
                           >
                             <Icon
                               icon="ic:baseline-telegram"
@@ -634,7 +635,7 @@ const Rewards: React.FC = () => {
                     onClick={() => setShowHowItWorksModal(false)}
                   >
                     <div
-                      className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy shadow-[12px_12px_0px_#321017] max-w-md w-full max-h-[90vh] overflow-y-auto"
+                      className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy   max-w-md w-full max-h-[90vh] overflow-y-auto"
                       onClick={(e) => e.stopPropagation()}
                     >
                       {/* Modal Header */}
@@ -752,7 +753,7 @@ const Rewards: React.FC = () => {
                             );
                             setShowHowItWorksModal(false);
                           }}
-                          className="w-full bg-cherry-red text-white font-bold py-3 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center justify-center gap-2"
+                          className="w-full bg-cherry-red text-white font-bold py-3 px-6 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-2"
                         >
                           <Icon
                             icon="mdi:content-copy"
@@ -768,285 +769,10 @@ const Rewards: React.FC = () => {
                 )}
 
                 {/* Achievements Modal */}
-                <AnimatePresence>
-                  {showAchievementsModal && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-                      onClick={() => setShowAchievementsModal(false)}
-                    >
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="bg-cherry-cream rounded-2xl shadow-[12px_12px_0px_#121a2a] max-w-5xl w-full max-h-[90vh] flex flex-col"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {/* Modal Header */}
-                        <div className="bg-black px-4 sm:px-6 py-4 flex items-center rounded-lg justify-between">
-                          <h3 className="maladroit-font text-lg sm:text-xl text-white flex items-center gap-2">
-                            <Icon
-                              icon="ph:medal-bold"
-                              width={24}
-                              height={24}
-                              className="text-white"
-                            />
-                            Achievement Levels
-                          </h3>
-                          <button
-                            onClick={() => setShowAchievementsModal(false)}
-                            className="text-white hover:text-cherry-red transition-colors"
-                          >
-                            <Icon icon="mdi:close" width={24} height={24} />
-                          </button>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="p-4 overflow-y-auto">
-                          <div className="mb-4">
-                            <p className="winky-sans-font text-white text-sm mb-3">
-                              Unlock achievements by reaching trading volume
-                              milestones. Each level grants bonus points and
-                              exclusive rewards.
-                            </p>
-                          </div>
-
-                          {/* Achievement List */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.1, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Bronze.png"
-                                alt="Bronze Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Bronze
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $1,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +50 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.2, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Silver.png"
-                                alt="Silver Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Silver
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $5,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +200 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.3, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Gold.png"
-                                alt="Gold Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Gold
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $10,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +500 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.4, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Platinum.png"
-                                alt="Platinum Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Platinum
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $50,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +1,500 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.5, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Diamond.png"
-                                alt="Diamond Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Diamond
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $100,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +3,500 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.6, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Ruby.png"
-                                alt="Ruby Badge"
-                                className="w-12 h-12 sm:w-14 sm:h-14 object-contain sm:mb-2"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Ruby
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $250,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +8,000 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.7, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Emerald.png"
-                                alt="Emerald Badge"
-                                className="w-12 h-12 sm:w-16 sm:h-16 object-contain sm:mb-3"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Emerald
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $500,000 Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +20,000 Points
-                              </span>
-                            </motion.div>
-
-                            <motion.div
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.8, duration: 0.3 }}
-                              className="bg-cherry-cream rounded-lg border-2 border-cherry-burgundy p-3 sm:p-4 hover:shadow-[4px_4px_0px_#321017] transition-all duration-200 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0"
-                            >
-                              <img
-                                src="https://storage.cherrybot.ai/Legendary.png"
-                                alt="Legendary Badge"
-                                className="w-12 h-12 sm:w-16 sm:h-16 object-contain sm:mb-3"
-                              />
-                              <div className="flex-grow text-left sm:text-center">
-                                <h4 className="winky-sans-font text-white font-bold sm:mb-1">
-                                  Legendary
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm opacity-80 sm:mb-2">
-                                  $1,000,000+ Volume
-                                </p>
-                              </div>
-                              <span className="winky-sans-font text-cherry-red font-bold">
-                                +50,000 Points
-                              </span>
-                            </motion.div>
-                          </div>
-
-                          {/* Additional Info */}
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.9, duration: 0.3 }}
-                            className="mt-4 p-3 bg-cherry-burgundy/10 rounded-lg border-2 border-cherry-burgundy"
-                          >
-                            <h5 className="winky-sans-font text-white font-bold mb-2">
-                              How It Works:
-                            </h5>
-                            <div className="space-y-1 text-sm">
-                              <p className="winky-sans-font text-white">
-                                • Each achievement unlocks immediately when you
-                                reach the volume threshold
-                              </p>
-                              <p className="winky-sans-font text-white">
-                                • Bonus points are awarded once per achievement
-                                level
-                              </p>
-                              <p className="winky-sans-font text-white">
-                                • Higher achievements unlock exclusive rewards
-                                and benefits
-                              </p>
-                              <p className="winky-sans-font text-white  ">
-                                • Every $10 in volume = +1 point
-                              </p>
-                              <p className="winky-sans-font text-white   ">
-                                • Top users by points win Cherry Airdrop and bot
-                                revenue rewards
-                              </p>
-                            </div>
-                          </motion.div>
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <AchievementsModal
+                  visible={showAchievementsModal}
+                  onClose={() => setShowAchievementsModal(false)}
+                />
               </div>
             </div>
           </div>

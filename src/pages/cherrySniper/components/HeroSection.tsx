@@ -98,7 +98,7 @@ const HeroSection: React.FC = () => {
                 See SniperAI Bot in Action
               </h3>
               <VideoPlayer
-                src="https://storage.cherrybot.ai/sniperModes.mp4"
+                src="/sniperAd.mp4"
                 className="w-full h-auto max-h-[60vh] object-cover"
                 autoPlay={true}
               />

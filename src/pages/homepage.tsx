@@ -1055,76 +1055,52 @@ const HomePage: React.FC = () => {
                 ref={featureCard1Ref}
                 className="feature-card opacity-0 transform translate-y-16 h-full"
               >
-                <div className="relative h-full group">
-                  {/* Card Body */}
-                  <div className="flex flex-col items-center bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[4px] overflow-hidden hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)] transition-all duration-300 transform hover:-translate-y-2 card-body relative h-full p-6">
-                    {/* Floating Decorative Elements */}
-                    <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
+                <div className="group relative h-full">
+                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                    </div>
 
-                    {/* Connection Lines SVG */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                      <defs>
-                        <linearGradient
-                          id="card1Gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop
-                            offset="0%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.3"
-                          />
-                          <stop
-                            offset="100%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.1"
-                          />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M20 20 Q 60 10 100 20 T 180 20"
-                        stroke="url(#card1Gradient)"
-                        strokeWidth="1"
-                        fill="none"
-                        className="animate-pulse"
-                      />
-                    </svg>
-
-                    {/* Left Side with Image */}
-                    <div className="p-4 flex items-center justify-center w-full md:w-auto relative z-10">
-                      <div className="relative image-container">
-                        <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
+                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                      <div className="flex flex-col items-center md:items-start">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
                           <img
-                            src="https://storage.cherrybot.ai/chara_bot.svg"
+                            src="/community.png"
                             alt="Management Bot"
-                            className="w-full h-full object-contain mt-6 animate-float"
+                            className="w-5/6 h-5/6 object-contain"
                           />
                         </div>
                       </div>
-                    </div>
 
-                    {/* Right Side with Content */}
-                    <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
-                      <div className="mb-6">
-                        <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
+                      <div className="w-full md:flex-1 text-center md:text-left">
+                        <h3 className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           Community AI Bot
                         </h3>
-                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-green-600 winky-sans-font text-lg transition-all duration-300">
-                          200k+ Communities
-                        </p>{" "}
-                        <p className="text-green-600 winky-sans-font text-lg transition-all duration-300">
-                          800k+ Users | 15k+ Active Users
-                        </p>
-                      </div>
-
-                      <div className="mt-auto">
+                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
+                        <div className="grid grid-cols-1 gap-2">
+                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              className="text-[var(--color-accent)]"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3m-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3m0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13m8 0c-.29 0-.62.02-.97.05c1.16.84 1.97 1.93 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                              />
+                            </svg>
+                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
+                              200k+ Communities
+                            </span>
+                          </div>
+                        </div>{" "}
                         <button
                           onClick={handleExploreBot}
-                          className="btn-wave-primary cursor-pointer flex items-center gap-2"
+                          className="btn-wave-primary mt-4 cursor-pointer flex items-center gap-2"
                         >
                           <span className="wave-bg"></span>
                           <span className="wave-left">
@@ -1159,242 +1135,97 @@ const HomePage: React.FC = () => {
                           <span className="btn-text">Learn More</span>
                         </button>
                       </div>
-
-                      {/* Bottom Decorative Bar */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <div
-                ref={featureCard2Ref}
-                className="feature-card opacity-0 transform translate-y-16 h-full"
-              >
-                <div className="relative h-full group">
-                  <div className="flex flex-col items-center bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[4px] overflow-hidden hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)] transition-all duration-300 transform hover:-translate-y-2 card-body relative h-full p-6">
-                    <div
-                      className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"
-                      style={{ animationDelay: "0.5s" }}
-                    ></div>
-                    <div
-                      className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"
-                      style={{ animationDelay: "1s" }}
-                    ></div>
 
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                      <defs>
-                        <linearGradient
-                          id="card2Gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop
-                            offset="0%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.3"
-                          />
-                          <stop
-                            offset="100%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.1"
-                          />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M20 20 Q 60 10 100 20 T 180 20"
-                        stroke="url(#card2Gradient)"
-                        strokeWidth="1"
-                        fill="none"
-                        className="animate-pulse"
-                        style={{ animationDelay: "0.3s" }}
-                      />
-                    </svg>
-
-                    <div className="p-4 flex items-center justify-center w-full md:w-auto relative z-10">
-                      <div className="relative image-container">
-                        <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
-                          <img
-                            src="https://storage.cherrybot.ai/chara_earn.svg"
-                            alt="Cherry Quest"
-                            className="w-full h-full object-contain mt-6 animate-float"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
-                      <div className="mb-6">
-                        <h3 className="text-[25px] mb-4 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
-                          Cherry Quest
-                        </h3>
-                        <div className="h-1 w-24 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-[var(--color-text-secondary)]/90 winky-sans-font text-lg transition-all duration-300">
-                          Gamify your growth with task rewards.
-                        </p>
-                      </div>
-
-                      <div className="mt-auto">
-                        <button
-                          onClick={handleStartQuesting}
-                          className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                        >
-                          <span className="wave-bg"></span>
-                          <span className="wave-left">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-auto h-full opacity-100 object-stretch"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-right">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="object-cover w-full h-full"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-overlay"></span>
-                          <span className="btn-text">Start Questing</span>
-                        </button>
-                      </div>
-
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               {/* Feature Card 3 - Cherry AI Trending */}
               <div
                 ref={featureCard3Ref}
                 className="feature-card opacity-0 transform translate-y-16 h-full"
               >
-                <div className="relative h-full group">
-                  {/* Card Body */}
-                  <div className="flex flex-col items-center bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[4px] overflow-hidden hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)] transition-all duration-300 transform hover:-translate-y-2 card-body relative h-full p-6">
-                    {/* Floating Decorative Elements */}
-                    <div
-                      className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"
-                      style={{ animationDelay: "1s" }}
-                    ></div>
-                    <div
-                      className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"
-                      style={{ animationDelay: "1.5s" }}
-                    ></div>
-
-                    {/* Connection Lines SVG */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                      <defs>
-                        <linearGradient
-                          id="card3Gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop
-                            offset="0%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.3"
-                          />
-                          <stop
-                            offset="100%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.1"
-                          />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M20 20 Q 60 10 100 20 T 180 20"
-                        stroke="url(#card3Gradient)"
-                        strokeWidth="1"
-                        fill="none"
-                        className="animate-pulse"
-                        style={{ animationDelay: "0.6s" }}
-                      />
-                    </svg>
-
-                    {/* Left Side with Image */}
-                    <div className="p-4 flex items-center justify-center w-full md:w-auto relative z-10">
-                      <div className="relative image-container">
-                        <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
-                          <img
-                            src="https://storage.cherrybot.ai/chara_trending.svg"
-                            alt="Cherry AI Trending"
-                            className="w-full h-full object-contain mt-6 animate-float"
-                          />
-                        </div>
-                      </div>
+                <div className="group relative h-full">
+                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    {/* Right Side with Content */}
-                    <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
-                      <div className="mb-6">
-                        <p className="text-4xl mb-1 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
+                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                      <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
+                        <img
+                          src="/analytics.png"
+                          alt="Cherry AI Trending"
+                          className="w-5/6 h-5/6 object-contain"
+                        />
+                      </div>
+
+                      <div className="w-full md:flex-1 text-center md:text-left">
+                        <h3 className="text-[25px] leading-4 maladroit-font text-[var(--color-text-primary)] mb-3">
                           Analytics AI
-                        </p>
-                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-green-600 winky-sans-font text-2xl transition-all duration-300">
-                          800k+ Users
-                        </p>
-                      </div>
-
-                      <div className="mt-auto">
-                        <button
-                          onClick={handleViewTrending}
-                          className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                        >
-                          <span className="wave-bg"></span>
-                          <span className="wave-left">
+                        </h3>
+                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
+                        <div className="grid grid-cols-1 gap-2 mt-2">
+                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
                             <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-auto h-full opacity-100 object-stretch"
-                              viewBox="0 0 487 487"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              className="text-[var(--color-accent)]"
                             >
                               <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                              ></path>
+                                fill="currentColor"
+                                d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3s-3 1.34-3 3s1.34 3 3 3m-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3m0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13m8 0c-.29 0-.62.02-.97.05c1.16.84 1.97 1.93 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                              />
                             </svg>
-                          </span>
-                          <span className="wave-right">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="object-cover w-full h-full"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-overlay"></span>
-                          <span className="btn-text">Learn More</span>
-                        </button>
-                      </div>
+                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
+                              800k+ Users
+                            </span>
+                          </div>
+                        </div>
 
-                      {/* Bottom Decorative Bar */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                        <div className="mt-6">
+                          <button
+                            onClick={handleViewTrending}
+                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
+                          >
+                            <span className="wave-bg"></span>
+                            <span className="wave-left">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-auto h-full opacity-100 object-stretch"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-right">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="object-cover w-full h-full"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-overlay"></span>
+                            <span className="btn-text">Learn More</span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1403,117 +1234,87 @@ const HomePage: React.FC = () => {
                 ref={featureCard4Ref}
                 className="feature-card opacity-0 transform translate-y-16 h-full"
               >
-                <div className="relative h-full group">
-                  {/* Card Body */}
-                  <div className="flex flex-col items-center bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[3px] overflow-hidden hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)] transition-all duration-300 transform hover:-translate-y-2 card-body relative h-full p-6">
-                    {/* Floating Decorative Elements */}
-                    <div
-                      className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"
-                      style={{ animationDelay: "1.5s" }}
-                    ></div>
-                    <div
-                      className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"
-                      style={{ animationDelay: "2s" }}
-                    ></div>
-
-                    {/* Connection Lines SVG */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                      <defs>
-                        <linearGradient
-                          id="card4Gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="100%"
-                        >
-                          <stop
-                            offset="0%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.3"
-                          />
-                          <stop
-                            offset="100%"
-                            stopColor="var(--color-accent)"
-                            stopOpacity="0.1"
-                          />
-                        </linearGradient>
-                      </defs>
-                      <path
-                        d="M20 20 Q 60 10 100 20 T 180 20"
-                        stroke="url(#card4Gradient)"
-                        strokeWidth="1"
-                        fill="none"
-                        className="animate-pulse"
-                        style={{ animationDelay: "0.9s" }}
-                      />
-                    </svg>
-
-                    {/* Left Side with Image */}
-                    <div className="p-4 flex items-center justify-center w-full md:w-auto relative z-10">
-                      <div className="relative image-container">
-                        <div className="w-36 h-36 overflow-hidden md:w-44 md:h-44 flex items-center justify-center bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent)]/80 rounded-full border-4 border-[var(--color-accent)]/30 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
-                          <img
-                            src="https://storage.cherrybot.ai/cherrySniper.webp"
-                            alt="SniperAI Bot"
-                            className="w-full h-full object-contain mt-6 animate-float"
-                          />
-                        </div>
-                      </div>
+                <div className="group relative h-full">
+                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
+                    <div className="absolute inset-0 pointer-events-none">
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
+                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
+                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
                     </div>
 
-                    {/* Right Side with Content */}
-                    <div className="p-4 w-full md:flex-1 flex flex-col justify-center items-center text-center md:items-start md:text-left relative z-10">
-                      <div className="mb-6">
-                        <p className="text-2xl mb-1 maladroit-font text-[var(--color-text-primary)] transform transition-all duration-300">
+                    <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-6">
+                      <div className="w-28 h-28 md:w-32 md:h-32 rounded-[14px] border border-[var(--color-glass-border)] bg-[var(--color-glass)]/80 flex items-center justify-center shadow-[0_10px_30px_rgba(67,103,201,0.12)]">
+                        <img
+                          src="/sniper.png"
+                          alt="SniperAI Bot"
+                          className="w-5/6 h-5/6 object-contain"
+                        />
+                      </div>
+
+                      <div className="w-full md:flex-1 text-center md:text-left">
+                        <p className="text-[25px] maladroit-font text-[var(--color-text-primary)] mb-3">
                           SniperAI Bot
                         </p>
-                        <div className="h-1 w-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent)]/60 mb-4 rounded-full mx-auto md:mx-0"></div>
-                        <p className="text-green-600 winky-sans-font text-2xl transition-all duration-300">
-                          15k+ Active Users
-                        </p>
-                      </div>
-
-                      <div className="mt-auto">
-                        <button
-                          onClick={handleSnipeNow}
-                          className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                        >
-                          <span className="wave-bg"></span>
-                          <span className="wave-left">
+                        <div className="h-[2px] w-16 md:w-20 bg-[var(--color-accent)]/70 rounded-full mx-auto md:mx-0 mb-4"></div>
+                        <div className="grid grid-cols-1 gap-2 mt-2">
+                          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-glass-border)] bg-[var(--color-glass)]/60 px-3 py-2">
                             <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-auto h-full opacity-100 object-stretch"
-                              viewBox="0 0 487 487"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              className="text-[var(--color-accent)]"
                             >
                               <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                              ></path>
+                                fill="currentColor"
+                                d="M3 3v18h18v-2H5V3H3m16 14l-4.5-6l-3.5 4.5l-2.5-3L6 15v2h13v-2z"
+                              />
                             </svg>
-                          </span>
-                          <span className="wave-right">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="object-cover w-full h-full"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-overlay"></span>
-                          <span className="btn-text">Learn More</span>
-                        </button>
-                      </div>
+                            <span className="winky-sans-font text-sm text-[var(--color-text-primary)]">
+                              15k+ Active Users
+                            </span>
+                          </div>
+                        </div>
 
-                      {/* Bottom Decorative Bar */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                        <div className="mt-6">
+                          <button
+                            onClick={handleSnipeNow}
+                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
+                          >
+                            <span className="wave-bg"></span>
+                            <span className="wave-left">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-auto h-full opacity-100 object-stretch"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-right">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="object-cover w-full h-full"
+                                viewBox="0 0 487 487"
+                              >
+                                <path
+                                  fillOpacity=".1"
+                                  fillRule="nonzero"
+                                  fill="#FFF"
+                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
+                                ></path>
+                              </svg>
+                            </span>
+                            <span className="wave-overlay"></span>
+                            <span className="btn-text">Learn More</span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -2028,7 +1829,7 @@ const HomePage: React.FC = () => {
                   <img
                     src="/phone.webp"
                     alt="cherrySniper"
-                    className="  h-full object-contain"
+                    className="  h-[39rem] object-contain"
                   />
 
                   {/* Floating Decorative Elements */}
@@ -2545,19 +2346,15 @@ const HomePage: React.FC = () => {
                 className="w-full flex justify-center items-center"
                 data-spotlight-video
               >
-                <div className="bg-[var(--color-glass)] mb-12 lg:h-[37rem] w-fit   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform    transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-                  <div className="relative w-fit h-full transform rounded-[16px] border-2 border-[var(--color-accent)]/30">
-                    <img
-                      src="https://storage.cherrybot.ai/trending.webp"
-                      alt="Cherry Trending"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+                <div className="relative w-fit h-full transform rounded-[16px]  ">
+                  <img
+                    src="/phoneTrending.webp"
+                    alt="Cherry Trending"
+                    className="  h-[35rem] object-contain"
+                  />
                 </div>
+
+                {/* Floating Decorative Elements */}
               </div>
             </div>
           </div>

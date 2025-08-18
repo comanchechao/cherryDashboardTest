@@ -116,8 +116,8 @@ const Careers: React.FC = () => {
                     </h3>
                   </div>
                   <p className="winky-sans-font text-sm lg:text-base text-cherry-burgundy">
-                    Get paid in USDC + $AIBOT equity options. You're not just
-                    an employee—you're part of the upside.
+                    Get paid in USDC + $AIBOT equity options. You're not just an
+                    employee—you're part of the upside.
                   </p>
                 </div>
 
@@ -264,7 +264,7 @@ const Careers: React.FC = () => {
 
           {/* How to Apply */}
           <div className="mb-12 lg:mb-16">
-            <div className="bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-xl lg:rounded-2xl border-2 lg:border-4 border-cherry-burgundy shadow-[4px_4px_0px_#321017] lg:shadow-[8px_8px_0px_#321017] p-6 lg:p-8 text-white relative overflow-hidden">
+            <div className="bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-xl lg:rounded-2xl border-2 lg:border-4 border-cherry-burgundy   lg:  p-6 lg:p-8 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-16 h-16 lg:w-32 lg:h-32 bg-white opacity-10 rounded-full transform translate-x-8 lg:translate-x-16 -translate-y-8 lg:-translate-y-16"></div>
               <div className="absolute bottom-0 left-0 w-20 h-20 lg:w-40 lg:h-40 bg-white opacity-10 rounded-full transform -translate-x-10 lg:-translate-x-20 translate-y-10 lg:translate-y-20"></div>
 
@@ -399,7 +399,7 @@ const Careers: React.FC = () => {
                     href="https://t.me/CherryTGBot"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-cherry-cream text-cherry-burgundy font-bold py-3 px-6 lg:px-8 rounded-lg lg:rounded-xl border border-b-2 border-r-2 lg:border-b-4 lg:border-r-4 border-cherry-burgundy hover:border-b-1 hover:border-r-1 lg:hover:border-b-2 lg:hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[2px_2px_0px_#321017] lg:shadow-[4px_4px_0px_#321017] hover:shadow-[1px_1px_0px_#321017] lg:hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center gap-2 text-sm lg:text-base"
+                    className="bg-cherry-cream text-cherry-burgundy font-bold py-3 px-6 lg:px-8 rounded-lg lg:rounded-xl border border-b-2 border-r-2 lg:border-b-4 lg:border-r-4 border-cherry-burgundy hover:border-b-1 hover:border-r-1 lg:hover:border-b-2 lg:hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   lg:  hover:shadow-[1px_1px_0px_#321017] lg:hover:  winky-sans-font flex items-center gap-2 text-sm lg:text-base"
                   >
                     <Icon icon="ic:baseline-telegram" width={18} height={18} />
                     <span>Join Community</span>

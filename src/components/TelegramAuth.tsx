@@ -36,7 +36,7 @@ const TelegramAuth: React.FC = () => {
     return (
       <button
         disabled
-        className="flex items-center cursor-not-allowed space-x-2 bg-cherry-cream border-2 border-cherry-burgundy px-4 py-2.5 rounded-xl transition-all duration-300 opacity-50 shadow-[2px_2px_0px_#321017]"
+        className="flex items-center cursor-not-allowed space-x-2 bg-cherry-cream border-2 border-cherry-burgundy px-4 py-2.5 rounded-xl transition-all duration-300 opacity-50  "
       >
         <Icon
           icon="eos-icons:loading"
@@ -55,7 +55,7 @@ const TelegramAuth: React.FC = () => {
         {/* Logged In Button */}
         <button
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          className="flex items-center cursor-pointer space-x-2 bg-cherry-red hover:bg-cherry-red/90 border border-b-4 border-r-4 border-cherry-burgundy    px-4 py-2.5 rounded-xl transition-all duration-200 transform-gpu shadow-[2px_2px_0px_#321017]   group"
+          className="flex items-center cursor-pointer space-x-2 bg-cherry-red hover:bg-cherry-red/90 border border-b-4 border-r-4 border-cherry-burgundy    px-4 py-2.5 rounded-xl transition-all duration-200 transform-gpu     group"
           aria-label="Telegram Auth"
         >
           <Icon
@@ -118,7 +118,7 @@ const TelegramAuth: React.FC = () => {
               <div className="flex gap-3 pt-2">
                 <button
                   onClick={handleLogout}
-                  className="flex items-center w-full cursor-pointer gap-3 px-4 py-3 bg-cherry-burgundy hover:bg-red-600 border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 rounded-xl transition-all duration-200 transform-gpu shadow-[2px_2px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] group"
+                  className="flex items-center w-full cursor-pointer gap-3 px-4 py-3 bg-cherry-burgundy hover:bg-red-600 border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 rounded-xl transition-all duration-200 transform-gpu   hover:  group"
                 >
                   <Icon
                     icon="material-symbols:logout"

@@ -219,7 +219,7 @@ const Team: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Team Member 1 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -289,7 +289,7 @@ const Team: React.FC = () => {
                           "noreferrer"
                         )
                       }
-                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                     >
                       <Icon
                         icon="mdi:linkedin"
@@ -305,7 +305,7 @@ const Team: React.FC = () => {
 
               {/* Team Member 2 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -378,7 +378,7 @@ const Team: React.FC = () => {
                           "noreferrer"
                         )
                       }
-                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                     >
                       <Icon
                         icon="mdi:linkedin"
@@ -394,7 +394,7 @@ const Team: React.FC = () => {
 
               {/* Team Member 3 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -468,7 +468,7 @@ const Team: React.FC = () => {
                           "noreferrer"
                         )
                       }
-                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                      className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                     >
                       <Icon
                         icon="mdi:linkedin"
@@ -496,7 +496,7 @@ const Team: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Team Member 4 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 flex flex-col items-center">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -521,7 +521,7 @@ const Team: React.FC = () => {
 
                 {/* Team Member 5 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 flex flex-col items-center">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -546,7 +546,7 @@ const Team: React.FC = () => {
 
                 {/* Team Member 6 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 flex flex-col items-center">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -590,7 +590,7 @@ const Team: React.FC = () => {
 
             <button
               onClick={() => window.open("/careers", "_blank")}
-              className="text-white bg-cherry-red font-bold py-3 px-8 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu inline-flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+              className="text-white bg-cherry-red font-bold py-3 px-8 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu inline-flex items-center gap-2   hover:  winky-sans-font"
             >
               <Icon
                 icon="mdi:briefcase-outline"

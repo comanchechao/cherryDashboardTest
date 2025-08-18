@@ -15,6 +15,8 @@ import Rewards from "./pages/rewards/index";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./components/AuthProvider";
 import WebTrending from "./pages/webTrending";
+import CommunityAI from "./pages/communityAI";
+import AIAnalytics from "./pages/aiAnalytics";
 function App() {
   const location = useLocation();
 
@@ -99,6 +101,14 @@ function App() {
                 }
               />
               <Route
+                path="/communityAI"
+                element={
+                  <PageLayout>
+                    <CommunityAI />
+                  </PageLayout>
+                }
+              />
+              <Route
                 path="/rewards"
                 element={
                   <PageLayout>
@@ -111,6 +121,14 @@ function App() {
                 element={
                   <PageLayout>
                     <WebTrending />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/ai-analytics"
+                element={
+                  <PageLayout>
+                    <AIAnalytics />
                   </PageLayout>
                 }
               />

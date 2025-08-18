@@ -293,7 +293,7 @@ const Insights: React.FC = () => {
                     onClick={() => {
                       window.open("https://docs.cherrybot.co/", "_blank");
                     }}
-                    className="text-white bg-cherry-red    md:py-4 py-2 md:px-10 px-4   rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-2 shadow-[2px_2px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
+                    className="text-white bg-cherry-red    md:py-4 py-2 md:px-10 px-4   rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-2   hover: "
                   >
                     <span className="relative text-lg winky-sans-font text-cherry-cream">
                       View Docs
@@ -310,7 +310,7 @@ const Insights: React.FC = () => {
                     onClick={() => {
                       window.open("https://t.me/CherryTGBot", "_blank");
                     }}
-                    className="bg-cherry-cream   md:py-4 py-2 md:px-10 px-4    rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-2 shadow-[2px_2px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
+                    className="bg-cherry-cream   md:py-4 py-2 md:px-10 px-4    rounded-xl border border-b-8 border-r-8 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu text-xl flex items-center gap-2   hover: "
                   >
                     <span className="relative text-lg winky-sans-font text-cherry-burgundy">
                       Explore Cherry Bot
@@ -331,7 +331,7 @@ const Insights: React.FC = () => {
                   <img
                     src="https://storage.cherrybot.ai/chart.png"
                     alt="Cherry Analytics"
-                    className="h-full  p-10  mx-auto rounded-xl border-4 border-cherry-burgundy shadow-[8px_8px_0px_#321017]"
+                    className="h-full  p-10  mx-auto rounded-xl border-4 border-cherry-burgundy  "
                   />
                 </div>
               </div>
@@ -616,7 +616,7 @@ const Insights: React.FC = () => {
                 window.open("https://t.me/cherrycommunity", "_blank")
               }
               rel="noreferrer"
-              className="  bg-cherry-red   md:py-4 py-2 md:px-10 px-4  rounded-xl border border-b-6 border-r-6 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-2 hover:translate-x-2 transition-all duration-200 transform-gpu flex items-center gap-2  ] hover:shadow-[2px_2px_0px_#321017] winky-sans-font text-white"
+              className="  bg-cherry-red   md:py-4 py-2 md:px-10 px-4  rounded-xl border border-b-6 border-r-6 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-2 hover:translate-x-2 transition-all duration-200 transform-gpu flex items-center gap-2  ] hover:  winky-sans-font text-white"
             >
               <span className="winky-sans-font text-lg text-cherry-cream">
                 Learn More
@@ -640,7 +640,7 @@ const Insights: React.FC = () => {
               {/* Left Side - Image */}
               <div className="lg:w-1/2 relative">
                 <div className="relative marketing-content z-10">
-                  <div className="bg-cherry-red rounded-2xl border-4 border-cherry-burgundy p-8 shadow-[8px_8px_0px_#321017] transform hover:-translate-y-2 transition-all duration-300">
+                  <div className="bg-cherry-red rounded-2xl border-4 border-cherry-burgundy p-8   transform hover:-translate-y-2 transition-all duration-300">
                     <div className="flex flex-col items-center justify-between gap-8">
                       <h3 className="maladroit-font text-3xl text-cherry-cream mb-3 text-center">
                         Cherry AI's Marketing Edge
@@ -717,7 +717,7 @@ const Insights: React.FC = () => {
                           href="https://docs.cherrybot.co/"
                           target="_blank"
                           rel="noreferrer"
-                          className="bg-cherry-cream    py-3 px-8 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font text-cherry-burgundy"
+                          className="bg-cherry-cream    py-3 px-8 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font text-cherry-burgundy"
                         >
                           <span>Read Whitepaper</span>
                           <Icon icon="tabler:file-text" className="w-5 h-5" />

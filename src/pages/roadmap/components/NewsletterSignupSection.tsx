@@ -142,7 +142,7 @@ const NewsletterSignupSection: React.FC = () => {
               <button
                 onClick={() => handleNewsletterSubscribe(email)}
                 disabled={isSubscribing}
-                className="bg-[var(--color-accent)] text-white font-bold py-3 px-8 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[var(--color-accent)] text-white font-bold py-3 px-8 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="text-white">
                   {isSubscribing ? "Joining..." : "Join Waitlist"}

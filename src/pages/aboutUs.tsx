@@ -216,7 +216,7 @@ const AboutUs: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Team Member 1 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -289,7 +289,7 @@ const AboutUs: React.FC = () => {
                             "noreferrer"
                           )
                         }
-                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                       >
                         <Icon
                           icon="mdi:linkedin"
@@ -306,7 +306,7 @@ const AboutUs: React.FC = () => {
 
               {/* Team Member 2 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -382,7 +382,7 @@ const AboutUs: React.FC = () => {
                             "noreferrer"
                           )
                         }
-                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                       >
                         <Icon
                           icon="mdi:linkedin"
@@ -399,7 +399,7 @@ const AboutUs: React.FC = () => {
 
               {/* Team Member 3 */}
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -441,13 +441,7 @@ const AboutUs: React.FC = () => {
                   </svg>
 
                   <div className="relative   z-10 p-6 h-full flex flex-col items-center justify-between">
-                    <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg group-hover:rotate-6 transition-all duration-300">
-                      <img
-                        src="https://storage.cherrybot.ai/Med.webp"
-                        alt="Mohammad Benahcene"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg group-hover:rotate-6 transition-all duration-300"></div>
 
                     <h3 className="text-2xl font-bold mt-6 mb-2 maladroit-font text-cherry-burgundy text-center">
                       Mohammad Benahcene
@@ -475,7 +469,7 @@ const AboutUs: React.FC = () => {
                             "noreferrer"
                           )
                         }
-                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                       >
                         <Icon
                           icon="mdi:linkedin"
@@ -490,7 +484,7 @@ const AboutUs: React.FC = () => {
                 </div>
               </div>
               <div className="team-card group">
-                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                   <svg
                     className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
                     preserveAspectRatio="none"
@@ -568,7 +562,7 @@ const AboutUs: React.FC = () => {
                             "noreferrer"
                           )
                         }
-                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2 shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017] winky-sans-font"
+                        className="mt-auto text-white bg-cherry-red font-bold py-2 px-4 rounded-xl border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu flex items-center gap-2   hover:  winky-sans-font"
                       >
                         <Icon
                           icon="mdi:linkedin"
@@ -594,7 +588,7 @@ const AboutUs: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Team Member 4 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 h-full flex flex-col items-center ">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -619,7 +613,7 @@ const AboutUs: React.FC = () => {
 
                 {/* Team Member 5 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 h-full flex flex-col items-center ">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -644,7 +638,7 @@ const AboutUs: React.FC = () => {
 
                 {/* Team Member 6 */}
                 <div className="team-card group">
-                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:shadow-[8px_8px_0px_#321017] transition-all duration-300 transform hover:-translate-y-2 h-full">
+                  <div className="relative bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden hover:  transition-all duration-300 transform hover:-translate-y-2 h-full">
                     <div className="relative z-10 p-6 h-full flex flex-col items-center ">
                       <div className="w-36 h-36 overflow-hidden rounded-full border-4 border-cherry-burgundy bg-gradient-to-br from-cherry-red to-cherry-burgundy shadow-lg flex items-center justify-center group-hover:rotate-6 transition-all duration-300">
                         <img
@@ -917,7 +911,7 @@ const AboutUs: React.FC = () => {
 
             {/* How to Apply */}
             <div className="mb-12 lg:mb-16">
-              <div className="bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-xl lg:rounded-2xl border-2 lg:border-4 border-cherry-burgundy shadow-[4px_4px_0px_#321017] lg:shadow-[8px_8px_0px_#321017] p-6 lg:p-8 text-white relative overflow-hidden">
+              <div className="bg-gradient-to-br from-cherry-red to-cherry-burgundy rounded-xl lg:rounded-2xl border-2 lg:border-4 border-cherry-burgundy   lg:  p-6 lg:p-8 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 h-16 lg:w-32 lg:h-32 bg-white opacity-10 rounded-full transform translate-x-8 lg:translate-x-16 -translate-y-8 lg:-translate-y-16"></div>
                 <div className="absolute bottom-0 left-0 w-20 h-20 lg:w-40 lg:h-40 bg-white opacity-10 rounded-full transform -translate-x-10 lg:-translate-x-20 translate-y-10 lg:translate-y-20"></div>
 
@@ -1052,7 +1046,7 @@ const AboutUs: React.FC = () => {
                       href="https://t.me/CherryTGBot"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-cherry-cream text-cherry-burgundy font-bold py-3 px-6 lg:px-8 rounded-lg lg:rounded-xl border border-b-2 border-r-2 lg:border-b-4 lg:border-r-4 border-cherry-burgundy hover:border-b-1 hover:border-r-1 lg:hover:border-b-2 lg:hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu shadow-[2px_2px_0px_#321017] lg:shadow-[4px_4px_0px_#321017] hover:shadow-[1px_1px_0px_#321017] lg:hover:shadow-[2px_2px_0px_#321017] winky-sans-font flex items-center gap-2 text-sm lg:text-base"
+                      className="bg-cherry-cream text-cherry-burgundy font-bold py-3 px-6 lg:px-8 rounded-lg lg:rounded-xl border border-b-2 border-r-2 lg:border-b-4 lg:border-r-4 border-cherry-burgundy hover:border-b-1 hover:border-r-1 lg:hover:border-b-2 lg:hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   lg:  hover:shadow-[1px_1px_0px_#321017] lg:hover:  winky-sans-font flex items-center gap-2 text-sm lg:text-base"
                     >
                       <Icon
                         icon="ic:baseline-telegram"

@@ -217,7 +217,7 @@ const MilestoneTimelineSection: React.FC = () => {
     <div className="section_sniper_spotlight py-24 relative overflow-hidden">
       {" "}
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mt-16 mb-10 w-full flex items-center justify-center text-[var(--color-accent)]">
+        <div className="text-center mt-16 mb-10 w-full flex items-center justify-center text-white">
           <h2 className="text-2xl lg:text-5xl maladroit-font">
             Cherry AI's Roadmap
           </h2>
@@ -228,7 +228,7 @@ const MilestoneTimelineSection: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_65%,rgba(67,103,201,0.14)_0%,transparent_55%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(67,103,201,0.09)_0%,transparent_55%)]"></div>
       </div>
-      <div className="max-w-[88rem] my-20 mx-auto lg:px-4">
+      <div className="max-w-[88rem] mt-20 mx-auto lg:px-4">
         {/* Desktop Version */}
         <div className="hidden lg:flex flex-col bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] lg:p-6 p-2 relative overflow-hidden transform   transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
           <div className="mb-6">
@@ -316,7 +316,7 @@ const MilestoneTimelineSection: React.FC = () => {
           <div className="mt-6 p-6 bg-[var(--color-glass)] bg-opacity-60 rounded-lg border-2 border-[var(--color-accent)] relative overflow-hidden">
             <div className="flex flex-col md:flex-row gap-6">
               <div className="md:w-1/3">
-                <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] h-full transition-all duration-500 transform">
+                <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   h-full transition-all duration-500 transform">
                   <h4 className="text-2xl font-bold maladroit-font text-[var(--color-text-primary)] mb-2 transition-all duration-300">
                     {milestones[activeMilestone].title}
                   </h4>
@@ -342,7 +342,7 @@ const MilestoneTimelineSection: React.FC = () => {
                         <Icon icon="tabler:progress" width="28" height="28" />
                       )}
                     </div>
-                    <span className="text-xl winky-sans-font font-bold transition-all duration-300">
+                    <span className="text-xl text-white winky-sans-font font-bold transition-all duration-300">
                       {milestones[activeMilestone].completed
                         ? "Completed"
                         : "In Progress"}
@@ -352,7 +352,7 @@ const MilestoneTimelineSection: React.FC = () => {
               </div>
 
               <div className="md:w-2/3">
-                <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] h-full">
+                <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   h-full">
                   <h4 className="text-xl font-bold maladroit-font text-[var(--color-text-primary)] mb-3">
                     Milestone Achievements
                   </h4>
@@ -605,7 +605,7 @@ const MilestoneTimelineSection: React.FC = () => {
                 className={`text-[var(--color-text-primary)] bg-[var(--color-glass)] py-2.5 px-3 sm:py-3 sm:px-4 rounded-lg border-2 border-[var(--color-accent)] transition-all duration-300 active:scale-95 flex items-center gap-2 winky-sans-font font-bold text-xs sm:text-sm touch-manipulation ${
                   activeMilestone === 0
                     ? "opacity-50 cursor-not-allowed"
-                    : "shadow-[2px_2px_0px_#321017] active:shadow-[1px_1px_0px_#321017] active:translate-x-0.5 active:translate-y-0.5"
+                    : "  active:shadow-[1px_1px_0px_#321017] active:translate-x-0.5 active:translate-y-0.5"
                 }`}
                 disabled={activeMilestone === 0}
               >
@@ -631,7 +631,7 @@ const MilestoneTimelineSection: React.FC = () => {
                 className={`text-[var(--color-text-primary)] bg-[var(--color-glass)] py-2.5 px-3 sm:py-3 sm:px-4 rounded-lg border-2 border-[var(--color-accent)] transition-all duration-300 active:scale-95 flex items-center gap-2 winky-sans-font font-bold text-xs sm:text-sm touch-manipulation ${
                   activeMilestone === milestones.length - 1
                     ? "opacity-50 cursor-not-allowed"
-                    : "shadow-[2px_2px_0px_#321017] active:shadow-[1px_1px_0px_#321017] active:translate-x-0.5 active:translate-y-0.5"
+                    : "  active:shadow-[1px_1px_0px_#321017] active:translate-x-0.5 active:translate-y-0.5"
                 }`}
                 disabled={activeMilestone === milestones.length - 1}
               >

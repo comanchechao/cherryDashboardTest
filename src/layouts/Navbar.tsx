@@ -127,9 +127,21 @@ const Navbar: React.FC = () => {
                   <span className="btn-text">Sniper</span>
                 </button>
               </Link>
-
               <Link to="/cherry" className={getDesktopLinkClasses("/cherry")}>
                 $AIBOT
+              </Link>
+
+              <Link
+                to="/communityAI"
+                className={getDesktopLinkClasses("/communityAI")}
+              >
+                Community AI
+              </Link>
+              <Link
+                to="/ai-analytics"
+                className={getDesktopLinkClasses("/ai-analytics")}
+              >
+                AI Analytics
               </Link>
 
               <Link

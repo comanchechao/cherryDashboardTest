@@ -230,7 +230,7 @@ const PointsLeaderboard: React.FC = () => {
   );
 
   return (
-    <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden shadow-[8px_8px_0px_#321017] relative">
+    <div className="bg-cherry-cream rounded-2xl border-4 border-cherry-burgundy overflow-hidden   relative">
       {/* Header */}
       <div className="bg-cherry-burgundy px-4 lg:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">

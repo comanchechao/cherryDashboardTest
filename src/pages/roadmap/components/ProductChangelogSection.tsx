@@ -73,7 +73,7 @@ const ProductChangelogSection: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(67,103,201,0.09)_0%,transparent_55%)]"></div>
       </div>
 
-      <div className="max-w-[88rem] my-20 mx-auto px-4">
+      <div className="max-w-[88rem] mb-20 mx-auto px-4">
         <div className="flex flex-col bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] lg:p-6 p-2 relative overflow-hidden transform   transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
           <div className="mb-6 relative z-10">
             <h3 className="md:text-3xl text-xl font-bold maladroit-font text-[var(--color-text-primary)] mb-3">
@@ -135,7 +135,7 @@ const ProductChangelogSection: React.FC = () => {
                 <div className="flex flex-col md:flex-row gap-8">
                   {/* Left Side - Changelog */}
                   <div className="md:w-2/5 space-y-6">
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="absolute -top-2 -right-2 w-10 h-10 bg-[url('https://storage.cherrybot.ai/cuphead-style-circle.svg')] bg-no-repeat bg-contain animate-float opacity-40"></div>
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
@@ -175,7 +175,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -211,7 +211,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -247,7 +247,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -281,7 +281,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -315,7 +315,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -355,7 +355,7 @@ const ProductChangelogSection: React.FC = () => {
 
                   {/* Right Side - Screenshot */}
                   <div className="md:w-3/5">
-                    <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[8px_8px_0px_#321017] h-fit">
+                    <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   h-fit">
                       <div className="overflow-hidden rounded-lg border-2 border-[var(--color-accent)] sniper-image">
                         <video
                           autoPlay
@@ -380,7 +380,7 @@ const ProductChangelogSection: React.FC = () => {
                         </p>
                         <button
                           onClick={handleTrySniper}
-                          className="inline-block mt-4 text-white bg-[var(--color-accent)] font-bold py-2 px-6 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
+                          className="inline-block mt-4 text-white bg-[var(--color-accent)] font-bold py-2 px-6 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font   hover: "
                         >
                           <span className="flex text-white items-center gap-2">
                             Try SniperAI Bot
@@ -397,7 +397,7 @@ const ProductChangelogSection: React.FC = () => {
                 <div className="flex flex-col md:flex-row gap-8">
                   {/* Left Side - Changelog */}
                   <div className="md:w-2/5 space-y-6">
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -431,7 +431,7 @@ const ProductChangelogSection: React.FC = () => {
                       </ul>
                     </div>
 
-                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[4px_4px_0px_#321017] relative">
+                    <div className="changelog-item bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   relative">
                       <div className="flex items-center mb-3">
                         <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
                           <svg
@@ -472,7 +472,7 @@ const ProductChangelogSection: React.FC = () => {
 
                   {/* Right Side - Mockup */}
                   <div className="md:w-3/5">
-                    <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)] shadow-[8px_8px_0px_#321017] h-full">
+                    <div className="bg-[var(--color-glass)] p-4 rounded-lg border-2 border-[var(--color-accent)]   h-full">
                       <div className="relative overflow-hidden rounded-lg border-2 border-[var(--color-accent)] bg-gray-900 h-80 flex items-center justify-center trade-mockup">
                         {/* Placeholder for Cherry Trade mockup */}
                         <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-accent)]">
@@ -496,7 +496,7 @@ const ProductChangelogSection: React.FC = () => {
                         </p>
                         <button
                           onClick={handleJoinWaitlist}
-                          className="inline-block mt-4 text-white bg-[var(--color-accent)] font-bold py-2 px-6 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font shadow-[4px_4px_0px_#321017] hover:shadow-[2px_2px_0px_#321017]"
+                          className="inline-block mt-4 text-white bg-[var(--color-accent)] font-bold py-2 px-6 rounded-xl border border-b-4 border-r-4 border-[var(--color-accent)] hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu winky-sans-font   hover: "
                         >
                           <span className="flex text-white items-center gap-2">
                             Join Waitlist

@@ -1,4 +1,4 @@
-import CherryTradeSection from "./cherrySniper/components/CherryTradeSection";
+import CherryTradeSection from "./webTrending/CherryTradeSection";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 
