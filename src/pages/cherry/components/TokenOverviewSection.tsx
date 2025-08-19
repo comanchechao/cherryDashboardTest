@@ -54,8 +54,8 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
-      <div className="w-full flex pt-10 lg:flex-row flex-col items-end lg:items-start  relative z-10">
-        <div className="w-full flex items-center justify-around my-20 mx-auto">
+      <div className="w-full flex pt-10 lg:px-44 px-4 lg:flex-row flex-col items-end lg:items-start  relative z-10">
+        <div className="w-full flex items-center lg:flex-row flex-col justify-around my-20 mx-auto">
           <div className="  flex  justify-around  items-center  lg:h-auto mb-4 relative z-10 px-10">
             <div className="flex w-full max-w-7xl items-start justify-center flex-col  lg:px-6">
               <div className="mb-16">
@@ -63,7 +63,7 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
                   $<span className="text-accent">AI</span>BOT
                 </h1>
 
-                <p className="  text-left text-lg lg:text-xl text-[var(--color-text-secondary)]/80 mb-1 max-w-3xl mx-auto leading-5">
+                <p className="  text-left text-lg lg:text-xl text-[var(--color-text-secondary)]/80 mb-1 max-w-xl mx-auto leading-5">
                   The fuel of the Cherry ecosystem — powering trades, rewards,
                   and growth across all our tools
                 </p>
