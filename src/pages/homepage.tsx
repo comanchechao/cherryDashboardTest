@@ -16,6 +16,7 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import CherryWebApp from "./cherryWebApp";
 import BinanceSupportSection from "../components/BinanceSupportSection";
+import MarketForcast from "../components/MarketForcast";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -708,9 +709,12 @@ const HomePage: React.FC = () => {
               <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-full lg:h-auto mb-16 relative z-10 px-10">
                 <div className="flex lg:w-1/2 w-full items-start justify-center flex-col px-16">
                   <div className="  ">
-                    <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-8xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
+                    <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
                       Cherry
-                      <span className="text-[var(--color-accent)]">AI</span> Bot
+                      <span className="text-[var(--color-accent)]">
+                        AI
+                      </span>{" "}
+                      <span className="ml-3">Bot</span>
                       <span className="block relative">
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
                       </span>
@@ -813,7 +817,6 @@ const HomePage: React.FC = () => {
                       />
                     </div>
                     {/* Inner Glow Effect */}
-                    <div className="absolute inset-0 rounded-[36px] shadow-[inset_0_0_24px_rgba(67,103,201,0.3)] pointer-events-none"></div>
                   </div>
 
                   {/* Floating Left Toolbar */}
@@ -924,6 +927,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </div>
+          <MarketForcast />
           <div
             ref={sectionTitleRef}
             className="flex opacity-0 mt-24 flex-col items-center justify-center w-full md:px-0 px-8 relative"
@@ -1453,18 +1457,14 @@ const HomePage: React.FC = () => {
                 {/* Video Container */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
                   {/* Desktop Video Container */}
-                  <div className="md:block hidden bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-                    <div className="relative aspect-video overflow-hidden rounded-[16px] border-2 border-[var(--color-accent)]/30">
+                  <div className="md:block hidden bg-[var(--color-glass)] p-4    rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+                    <div className="relative aspect-video overflow-hidden rounded-[16px]  ">
                       <VideoPlayer
-                        src="/sniperAd.mp4"
+                        src="/sniperRobot.mp4"
                         className="w-full h-auto max-h-[60vh] object-cover"
                         autoPlay={true}
                       />
                     </div>
-
-                    {/* Floating Decorative Elements */}
-                    <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                    <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
                   </div>
 
                   {/* CTA Section */}
@@ -1995,16 +1995,14 @@ const HomePage: React.FC = () => {
               </div>
               <div className="w-full flex h-full  justify-center items-center">
                 {/* Desktop Video Container */}
-                <div className="relative h-full   overflow-hidden ">
-                  <img
-                    src="/phone.webp"
-                    alt="cherrySniper"
-                    className="  h-[39rem] object-contain"
-                  />
-
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+                <div className="md:block hidden bg-[var(--color-glass)] p-4    rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+                  <div className="relative aspect-video overflow-hidden rounded-[16px]  ">
+                    <VideoPlayer
+                      src="/communityRobot.mp4"
+                      className="w-full h-auto max-h-[60vh] object-cover"
+                      autoPlay={true}
+                    />
+                  </div>
                 </div>
               </div>
               {/* Right side - Content */}
@@ -2328,17 +2326,18 @@ const HomePage: React.FC = () => {
 
               {/* Right side - Image */}
               <div
-                className="w-full flex justify-center items-center"
+                className="w-full flex mx-6 justify-center items-center"
                 data-spotlight-video
               >
-                <div className="relative w-fit h-full transform rounded-[16px]  ">
-                  <img
-                    src="/phoneTrending.webp"
-                    alt="Cherry Trending"
-                    className="  h-[35rem] object-contain"
-                  />
+                <div className="md:block hidden bg-[var(--color-glass)]     rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
+                  <div className="relative aspect-video overflow-hidden rounded-[16px]  ">
+                    <VideoPlayer
+                      src="/trendingRobot.mp4"
+                      className="w-full h-auto max-h-[60vh] object-cover"
+                      autoPlay={true}
+                    />
+                  </div>
                 </div>
-
                 {/* Floating Decorative Elements */}
               </div>
             </div>

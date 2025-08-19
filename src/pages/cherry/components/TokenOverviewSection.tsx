@@ -55,8 +55,8 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
         ></div>
       </div>
       <div className="w-full flex pt-10 lg:flex-row flex-col items-end lg:items-start  relative z-10">
-        <div className="w-full mx-auto">
-          <div className="  flex flex-col  items-center  lg:h-auto mb-4 relative z-10 px-10">
+        <div className="w-full flex items-center justify-around my-20 mx-auto">
+          <div className="  flex  justify-around  items-center  lg:h-auto mb-4 relative z-10 px-10">
             <div className="flex w-full max-w-7xl items-start justify-center flex-col  lg:px-6">
               <div className="mb-16">
                 <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-7xl font-bold text-[var(--color-text-primary)] leading-tight mb-2 max-w-4xl mx-auto">
@@ -70,6 +70,20 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
               </div>
             </div>
           </div>
+          <div className="flex items-center justify-center">
+            <div className="relative  max-w-xl rounded-[20px] p-4 bg-[var(--color-bg-secondary)]/40 border border-[var(--color-accent)]/20">
+              <div className="absolute inset-0 rounded-[20px] pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
+              <div className="aspect-[16/9] flex items-center justify-center rounded-[12px]  ">
+                <img
+                  src="/staking.webp"
+                  alt="Market Forecast Chart"
+                  className="w-full h-auto object-contain rounded-[12px]"
+                />
+              </div>
+              <div className="absolute -z-10 -top-8 -right-8 w-40 h-40 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+              <div className="absolute -z-10 -bottom-8 -left-8 w-40 h-40 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+            </div>
+          </div>{" "}
         </div>
       </div>
     </div>

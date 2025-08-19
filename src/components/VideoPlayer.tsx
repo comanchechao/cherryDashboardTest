@@ -215,14 +215,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         onError={handleError}
         onPlay={handlePlay}
         className="w-full h-full lg:min-w-xl object-cover"
-        style={{ backgroundColor: "#e8d8ba" }}
+        style={{ backgroundColor: "#011020" }}
       >
         Your browser does not support the video tag.
       </video>
 
       {/* Error State */}
       {hasError && (
-        <div className="absolute inset-0 w-full flex items-center justify-center h-full bg-cherry-cream">
+        <div className="absolute inset-0 w-full flex items-center justify-center h-full  ">
           <div className="text-center">
             <Icon
               icon="ph:warning"

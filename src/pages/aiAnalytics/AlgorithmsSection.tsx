@@ -4,17 +4,17 @@ const cards = [
   {
     title: "PRESALE/LAUNCHPAD TRENDING",
     desc: "Spot promising tokens before launch and rank them by early traction, volume velocity, and holder growth.",
-    img: "https://storage.cherrybot.ai/alg-presale.png",
+    img: "/launch.png",
   },
   {
     title: "PRELAUNCH TRENDING",
     desc: "Get early access to pre-launch projects backed by real user interest, bot signals, and dev activity.",
-    img: "https://storage.cherrybot.ai/alg-prelaunch.png",
+    img: "/prelaunch.png",
   },
   {
     title: "AI TOKEN TRACKING + VOLUME BOOSTING",
     desc: "Cherry AI scans live market data to detect real momentum — and our Volume Bot can help you simulate volume and holder activity to push tokens to the top organically.",
-    img: "https://storage.cherrybot.ai/alg-volume.png",
+    img: "/ai.png",
   },
 ];
 

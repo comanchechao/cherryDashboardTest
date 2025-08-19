@@ -79,11 +79,11 @@ const BinanceSupportSection: React.FC = () => {
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-sm rounded-[20px] p-4 bg-[var(--color-bg-secondary)]/40 border border-[var(--color-accent)]/20">
                 <div className="absolute inset-0 rounded-[20px] pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
-                <div className="aspect-[4/3] flex items-center justify-center rounded-[12px] bg-white/90">
+                <div className="aspect-[4/3] flex items-center justify-center rounded-[12px]  ">
                   <img
-                    src="/binanceLogo.png"
+                    src="/binance.webp"
                     alt="Binance"
-                    className="max-h-28 w-auto object-contain"
+                    className="m w-full object-contain rounded-[12px]"
                   />
                 </div>
                 <div className="absolute -z-10 -top-8 -right-8 w-40 h-40 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
