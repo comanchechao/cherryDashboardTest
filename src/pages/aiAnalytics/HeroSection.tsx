@@ -9,11 +9,11 @@ const HeroSection: React.FC = () => {
           <div>
             {" "}
             <h1 className="maladroit-font text-4xl md:text-6xl text-[var(--color-text-primary)] leading-tight mb-4">
-              <span className="text-accent">AI</span> Analytics
+              Analytics<span className="text-accent">Robot</span>
             </h1>
             <h1 className="maladroit-font text-4xl md:text-xl text-[var(--color-text-secondary)] leading-tight mb-4">
-              Telegram Channel Run By An AI Powered Bot That Finds and Analyzes
-              Trending Tokens
+              Telegram channel run by an AI powered digital robot that finds and
+              analyzes trending tokens
             </h1>
           </div>
 

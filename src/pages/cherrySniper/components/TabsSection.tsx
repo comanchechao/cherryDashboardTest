@@ -22,9 +22,14 @@ const TabsSection: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
             {/* Video Container */}
             <div className="w-full">
-              <h3 className="text-lg md:text-3xl maladroit-font text-[var(--color-text-primary)] mb-8 text-center">
-                SniperAI Bot Offers Manual & Autobot Modes
-              </h3>
+              <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-4 text-center">
+                Using Real Trading Data To Build Digital Robots
+              </h2>
+              <p className="winky-sans-font text-base md:text-lg text-[var(--color-text-secondary)]/90 mb-8 text-center max-w-3xl mx-auto">
+                People using the manual mode of the trading bot contribute data.
+                This data is used to create data models to build digital trading
+                robots.
+              </p>
               <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] md:p-8 p-4 relative overflow-hidden transform transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
                 {/* Paper texture overlay */}
 
@@ -131,100 +136,35 @@ const TabsSection: React.FC = () => {
                   </div>
 
                   {/* Tab Content */}
-                  <div className="min-h-[200px]">
-                    {activeTab === "autobot" && (
-                      <div className="space-y-4 animate-fadeIn">
-                        {/* Stealth Mode Cards */}
-                        <div className="grid grid-cols-1 gap-6">
-                          {/* Trade in Privacy Card */}
-                          <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
-                              <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Automate Buys/Sells
-                              </h4>
-                              <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                Set custom parameters with the AI for buys and
-                                sells and it will automatically follow them.
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Non-custodial Wallet Card */}
-                          <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
-                              <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Automate Yield Farming
-                              </h4>
-                              <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                Instruct the AI to take all profits from trading
-                                activity and stake, LP mine or lend them out.
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Key Security Card */}
-                          <div className="group md:col-span-2">
-                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
-                              <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Automatic Arbitrage
-                              </h4>
-                              <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                Give the AI a list of tokens to arbitrage and
-                                the AI will automatically look for arb
-                                opportunities across DEXes.
-                              </p>
-                            </div>
-                          </div>
+                  <div className="min-h-[100px]">
+                    {activeTab === "manual" && (
+                      <div className="animate-fadeIn">
+                        <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6 transition-all duration-200 relative overflow-hidden">
+                          <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-2">
+                            Manual Mode
+                          </h4>
+                          <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-90">
+                            Manual mode is a traditional trading bot and it has
+                            15k+ users that are contributing data. This trading
+                            bot offers high speed trading and extremely low
+                            fees.
+                          </p>
                         </div>
                       </div>
                     )}
 
-                    {activeTab === "manual" && (
-                      <div className="space-y-4 animate-fadeIn">
-                        {/* Sniper Mode Cards */}
-                        <div className="grid grid-cols-1  gap-6">
-                          {/* Extremely Fast Trade Execution Card */}
-                          <div className="group">
-                            <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
-                              <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Fastest trading bot
-                              </h4>
-                              <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                Lightning-fast trade execution with minimal
-                                latency and slippage. Strike first, profit
-                                faster.
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Advanced Trading Features Card */}
-                          <div className="group">
-                            <div className="bg-[var(--color-glass)]   rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden h-full">
-                              <div>
-                                <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                  Advanced trading features
-                                </h4>
-                                <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                  Pro-level tools and settings for sophisticated
-                                  traders. Maximum precision and control.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Scales with Volume Card */}
-                          <div className="group md:col-span-2 ">
-                            <div className="bg-[var(--color-glass)]  rounded-sm border border-[var(--color-accent)] p-6  ] hover:  hover:translate-x-1 hover:translate-y-1 transition-all duration-200 relative overflow-hidden">
-                              <h4 className="maladroit-font text-xl text-[var(--color-text-primary)]">
-                                Scales with volume
-                              </h4>
-                              <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-70">
-                                Automatically adjusts performance and capacity
-                                based on trading volume. Maximum efficiency at
-                                any scale.
-                              </p>
-                            </div>
-                          </div>
+                    {activeTab === "autobot" && (
+                      <div className="animate-fadeIn">
+                        <div className="bg-[var(--color-glass)] rounded-sm border border-[var(--color-accent)] p-6 transition-all duration-200 relative overflow-hidden">
+                          <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-2">
+                            Autobot Mode
+                          </h4>
+                          <p className="winky-sans-font text-[var(--color-text-secondary)] text-opacity-90">
+                            An AI powered digital robot that allows you to set
+                            trading parameters. This robot is specifically
+                            designed for traders and focuses on spot/leverage
+                            trading and yield farming.
+                          </p>
                         </div>
                       </div>
                     )}

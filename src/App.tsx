@@ -9,6 +9,7 @@ import Roadmap from "./pages/roadmap";
 import UserGrowth from "./pages/userGrowth";
 import CherrySniper from "./pages/cherrySniper";
 import CherryToken from "./pages/cherry";
+import ComingSoon from "./pages/comingSoon";
 import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
@@ -121,6 +122,14 @@ function App() {
                 element={
                   <PageLayout>
                     <WebTrending />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/coming-soon"
+                element={
+                  <PageLayout>
+                    <ComingSoon />
                   </PageLayout>
                 }
               />

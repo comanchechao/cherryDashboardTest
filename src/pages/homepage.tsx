@@ -15,6 +15,7 @@ import Footer from "../layouts/Footer";
 import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import CherryWebApp from "./cherryWebApp";
+import BinanceSupportSection from "../components/BinanceSupportSection";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -176,6 +177,14 @@ const HomePage: React.FC = () => {
 
   const handleSnipeNow = () => {
     window.open("/cherrySniper");
+  };
+
+  const handleTryManualMode = () => {
+    window.open("https://t.me/cherrySniperBot", "_blank");
+  };
+
+  const handleTryAutoMode = () => {
+    window.open("/coming-soon");
   };
 
   // const handleNewsletterSubscribe = async (emailValue: string) => {
@@ -701,7 +710,7 @@ const HomePage: React.FC = () => {
                   <div className="  ">
                     <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-8xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
                       Cherry
-                      <span className="text-[var(--color-accent)]">AI</span>
+                      <span className="text-[var(--color-accent)]">AI</span> Bot
                       <span className="block relative">
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
                       </span>
@@ -714,45 +723,6 @@ const HomePage: React.FC = () => {
                   </div>
 
                   <div className="hero-buttons w-full flex flex-col sm:flex-row items-center justify-center gap-6 mb-9">
-                    <button
-                      onClick={() => {
-                        window.open("https://t.me/CherryTGBot", "_blank");
-                      }}
-                      className="btn-wave-primary cursor-pointer w-full"
-                    >
-                      <span className="wave-bg"></span>
-                      <span className="wave-left">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-auto h-full opacity-100 object-stretch"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="#FFF"
-                            d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-right">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="object-cover w-full h-full"
-                          viewBox="0 0 487 487"
-                        >
-                          <path
-                            fillOpacity=".1"
-                            fillRule="nonzero"
-                            fill="#FFF"
-                            d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <span className="wave-overlay"></span>
-                      <span className="btn-text">Start with Cherry</span>
-                    </button>
-
                     <button
                       onClick={() => {
                         window.open("https://docs.cherrybot.co/", "_blank");
@@ -790,6 +760,44 @@ const HomePage: React.FC = () => {
                       </span>
                       <span className="wave-overlay"></span>
                       <span className="btn-text">Learn More</span>
+                    </button>{" "}
+                    <button
+                      onClick={() => {
+                        window.open("/dashboard");
+                      }}
+                      className="btn-wave-primary cursor-pointer w-full"
+                    >
+                      <span className="wave-bg"></span>
+                      <span className="wave-left">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-auto h-full opacity-100 object-stretch"
+                          viewBox="0 0 487 487"
+                        >
+                          <path
+                            fillOpacity=".1"
+                            fillRule="nonzero"
+                            fill="#FFF"
+                            d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
+                          ></path>
+                        </svg>
+                      </span>
+                      <span className="wave-right">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="object-cover w-full h-full"
+                          viewBox="0 0 487 487"
+                        >
+                          <path
+                            fillOpacity=".1"
+                            fillRule="nonzero"
+                            fill="#FFF"
+                            d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
+                          ></path>
+                        </svg>
+                      </span>
+                      <span className="wave-overlay"></span>
+                      <span className="btn-text">Dashboard</span>
                     </button>
                   </div>
                 </div>
@@ -798,10 +806,10 @@ const HomePage: React.FC = () => {
                   <div className="w-full aspect-[16/9] bg-transparent  relative overflow-hidden">
                     {/* Panel Content Placeholder */}
                     <div className="relative w-full h-full pt-12">
-                      <img
-                        src="/homepagebots.webp"
-                        alt="Cherry Web App"
-                        className="    w-full   h-full object-cover  "
+                      <VideoPlayer
+                        src="/loop.mp4"
+                        className="w-full h-auto max-h-[60vh] object-cover"
+                        autoPlay={true}
                       />
                     </div>
                     {/* Inner Glow Effect */}
@@ -1417,7 +1425,7 @@ const HomePage: React.FC = () => {
 
               {/* Main Title */}
               <h2 className="text-xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-8 leading-tight max-w-4xl mx-auto">
-                Fastest Trade Executions And AI Powered Trading
+                Building AI Powered Digital Robots For Trading
               </h2>
 
               {/* Description Card */}
@@ -1428,11 +1436,9 @@ const HomePage: React.FC = () => {
                   <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
                   <p className="winky-sans-font text-sm md:text-xl text-[var(--color-text-secondary)]/90 leading-relaxed relative z-10">
-                    SniperAI Bot is a digital robot that offers traders and
-                    snipers with 2 modes: Manual and Autobot mode. Manual is a
-                    classic Telegram based trading bot. Autobot mode offers
-                    traders with a Telegram based chat robot that you can give
-                    details and parameters for trading tokens.
+                    CherryAI Bot has created a sniper/trading bot with 15k+
+                    users. The data from this bot will be used to create an AI
+                    powered digital robot that specializes in trading.
                   </p>
 
                   {/* Bottom Decorative Bar */}
@@ -1665,7 +1671,11 @@ const HomePage: React.FC = () => {
                         <div className="text-center mt-10" data-spotlight-cta>
                           <div className="inline-block">
                             <button
-                              onClick={handleSnipeNow}
+                              onClick={
+                                activeTab === "manual"
+                                  ? handleTryManualMode
+                                  : handleTryAutoMode
+                              }
                               className="btn-wave-primary cursor-pointer flex items-center gap-3"
                             >
                               <span className="wave-bg"></span>
@@ -1699,7 +1709,9 @@ const HomePage: React.FC = () => {
                               </span>
                               <span className="wave-overlay"></span>
                               <span className="btn-text text-xl">
-                                Learn More
+                                {activeTab === "manual"
+                                  ? "Try Manual Mode"
+                                  : "Try Auto Mode"}
                               </span>
                               <Icon
                                 icon="mdi:arrow-right"
@@ -2110,7 +2122,7 @@ const HomePage: React.FC = () => {
 
                   {/* Main Title */}
                   <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
-                    AI Bot That Presents and Analyzes Trending Token.
+                    Digital Robot That Presents And Analyzes Trending Tokens
                   </h2>
 
                   {/* Description Card */}
@@ -2120,9 +2132,10 @@ const HomePage: React.FC = () => {
                     <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
                     <p className="winky-sans-font text-sm md:text-2xl text-[var(--color-text-secondary)]/90 leading-relaxed relative z-10">
-                      Uses AI to automatically find and filter onchain data to
-                      find trending tokens. Also offers a chat bot where you can
-                      ask questions and details about trending tokens.
+                      A digital robot that uses AI to automatically find and
+                      filter onchain data to find trending tokens. A chat
+                      interface is being created so paying users can directly
+                      communicate with the robot.
                     </p>
 
                     {/* Bottom Decorative Bar */}
@@ -2332,6 +2345,7 @@ const HomePage: React.FC = () => {
           </div>
         </div>
         <CherryWebApp />
+        <BinanceSupportSection />
         {/* Cherry AI in the News Section */}
         <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
           {/* Floating Elements Layer */}
@@ -2409,10 +2423,6 @@ const HomePage: React.FC = () => {
             <h2 className="maladroit-font text-xl md:text-6xl text-[var(--color-text-primary)] mb-6 relative inline-block">
               Cherry AI in the News
             </h2>
-            <p className="winky-sans-font md:text-xl text-sm md:mt-10 mt-3 text-[var(--color-text-secondary)]/90">
-              Major publications covering CHERRY's revolutionary impact on the
-              crypto industry
-            </p>
           </div>
 
           {/* News Carousel */}

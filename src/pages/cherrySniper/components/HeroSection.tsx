@@ -64,8 +64,7 @@ const HeroSection: React.FC = () => {
             SniperAI Bot
           </h1>
           <p className="text-xl md:text-2xl winky-sans-font text-[var(--color-text-secondary)] mb-8 max-w-4xl mx-auto">
-            The fastest way to snipe tokens on Solana. Lightning-fast execution,
-            advanced features, and unbeatable speed.
+            Building AI Powered Digital Robots For Trading
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 lg:px-24 justify-center items-center">

@@ -12,10 +12,11 @@ const DashboardPreview: React.FC = () => {
       <div className="relative z-10">
         <div className="text-center">
           <h3 className="maladroit-font text-3xl md:text-4xl text-[var(--color-text-primary)] mb-4">
-            Track Everything On SniperAI Dashboard
+            SniperAI Bot Manual Mode Offers A Dashboard
           </h3>
           <p className="winky-sans-font text-lg text-[var(--color-text-secondary)] mb-8 max-w-3xl mx-auto">
-            Track your progress in real time with the SniperAI Bot dashboard.
+            Keep track of all your trading activity and the points you've
+            gathered on the dashboard.
           </p>
         </div>
 

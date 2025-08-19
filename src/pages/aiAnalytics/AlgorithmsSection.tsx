@@ -27,10 +27,8 @@ const AlgorithmsSection: React.FC = () => {
             AI TRENDING ALGORITHMS
           </h2>
           <p className="winky-sans-font text-[var(--color-text-secondary)] max-w-3xl mx-auto">
-            Discover tokens that move — and make sure yours does too. Cherry AI
-            Trending highlights top-performing and upcoming tokens across
-            multiple chains, using smart signals like prelaunch activity,
-            on-chain data, and simulated volume boosts.
+            A digital robot that uses AI trending algorithms to scrape on chain
+            data and find top performing tokens across multiple networks.
           </p>
         </div>
 

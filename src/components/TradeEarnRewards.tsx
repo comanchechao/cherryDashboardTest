@@ -94,12 +94,15 @@ const TradeEarnRewards: React.FC = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h2 className="maladroit-font text-4xl md:text-3xl text-[var(--color-text-primary)] leading-tight">
-                Trade, Earn Points, Win Rewards
+                Trade, Train Data Models and Earn
               </h2>
               <p className="winky-sans-font text-lg text-[var(--color-text-secondary)] leading-relaxed">
-                Execute lightning-fast trades with precision and automatically
-                earn points for every $10 traded. Climb leaderboards for
-                exclusive airdrops and rewards.
+                Users of the manual version of the trading bot help CherryAI
+                build data models for digital robots specializing in trading.
+              </p>{" "}
+              <p className="winky-sans-font text-lg text-[var(--color-text-secondary)] leading-relaxed">
+                Users of the manual version can earn points from their trading
+                activity which they can use for rewards.
               </p>
             </div>
 
