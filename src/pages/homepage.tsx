@@ -14,7 +14,6 @@ import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
-import CherryWebApp from "./cherryWebApp";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
 
@@ -2343,7 +2342,6 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        <CherryWebApp />
         <BinanceSupportSection />
         {/* Cherry AI in the News Section */}
         <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">

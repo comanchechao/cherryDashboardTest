@@ -97,17 +97,14 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Video Player Section */}
-        <div className="  z-10 lg:w-1/2 w-full  ">
+        <div className="  z-10 lg:w-1/2 w-full max-w-4xl mx-auto  ">
           <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] p-6 relative overflow-hidden hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-            <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
-
             <div className="relative z-10">
               <h3 className="text-2xl font-bold maladroit-font text-[var(--color-text-primary)] mb-4 text-center">
                 See SniperAI Bot in Action
               </h3>
               <VideoPlayer
-                src="/sniperAd.mp4"
+                src="/sniperRobot.mp4"
                 className="w-full h-auto max-h-[60vh] object-cover"
                 autoPlay={true}
               />
