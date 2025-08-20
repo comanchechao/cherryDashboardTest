@@ -637,7 +637,7 @@ const HomePage: React.FC = () => {
           <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-full relative z-10">
             <div className="  w-full mx-auto">
               <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-full lg:h-auto mb-16 relative z-10 px-10">
-                <div className="flex lg:w-1/2 w-full items-start justify-center flex-col px-16">
+                <div className="flex lg:w-1/2 w-full items-start justify-center flex-col lg:px-16">
                   <div className="  ">
                     <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
                       Cherry
