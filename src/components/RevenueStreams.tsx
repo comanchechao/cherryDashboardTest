@@ -463,12 +463,6 @@ const RevenueStreams: React.FC = () => {
                         <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
                           {stream.title}
                         </h3>
-
-                        {stream.badge && (
-                          <span className="inline-block bg-yellow-400 !text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
-                            {stream.badge}
-                          </span>
-                        )}
                       </div>
                     </div>
                   </div>
