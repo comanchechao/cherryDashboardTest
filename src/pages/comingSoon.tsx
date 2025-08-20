@@ -25,18 +25,15 @@ const ComingSoon: React.FC = () => {
         ></div>
       </div>
 
-      <div className="relative z-10 text-center px-8">
-        <h1 className="maladroit-font text-4xl md:text-6xl text-[var(--color-text-primary)] mb-4">
-          Auto Mode
-        </h1>
-        <p className="winky-sans-font text-lg md:text-2xl text-[var(--color-text-secondary)]/90 mb-8">
+      <div className="relative gap-10 z-10 text-center px-8">
+        <h1 className="maladroit-font my-20 text-4xl md:text-6xl text-[var(--color-text-primary)] mb-4">
           Coming Soon
-        </p>
+        </h1>
 
         <div className="inline-block">
           <a
             href="/"
-            className="btn-wave-primary cursor-pointer flex items-center gap-3"
+            className="btn-wave-primary mt-10 cursor-pointer flex items-center gap-3"
           >
             <span className="wave-bg"></span>
             <span className="wave-left">
