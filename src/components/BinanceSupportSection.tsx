@@ -50,7 +50,7 @@ const BinanceSupportSection: React.FC = () => {
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
-<h3 className="maladroit-font text-center text-2xl md:text-4xl text-[var(--color-text-primary)] leading-tight mb-4">Official Binance Wallet IDO</h3>
+<h3 className="maladroit-font px-5 text-center text-2xl md:text-4xl text-[var(--color-text-primary)] leading-tight mb-4">Official Binance Wallet IDO</h3>
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Glass container with grid layout to mimic provided design */}
         <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] overflow-hidden backdrop-blur-xl">
