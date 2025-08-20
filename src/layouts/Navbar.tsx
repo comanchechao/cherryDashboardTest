@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
             <div className="hidden lg:flex items-center space-x-2">
               <button
                 onClick={() => scrollToSection("partners")}
-                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 <span className="relative z-10">Partners and Integrations</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("features")}
-                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 <span className="relative z-10">Ecosystem</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("binance-support")}
-                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 <span className="relative z-10">Backers</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -179,7 +179,7 @@ const Navbar: React.FC = () => {
               </Link> */}
               <button
                 onClick={() => scrollToSection("token-overview")}
-                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 <span className="relative z-10">$AIBOT</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

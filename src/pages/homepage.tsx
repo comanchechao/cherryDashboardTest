@@ -16,7 +16,7 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
-import { StatCards, CommunityDataModels } from "./homepage/components";
+import { StatCards, CommunityDataModels, Dexes } from "./homepage/components";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -657,7 +657,7 @@ const HomePage: React.FC = () => {
                   </div>
 
                   <div className="hero-buttons w-full flex flex-col sm:flex-row lg:items-start items-center justify-start gap-6 mb-9">
-                    <button
+                    {/* <button
                       onClick={() => {
                         window.open("/dashboard");
                       }}
@@ -694,17 +694,19 @@ const HomePage: React.FC = () => {
                       </span>
                       <span className="wave-overlay"></span>
                       <span className="btn-text">Dashboard</span>
-                    </button>
+                    </button> */}
+                    <Dexes />
                   </div>
                 </div>
 
                 <div className="relative lg:w-1/2 w-full max-w-4xl mx-auto">
                   <div className="w-full aspect-[16/9] bg-transparent  relative overflow-hidden">
-                    {/* Panel Content Placeholder */}
-                    <div className="relative w-full h-full pt-12">
+                    {/* Panel Content Placeholder */}{" "}
+                    <div className="relative w-full h-full flex items-center justify-center  ">
+                      <div className="absolute inset-0 rounded-[20px] z-10 pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
                       <VideoPlayer
                         src="/loop.mp4"
-                        className="w-full h-auto max-h-[60vh] object-cover"
+                        className="w-full h-full object-cover rounded-[20px]"
                         autoPlay={true}
                       />
                     </div>
@@ -1163,7 +1165,7 @@ const HomePage: React.FC = () => {
                                 </span>
                                 <span className="wave-overlay"></span>
                                 <span className="btn-text">
-                                  Explore SniperAI  
+                                  Explore SniperAI
                                 </span>
                                 <svg
                                   width="24"
