@@ -42,7 +42,7 @@ const MarketForcast: React.FC = () => {
           {/* Left Content */}
           <div>
             <h2 className="maladroit-font text-2xl md:text-4xl text-[var(--color-text-primary)] leading-tight mb-4">
-              Digital Robotics Is a $35 Billion Industry
+              Digital Robotics Is a $400 Billion Industry
             </h2>
             <p className="winky-sans-font text-base md:text-lg text-[var(--color-text-secondary)]/90 leading-relaxed">
               The global robotics market is projected to grow from $93 billion
