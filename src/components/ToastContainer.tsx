@@ -36,7 +36,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
       ))}
       
       {/* Custom animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes slideIn {
           from {
             opacity: 0;
