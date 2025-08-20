@@ -19,27 +19,27 @@ const CommunityDataModels: React.FC = () => {
   const infoCards: InfoCard[] = [
     {
       id: "memetic",
-      title: "Memetic Models",
+      title: "Memetic Models Have Multiple Benefits",
       image: "/communityRobot.webp",
       imageAlt: "Robot holding a phone",
       content:
-        "Memetic Models Have Multiple Benefits\n\n• Robots can quickly adapt to cultural shifts by recognizing trends and patterns in shared symbols or ideas.\n\n• Memetic learning enables more natural human-robot interaction by mirroring humor, slang, and collective behaviors.\n\n• It improves social integration, allowing robots to align with community norms and values faster.\n\n• Robots gain predictive insight into collective behavior, making them more effective in group settings or markets.",
+        "• Robots can quickly adapt to cultural shifts by recognizing trends and patterns in shared symbols or ideas.\n\n• Memetic learning enables more natural human-robot interaction by mirroring humor, slang, and collective behaviors.\n\n• It improves social integration, allowing robots to align with community norms and values faster.\n\n• Robots gain predictive insight into collective behavior, making them more effective in group settings or markets.",
     },
     {
       id: "community-interaction",
-      title: "Community Interaction Models",
+      title: "Community Interaction Models Have Multiple Benefits",
       image: "/analyticsRobot.webp",
       imageAlt: "Robot holding a tablet",
       content:
-        "Community Interaction Models Have Multiple Benefits\n\n• Robots can hold conversations that feel more natural and human-like, which builds stronger trust and engagement.\n\n• By learning tone, gestures, and timing, robots improve their ability to navigate complex social interactions.\n\n• Human interaction models allow robots to adapt to unique personalities, preferences, and communication styles.\n\n• Robots become more effective collaborators, anticipating needs and supporting teamwork in dynamic settings.",
+        "• Robots can hold conversations that feel more natural and human-like, which builds stronger trust and engagement.\n\n• By learning tone, gestures, and timing, robots improve their ability to navigate complex social interactions.\n\n• Human interaction models allow robots to adapt to unique personalities, preferences, and communication styles.\n\n• Robots become more effective collaborators, anticipating needs and supporting teamwork in dynamic settings.",
     },
     {
       id: "community-sentiment",
-      title: "Community Sentiment Models",
+      title: "Community Sentiment Models Have Multiple Benefits",
       image: "/sniperRobot.webp",
       imageAlt: "Robot on a laptop",
       content:
-        "Community Sentiment Models Have Multiple Benefits\n\n• Robots can gauge public mood, letting them respond in ways that align with collective emotions.\n\n• Sentiment models help robots avoid negative reactions by adapting tone and behavior to community feelings.\n\n• They allow robots to spot early shifts in opinion, useful for predicting social or market trends.\n\n• Robots become better mediators and assistants by fostering harmony within groups and communities.",
+        "• Robots can gauge public mood, letting them respond in ways that align with collective emotions.\n\n• Sentiment models help robots avoid negative reactions by adapting tone and behavior to community feelings.\n\n• They allow robots to spot early shifts in opinion, useful for predicting social or market trends.\n\n• Robots become better mediators and assistants by fostering harmony within groups and communities.",
     },
   ];
 
@@ -114,7 +114,7 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm md:text-sm leading-relaxed whitespace-pre-line"
+                className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm md:text-base leading-relaxed whitespace-pre-line"
               >
                 {activeCard?.content}
               </motion.p>
