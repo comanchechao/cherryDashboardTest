@@ -156,9 +156,7 @@ const HomePage: React.FC = () => {
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
-  const handleGetListed = () => {
-    window.open("https://t.me/CherryTrendingBot", "_blank");
-  };
+ 
   const handleExploreBot = () => {
     window.open("https://t.me/CherryTGBot", "_blank");
   };
