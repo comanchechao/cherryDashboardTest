@@ -16,7 +16,7 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
-import { StatCards } from "./homepage/components";
+import { StatCards, InfoModal } from "./homepage/components";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -163,76 +163,6 @@ const HomePage: React.FC = () => {
   const handleExploreBot = () => {
     window.open("https://t.me/CherryTGBot", "_blank");
   };
-
-  // const handleStartQuesting = () => {
-  //     window.open("https://t.me/cherrygame_io_bot", "_blank");
-  //   };
-
-  const handleViewWeb = () => {
-    window.open("/webTrending");
-  };
-
-  const handleViewTrending = () => {
-    window.open("https://t.me/cherrytrending", "_blank");
-  };
-
-  const handleSnipeNow = () => {
-    window.open("/cherrySniper");
-  };
-
-  const handleTryManualMode = () => {
-    window.open("https://t.me/cherrySniperBot", "_blank");
-  };
-
-  const handleTryAutoMode = () => {
-    window.open("/coming-soon");
-  };
-
-  // const handleNewsletterSubscribe = async (emailValue: string) => {
-  //   if (!emailValue.trim()) {
-  //     console.log("Email is required");
-  //     return;
-  //   }
-
-  //   setIsSubscribing(true);
-  //   try {
-  //     const response = await fetch(
-  //       "https://cherrytest-production.up.railway.app/email/newsletter",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           email: emailValue,
-  //         }),
-  //       }
-  //     );
-
-  //     const data = await response.json();
-  //     console.log("Newsletter subscription response:", data);
-
-  //     if (response.ok) {
-  //       console.log("Successfully subscribed to newsletter");
-  //       setSuccessToastVisible(true);
-  //       setTimeout(() => setSuccessToastVisible(false), 3000);
-  //       setEmail("");
-  //     } else {
-  //       console.log("Failed to subscribe:", data);
-  //       // Check if email is already subscribed
-  //       if (data.message === "Email already subscribed") {
-  //         setAlreadySubscribedToastVisible(true);
-  //         setTimeout(() => setAlreadySubscribedToastVisible(false), 3000);
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error subscribing to newsletter:", error);
-  //   } finally {
-  //     setIsSubscribing(false);
-  //   }
-  // };
-
-  // Refs for all videos
 
   useEffect(() => {
     const styleSheet = document.createElement("style");
@@ -1313,6 +1243,9 @@ const HomePage: React.FC = () => {
                     Community AI Bots gather data from Web3 communities to build
                     three different types of data models for AI powered robots.
                   </p>
+
+                  {/* Info Modal */}
+                  <InfoModal />
 
                   {/* Community AI - Always-visible Cards */}
                   <div className="w-full flex flex-col">

@@ -52,46 +52,115 @@ const BinanceSupportSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[28px] p-8 md:p-12 overflow-hidden backdrop-blur-xl">
-          {/* Accents */}
-          <div className="absolute -top-8 -right-8 w-36 h-36 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-          <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Left Content */}
-            <div>
-              <div className="inline-flex items-center mb-5 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-[6px] px-4 py-1">
-                <span className="winky-sans-font text-[var(--color-accent)] text-sm">
-                  Binance Backed
+        {/* Glass container with grid layout to mimic provided design */}
+        <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] overflow-hidden backdrop-blur-xl">
+          {/* Top Row - Split */}
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Left descriptive card */}
+            <div className="relative p-6 md:p-10">
+              {/* Accent line */}
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-1.5 h-8 rounded-sm bg-[var(--color-accent)]"></span>
+                <span className="winky-sans-font text-sm md:text-base text-[var(--color-text-secondary)]/90">
+                  CherryAI is the first AI powered ecosystem for robotics on
+                  Web3 that fundraised with the help of
+                  <span className="ml-2 text-[var(--color-text-primary)] font-semibold">
+                    Binance
+                  </span>
+                  .
                 </span>
               </div>
-              <h2 className="maladroit-font text-2xl md:text-4xl text-[var(--color-text-primary)] leading-tight mb-4">
-                The First Digital Robotics Ecosystem Supported By The Binance
-                Ecosystem
-              </h2>
-              <p className="winky-sans-font text-base md:text-lg text-[var(--color-text-secondary)]/90 leading-relaxed">
-                Binance has the largest web3 community and userbase with 280
-                million+ users. CherryAI being the first project in digital
-                robotics that Binance directly helped with fundraising through
-                their wallet IDO is uniquely positioned to benefit from their
-                large userbase and community.
-              </p>
+
+              <div className="flex items-center justify-between mt-8">
+                <span className="maladroit-font text-xl md:text-2xl text-[var(--color-text-primary)]">
+                  BINANCE
+                </span>
+                <div className="hidden md:block w-24 h-24 rounded-full border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5">
+                  <img src="/binanceLogo.png" alt="" />
+                </div>
+              </div>
+
+              {/* Soft halo */}
+              <div className="absolute -z-10 -top-10 -right-10 w-64 h-64 rounded-full blur-3xl bg-[var(--color-accent)]/10"></div>
             </div>
 
-            {/* Right Visual */}
-            <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-sm rounded-[20px] p-4 bg-[var(--color-bg-secondary)]/40 border border-[var(--color-accent)]/20">
-                <div className="absolute inset-0 rounded-[20px] pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
-                <div className="aspect-[4/3] flex items-center justify-center rounded-[12px]  ">
-                  <img
-                    src="/binance.webp"
-                    alt="Binance"
-                    className="m w-full object-contain rounded-[12px]"
-                  />
-                </div>
-                <div className="absolute -z-10 -top-8 -right-8 w-40 h-40 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                <div className="absolute -z-10 -bottom-8 -left-8 w-40 h-40 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
+            {/* Right - Big users number */}
+            <div className="relative p-6 md:p-10 flex flex-col items-center justify-center bg-[var(--color-bg-secondary)]/30 border-t lg:border-t-0 lg:border-l border-[var(--color-glass-border)]">
+              <div className="absolute -z-10 -bottom-10 -left-10 w-64 h-64 rounded-full blur-3xl bg-[var(--color-accent)]/10"></div>
+              <p className="maladroit-font text-3xl md:text-5xl lg:text-6xl text-[var(--color-accent)] text-center">
+                280,000,000+
+              </p>
+              <p className="winky-sans-font text-xs md:text-sm text-[var(--color-text-secondary)]/80 mt-2 tracking-wide uppercase text-center">
+                Users and Community Members
+              </p>
+            </div>
+          </div>
+
+          {/* Middle Row - Daily Volume strip */}
+          <div className="relative border-t border-[var(--color-glass-border)]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
+              <div className="p-6 md:p-8 flex items-center">
+                <h3 className="winky-sans-font text-lg md:text-2xl text-[var(--color-text-secondary)]/80 uppercase tracking-wide">
+                  Binance Ecosystem Daily Volume
+                </h3>
               </div>
+              <div className="relative p-6 md:p-8 flex items-center justify-end overflow-hidden">
+                {/* Bar chart backdrop */}
+                <svg
+                  className="absolute inset-0 w-full h-full opacity-40"
+                  preserveAspectRatio="none"
+                >
+                  {Array.from({ length: 120 }).map((_, i) => (
+                    <rect
+                      key={i}
+                      x={(i / 120) * 100 + "%"}
+                      y={Math.random() * 50 + 30}
+                      width="1"
+                      height={Math.random() * 60 + 20}
+                      fill="currentColor"
+                      className="text-[var(--color-accent)]/25"
+                    />
+                  ))}
+                </svg>
+                <div className="relative">
+                  <span className="maladroit-font text-3xl md:text-5xl lg:text-5xl text-[var(--color-text-primary)]">
+                    $137.44 Billion
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Row - TVL */}
+          <div className="relative border-t border-[var(--color-glass-border)] p-6 md:p-8">
+            <div className="flex items-center gap-6">
+              <div className="maladroit-font text-3xl md:text-5xl text-[var(--color-accent)]">
+                $7.25 Billion
+              </div>
+              <div className="winky-sans-font text-base md:text-xl text-[var(--color-text-primary)]/90">
+                TVL on BSC
+              </div>
+              {/* Decorative hash marks */}
+              <svg width="90" height="40" className="ml-auto hidden md:block">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <g key={i} transform={`translate(${i * 15},0)`}>
+                    <rect
+                      x="0"
+                      y="8"
+                      width="2"
+                      height="24"
+                      className="fill-[var(--color-accent)]/30"
+                    />
+                    <rect
+                      x="6"
+                      y="8"
+                      width="2"
+                      height="24"
+                      className="fill-[var(--color-accent)]/20"
+                    />
+                  </g>
+                ))}
+              </svg>
             </div>
           </div>
         </div>
