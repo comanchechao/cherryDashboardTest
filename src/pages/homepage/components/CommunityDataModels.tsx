@@ -74,7 +74,7 @@ const CommunityDataModels: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="grid grid-cols-1  gap-8 items-center"
+            className="grid grid-cols-1  gap-8 place-items-center items-center"
           >
             {/* Left - Image */}
             <div className="relative">
@@ -82,7 +82,7 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ scale: 0.95 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-[var(--color-bg-secondary)]/20 rounded-[16px] p-4 border border-[var(--color-accent)]/20"
+                className="bg-[var(--color-bg-secondary)]/20 max-w-3xl rounded-[16px] p-4 border border-[var(--color-accent)]/20"
               >
                 <div className="aspect-video overflow-hidden rounded-[12px]">
                   <img

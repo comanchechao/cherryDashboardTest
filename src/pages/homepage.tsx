@@ -1262,18 +1262,7 @@ const HomePage: React.FC = () => {
                   </button>
                 </div>
               </div>
-              <div className="w-full flex h-full  justify-center items-center">
-                {/* Desktop Video Container */}
-                <div className="md:block hidden bg-[var(--color-glass)] p-4    rounded-[20px] p-2 relative overflow-hidden transform   hover:rotate-0 transition-all duration-300 hover:shadow-[0_20px_40px_rgba(67,103,201,0.2)]">
-                  <div className="relative aspect-video overflow-hidden rounded-[16px]  ">
-                    <VideoPlayer
-                      src="/communityRobot.mp4"
-                      className="w-full h-auto max-h-[60vh] object-cover"
-                      autoPlay={true}
-                    />
-                  </div>
-                </div>
-              </div>
+             
               {/* Right side - Content */}
             </div>
           </div>
