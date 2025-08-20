@@ -14,82 +14,46 @@ const RevenueStreams: React.FC = () => {
 
   const streams = [
     {
-      title: "Bot Upgrades",
-      subtitle: "& Features",
+      title: "Tiered Staking ",
       icon: "mdi:robot-happy",
-      description: "Unlock advanced trading tools and priority features",
-      details: [
-        "Priority trending slots",
-        "Advanced order types",
-        "Custom notifications",
-        "Premium analytics",
-      ],
+      description: "Boost your staking tier and earn more rewards",
+
       position: 0, // Top
     },
     {
-      title: "Game Rewards",
-      subtitle: "& Boosts",
+      title: "Earn Lootboxes",
       icon: "ion:game-controller",
-      description: "Earn and spend in Cherry Tap Game ecosystem",
-      details: [
-        "Mining power boosts",
-        "Card upgrades",
-        "Exclusive power-ups",
-        "Leaderboard rewards",
-      ],
+      description: "Stakers get points to buy Lootboxes.",
+
       position: 1, // Top Right
     },
     {
-      title: "Fee",
-      subtitle: "Sharing",
+      title: "Fee Sharing",
       icon: "mdi:cash-sync",
       description: "Revenue sharing based on activity and holdings",
-      details: [
-        "Trading volume rewards",
-        "Leaderboard bonuses",
-        "Platform fee sharing",
-        "Referral commissions",
-      ],
+
       badge: "Coming Soon",
       position: 2, // Bottom Right
     },
     {
-      title: "Buyback",
-      subtitle: "& Burn",
+      title: "Buyback & Burn",
       icon: "mdi:fire-circle",
       description: "Deflationary mechanism using platform profits",
-      details: [
-        "Ad revenue buybacks",
-        "Promotion fee burns",
-        "Supply reduction",
-        "Price support",
-      ],
+
       position: 3, // Bottom
     },
     {
-      title: "Staking",
-      subtitle: "System",
+      title: "Staking System",
       icon: "mdi:trophy-award",
       description: "Leveled staking with XP and rewards",
-      details: [
-        "10-level progression",
-        "XP-based rewards",
-        "Loot box system",
-        "Governance access",
-      ],
+
       position: 4, // Bottom Left
     },
     {
-      title: "Airdrop",
-      subtitle: "Eligibility",
+      title: "Data Monetization",
       icon: "icon-park-solid:parachute",
-      description: "Increase your chances for exclusive airdrops",
-      details: [
-        "Holder tier benefits",
-        "Activity multipliers",
-        "Partner airdrops",
-        "Community rewards",
-      ],
+      description: "All data and data models are monetized",
+
       position: 5, // Top Left
     },
   ];
@@ -500,9 +464,7 @@ const RevenueStreams: React.FC = () => {
                         <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
                           {stream.title}
                         </h3>
-                        <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90">
-                          {stream.subtitle}
-                        </p>
+
                         {stream.badge && (
                           <span className="inline-block bg-yellow-400 !text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                             {stream.badge}
