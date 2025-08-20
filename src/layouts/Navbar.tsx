@@ -190,9 +190,9 @@ const Navbar: React.FC = () => {
             {/* Right Section - Dashboard and Wallet */}
             <div className="hidden lg:flex items-center space-x-3">
               <Link
-                to="/rewards"
+                to="/coming-soon"
                 className={`${getDesktopLinkClasses(
-                  "/rewards"
+                  "/coming-soon"
                 )} flex items-center gap-2`}
               >
                 <Icon
