@@ -18,7 +18,7 @@ const TabsSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Video Showcase Section */}
-        <div className="mb-20">
+        <div className=" ">
           <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
             {/* Video Container */}
             <div className="w-full">

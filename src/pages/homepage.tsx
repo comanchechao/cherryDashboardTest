@@ -961,7 +961,7 @@ const HomePage: React.FC = () => {
             </div>
 
             {/* Video Showcase Section */}
-            <div className="mb-20" data-spotlight-video>
+            <div className="mb-2" data-spotlight-video>
               <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
                 {/* Video Container */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">

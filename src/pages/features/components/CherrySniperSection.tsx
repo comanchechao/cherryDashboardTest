@@ -7,7 +7,7 @@ const CherrySniperSection: React.FC = () => {
   };
 
   return (
-    <div className="section_sniper_spotlight py-24 relative overflow-hidden">
+    <div className="section_sniper_spotlight pt-24 relative overflow-hidden">
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         {/* Multi-layered Radial Gradients */}
@@ -145,8 +145,6 @@ const CherrySniperSection: React.FC = () => {
               <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
               <div className="relative z-10 text-center">
-            
-
                 <h3 className="text-2xl mb-4 maladroit-font text-[var(--color-text-primary)]">
                   Instant Swap Execution
                 </h3>
