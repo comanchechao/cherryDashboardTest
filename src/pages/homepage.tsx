@@ -641,7 +641,7 @@ const HomePage: React.FC = () => {
                       <span className="text-[var(--color-accent)]">
                         AI
                       </span>{" "}
-                      <span className="ml-3">Bot</span>
+                      <span className="ml-3">Robot</span>
                       <span className="block relative">
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
                       </span>
