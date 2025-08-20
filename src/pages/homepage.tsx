@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
     },
     {
       name: "Binance Wallet",
-      logo: "/binanceLogo.png",
+      logo: "/binanceLogo1.png",
       description:
         "Binance Wallet has supported Cherry with fundraising initiatives and is integrated into our tech stack, enabling smoother user onboarding and wallet connectivity across our products.",
       website: "https://www.binance.com/en/web3wallet",
