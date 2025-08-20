@@ -122,15 +122,15 @@ const Navbar: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
-              <button
+              {/* <button
                 onClick={() => scrollToSection("community")}
                 className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
                 <span className="relative z-10">Community</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
-              </button>
-              <Link to="/cherrySniper">
+              </button> */}
+              {/* <Link to="/cherrySniper">
                 <button
                   className={`btn-wave-alternative cursor-pointer ${
                     isActivePath("/cherrySniper")
@@ -170,13 +170,13 @@ const Navbar: React.FC = () => {
                   <span className="wave-overlay"></span>
                   <span className="btn-text !text-[13px]">SniperAI Bot</span>
                 </button>
-              </Link>{" "}
-              <Link
+              </Link>{" "} */}
+              {/* <Link
                 to="/ai-analytics"
                 className={getDesktopLinkClasses("/ai-analytics")}
               >
                 AI Analytics
-              </Link>
+              </Link> */}
               <button
                 onClick={() => scrollToSection("token-overview")}
                 className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
@@ -203,6 +203,34 @@ const Navbar: React.FC = () => {
                 />
                 Dashboard
               </Link>
+
+              {/* Social Media Icons */}
+              <div className="flex items-center space-x-2">
+                <a
+                  href="https://x.com/cherrytgbot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  aria-label="Twitter"
+                >
+                  <Icon
+                    icon="ri:twitter-x-line"
+                    className="w-5 h-5 text-primary group-hover:text-accent transition-all duration-300"
+                  />
+                </a>
+                <a
+                  href="https://t.me/cherrycommunity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  aria-label="Telegram"
+                >
+                  <Icon
+                    icon="ic:baseline-telegram"
+                    className="w-5 h-5 text-primary group-hover:text-accent transition-all duration-300"
+                  />
+                </a>
+              </div>
 
               {/* Wallet Section */}
             </div>
@@ -277,7 +305,7 @@ const Navbar: React.FC = () => {
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
 
-              <Link
+              {/* <Link
                 to="/cherrySniper"
                 className={getMobileLinkClasses("/cherrySniper")}
               >
@@ -289,7 +317,7 @@ const Navbar: React.FC = () => {
                 className={getMobileLinkClasses("/ai-analytics")}
               >
                 AI Analytics
-              </Link>
+              </Link> */}
 
               <button
                 onClick={() => scrollToSection("token-overview")}
@@ -303,6 +331,34 @@ const Navbar: React.FC = () => {
               <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
                 Dashboard
               </Link>
+
+              {/* Social Media Icons - Mobile */}
+              <div className="flex items-center justify-center space-x-2 pt-2">
+                <a
+                  href="https://x.com/cherrytgbot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  aria-label="Twitter"
+                >
+                  <Icon
+                    icon="ri:twitter-x-line"
+                    className="w-5 h-5 text-primary group-hover:text-accent transition-all duration-300"
+                  />
+                </a>
+                <a
+                  href="https://t.me/cherrycommunity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  aria-label="Telegram"
+                >
+                  <Icon
+                    icon="ic:baseline-telegram"
+                    className="w-5 h-5 text-primary group-hover:text-accent transition-all duration-300"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
