@@ -76,12 +76,12 @@ const Footer: React.FC = () => {
           <h2 className="maladroit-font text-4xl md:text-6xl font-bold text-white mt-8 mb-4">
             Join the{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4367c9] to-[#8baafe]">
-              Revolution
+              Robotics Revolution
             </span>
           </h2>
           <p className="winky-sans-font text-lg text-[#a0a0a0] max-w-2xl mx-auto">
             Connect with the Cherry AI community and stay updated with the
-            latest developments in AI-powered trading
+            latest developments in Robotics
           </p>
         </div>
 
