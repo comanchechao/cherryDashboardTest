@@ -519,9 +519,6 @@ const RevenueStreams: React.FC = () => {
                       <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
                         {stream.title}
                       </h3>
-                      <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90">
-                        {stream.subtitle}
-                      </p>
                       {stream.badge && (
                         <span className="inline-block bg-yellow-400 !text-[var(--color-text-primary)] px-2 py-1 rounded-full text-xs winky-sans-font font-bold mt-1">
                           {stream.badge}
@@ -535,18 +532,6 @@ const RevenueStreams: React.FC = () => {
                   <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium leading-relaxed">
                     {stream.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {stream.details.map((detail, detailIndex) => (
-                      <div
-                        key={detailIndex}
-                        className="bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-lg px-2 py-1 text-center"
-                      >
-                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium whitespace-nowrap">
-                          {detail}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
                 {/* Bottom Decorative Bar */}
