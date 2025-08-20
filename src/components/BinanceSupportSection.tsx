@@ -58,6 +58,16 @@ const BinanceSupportSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left descriptive card */}
             <div className="relative p-6 md:p-10">
+            <div className="flex items-center justify-between mt-8">
+             
+             <div className="mb-6     rounded-full flex items-center justify-center  ">
+               <img
+                 src="/cherryTextLogo.webp"
+                 className="w-64 object-contain"
+                 alt="CherryAI Logo"
+               />
+             </div>
+           </div>
               {/* Accent line */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-1.5 h-8 rounded-sm bg-[var(--color-accent)]"></span>
@@ -71,18 +81,7 @@ const BinanceSupportSection: React.FC = () => {
                 </span>
               </div>
 
-              <div className="flex items-center justify-between mt-8">
-                <span className="maladroit-font text-xl md:text-2xl text-[var(--color-text-primary)]">
-                  CherryAI
-                </span>
-                <div className="     rounded-full flex items-center justify-center  ">
-                  <img
-                    src="/cherryTextLogo.webp"
-                    className="w-44 object-contain"
-                    alt="CherryAI Logo"
-                  />
-                </div>
-              </div>
+        
 
               {/* Soft halo */}
               <div className="absolute -z-10 -top-10 -right-10 w-64 h-64 rounded-full blur-3xl bg-[var(--color-accent)]/10"></div>
