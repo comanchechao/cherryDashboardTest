@@ -322,6 +322,7 @@ const RevenueStreams: React.FC = () => {
   return (
     <div
       ref={containerRef}
+      id="token-overview"
       className="min-h-screen  flex flex-col justify-center items-center   w-full py-20 relative overflow-hidden"
     >
       {/* Advanced Background Effects */}

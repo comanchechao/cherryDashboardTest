@@ -16,6 +16,7 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
+import { StatCards } from "./homepage/components";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -720,8 +721,8 @@ const HomePage: React.FC = () => {
                     </h1>
 
                     <p className="hero-description my-10 text-left text-lg lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
-                      AI powered ecosystem for digital robotics that empowers
-                      Web3 traders and communities.
+                      Ecosystem of products that gather data to build data
+                      models for AI powered robots.
                     </p>
                   </div>
 
@@ -828,6 +829,7 @@ const HomePage: React.FC = () => {
         <div className=" ">
           <div
             ref={partnersContainerRef}
+            id="partners"
             className=" h-full relative w-full py-12 md:px-0 px-4 overflow-hidden"
           >
             {/* Advanced Background Effects */}
@@ -927,402 +929,17 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           <MarketForcast />
-          <div
-            ref={sectionTitleRef}
-            className="flex opacity-0 mt-24 flex-col items-center justify-center w-full md:px-0 px-8 relative"
-          >
-            {/* Floating Elements Layer */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Orbital Rings */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div
-                  className="w-64 h-64 border border-[#4367c9]/12 rounded-full animate-spin-slow"
-                  style={{ animationDuration: "45s" }}
-                ></div>
-                <div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[#4367c9]/8 rounded-full animate-spin-slow"
-                  style={{
-                    animationDirection: "reverse",
-                    animationDuration: "38s",
-                  }}
-                ></div>
-              </div>
-
-              {/* Floating Particles */}
-              <div className="absolute top-10 left-1/3 w-2.5 h-2.5 bg-[var(--color-accent)]/40 rounded-full animate-float"></div>
-              <div
-                className="absolute top-20 right-1/4 w-3 h-3 bg-[var(--color-accent)]/35 rounded-full animate-float-slow"
-                style={{ animationDelay: "1.5s" }}
-              ></div>
-              <div
-                className="absolute bottom-10 left-1/4 w-2 h-2 bg-[var(--color-accent)]/30 rounded-full animate-float"
-                style={{ animationDelay: "2.5s" }}
-              ></div>
-              <div
-                className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-[var(--color-accent)]/25 rounded-full animate-float-slow"
-                style={{ animationDelay: "3s" }}
-              ></div>
-            </div>
-
-            {/* Main Title */}
-            <h2 className="transform translate-y-8 text-center maladroit-font text-xl lg:text-5xl text-[var(--color-text-primary)] mb-8 relative z-10 max-w-6xl">
-              CherryAI Bot Ecosystem Users
-              <div className="absolute -bottom-5 left-1/2  transform -translate-x-1/2 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
-            </h2>
-
-            {/* Floating Decorative Elements */}
-            <div className="absolute left-8 top-1/2 transform -translate-y-1/2 bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-3 shadow-[0_4px_12px_rgba(0,0,0,0.25)]">
-              <div className="flex flex-col gap-2">
-                <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                  <svg
-                    className="w-5 h-5 text-[var(--color-accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <div className="w-9 h-9 bg-[var(--color-accent)]/20 rounded-[12px] flex items-center justify-center hover:bg-[var(--color-accent)]/30 transition-colors cursor-pointer">
-                  <svg
-                    className="w-5 h-5 text-[var(--color-accent)]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            {/* Connection Lines SVG */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-15">
-              <defs>
-                <linearGradient
-                  id="titleConnectionGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.2"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="var(--color-accent)"
-                    stopOpacity="0.05"
-                  />
-                </linearGradient>
-              </defs>
-              <path
-                d="M50 50 Q 150 30 250 50 T 450 50"
-                stroke="url(#titleConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-              />
-              <path
-                d="M50 100 Q 150 80 250 100 T 450 100"
-                stroke="url(#titleConnectionGradient)"
-                strokeWidth="1"
-                fill="none"
-                className="animate-pulse"
-                style={{ animationDelay: "0.7s" }}
-              />
-            </svg>
-          </div>
-          <div className="w-full px-8 md:px-10 lg:px-24 bg-transparent   py-12   mx-auto">
-            <div
-              ref={featureCardsRef}
-              className="relative gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-              id="features"
-            >
-              <div
-                ref={featureCard1Ref}
-                className="feature-card opacity-0 transform translate-y-16 h-full"
-              >
-                <div className="group relative h-full">
-                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
-                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                    </div>
-
-                    <div className="relative z-10 flex flex-col items-center gap-6">
-                      <div className="w-full text-center">
-                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
-                          Community AI Bot
-                        </h3>
-                        <div className="grid grid-cols-1 gap-2">
-                          <span className="maladroit-font text-2xl text-[var(--color-text-primary)]">
-                            200k+ Communities
-                          </span>
-                        </div>{" "}
-                        <button
-                          onClick={handleExploreBot}
-                          className="btn-wave-primary mt-6 cursor-pointer flex items-center gap-2"
-                        >
-                          <span className="wave-bg"></span>
-                          <span className="wave-left">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="w-auto h-full opacity-100 object-stretch"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-right">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="object-cover w-full h-full"
-                              viewBox="0 0 487 487"
-                            >
-                              <path
-                                fillOpacity=".1"
-                                fillRule="nonzero"
-                                fill="#FFF"
-                                d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                              ></path>
-                            </svg>
-                          </span>
-                          <span className="wave-overlay"></span>
-                          <span className="btn-text">Learn More</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Feature Card 3 - Cherry AI Trending */}
-              <div
-                ref={featureCard3Ref}
-                className="feature-card opacity-0 transform translate-y-16 h-full"
-              >
-                <div className="group relative h-full">
-                  <div className="relative  h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
-                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                    </div>
-
-                    <div className="relative z-10 flex flex-col items-center gap-6">
-                      <div className="w-full text-center">
-                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
-                          AI Analytics
-                        </h3>
-                        <div className="grid grid-cols-1 gap-2 mt-2">
-                          <span className="text-2xl maladroit-font text-[var(--color-text-primary)]">
-                            800k+ Users
-                          </span>
-                        </div>
-
-                        <div className="mt-6">
-                          <button
-                            onClick={handleViewTrending}
-                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                          >
-                            <span className="wave-bg"></span>
-                            <span className="wave-left">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-auto h-full opacity-100 object-stretch"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-right">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="object-cover w-full h-full"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-overlay"></span>
-                            <span className="btn-text">Learn More</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                ref={featureCard4Ref}
-                className="feature-card opacity-0 transform translate-y-16 h-full"
-              >
-                <div className="group relative h-full">
-                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
-                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                    </div>
-
-                    <div className="relative z-10 flex flex-col items-center gap-6">
-                      <div className="w-full text-center">
-                        <p className="text-[32px] maladroit-font leading-9  text-[var(--color-text-primary)] mb-3">
-                          SniperAI Bot
-                        </p>
-                        <div className="grid grid-cols-1 gap-2 mt-2">
-                          <span className="maladroit-font text-2xl text-[var(--color-text-primary)]">
-                            15k+ Active Users
-                          </span>
-                        </div>
-
-                        <div className="mt-6">
-                          <button
-                            onClick={handleSnipeNow}
-                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                          >
-                            <span className="wave-bg"></span>
-                            <span className="wave-left">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-auto h-full opacity-100 object-stretch"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-right">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="object-cover w-full h-full"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-overlay"></span>
-                            <span className="btn-text">Learn More</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Feature Card 5 - CherryAI Web App */}
-              <div className="feature-card opacity-0 transform translate-y-16 h-full">
-                <div className="group relative h-full">
-                  <div className="relative h-full rounded-[16px] bg-[var(--color-glass)]/90 border border-[var(--color-glass-border)] backdrop-blur-md p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(67,103,201,0.18)] hover:border-[var(--color-accent)]/40">
-                    <div className="absolute inset-0 pointer-events-none">
-                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/40 to-transparent"></div>
-                      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--color-accent)]/30 to-transparent"></div>
-                      <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--color-accent)]/10 blur-3xl rounded-full"></div>
-                    </div>
-
-                    <div className="relative z-10 flex flex-col items-center gap-6">
-                      <div className="w-full text-center">
-                        <h3 className="lg:text-[27px] text-[23px] leading-7  maladroit-font text-[var(--color-text-primary)] mb-3">
-                          CherryAI Web App
-                        </h3>
-                        <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-lg leading-relaxed mb-2">
-                          Coming Soon
-                        </p>
-
-                        <div className="mt-10">
-                          <button
-                            onClick={handleViewWeb}
-                            className="btn-wave-primary cursor-pointer flex items-center gap-2"
-                          >
-                            <span className="wave-bg"></span>
-                            <span className="wave-left">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-auto h-full opacity-100 object-stretch"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-right">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="object-cover w-full h-full"
-                                viewBox="0 0 487 487"
-                              >
-                                <path
-                                  fillOpacity=".1"
-                                  fillRule="nonzero"
-                                  fill="#FFF"
-                                  d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                                ></path>
-                              </svg>
-                            </span>
-                            <span className="wave-overlay"></span>
-                            <span className="btn-text">Learn More</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full flex justify-center items-center"></div>
-          </div>
+          <StatCards
+            id="features"
+            title="CherryAI Bot Ecosystem Users"
+            stats={[
+              { value: "200K+", label: "Active Communities" },
+              { value: "8M+", label: "Daily Prompts" },
+              { value: "815K+", label: "Active Users" },
+              { value: "100K+", label: "Daily Users" },
+            ]}
+            className="!mt-24"
+          />
         </div>
         <div className="section_sniper_spotlight py-24 relative overflow-hidden">
           {/* Advanced Background Effects */}
@@ -1428,7 +1045,7 @@ const HomePage: React.FC = () => {
 
               {/* Main Title */}
               <h2 className="text-xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-8 leading-tight max-w-4xl mx-auto">
-                Building AI Powered Digital Robots For Trading
+                Using Trading Activity To Build Data Models For AI Robots
               </h2>
 
               {/* Description Card */}
@@ -1439,9 +1056,10 @@ const HomePage: React.FC = () => {
                   <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
 
                   <p className="winky-sans-font text-sm md:text-xl text-[var(--color-text-secondary)]/90 leading-relaxed relative z-10">
-                    CherryAI Bot has created a sniper/trading bot with 15k+
-                    users. The data from this bot will be used to create an AI
-                    powered digital robot that specializes in trading.
+                    CherryAI Bot has created 2 products for traders, a trading
+                    bot and an analytics bot with 815k+ combined users. The data
+                    gathered from the usage of these products will be used to
+                    build data models for AI powered robots.
                   </p>
 
                   {/* Bottom Decorative Bar */}
@@ -1478,116 +1096,12 @@ const HomePage: React.FC = () => {
 
                     <div className="relative z-10">
                       <h3 className="text-2xl md:text-3xl maladroit-font text-[var(--color-text-primary)] mb-8 text-center">
-                        SniperAI Bot Offers Manual & Autobot Modes
+                        Trading Data Can Supercharge The Neural Networks of
+                        Robots
                       </h3>
-
-                      {/* Tab Buttons */}
-                      <div className="flex gap-2 mb-8">
-                        <button
-                          onClick={() => setActiveTab("manual")}
-                          className={`flex-1 py-3 px-6 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeTab === "manual"
-                              ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
-                              : "bg-[var(--color-accent)]/10 text-[var(--color-accent)] border-2 border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/20"
-                          }`}
-                        >
-                          Manual
-                        </button>
-                        <button
-                          onClick={() => setActiveTab("autobot")}
-                          className={`flex-1 py-3 px-6 rounded-[4px] cursor-pointer winky-sans-font transition-all duration-300 transform hover:-translate-y-1 ${
-                            activeTab === "autobot"
-                              ? "bg-[var(--color-accent)] text-white border-2 border-[var(--color-accent)] shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
-                              : "bg-[var(--color-accent)]/10 text-[var(--color-accent)] border-2 border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/20"
-                          }`}
-                        >
-                          Autobot
-                        </button>
-                      </div>
 
                       {/* Tab Content */}
                       <div className="min-h-[400px]">
-                        {activeTab === "autobot" && (
-                          <div className="space-y-4 animate-fadeIn">
-                            {/* Trade in Privacy Card */}
-                            <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
-                              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-4">
-                                <div className="flex-shrink-0">
-                                  <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center">
-                                    <Icon
-                                      icon="mdi:shield-key"
-                                      className=" text-white object-contain"
-                                      width={24}
-                                      height={24}
-                                    />
-                                  </div>
-                                </div>
-                                <div>
-                                  <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Automate Buys/Sells
-                                  </h4>
-                                  <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Set custom parameters with the AI for buys
-                                    and sells and it will automatically follow
-                                    them.
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Non-custodial Wallet Card */}
-                            <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
-                              <div className="relative z-10 flex flex-col lg:flex-row items-center gap-4">
-                                <div className="flex-shrink-0">
-                                  <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center">
-                                    <Icon
-                                      icon="mdi:wallet"
-                                      className=" text-white object-contain"
-                                      width={24}
-                                      height={24}
-                                    />
-                                  </div>
-                                </div>
-                                <div>
-                                  <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Automate Yield Farming
-                                  </h4>
-                                  <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Instruct the AI to take all profits from
-                                    trading activity and stake, LP mine or lend
-                                    them out.
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Key Security Card */}
-                            <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[20px] p-6 relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_12px_24px_rgba(67,103,201,0.15)]">
-                              <div className="relative z-10 flex items-start lg:items-center flex-col md:flex-row gap-4">
-                                <div className="flex-shrink-0">
-                                  <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center">
-                                    <Icon
-                                      icon="mdi:key"
-                                      className=" text-white object-contain"
-                                      width={24}
-                                      height={24}
-                                    />
-                                  </div>
-                                </div>
-                                <div>
-                                  <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Automatic Arbitrage
-                                  </h4>
-                                  <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Give the AI a list of tokens to arbitrage
-                                    and the AI will automatically look for arb
-                                    opportunities across DEXes.
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
                         {activeTab === "manual" && (
                           <div className="space-y-4 animate-fadeIn">
                             {/* Fastest Trading Bot Card */}
@@ -1596,7 +1110,7 @@ const HomePage: React.FC = () => {
                                 <div className="flex-shrink-0">
                                   <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center">
                                     <Icon
-                                      icon="mdi:speedometer"
+                                      icon="mdi:brain"
                                       className=" text-white object-contain"
                                       width={24}
                                       height={24}
@@ -1605,11 +1119,12 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Fastest trading bot
+                                    Pattern Recognition
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Lightning-fast trade execution with minimal
-                                    latency and slippage
+                                    Data gathered from trading activity can be
+                                    used to build data models that help robots
+                                    recognize patterns similar to humans.
                                   </p>
                                 </div>
                               </div>
@@ -1621,7 +1136,7 @@ const HomePage: React.FC = () => {
                                 <div className="flex-shrink-0">
                                   <div className="w-12 h-12 bg-[var(--color-accent)]/20 rounded-[16px] flex items-center justify-center">
                                     <Icon
-                                      icon="mdi:shield-key"
+                                      icon="hugeicons:game-controller-03"
                                       className=" text-white object-contain"
                                       width={24}
                                       height={24}
@@ -1630,11 +1145,12 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    Advanced trading features
+                                    Game Theory
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Pro-level tools and settings for
-                                    sophisticated traders
+                                    Trading data provides excellent game theory
+                                    data models that AI robots can use to better
+                                    predict human reactions.
                                   </p>
                                 </div>
                               </div>
@@ -1655,72 +1171,19 @@ const HomePage: React.FC = () => {
                                 </div>
                                 <div>
                                   <h4 className="text-lg maladroit-font text-[var(--color-text-primary)] mb-1">
-                                    AI Powered Analytics
+                                    Behavior Recognition
                                   </h4>
                                   <p className="winky-sans-font text-[var(--color-text-secondary)]/80 text-sm">
-                                    Uses AI to gather and filter real time data
-                                    on token listings, launches and price
-                                    fluctuations to help snipers and traders.
+                                    Data on traders can be a goldmine for
+                                    behavior recognition, which is essentially
+                                    spotting patterns in how humans act under
+                                    certain conditions.
                                   </p>
                                 </div>
                               </div>
                             </div>
                           </div>
                         )}{" "}
-                        <div className="text-center mt-10" data-spotlight-cta>
-                          <div className="inline-block">
-                            <button
-                              onClick={
-                                activeTab === "manual"
-                                  ? handleTryManualMode
-                                  : handleTryAutoMode
-                              }
-                              className="btn-wave-primary cursor-pointer flex items-center gap-3"
-                            >
-                              <span className="wave-bg"></span>
-                              <span className="wave-left">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="w-auto h-full opacity-100 object-stretch"
-                                  viewBox="0 0 487 487"
-                                >
-                                  <path
-                                    fillOpacity=".1"
-                                    fillRule="nonzero"
-                                    fill="#FFF"
-                                    d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z"
-                                  ></path>
-                                </svg>
-                              </span>
-                              <span className="wave-right">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="object-cover w-full h-full"
-                                  viewBox="0 0 487 487"
-                                >
-                                  <path
-                                    fillOpacity=".1"
-                                    fillRule="nonzero"
-                                    fill="#FFF"
-                                    d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z"
-                                  ></path>
-                                </svg>
-                              </span>
-                              <span className="wave-overlay"></span>
-                              <span className="btn-text text-xl">
-                                {activeTab === "manual"
-                                  ? "Try Manual Mode"
-                                  : "Try Auto Mode"}
-                              </span>
-                              <Icon
-                                icon="mdi:arrow-right"
-                                className="text-white"
-                                width={24}
-                                height={24}
-                              />
-                            </button>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -1730,7 +1193,10 @@ const HomePage: React.FC = () => {
           </div>
         </div>
         {/* Management AI Section */}
-        <div className="section_sniper_spotlight lg:py-24 relative overflow-hidden">
+        <div
+          id="community"
+          className="section_sniper_spotlight lg:py-24 relative overflow-hidden"
+        >
           {/* Advanced Background Effects */}
           <div className="absolute inset-0 pointer-events-none">
             {/* Multi-layered Radial Gradients */}
@@ -1829,7 +1295,7 @@ const HomePage: React.FC = () => {
               >
                 <div className="spotlight-content-wrapper">
                   {/* Eyebrow Badge */}
-                  <div className="flex items-center justify-start mb-6">
+                  <div className="flex items-center justify-center mb-6">
                     <div className="bg-[var(--color-accent)]/10   border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform -  hover:rotate-0 transition-all duration-300">
                       <span className="text-xl md:text-lg winky-sans-font text-[var(--color-accent)]">
                         Community AI
@@ -1838,15 +1304,14 @@ const HomePage: React.FC = () => {
                   </div>
 
                   {/* Main Title */}
-                  <h2 className="text-2xl md:text-4xl maladroit-font text-[var(--color-text-primary)] mb-6">
-                    AI Powered Telegram Bots For Communities
+                  <h2 className="text-2xl md:text-4xl text-center maladroit-font text-[var(--color-text-primary)] mb-6">
+                    200k+ Communities Contributing Data For Digital Robots
                   </h2>
 
                   {/* Description */}
                   <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 mb-8">
-                    CherryAI Bot will be creating AI powered digital robots to
-                    help manage Telegram communities. These will be launched in
-                    3 versions - V1 is already deployed.
+                    Community AI Bots gather data from Web3 communities to build
+                    three different types of data models for AI powered robots.
                   </p>
 
                   {/* Community AI - Always-visible Cards */}
@@ -2010,7 +1475,10 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* AI Trending Section */}
-        <div className="section_sniper_spotlight py-24 relative overflow-hidden">
+        <div
+          id="token-overview"
+          className="section_sniper_spotlight py-24 relative overflow-hidden"
+        >
           {/* Advanced Background Effects */}
           <div className="absolute inset-0">
             {/* Multi-layered Radial Gradients */}
@@ -3086,198 +2554,6 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        {/* <div className="mt-32 relative transform translate-y-16 transition-all duration-1000">
-          <div className="relative w-full py-20 bg-gradient-to-b from-[var(--color-accent)]/20 to-[var(--color-accent)]/10 border-y border-[var(--color-accent)]/20 overflow-hidden">
-             <div className="absolute inset-0">
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_40%,rgba(67,103,201,0.17)_0%,transparent_45%)]"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(67,103,201,0.11)_0%,transparent_45%)]"></div>
-
-               <div className="absolute inset-0 opacity-24">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(67,103,201,0.11) 1px, transparent 1px),
-                                    linear-gradient(90deg, rgba(67,103,201,0.11) 1px, transparent 1px)`,
-                    backgroundSize: "45px 45px",
-                  }}
-                ></div>
-              </div>
-            </div>
-
-             <div className="absolute inset-0 pointer-events-none">
-               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div
-                  className="w-92 h-92 border border-[#4367c9]/24 rounded-full animate-spin-slow"
-                  style={{ animationDuration: "32s" }}
-                ></div>
-                <div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-68 h-68 border border-[#4367c9]/19 rounded-full animate-spin-slow"
-                  style={{
-                    animationDirection: "reverse",
-                    animationDuration: "28s",
-                  }}
-                ></div>
-              </div>
-
-               <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float   "></div>
-              <div
-                className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float   "
-                style={{ animationDelay: "1s" }}
-              ></div>
-              <div
-                className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float   "
-                style={{ animationDelay: "1.5s" }}
-              ></div>
-            </div>
-
-             <div className="absolute inset-0 pointer-events-none opacity-15">
-              <svg
-                width="100%"
-                height="100%"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="featuresConnectionGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop
-                      offset="0%"
-                      stopColor="var(--color-accent)"
-                      stopOpacity="0.2"
-                    />
-                    <stop
-                      offset="100%"
-                      stopColor="var(--color-accent)"
-                      stopOpacity="0.05"
-                    />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M50 50 Q 150 30 250 50 T 450 50"
-                  stroke="url(#featuresConnectionGradient)"
-                  strokeWidth="1"
-                  fill="none"
-                  className="animate-pulse"
-                />
-                <path
-                  d="M50 100 Q 150 80 250 100 T 450 100"
-                  stroke="url(#featuresConnectionGradient)"
-                  strokeWidth="1"
-                  fill="none"
-                  className="animate-pulse"
-                  style={{ animationDelay: "0.7s" }}
-                />
-              </svg>
-            </div>
-
-             <div className="relative z-10 mb-16 text-center max-w-4xl mx-auto px-4">
-              <h2 className="maladroit-font text-xl md:text-6xl text-[var(--color-text-primary)] mb-6 relative inline-block">
-                Upcoming Features
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
-              </h2>
-              <p className="winky-sans-font lg:text-xl text-sm text-[var(--color-text-secondary)]/90">
-                Full control. Pro-level settings. Fastest execution on Solana.
-                All in one powerful trading UI — connected to your wallet.
-              </p>
-            </div>
-
-             <div className="max-w-7xl mx-auto px-4">
-              <div className="w-full lg:px-44 my-3">
-                <div className="relative rounded-[28px] bg-[var(--color-glass)]   border border-[var(--color-glass-border)] overflow-hidden shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transform hover:-translate-y-2 transition-all duration-300">
-                   <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-
-                  <div className="block md:hidden">
-                    <VideoPlayer
-                      src="/output.mp4"
-                      className="w-full h-auto max-h-[60vh] object-cover"
-                      autoPlay={true}
-                    />
-                  </div>
-                  <div className="hidden md:block">
-                    <VideoPlayer
-                      src="/output.mp4"
-                      className="w-full h-auto max-h-[60vh] object-cover"
-                      autoPlay={true}
-                    />
-                  </div>
-
-                   <div className="absolute bottom-0 z-30 left-0 right-0 p-3 bg-[var(--color-glass)]/90 backdrop-blur-sm border-t border-[var(--color-accent)]/30 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <button
-                      className="bg-[var(--color-accent)] text-white py-2 px-4 rounded-[16px] border border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/90 hover:scale-105 transition-all duration-300 winky-sans-font flex items-center gap-2 whitespace-nowrap shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
-                      onClick={() =>
-                        window.open(
-                          "https://docs.cherrybot.co/cherry-trade",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <span className="text-white">Learn More</span>
-                      <Icon
-                        className="text-white"
-                        icon="mdi:book-open-variant"
-                        width={20}
-                        height={20}
-                      />
-                    </button>
-                  </div>
-
-                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
-                </div>
-              </div>
-            </div>
-
-             <div className="relative z-10 mt-16 max-w-2xl mx-auto px-4">
-              <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)]  rounded-[4px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] p-8 relative overflow-hidden">
-                 <div className="absolute -top-16 -right-16 w-32 h-32 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
-                <div
-                  className="absolute -bottom-16 -left-16 w-32 h-32 bg-[var(--color-accent)]/15 rounded-full animate-float"
-                  style={{ animationDelay: "1s" }}
-                ></div>
-
-                <h3 className="winky-sans-font md:text-2xl text-xl text-[var(--color-text-primary)] mb-4 text-center">
-                  Subscribe to our newsletter
-                </h3>
-                <p className="winky-sans-font text-[var(--color-text-secondary)]/90 mb-6 text-center">
-                  Be the first to know when new Cherry features launch.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-grow py-3 px-4 rounded-[16px] border-2 border-[var(--color-accent)]/30 focus:ring-2 focus:ring-[var(--color-accent)] focus:outline-none bg-[var(--color-bg-secondary)]/50 text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)]/60"
-                  />
-                  <button
-                    onClick={() => handleNewsletterSubscribe(email)}
-                    disabled={isSubscribing}
-                    className="bg-[var(--color-accent)] text-white py-3 px-6 rounded-[16px] border border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/90 hover:scale-105 transition-all duration-300 winky-sans-font flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
-                  >
-                    <span className="text-white">
-                      {isSubscribing ? "Subscribing..." : "Subscribe"}
-                    </span>
-                    <Icon
-                      icon={isSubscribing ? "mdi:loading" : "mdi:bell"}
-                      width={20}
-                      height={20}
-                      className={`text-white ${
-                        isSubscribing ? "animate-spin" : ""
-                      }`}
-                    />
-                  </button>
-                </div>
-
-                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         <RevenueStreams />
         <Footer />
       </div>

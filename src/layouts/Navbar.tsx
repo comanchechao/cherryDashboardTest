@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
 
   const getDesktopLinkClasses = (path: string) => {
     const baseClasses =
-      "px-4 py-2.5 winky-sans-font text-[15px] font-medium transition-all duration-300 relative nav-link rounded-lg";
+      "px-4 py-2 winky-sans-font text-[13px] font-medium transition-all duration-300 relative nav-link rounded-lg";
     const activeClasses = isActivePath(path)
       ? "text-accent bg-glass border border-accent shadow-lg"
       : "text-primary hover:text-accent hover:bg-glass hover:border-glass";
@@ -55,6 +55,25 @@ const Navbar: React.FC = () => {
       : "text-primary hover:text-accent hover:bg-glass";
 
     return `${baseClasses} ${activeClasses}`;
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      // If not on homepage, navigate to homepage first
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 100; // Approximate height of navbar + padding
+      const elementPosition = element.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -79,12 +98,38 @@ const Navbar: React.FC = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-2">
-              {/* <Link
-                to="/features"
-                className={getDesktopLinkClasses("/features")}
+              <button
+                onClick={() => scrollToSection("partners")}
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
-                Features
-              </Link> */}
+                <span className="relative z-10">Partners and Integrations</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("features")}
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Ecosystem</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("binance-support")}
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Backers</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("community")}
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Community</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
               <Link to="/cherrySniper">
                 <button
                   className={`btn-wave-alternative cursor-pointer ${
@@ -123,7 +168,7 @@ const Navbar: React.FC = () => {
                     </svg>
                   </span>
                   <span className="wave-overlay"></span>
-                  <span className="btn-text">SniperAI Bot</span>
+                  <span className="btn-text !text-[13px]">SniperAI Bot</span>
                 </button>
               </Link>{" "}
               <Link
@@ -132,32 +177,14 @@ const Navbar: React.FC = () => {
               >
                 AI Analytics
               </Link>
-              <Link to="/cherry" className={getDesktopLinkClasses("/cherry")}>
-                $AIBOT
-              </Link>
-              {/* <Link
-                to="/communityAI"
-                className={getDesktopLinkClasses("/communityAI")}
+              <button
+                onClick={() => scrollToSection("token-overview")}
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
-                Community AI
-              </Link> */}
-              {/* <Link
-                to="/webTrending"
-                className={getDesktopLinkClasses("/webTrending")}
-              >
-                Web Trending
-              </Link> */}
-              {/* <Link to="/roadmap" className={getDesktopLinkClasses("/roadmap")}>
-                Roadmap
-              </Link> */}
-              {/* <a
-                href="https://pad.cherrybot.ai/"
-                target="_blank"
-                rel="noreferrer"
-                className="px-4 py-2.5 winky-sans-font text-[15px] font-medium text-primary hover:text-accent hover:bg-glass hover:border-glass transition-all duration-300 rounded-lg nav-link"
-              >
-                IDO
-              </a> */}
+                <span className="relative z-10">$AIBOT</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
             </div>
 
             {/* Right Section - Dashboard and Wallet */}
@@ -217,12 +244,38 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="glass-effect rounded-2xl border border-glass px-6 py-4">
             <div className="space-y-2">
-              {/* <Link
-                to="/features"
-                className={getMobileLinkClasses("/features")}
+              <button
+                onClick={() => scrollToSection("partners")}
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
-                Features
-              </Link> */}
+                <span className="relative z-10">Partners and Integrations</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("features")}
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Ecosystem</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("binance-support")}
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Backers</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
+              <button
+                onClick={() => scrollToSection("community")}
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+              >
+                <span className="relative z-10">Community</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
 
               <Link
                 to="/cherrySniper"
@@ -238,23 +291,14 @@ const Navbar: React.FC = () => {
                 AI Analytics
               </Link>
 
-              <Link to="/cherry" className={getMobileLinkClasses("/cherry")}>
-                $AIBOT
-              </Link>
-
-              {/* 
-              <Link to="/roadmap" className={getMobileLinkClasses("/roadmap")}>
-                Roadmap
-              </Link> */}
-
-              {/* <a
-                href="https://pad.cherrybot.ai/"
-                target="_blank"
-                rel="noreferrer"
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent hover:bg-glass transition-all duration-300 rounded-lg"
+              <button
+                onClick={() => scrollToSection("token-overview")}
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
               >
-                IDO
-              </a> */}
+                <span className="relative z-10">$AIBOT</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button>
 
               <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
                 Dashboard
@@ -267,30 +311,6 @@ const Navbar: React.FC = () => {
       {/* Enhanced CSS for modern glassmorphism effects */}
       <style>
         {`
-          .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent));
-            border-radius: 1px;
-            transform: translateX(-50%);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          
-          .nav-link:hover::after {
-            width: 80%;
-          }
-          
-          /* Active link styling */
-          .active-nav-link::after {
-            width: 80%;
-            height: 2px;
-            background: var(--color-accent);
-          }
-          
           /* Logo hover effect */
           .cherry-logo {
             position: relative;

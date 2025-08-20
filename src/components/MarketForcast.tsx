@@ -45,9 +45,10 @@ const MarketForcast: React.FC = () => {
               Digital Robotics Is a $35 Billion Industry
             </h2>
             <p className="winky-sans-font text-base md:text-lg text-[var(--color-text-secondary)]/90 leading-relaxed">
-              Digital robots or AI that performs specialized tasks are a $35
-              billion dollar market. This market is growing at tremendous speed
-              and will become a $382.5 billion dollar industry by 2034.
+              The global robotics market is projected to grow from $93 billion
+              in 2024 to nearly $400 billion by 2035 at a 14% CAGR. Demand is
+              rising in manufacturing, logistics, and healthcare. Falling costs
+              and smarter AI are making robots more capable and transformative.
             </p>
           </div>
 

@@ -2,7 +2,10 @@ import React from "react";
 
 const BinanceSupportSection: React.FC = () => {
   return (
-    <div className="section_sniper_spotlight py-20 relative overflow-hidden">
+    <div
+      id="binance-support"
+      className="section_sniper_spotlight py-20 relative overflow-hidden"
+    >
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         {/* Multi-layered Radial Gradients */}
@@ -59,7 +62,7 @@ const BinanceSupportSection: React.FC = () => {
             <div>
               <div className="inline-flex items-center mb-5 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-[6px] px-4 py-1">
                 <span className="winky-sans-font text-[var(--color-accent)] text-sm">
-                  Binance Ecosystem
+                  Binance Backed
                 </span>
               </div>
               <h2 className="maladroit-font text-2xl md:text-4xl text-[var(--color-text-primary)] leading-tight mb-4">
