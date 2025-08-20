@@ -73,10 +73,14 @@ const BinanceSupportSection: React.FC = () => {
 
               <div className="flex items-center justify-between mt-8">
                 <span className="maladroit-font text-xl md:text-2xl text-[var(--color-text-primary)]">
-                  BINANCE
+                  CherryAI
                 </span>
-                <div className="hidden md:block w-24 h-24 rounded-full border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5">
-                  <img src="/binanceLogo.png" alt="" />
+                <div className="     rounded-full flex items-center justify-center  ">
+                  <img
+                    src="/cherryTextLogo.webp"
+                    className="w-44 object-contain"
+                    alt="CherryAI Logo"
+                  />
                 </div>
               </div>
 
@@ -133,37 +137,28 @@ const BinanceSupportSection: React.FC = () => {
 
           {/* Bottom Row - TVL */}
           <div className="relative border-t border-[var(--color-glass-border)] p-6 md:p-8">
-            <div className="flex items-center gap-6">
-              <div className="maladroit-font text-3xl md:text-5xl text-[var(--color-accent)]">
+            <div className="flex items-center justify-around   gap-6">
+              <div className="maladroit-font text-2xl md:text-5xl text-[var(--color-accent)]">
                 $7.25 Billion
               </div>
-              <div className="winky-sans-font text-base md:text-xl text-[var(--color-text-primary)]/90">
-                TVL on BSC
-              </div>
               {/* Decorative hash marks */}
-              <svg width="90" height="40" className="ml-auto hidden md:block">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <g key={i} transform={`translate(${i * 15},0)`}>
-                    <rect
-                      x="0"
-                      y="8"
-                      width="2"
-                      height="24"
-                      className="fill-[var(--color-accent)]/30"
-                    />
-                    <rect
-                      x="6"
-                      y="8"
-                      width="2"
-                      height="24"
-                      className="fill-[var(--color-accent)]/20"
-                    />
-                  </g>
-                ))}
-              </svg>
+              <div className=" maladroit-font text-2xl md:text-5xl text-[var(--color-text-primary)]/90">
+                TVL on BSC
+              </div>{" "}
+              <div className="  z-20">
+                <div className="w  rounded-full    ">
+                  <img
+                    src="/binanceLogo.png"
+                    alt="Binance Logo"
+                    className="w-60   object-contain p-2"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        {/* Binance Logo in Corner Right */}
       </div>
     </div>
   );
