@@ -23,7 +23,7 @@ const CommunityDataModels: React.FC = () => {
       image: "/communityRobot.webp",
       imageAlt: "Robot holding a phone",
       content:
-        'Memes are like compressed signals of sentiment — they spread when people resonate with an idea emotionally. If a robot can parse and model memes, it can: Understand cultural context so its interactions don\'t feel "robotic." React in real-time to viral narratives that drive politics, or consumer behavior.',
+        "Memetic Models Have Multiple Benefits\n\n• Robots can quickly adapt to cultural shifts by recognizing trends and patterns in shared symbols or ideas.\n\n• Memetic learning enables more natural human-robot interaction by mirroring humor, slang, and collective behaviors.\n\n• It improves social integration, allowing robots to align with community norms and values faster.\n\n• Robots gain predictive insight into collective behavior, making them more effective in group settings or markets.",
     },
     {
       id: "community-interaction",
@@ -31,7 +31,7 @@ const CommunityDataModels: React.FC = () => {
       image: "/analyticsRobot.webp",
       imageAlt: "Robot holding a tablet",
       content:
-        "Robots trained on human interaction data can learn social cues and adapt their responses to build trust and cooperation with people. That means instead of just executing tasks, the robot understands tone, timing, intent, and context — making it far better at negotiation, persuasion and customer support.",
+        "Community Interaction Models Have Multiple Benefits\n\n• Robots can hold conversations that feel more natural and human-like, which builds stronger trust and engagement.\n\n• By learning tone, gestures, and timing, robots improve their ability to navigate complex social interactions.\n\n• Human interaction models allow robots to adapt to unique personalities, preferences, and communication styles.\n\n• Robots become more effective collaborators, anticipating needs and supporting teamwork in dynamic settings.",
     },
     {
       id: "community-sentiment",
@@ -39,7 +39,7 @@ const CommunityDataModels: React.FC = () => {
       image: "/sniperRobot.webp",
       imageAlt: "Robot on a laptop",
       content:
-        "Robots that model community sentiment can anticipate collective decision-making before it shows up in the data (like markets, votes, or trends). That means instead of reacting after the crowd moves, the robot can predict shifts in consensus and act strategically ahead of time.",
+        "Community Sentiment Models Have Multiple Benefits\n\n• Robots can gauge public mood, letting them respond in ways that align with collective emotions.\n\n• Sentiment models help robots avoid negative reactions by adapting tone and behavior to community feelings.\n\n• They allow robots to spot early shifts in opinion, useful for predicting social or market trends.\n\n• Robots become better mediators and assistants by fostering harmony within groups and communities.",
     },
   ];
 
@@ -74,10 +74,10 @@ const CommunityDataModels: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="grid grid-cols-1  gap-8 place-items-center items-center"
+            className="grid grid-cols-1 md:grid-cols-2  gap-8 items-center"
           >
             {/* Left - Image */}
-            <div className="relative">
+            <div className="relative h-full flex items-start">
               <motion.div
                 initial={{ scale: 0.95 }}
                 animate={{ scale: 1 }}
@@ -101,7 +101,7 @@ const CommunityDataModels: React.FC = () => {
             </div>
 
             {/* Right - Content */}
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-start items-start">
               <motion.h3
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -114,7 +114,7 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="winky-sans-font text-[var(--color-text-secondary)]/90 text-base md:text-lg leading-relaxed"
+                className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm md:text-sm leading-relaxed whitespace-pre-line"
               >
                 {activeCard?.content}
               </motion.p>

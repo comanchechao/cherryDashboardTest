@@ -16,7 +16,7 @@ const Toast: React.FC<ToastProps> = ({
   title,
   message,
   visible,
-
+  onClose,
   txSignature,
 }) => {
   if (!visible) return null;
@@ -26,52 +26,57 @@ const Toast: React.FC<ToastProps> = ({
       case "success":
         return {
           icon: "mdi:check-circle",
-          bgColor: "bg-green-100",
-          borderColor: "border-green-500",
-          shadowColor: "shadow-[4px_4px_0px_#22c55e]",
-          iconColor: "text-green-600",
-          titleColor: "text-green-800",
-          messageColor: "text-green-700",
+          bgColor: "bg-[var(--color-glass)]",
+          borderColor: "border-[var(--color-accent)]/30",
+          shadowColor: "shadow-[0_8px_32px_rgba(67,103,201,0.2)]",
+          iconColor: "text-[var(--color-accent)]",
+          titleColor: "text-[var(--color-text-primary)]",
+          messageColor: "text-[var(--color-text-secondary)]/90",
+          accentColor: "bg-[var(--color-accent)]/20",
         };
       case "error":
         return {
           icon: "mdi:alert-circle",
-          bgColor: "bg-red-100",
-          borderColor: "border-red-500",
-          shadowColor: "shadow-[4px_4px_0px_#ef4444]",
-          iconColor: "text-red-600",
-          titleColor: "text-red-800",
-          messageColor: "text-red-700",
+          bgColor: "bg-[var(--color-glass)]",
+          borderColor: "border-red-500/30",
+          shadowColor: "shadow-[0_8px_32px_rgba(239,68,68,0.2)]",
+          iconColor: "text-red-500",
+          titleColor: "text-[var(--color-text-primary)]",
+          messageColor: "text-[var(--color-text-secondary)]/90",
+          accentColor: "bg-red-500/20",
         };
       case "warning":
         return {
           icon: "mdi:alert",
-          bgColor: "bg-orange-100",
-          borderColor: "border-orange-500",
-          shadowColor: "shadow-[4px_4px_0px_#f97316]",
-          iconColor: "text-orange-600",
-          titleColor: "text-orange-800",
-          messageColor: "text-orange-700",
+          bgColor: "bg-[var(--color-glass)]",
+          borderColor: "border-orange-500/30",
+          shadowColor: "shadow-[0_8px_32px_rgba(249,115,22,0.2)]",
+          iconColor: "text-orange-500",
+          titleColor: "text-[var(--color-text-primary)]",
+          messageColor: "text-[var(--color-text-secondary)]/90",
+          accentColor: "bg-orange-500/20",
         };
       case "info":
         return {
           icon: "mdi:information",
-          bgColor: "bg-blue-100",
-          borderColor: "border-blue-500",
-          shadowColor: "shadow-[4px_4px_0px_#3b82f6]",
-          iconColor: "text-blue-600",
-          titleColor: "text-blue-800",
-          messageColor: "text-blue-700",
+          bgColor: "bg-[var(--color-glass)]",
+          borderColor: "border-[var(--color-accent)]/30",
+          shadowColor: "shadow-[0_8px_32px_rgba(67,103,201,0.2)]",
+          iconColor: "text-[var(--color-accent)]",
+          titleColor: "text-[var(--color-text-primary)]",
+          messageColor: "text-[var(--color-text-secondary)]/90",
+          accentColor: "bg-[var(--color-accent)]/20",
         };
       default:
         return {
           icon: "mdi:information",
-          bgColor: "bg-cherry-cream",
-          borderColor: "border-cherry-burgundy",
-          shadowColor: "shadow-[4px_4px_0px_#5d4037]",
-          iconColor: "text-cherry-red",
-          titleColor: "text-cherry-burgundy",
-          messageColor: "text-cherry-burgundy",
+          bgColor: "bg-[var(--color-glass)]",
+          borderColor: "border-[var(--color-accent)]/30",
+          shadowColor: "shadow-[0_8px_32px_rgba(67,103,201,0.2)]",
+          iconColor: "text-[var(--color-accent)]",
+          titleColor: "text-[var(--color-text-primary)]",
+          messageColor: "text-[var(--color-text-secondary)]/90",
+          accentColor: "bg-[var(--color-accent)]/20",
         };
     }
   };
@@ -80,30 +85,58 @@ const Toast: React.FC<ToastProps> = ({
 
   return (
     <div
-      className={`fixed top-10 min-w-lg my-5 right-10 z-50 ${config.bgColor} border-4 ${config.borderColor} rounded-xl ${config.shadowColor} px-5 py-3 flex items-center gap-3 transition-all duration-300 transform opacity-100 translate-y-0`}
+      className={`relative ${config.bgColor} border ${config.borderColor} rounded-[20px] ${config.shadowColor} backdrop-blur-xl overflow-hidden transition-all duration-300 transform opacity-100 translate-y-0 hover:shadow-[0_12px_40px_rgba(67,103,201,0.3)] group`}
     >
-      <Icon
-        icon={config.icon}
-        className={config.iconColor}
-        width={24}
-        height={24}
-      />
-      <div className="flex flex-col">
-        <span className={`winky-sans-font font-medium ${config.titleColor}`}>
-          {title}
-        </span>
-        <span
-          className={`winky-sans-font text-sm ${config.messageColor} opacity-90`}
-        >
-          {message}
-        </span>
-        {txSignature && (
-          <span
-            className={`winky-sans-font text-xs ${config.messageColor} opacity-70 break-all mt-1`}
-          >
-            Tx: {txSignature}
-          </span>
-        )}
+      {/* Floating Decorative Elements */}
+      <div className="absolute top-2 right-2 w-3 h-3 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
+      <div className="absolute bottom-2 left-2 w-2 h-2 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+
+      {/* Bottom Decorative Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[20px]"></div>
+
+      <div className="relative z-10 p-4 sm:p-6">
+        <div className="flex items-start gap-3 sm:gap-4">
+          {/* Icon Container */}
+          <div className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 ${config.accentColor} rounded-[16px] flex items-center justify-center`}>
+            <Icon
+              icon={config.icon}
+              className={`${config.iconColor} w-5 h-5 sm:w-6 sm:h-6`}
+            />
+          </div>
+
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex-1">
+                <h3 className={`maladroit-font text-base sm:text-lg font-medium ${config.titleColor} mb-1`}>
+                  {title}
+                </h3>
+                <p className={`winky-sans-font text-sm sm:text-base ${config.messageColor} leading-relaxed`}>
+                  {message}
+                </p>
+                {txSignature && (
+                  <div className="mt-2 p-2 bg-[var(--color-bg-secondary)]/20 rounded-[12px] border border-[var(--color-accent)]/10">
+                    <p className={`winky-sans-font text-xs ${config.messageColor} opacity-70 break-all`}>
+                      <span className="font-medium">Tx:</span> {txSignature}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/20 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 group-hover:opacity-100 opacity-60"
+                aria-label="Close toast"
+              >
+                <Icon
+                  icon="mdi:close"
+                  className="w-3 h-3 sm:w-4 sm:h-4 text-[var(--color-accent)]"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

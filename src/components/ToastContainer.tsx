@@ -12,15 +12,15 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   onHideToast,
 }) => {
   return (
-    <div className="fixed top-4 left-4 right-4 lg:top-6 lg:right-6 lg:left-auto lg:max-w-md z-[200] space-y-1 lg:space-y-2">
+    <div className="fixed top-4 left-4 right-4 lg:top-6 lg:right-6 lg:left-auto lg:max-w-lg xl:max-w-xl z-[200] space-y-2 lg:space-y-3">
       {toasts.map((toast, index) => (
         <div
           key={toast.id}
+          className="animate-slideIn"
           style={{
-            transform: `translateY(${
-              index * (window.innerWidth >= 1024 ? 60 : 50)
-            }px)`,
-            transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: `translateY(${index * 20}px)`,
+            transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+            animationDelay: `${index * 0.1}s`,
           }}
         >
           <Toast
@@ -34,6 +34,30 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
           />
         </div>
       ))}
+      
+      {/* Custom animations */}
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .animate-slideIn {
+          animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @media (max-width: 1024px) {
+          .animate-slideIn {
+            animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+        }
+      `}</style>
     </div>
   );
 };
