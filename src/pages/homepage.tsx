@@ -16,7 +16,7 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
-import { StatCards, InfoModal } from "./homepage/components";
+import { StatCards, CommunityDataModels } from "./homepage/components";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -1206,7 +1206,7 @@ const HomePage: React.FC = () => {
                   </p>
 
                   {/* Info Modal */}
-                  <InfoModal />
+                  <CommunityDataModels />
 
                   {/* CTA Button */}
                   <button
