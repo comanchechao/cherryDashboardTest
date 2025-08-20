@@ -50,7 +50,9 @@ const BinanceSupportSection: React.FC = () => {
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
-<h3 className="maladroit-font px-5 text-center text-2xl md:text-6xl text-[var(--color-text-primary)] leading-tight mb-4">Official Binance Wallet IDO</h3>
+      <h3 className="maladroit-font px-5 text-center text-2xl md:text-6xl text-[var(--color-text-primary)] leading-tight mb-4">
+        Official Binance Wallet IDO
+      </h3>
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Glass container with grid layout to mimic provided design */}
         <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] overflow-hidden backdrop-blur-xl">
@@ -58,16 +60,15 @@ const BinanceSupportSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left descriptive card */}
             <div className="relative p-6 md:p-10">
-            <div className="flex items-center justify-between mt-8">
-             
-             <div className="mb-6     rounded-full flex items-center justify-center  ">
-               <img
-                 src="/cherryTextLogo.webp"
-                 className="w-64 object-contain"
-                 alt="CherryAI Logo"
-               />
-             </div>
-           </div>
+              <div className="flex items-center justify-between mt-8">
+                <div className="mb-6     rounded-full flex items-center justify-center  ">
+                  <img
+                    src="/cherryTextLogo.webp"
+                    className="w-64 object-contain"
+                    alt="CherryAI Logo"
+                  />
+                </div>
+              </div>
               {/* Accent line */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-1.5 h-8 rounded-sm bg-[var(--color-accent)]"></span>
@@ -80,8 +81,6 @@ const BinanceSupportSection: React.FC = () => {
                   .
                 </span>
               </div>
-
-        
 
               {/* Soft halo */}
               <div className="absolute -z-10 -top-10 -right-10 w-64 h-64 rounded-full blur-3xl bg-[var(--color-accent)]/10"></div>
@@ -136,8 +135,8 @@ const BinanceSupportSection: React.FC = () => {
 
           {/* Bottom Row - TVL */}
           <div className="relative border-t border-[var(--color-glass-border)] p-6 md:p-8">
-            <div className="flex items-center justify-around   gap-6">
-              <div className="maladroit-font text-2xl md:text-5xl text-[var(--color-accent)]">
+            <div className="flex items-center justify-around lg:flex-row flex-col  gap-6">
+              <div className="maladroit-font text-3xl md:text-5xl text-[var(--color-accent)]">
                 $7.25 Billion
               </div>
               {/* Decorative hash marks */}
