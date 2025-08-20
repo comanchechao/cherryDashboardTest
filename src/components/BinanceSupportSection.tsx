@@ -46,7 +46,7 @@ const BinanceSupportSection: React.FC = () => {
           style={{ animationDelay: "1.2s" }}
         ></div>
         <div
-          className="absolute top-1/3 right-1/4 w-2.5 h-2.5 bg-[var(--color-accent)]/20 rounded-full animate-float"
+          className="absolute top-1/3 text-white right-1/4 w-2.5 h-2.5 bg-[var(--color-accent)]/20 rounded-full animate-float"
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
