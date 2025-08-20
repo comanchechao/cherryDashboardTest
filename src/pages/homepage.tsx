@@ -658,7 +658,7 @@ const HomePage: React.FC = () => {
                       onClick={() => {
                         window.open("/dashboard");
                       }}
-                      className="btn-wave-primary cursor-pointer w-fit justify-self-start"
+                      className="btn-wave-primary cursor-pointer w-96 px-24 justify-self-start"
                     >
                       <span className="wave-bg"></span>
                       <span className="wave-left">
