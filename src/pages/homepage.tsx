@@ -820,7 +820,7 @@ const HomePage: React.FC = () => {
           <MarketForcast />
           <StatCards
             id="features"
-            title="CherryAI Bot Ecosystem Users"
+            title="CherryAI Robot Ecosystem Users"
             stats={[
               { value: "200K+", label: "Active Communities" },
               { value: "8M+", label: "Daily Prompts" },
