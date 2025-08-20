@@ -637,9 +637,9 @@ const HomePage: React.FC = () => {
           <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-full relative z-10">
             <div className="  w-full mx-auto">
               <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-full lg:h-auto mb-16 relative z-10 px-10">
-                <div className="flex lg:w-1/2 w-full items-start justify-center flex-col lg:px-16">
+                <div className="flex lg:w-1/2 w-full lg:items-start justify-center flex-col lg:px-16 items-center">
                   <div className="  ">
-                    <h1 className="maladroit-font flex items-center justify-start text-5xl md:text-6xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
+                    <h1 className="maladroit-font flex  items-center lg:justify-start justify-center text-3xl md:text-6xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
                       Cherry
                       <span className="text-[var(--color-accent)]">
                         AI
@@ -650,18 +650,18 @@ const HomePage: React.FC = () => {
                       </span>
                     </h1>
 
-                    <p className="hero-description my-10 text-left text-lg lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
+                    <p className="hero-description my-10 lg:text-left text-center text-sm lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
                       Ecosystem of products that gather data to build data
                       models for AI powered robots.
                     </p>
                   </div>
 
-                  <div className="hero-buttons w-full flex flex-col sm:flex-row items-start justify-start gap-6 mb-9">
+                  <div className="hero-buttons w-full flex flex-col sm:flex-row lg:items-start items-center justify-start gap-6 mb-9">
                     <button
                       onClick={() => {
                         window.open("/dashboard");
                       }}
-                      className="btn-wave-primary cursor-pointer w-96 px-24 justify-self-start"
+                      className="btn-wave-primary cursor-pointer lg:w-96 lg:px-24 w-64 justify-self-start"
                     >
                       <span className="wave-bg"></span>
                       <span className="wave-left">
