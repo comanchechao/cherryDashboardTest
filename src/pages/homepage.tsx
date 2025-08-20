@@ -1163,7 +1163,7 @@ const HomePage: React.FC = () => {
                                 </span>
                                 <span className="wave-overlay"></span>
                                 <span className="btn-text">
-                                  Explore SniperAI Bot
+                                  Explore SniperAI  
                                 </span>
                                 <svg
                                   width="24"
@@ -1349,7 +1349,7 @@ const HomePage: React.FC = () => {
                         </svg>
                       </span>
                       <span className="wave-overlay"></span>
-                      <span className="btn-text">Explore Cherry Bot</span>
+                      <span className="btn-text">Explore Cherry Robot</span>
                       <svg
                         width="24"
                         height="24"
