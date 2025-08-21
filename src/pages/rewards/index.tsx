@@ -671,6 +671,57 @@ const Rewards: React.FC = () => {
                       </div>
                     </motion.div>
                   )}
+                  {activeTab === "comingSoon" && (
+                    <motion.div
+                      key="comingSoon"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-6"
+                    >
+                      {/* Hero Section */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-8 text-center">
+                        <div className="mb-6">
+                          <Icon
+                            icon="mdi:rocket-launch"
+                            width={80}
+                            height={80}
+                            className="text-white/70 mx-auto mb-6 animate-pulse"
+                          />
+                          <h3 className="maladroit-font text-4xl text-white mb-4">
+                            Exciting Features Coming Soon!
+                          </h3>
+                          <p className="winky-sans-font text-white/80 text-lg max-w-2xl mx-auto">
+                            We're working hard to bring you the next generation
+                            of CherryAI features. Stay tuned for revolutionary
+                            updates that will transform your trading experience.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Newsletter Signup */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-6 text-center">
+                        <h4 className="maladroit-font text-2xl text-white mb-4">
+                          Stay Updated
+                        </h4>
+                        <p className="winky-sans-font text-white/70 text-lg mb-6">
+                          Get notified when these features launch and receive
+                          exclusive early access!
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                          <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/50 winky-sans-font focus:outline-none focus:border-white/40"
+                          />
+                          <button className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 hover:scale-105">
+                            Subscribe
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
                   {activeTab === "leaderboard" && (
                     <motion.div
                       key="leaderboard"
