@@ -521,7 +521,15 @@ const Rewards: React.FC = () => {
                                   $0.006765{" "}
                                 </td>
                                 <td className="py-3 pr-4 text-right">
-                                  <button className="px-3 py-2 rounded-sm text-sm border bg-amber-400 text-black border-amber-400 hover:bg-amber-300 transition-colors duration-200">
+                                  <button
+                                    onClick={() => {
+                                      window.open(
+                                        "https://www.binance.com/en/alpha/bsc/0x96adaa33e175f4a7f20c099730bc78dd0b45745b",
+                                        "_blank"
+                                      );
+                                    }}
+                                    className="px-3 py-2 rounded-sm text-sm border bg-amber-400 text-black border-amber-400 hover:bg-amber-300 transition-colors duration-200"
+                                  >
                                     Buy $AIBOT
                                   </button>
                                 </td>
@@ -549,7 +557,15 @@ const Rewards: React.FC = () => {
                                   $0.00688
                                 </td>
                                 <td className="py-3 pr-4 text-right">
-                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                  <button
+                                    onClick={() => {
+                                      window.open(
+                                        "https://www.mexc.com/exchange/AIBOT_USDT",
+                                        "_blank"
+                                      );
+                                    }}
+                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
+                                  >
                                     Buy $AIBOT
                                   </button>
                                 </td>
@@ -577,7 +593,15 @@ const Rewards: React.FC = () => {
                                   $0.006758
                                 </td>
                                 <td className="py-3 pr-4 text-right">
-                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                  <button
+                                    onClick={() => {
+                                      window.open(
+                                        "https://www.gate.com/trade/AIBOT_USDT",
+                                        "_blank"
+                                      );
+                                    }}
+                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
+                                  >
                                     Buy $AIBOT
                                   </button>
                                 </td>
@@ -605,7 +629,15 @@ const Rewards: React.FC = () => {
                                   $0.006786
                                 </td>
                                 <td className="py-3 pr-4 text-right">
-                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                  <button
+                                    onClick={() => {
+                                      window.open(
+                                        "https://pancakeswap.finance/swap?outputCurrency=0x96adaa33e175f4a7f20c099730bc78dd0b45745b",
+                                        "_blank"
+                                      );
+                                    }}
+                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
+                                  >
                                     Buy $AIBOT
                                   </button>
                                 </td>
