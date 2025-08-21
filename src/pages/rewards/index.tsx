@@ -433,7 +433,7 @@ const Rewards: React.FC = () => {
                             Total $AIBOT Holders
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            5,345
+                            2,400
                           </div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
@@ -441,7 +441,7 @@ const Rewards: React.FC = () => {
                             Total $AIBOT Stakers
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            2,523
+                            -
                           </div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
@@ -449,7 +449,7 @@ const Rewards: React.FC = () => {
                             Total $AIBOT Staked
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            17,233,423
+                            -
                           </div>
                         </div>
                       </div>
@@ -459,7 +459,7 @@ const Rewards: React.FC = () => {
                             APR
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            %17
+                            5% - 17%
                           </div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
@@ -467,7 +467,7 @@ const Rewards: React.FC = () => {
                             $AIBOT BuyBacks
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            5,345,643
+                            -
                           </div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
@@ -475,7 +475,7 @@ const Rewards: React.FC = () => {
                             $AIBOT Burns
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            3,456,233
+                            -
                           </div>
                         </div>
                       </div>
