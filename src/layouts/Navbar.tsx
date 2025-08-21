@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
   const getMobileLinkClasses = (path: string) => {
     const baseClasses =
-      "block py-3 px-4 winky-sans-font text-sm font-medium transition-all duration-300 rounded-lg";
+      "block py-3 px-4 winky-sans-font text-sm font-medium transition-all duration-300  rounded-sm";
     const activeClasses = isActivePath(path)
       ? "text-accent bg-glass border border-accent"
       : "text-primary hover:text-accent hover:bg-glass";
@@ -100,7 +100,7 @@ const Navbar: React.FC = () => {
             <div className="hidden lg:flex items-center space-x-2">
               <button
                 onClick={() => scrollToSection("partners")}
-                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Partners and Integrations</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("features")}
-                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Ecosystem</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("binance-support")}
-                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Backers</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -124,7 +124,7 @@ const Navbar: React.FC = () => {
               </button>
               {/* <button
                 onClick={() => scrollToSection("community")}
-                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Community</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -179,7 +179,7 @@ const Navbar: React.FC = () => {
               </Link> */}
               <button
                 onClick={() => scrollToSection("token-overview")}
-                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">$AIBOT</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -210,7 +210,7 @@ const Navbar: React.FC = () => {
                   href="https://x.com/cherrytgbot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="p-2 glass-card border border-glass  rounded-sm hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   aria-label="Twitter"
                 >
                   <Icon
@@ -222,7 +222,7 @@ const Navbar: React.FC = () => {
                   href="https://t.me/cherrycommunity"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="p-2 glass-card border border-glass  rounded-sm hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   aria-label="Telegram"
                 >
                   <Icon
@@ -239,7 +239,7 @@ const Navbar: React.FC = () => {
             <div className="lg:hidden flex items-center">
               <button
                 onClick={toggleMobileMenu}
-                className="outline-none p-2 glass-card border border-glass rounded-lg hover:border-accent transition-all duration-300"
+                className="outline-none p-2 glass-card border border-glass  rounded-sm hover:border-accent transition-all duration-300"
                 aria-label="Menu"
               >
                 <svg
@@ -274,7 +274,7 @@ const Navbar: React.FC = () => {
             <div className="space-y-2">
               <button
                 onClick={() => scrollToSection("partners")}
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Partners and Integrations</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -282,7 +282,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("features")}
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Ecosystem</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -290,7 +290,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("binance-support")}
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Backers</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -298,7 +298,7 @@ const Navbar: React.FC = () => {
               </button>
               <button
                 onClick={() => scrollToSection("community")}
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">Community</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -321,7 +321,7 @@ const Navbar: React.FC = () => {
 
               <button
                 onClick={() => scrollToSection("token-overview")}
-                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300 rounded-lg relative overflow-hidden group"
+                className="block py-3 px-4 winky-sans-font text-sm font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
               >
                 <span className="relative z-10">$AIBOT</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -338,7 +338,7 @@ const Navbar: React.FC = () => {
                   href="https://x.com/cherrytgbot"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="p-2 glass-card border border-glass  rounded-sm hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   aria-label="Twitter"
                 >
                   <Icon
@@ -350,7 +350,7 @@ const Navbar: React.FC = () => {
                   href="https://t.me/cherrycommunity"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 glass-card border border-glass rounded-lg hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
+                  className="p-2 glass-card border border-glass  rounded-sm hover:border-accent hover:bg-accent/10 transition-all duration-300 group"
                   aria-label="Telegram"
                 >
                   <Icon
