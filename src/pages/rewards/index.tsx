@@ -515,7 +515,7 @@ const Rewards: React.FC = () => {
                                   </a>
                                 </td>
                                 <td className="py-3 pr-4 text-white/80">
-                                  $863,449
+                                  $4,009,422
                                 </td>
                                 <td className="py-3 pr-4 text-white/80">
                                   $0.006765{" "}
