@@ -687,7 +687,7 @@ const Rewards: React.FC = () => {
                             icon="mdi:rocket-launch"
                             width={80}
                             height={80}
-                            className="text-white/70 mx-auto mb-6 animate-pulse"
+                            className="text-white/70 mx-auto mb-6  "
                           />
                           <h3 className="maladroit-font text-4xl text-white mb-4">
                             Exciting Features Coming Soon!
@@ -761,7 +761,7 @@ const Rewards: React.FC = () => {
                                 icon="mdi:gift"
                                 width={28}
                                 height={28}
-                                className="text-cherry-red animate-pulse"
+                                className="text-cherry-red  "
                               />
                               Your Rewards Dashboard
                             </h3>
@@ -907,7 +907,7 @@ const Rewards: React.FC = () => {
                                 icon="mdi:airplane"
                                 width={28}
                                 height={28}
-                                className="text-cherry-red animate-pulse"
+                                className="text-cherry-red  "
                               />
                               Airdrop – Login Required
                             </h3>
