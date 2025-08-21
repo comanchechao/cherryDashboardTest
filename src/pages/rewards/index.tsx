@@ -342,7 +342,7 @@ const Rewards: React.FC = () => {
                       <span className="winky-sans-font">Coming Soon</span>
                     </button>
                     <div className="h-px bg-white/10 my-4" />
-                    <button
+                    {/* <button
                       onClick={() => setActiveTab("leaderboard")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
                         activeTab === "leaderboard"
@@ -374,7 +374,7 @@ const Rewards: React.FC = () => {
                     >
                       <Icon icon="mdi:airplane" width={20} height={20} />
                       <span className="winky-sans-font">Airdrop</span>
-                    </button>
+                    </button> */}
                   </nav>
                 </div>
                 <div className="px-2">
@@ -404,11 +404,14 @@ const Rewards: React.FC = () => {
                   </h2>
                   <button
                     onClick={() => {
-                      window.open("https://t.me/cherrysniperbot", "_blank");
+                      window.open(
+                        "https://t.me/cherrysniperbot?start=login_cherry",
+                        "_blank"
+                      );
                     }}
-                    className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-sm  border border-white/10 winky-sans-font"
+                    className="bg-white/10 cursor-pointer hover:bg-white/20 text-white px-4 py-2 rounded-sm  border border-white/10 winky-sans-font"
                   >
-                    Connect Wallet
+                    Login With Telegram
                   </button>
                 </div>
 
@@ -495,54 +498,118 @@ const Rewards: React.FC = () => {
                               </tr>
                             </thead>
                             <tbody className="text-white winky-sans-font">
-                              {[
-                                {
-                                  logo: "/binanceLogo.png",
-                                  cta: "Buy $AIBOT",
-                                  primary: true,
-                                  link: "https://www.binance.com/en/alpha/bsc/0x96adaa33e175f4a7f20c099730bc78dd0b45745b",
-                                },
-                                {
-                                  logo: "/mexc.png",
-                                  cta: "Buy $AIBOT",
-                                  link: "https://www.mexc.com/exchange/AIBOT_USDT",
-                                },
-                                {
-                                  logo: "/gate.png",
-                                  cta: "Buy $AIBOT",
-                                  link: "https://www.gate.com/trade/AIBOT_USDT",
-                                },
-                              ].map((row) => (
-                                <tr>
-                                  <td className="py-3 pr-4 flex items-center gap-3">
-                                    <a
-                                      href={row.link}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="hover:opacity-80 transition-opacity"
-                                    >
-                                      <img
-                                        src={row.logo}
-                                        className="w-32 object-contain rounded"
-                                        alt="Exchange Logo"
-                                      />
-                                    </a>
-                                  </td>
-                                  <td className="py-3 pr-4">$</td>
-                                  <td className="py-3 pr-4">$</td>
-                                  <td className="py-3 pr-4 text-right">
-                                    <button
-                                      className={`px-3 py-2 rounded-lg text-sm border ${
-                                        row.primary
-                                          ? "bg-amber-400 text-black border-amber-400"
-                                          : "bg-white/10 text-white border-white/10 hover:bg-white/20"
-                                      }`}
-                                    >
-                                      {row.cta}
-                                    </button>
-                                  </td>
-                                </tr>
-                              ))}
+                              {/* Binance Row */}
+                              <tr className="hover:bg-white/5 transition-colors duration-200">
+                                <td className="py-3 pr-4 flex items-center gap-3">
+                                  <a
+                                    href="https://www.binance.com/en/alpha/bsc/0x96adaa33e175f4a7f20c099730bc78dd0b45745b"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:opacity-80 transition-opacity"
+                                  >
+                                    <img
+                                      src="/binanceAlpha.png"
+                                      className="h-7 object-contain rounded"
+                                      alt="Binance Logo"
+                                    />
+                                  </a>
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $2,450,320
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $0.0000234
+                                </td>
+                                <td className="py-3 pr-4 text-right">
+                                  <button className="px-3 py-2 rounded-sm text-sm border bg-amber-400 text-black border-amber-400 hover:bg-amber-300 transition-colors duration-200">
+                                    Buy $AIBOT
+                                  </button>
+                                </td>
+                              </tr>
+                              {/* MEXC Row */}
+                              <tr className="hover:bg-white/5 transition-colors duration-200">
+                                <td className="py-3 pr-4 flex items-center gap-3">
+                                  <a
+                                    href="https://www.mexc.com/exchange/AIBOT_USDT"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:opacity-80 transition-opacity"
+                                  >
+                                    <img
+                                      src="/mexc.png"
+                                      className="h-6 object-contain rounded"
+                                      alt="MEXC Logo"
+                                    />
+                                  </a>
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $1,890,450
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $0.0000234
+                                </td>
+                                <td className="py-3 pr-4 text-right">
+                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                    Buy $AIBOT
+                                  </button>
+                                </td>
+                              </tr>
+                              {/* Gate.io Row */}
+                              <tr className="hover:bg-white/5 transition-colors duration-200">
+                                <td className="py-3 pr-4 flex items-center gap-3">
+                                  <a
+                                    href="https://www.gate.com/trade/AIBOT_USDT"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:opacity-80 transition-opacity"
+                                  >
+                                    <img
+                                      src="/gate.png"
+                                      className="h-5 object-contain rounded"
+                                      alt="Gate.io Logo"
+                                    />
+                                  </a>
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $890,120
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $0.0000234
+                                </td>
+                                <td className="py-3 pr-4 text-right">
+                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                    Buy $AIBOT
+                                  </button>
+                                </td>
+                              </tr>{" "}
+                              <tr className="hover:bg-white/5 transition-colors duration-200">
+                                <td className="py-3 pr-4 flex items-center gap-3">
+                                  <a
+                                    href="https://pancakeswap.finance/swap?outputCurrency=0x96adaa33e175f4a7f20c099730bc78dd0b45745b"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:opacity-80 flex items-center  gap-2 text-lg  maladroit-font transition-opacity"
+                                  >
+                                    <img
+                                      src="/pancakeSwapLogo.png"
+                                      className="h-5 object-contain rounded"
+                                      alt="Gate.io Logo"
+                                    />
+                                    <h2>Pancake Swap</h2>
+                                  </a>
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $890,120
+                                </td>
+                                <td className="py-3 pr-4 text-white/80">
+                                  $0.0000234
+                                </td>
+                                <td className="py-3 pr-4 text-right">
+                                  <button className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200">
+                                    Buy $AIBOT
+                                  </button>
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                         </div>
@@ -1047,7 +1114,7 @@ const Rewards: React.FC = () => {
                           </div>
 
                           {/* Earnings Breakdown */}
-                          <div className="bg-cherry-burgundy/10 rounded-lg p-4 mb-6">
+                          <div className="bg-cherry-burgundy/10  rounded-sm p-4 mb-6">
                             <h5 className="winky-sans-font text-white font-bold mb-3">
                               Commission Breakdown:
                             </h5>

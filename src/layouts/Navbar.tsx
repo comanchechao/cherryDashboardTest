@@ -190,9 +190,9 @@ const Navbar: React.FC = () => {
             {/* Right Section - Dashboard and Wallet */}
             <div className="hidden lg:flex items-center space-x-3">
               <Link
-                to="/coming-soon"
+                to="/rewards"
                 className={`${getDesktopLinkClasses(
-                  "/coming-soon"
+                  "/rewards"
                 )} flex items-center gap-2`}
               >
                 <Icon
@@ -201,7 +201,7 @@ const Navbar: React.FC = () => {
                   width={18}
                   height={18}
                 />
-                Dashboard
+                AIBOT Dashboard
               </Link>
 
               {/* Social Media Icons */}
@@ -329,7 +329,7 @@ const Navbar: React.FC = () => {
               </button>
 
               <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
-                Dashboard
+                AIBOT Dashboard
               </Link>
 
               {/* Social Media Icons - Mobile */}
