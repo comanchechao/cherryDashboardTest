@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
 
   const getDesktopLinkClasses = (path: string) => {
     const baseClasses =
-      "px-4 py-2 winky-sans-font text-[13px] font-medium transition-all duration-300 relative nav-link rounded-lg";
+      "px-4 py-2 winky-sans-font text-[13px] font-medium transition-all duration-300 relative nav-link rounded-sm";
     const activeClasses = isActivePath(path)
       ? "text-accent bg-glass border border-accent shadow-lg"
       : "text-primary hover:text-accent hover:bg-glass hover:border-glass";
@@ -193,7 +193,7 @@ const Navbar: React.FC = () => {
                 to="/rewards"
                 className={`${getDesktopLinkClasses(
                   "/rewards"
-                )} flex items-center gap-2`}
+                )} flex items-center gap-2 border border-accent shadow-lg hover:shadow-xl`}
               >
                 <Icon
                   icon="duo-icons:dashboard"
