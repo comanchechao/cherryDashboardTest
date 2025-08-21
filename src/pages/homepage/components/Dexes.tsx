@@ -10,7 +10,12 @@ const Dexes: React.FC = () => {
             <div className="bg-[var(--color-accent)]/10  flex items-center justify-center border border-[var(--color-accent)]/20 rounded-[4px] px-4 py-2 mb-2 transform hover:rotate-0 transition-all duration-300">
               <span className="text-sm maladroit-font text-[var(--color-accent)]">
                 First Robotics IDO on{" "}
-                <span className="text-yellow-400  ">BINANCE</span> Wallet
+                <img
+                  src="/binanceLogo.png"
+                  className="w-24 object-contain"
+                  alt=""
+                />{" "}
+                Wallet
               </span>
             </div>
 
