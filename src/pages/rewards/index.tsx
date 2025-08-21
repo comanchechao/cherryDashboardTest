@@ -674,7 +674,7 @@ const Rewards: React.FC = () => {
                             Total Staked
                           </h3>
                           <div className="maladroit-font text-4xl text-white mb-4">
-                            16,470,984.70
+                            - $AIBOT
                           </div>
 
                           {/* Graph Placeholder */}
@@ -718,7 +718,7 @@ const Rewards: React.FC = () => {
                                 1Y Lock
                               </div>
                               <div className="maladroit-font text-lg text-white">
-                                18% APY
+                                17% APY
                               </div>
                             </div>
                           </div>
