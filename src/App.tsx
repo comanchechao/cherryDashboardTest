@@ -1,23 +1,24 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import Careers from "./pages/careers";
+// import Careers from "./pages/careers";
 import HomePage from "./pages/homepage";
-import AboutUs from "./pages/aboutUs";
-import Features from "./pages/features";
-import Roadmap from "./pages/roadmap";
-import UserGrowth from "./pages/userGrowth";
-import CherrySniper from "./pages/cherrySniper";
-import CherryToken from "./pages/cherry";
+// import AboutUs from "./pages/aboutUs";
+// import Features from "./pages/features";
+// import Roadmap from "./pages/roadmap";
+// import UserGrowth from "./pages/userGrowth";
+// import CherrySniper from "./pages/cherrySniper";
+// import CherryToken from "./pages/cherry";
 import ComingSoon from "./pages/comingSoon";
 import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
 import { ToastProvider } from "./contexts/ToastContext";
 import { AuthProvider } from "./components/AuthProvider";
-import WebTrending from "./pages/webTrending";
-import CommunityAI from "./pages/communityAI";
-import AIAnalytics from "./pages/aiAnalytics";
+import AuthenticationModalWrapper from "./components/AuthenticationModalWrapper";
+// import WebTrending from "./pages/webTrending";
+// import CommunityAI from "./pages/communityAI";
+// import AIAnalytics from "./pages/aiAnalytics";
 function App() {
   const location = useLocation();
 
@@ -48,7 +49,7 @@ function App() {
                 path="/careers"
                 element={
                   <PageLayout>
-                    <Careers />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -56,7 +57,7 @@ function App() {
                 path="/features"
                 element={
                   <PageLayout>
-                    <Features />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -65,7 +66,7 @@ function App() {
                 path="/aboutUs"
                 element={
                   <PageLayout>
-                    <AboutUs />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -73,7 +74,7 @@ function App() {
                 path="/roadmap"
                 element={
                   <PageLayout>
-                    <Roadmap />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -81,7 +82,7 @@ function App() {
                 path="/userGrowth"
                 element={
                   <PageLayout>
-                    <UserGrowth />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -89,7 +90,7 @@ function App() {
                 path="/cherrySniper"
                 element={
                   <PageLayout>
-                    <CherrySniper />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -97,7 +98,7 @@ function App() {
                 path="/cherry"
                 element={
                   <PageLayout>
-                    <CherryToken />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -105,7 +106,15 @@ function App() {
                 path="/communityAI"
                 element={
                   <PageLayout>
-                    <CommunityAI />
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PageLayout>
+                    <Rewards />
                   </PageLayout>
                 }
               />
@@ -121,7 +130,7 @@ function App() {
                 path="/webTrending"
                 element={
                   <PageLayout>
-                    <WebTrending />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -137,7 +146,7 @@ function App() {
                 path="/ai-analytics"
                 element={
                   <PageLayout>
-                    <AIAnalytics />
+                    <HomePage />
                   </PageLayout>
                 }
               />
@@ -152,6 +161,7 @@ function App() {
               />
             </Routes>
           </AnimatePresence>
+          <AuthenticationModalWrapper />
         </>
       </AuthProvider>
     </ToastProvider>

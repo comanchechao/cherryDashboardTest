@@ -78,9 +78,9 @@ const HeroSection: React.FC = () => {
               </span>
             </button>{" "}
             <Link
-              to="/rewards"
+              to="/dashboard"
               className={`btn-wave-secondary w-full ${
-                window.location.pathname === "/rewards"
+                window.location.pathname === "/dashboard"
                   ? "text-accent bg-glass border border-accent shadow-lg"
                   : "text-primary hover:text-accent hover:bg-glass hover:border-glass"
               } flex items-center gap-2`}

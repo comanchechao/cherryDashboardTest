@@ -1,3 +1,4 @@
+// TEMPORARILY DISABLED - Token extractor functions are commented out in AuthProvider
 export const extractTokenFromUrl = (): string | null => {
   try {
     const hash = window.location.hash;

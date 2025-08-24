@@ -10,6 +10,7 @@ import Leaderboard from "./components/leaderboard";
 // import PointsLeaderboard from "./components/pointsLeaderboard";
 import CherryAirdrop from "./components/cherryAirdrop";
 import { useAuth } from "../../components/AuthProvider";
+import UnifiedAuth from "../../components/UnifiedAuth";
 import rewardsService from "../../services/rewardsService";
 
 const customAnimations = `
@@ -63,6 +64,7 @@ const customAnimations = `
   }
 `;
 
+// This component is now accessible via /dashboard route
 const Rewards: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [successToastVisible, setSuccessToastVisible] = useState(false);
@@ -92,11 +94,74 @@ const Rewards: React.FC = () => {
     tier: string;
   } | null>(null);
 
-  const { isAuthenticated, accessToken, telegramId, logout } = useAuth();
+  // Cherry stats state (contains both holder count and market data)
+  const [cherryStats, setCherryStats] = useState<any>(null);
+  const [cherryStatsLoading, setCherryStatsLoading] = useState(false);
 
-  // Fetch and process the latest wallet balance and user points
+  const { isAuthenticated, user, accessToken, logout } = useAuth();
+
+  // Function to handle tab changes and update URL hash
+  const handleTabChange = (
+    tab: "home" | "stake" | "comingSoon" | "leaderboard" | "rewards" | "airdrop"
+  ) => {
+    setActiveTab(tab);
+
+    // Update URL hash without page reload
+    if (window.history.pushState) {
+      window.history.pushState(null, "", `#${tab}`);
+    } else {
+      // Fallback for older browsers
+      window.location.hash = `#${tab}`;
+    }
+  };
+
+  const getExchangeLogo = (exchangeName: string) => {
+    if (exchangeName.includes("Pancake")) {
+      return "/pancakeSwapLogo.png";
+    } else if (exchangeName.includes("Binance")) {
+      return "/binanceLogo1.png";
+    } else if (exchangeName.includes("MEXC")) {
+      return "/mexc.png";
+    } else if (exchangeName.includes("Gate")) {
+      return "/gate.png";
+    }
+    return "";
+  };
+
+  const fetchCherryStats = async () => {
+    try {
+      setCherryStatsLoading(true);
+
+      if (!accessToken) {
+        console.log("No access token available, skipping cherry stats fetch");
+        return;
+      }
+
+      const response = await fetch(
+        "https://sniper.cherrybot.ai/api/v1/stats/cherry",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setCherryStats(data);
+    } catch (error) {
+      console.error("Failed to fetch cherry stats:", error);
+    } finally {
+      setCherryStatsLoading(false);
+    }
+  };
+
   const updateUserBalance = async () => {
-    if (!isAuthenticated || !accessToken || !telegramId) {
+    if (!isAuthenticated || !accessToken || !user) {
       console.log(
         "🔒 [Rewards] User not authenticated, skipping balance update"
       );
@@ -105,13 +170,13 @@ const Rewards: React.FC = () => {
 
     try {
       console.log(
-        "💰 [Rewards] Updating user balance for telegram ID:",
-        telegramId
+        "💰 [Rewards] Updating user balance for wallet address:",
+        user.walletAddress
       );
 
       const balanceResponse = await rewardsService.updateBalance(
-        telegramId.toString(),
-        accessToken
+        user.walletAddress,
+        accessToken!
       );
 
       console.log("✅ [Rewards] UpdateBalance API response:", {
@@ -120,7 +185,6 @@ const Rewards: React.FC = () => {
       });
 
       if (balanceResponse.success && balanceResponse.result) {
-        // Find the SOL wallet (parentId is null for SOL)
         const solWallet = balanceResponse.result.find(
           (wallet) => wallet.parentId === null
         );
@@ -185,7 +249,6 @@ const Rewards: React.FC = () => {
     };
   }, []);
 
-  // Fetch leaderboards on page enter
   useEffect(() => {
     const fetchLeaderboards = async () => {
       try {
@@ -193,13 +256,13 @@ const Rewards: React.FC = () => {
 
         let response;
 
-        if (isAuthenticated && accessToken && telegramId) {
+        if (isAuthenticated && accessToken && user?.walletAddress) {
           console.log(
-            "🏆 [Rewards] Fetching authenticated leaderboards for telegram ID:",
-            telegramId
+            "🏆 [Rewards] Fetching authenticated leaderboards for wallet:",
+            user.walletAddress
           );
           response = await rewardsService.getLeaderboards(
-            telegramId.toString(),
+            user.walletAddress,
             currentPage, // pageNumber
             10, // pageSize
             accessToken
@@ -227,7 +290,6 @@ const Rewards: React.FC = () => {
           sampleUser: response.result?.leaderboards?.[0],
         });
 
-        // Store the leaderboard data and pagination info
         if (response.success && response.result?.leaderboards) {
           setLeaderboardData(response.result.leaderboards);
           setTotalPages(response.result.totalPages || 1);
@@ -246,14 +308,53 @@ const Rewards: React.FC = () => {
 
     fetchLeaderboards();
     updateUserBalance();
-  }, [isAuthenticated, accessToken, telegramId, currentPage]);
+  }, [isAuthenticated, accessToken, user?.walletAddress, currentPage]);
 
-  // Ensure wallet points are fresh when opening the Airdrop tab
   useEffect(() => {
     if (activeTab === "airdrop") {
       updateUserBalance();
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    fetchCherryStats(); // Fetch cherry stats on startup
+
+    const statsInterval = setInterval(fetchCherryStats, 300000); // Update every 5 minutes
+
+    return () => {
+      clearInterval(statsInterval);
+    };
+  }, []);
+
+  // Sync with URL hash on page load and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (
+        hash &&
+        [
+          "home",
+          "stake",
+          "comingSoon",
+          "leaderboard",
+          "rewards",
+          "airdrop",
+        ].includes(hash)
+      ) {
+        setActiveTab(hash as any);
+      }
+    };
+
+    // Check initial hash on page load
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -278,7 +379,6 @@ const Rewards: React.FC = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      // The logout function already shows a success toast
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -309,7 +409,7 @@ const Rewards: React.FC = () => {
                   </div>
                   <nav className="space-y-2">
                     <button
-                      onClick={() => setActiveTab("home")}
+                      onClick={() => handleTabChange("home")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
                         activeTab === "home"
                           ? "bg-white/10 text-white"
@@ -320,7 +420,7 @@ const Rewards: React.FC = () => {
                       <span className="winky-sans-font">Home</span>
                     </button>
                     <button
-                      onClick={() => setActiveTab("stake")}
+                      onClick={() => handleTabChange("stake")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
                         activeTab === "stake"
                           ? "bg-white/10 text-white"
@@ -331,7 +431,7 @@ const Rewards: React.FC = () => {
                       <span className="winky-sans-font">Stake $AIBOT</span>
                     </button>
                     <button
-                      onClick={() => setActiveTab("comingSoon")}
+                      onClick={() => handleTabChange("comingSoon")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
                         activeTab === "comingSoon"
                           ? "bg-white/10 text-white"
@@ -402,17 +502,7 @@ const Rewards: React.FC = () => {
                     {activeTab === "rewards" && "Rewards"}
                     {activeTab === "airdrop" && "Airdrop"}
                   </h2>
-                  <button
-                    onClick={() => {
-                      window.open(
-                        "https://t.me/cherrysniperbot?start=login_cherry",
-                        "_blank"
-                      );
-                    }}
-                    className="bg-white/10 cursor-pointer hover:bg-white/20 text-white px-4 py-2 rounded-sm  border border-white/10 winky-sans-font"
-                  >
-                    Connect Wallet
-                  </button>
+                  <UnifiedAuth />
                 </div>
 
                 {/* Tab Content */}
@@ -429,11 +519,24 @@ const Rewards: React.FC = () => {
                       {/* Stats Grid */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
-                          <div className="winky-sans-font text-white/70 text-sm mb-2">
-                            Total $AIBOT Holders
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="winky-sans-font text-white/70 text-sm">
+                              Total $AIBOT Holders
+                            </div>
                           </div>
                           <div className="maladroit-font text-3xl text-white">
-                            2,400
+                            {cherryStatsLoading ? (
+                              <div className="flex items-center gap-2">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-amber-400"></div>
+                                <span className="text-2xl">...</span>
+                              </div>
+                            ) : cherryStats?.result?.holders ? (
+                              <div>
+                                {cherryStats.result.holders.toLocaleString()}
+                              </div>
+                            ) : (
+                              <div>-</div>
+                            )}
                           </div>
                         </div>
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
@@ -453,6 +556,27 @@ const Rewards: React.FC = () => {
                           </div>
                         </div>
                       </div>
+
+                      {/* Connect Wallet Message */}
+                      {!isAuthenticated && (
+                        <div className="bg-white/5 border border-white/10 rounded-sm p-6 text-center">
+                          <div className="mb-4">
+                            <Icon
+                              icon="mdi:wallet"
+                              width={48}
+                              height={48}
+                              className="text-white/70 mx-auto mb-3"
+                            />
+                            <h4 className="maladroit-font text-xl text-white mb-2">
+                              Connect Your Wallet
+                            </h4>
+                            <p className="winky-sans-font text-white/70 text-sm">
+                              Connect your wallet to view market stats and your
+                              personal data
+                            </p>
+                          </div>
+                        </div>
+                      )}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
                           <div className="winky-sans-font text-white/70 text-sm mb-2">
@@ -481,169 +605,131 @@ const Rewards: React.FC = () => {
                       </div>
 
                       {/* Buy Section */}
-                      <div className="bg-white/5 border border-white/10 rounded-2xl">
-                        <div className="border-b border-white/10 px-4 py-3">
-                          <h3 className="maladroit-font text-2xl text-white">
-                            Buy $AIBOT
-                          </h3>
+                      <div className="bg-white/5 border border-white/10 rounded-sm">
+                        <div className="border-b border-white/10 px-4 py-3 flex justify-between items-center">
+                          <div className="flex items-center gap-3">
+                            <h3 className="maladroit-font text-2xl text-white">
+                              Buy $AIBOT
+                            </h3>
+                          </div>
                         </div>
                         <div className="p-4 overflow-x-auto">
-                          <table className="min-w-full">
-                            <thead>
-                              <tr className="text-left text-white/60 winky-sans-font text-sm">
-                                <th className="py-2 pr-4">Exchange</th>
-                                <th className="py-2 pr-4">24h Volume</th>
-                                <th className="py-2 pr-4">Price</th>
-                                <th className="py-2 pr-4"></th>
-                              </tr>
-                            </thead>
-                            <tbody className="text-white winky-sans-font">
-                              {/* Binance Row */}
-                              <tr className="hover:bg-white/5 transition-colors duration-200">
-                                <td className="py-3 pr-4 flex items-center gap-3">
-                                  <a
-                                    href="https://www.binance.com/en/alpha/bsc/0x96adaa33e175f4a7f20c099730bc78dd0b45745b"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:opacity-80 transition-opacity"
-                                  >
-                                    <img
-                                      src="/binanceAlpha.png"
-                                      className="h-7 object-contain rounded"
-                                      alt="Binance Logo"
-                                    />
-                                  </a>
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $4,009,422
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $0.006765{" "}
-                                </td>
-                                <td className="py-3 pr-4 text-right">
-                                  <button
-                                    onClick={() => {
-                                      window.open(
-                                        "https://www.binance.com/en/alpha/bsc/0x96adaa33e175f4a7f20c099730bc78dd0b45745b",
-                                        "_blank"
-                                      );
-                                    }}
-                                    className="px-3 py-2 rounded-sm text-sm border bg-amber-400 text-black border-amber-400 hover:bg-amber-300 transition-colors duration-200"
-                                  >
-                                    Buy $AIBOT
-                                  </button>
-                                </td>
-                              </tr>
-                              {/* MEXC Row */}
-                              <tr className="hover:bg-white/5 transition-colors duration-200">
-                                <td className="py-3 pr-4 flex items-center gap-3">
-                                  <a
-                                    href="https://www.mexc.com/exchange/AIBOT_USDT"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:opacity-80 transition-opacity"
-                                  >
-                                    <img
-                                      src="/mexc.png"
-                                      className="h-6 object-contain rounded"
-                                      alt="MEXC Logo"
-                                    />
-                                  </a>
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $433,633
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $0.00688
-                                </td>
-                                <td className="py-3 pr-4 text-right">
-                                  <button
-                                    onClick={() => {
-                                      window.open(
-                                        "https://www.mexc.com/exchange/AIBOT_USDT",
-                                        "_blank"
-                                      );
-                                    }}
-                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
-                                  >
-                                    Buy $AIBOT
-                                  </button>
-                                </td>
-                              </tr>
-                              {/* Gate.io Row */}
-                              <tr className="hover:bg-white/5 transition-colors duration-200">
-                                <td className="py-3 pr-4 flex items-center gap-3">
-                                  <a
-                                    href="https://www.gate.com/trade/AIBOT_USDT"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:opacity-80 transition-opacity"
-                                  >
-                                    <img
-                                      src="/gate.png"
-                                      className="h-5 object-contain rounded"
-                                      alt="Gate.io Logo"
-                                    />
-                                  </a>
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $1,477,004
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $0.006758
-                                </td>
-                                <td className="py-3 pr-4 text-right">
-                                  <button
-                                    onClick={() => {
-                                      window.open(
-                                        "https://www.gate.com/trade/AIBOT_USDT",
-                                        "_blank"
-                                      );
-                                    }}
-                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
-                                  >
-                                    Buy $AIBOT
-                                  </button>
-                                </td>
-                              </tr>{" "}
-                              <tr className="hover:bg-white/5 transition-colors duration-200">
-                                <td className="py-3 pr-4 flex items-center gap-3">
-                                  <a
-                                    href="https://pancakeswap.finance/swap?outputCurrency=0x96adaa33e175f4a7f20c099730bc78dd0b45745b"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:opacity-80 flex items-center  gap-2 text-lg  maladroit-font transition-opacity"
-                                  >
-                                    <img
-                                      src="/pancakeSwapLogo.png"
-                                      className="h-5 object-contain rounded"
-                                      alt="Gate.io Logo"
-                                    />
-                                    <h2>Pancake Swap</h2>
-                                  </a>
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $4,009,422{" "}
-                                </td>
-                                <td className="py-3 pr-4 text-white/80">
-                                  $0.006786
-                                </td>
-                                <td className="py-3 pr-4 text-right">
-                                  <button
-                                    onClick={() => {
-                                      window.open(
-                                        "https://pancakeswap.finance/swap?outputCurrency=0x96adaa33e175f4a7f20c099730bc78dd0b45745b",
-                                        "_blank"
-                                      );
-                                    }}
-                                    className="px-3 py-2 rounded-sm text-sm border bg-white/10 text-white border-white/10 hover:bg-white/20 transition-colors duration-200"
-                                  >
-                                    Buy $AIBOT
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          {cherryStatsLoading ? (
+                            <div className="flex justify-center items-center py-8">
+                              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-400"></div>
+                            </div>
+                          ) : cherryStats?.result?.markets &&
+                            cherryStats.result.markets.length > 0 ? (
+                            <table className="min-w-full">
+                              <thead>
+                                <tr className="text-left text-white/60 winky-sans-font text-sm">
+                                  <th className="py-2 pr-4">Exchange</th>
+                                  <th className="py-2 pr-4">24h Volume</th>
+                                  <th className="py-2 pr-4">Price</th>
+                                  <th className="py-2 pr-4"></th>
+                                </tr>
+                              </thead>
+                              <tbody className="text-white winky-sans-font">
+                                {(() => {
+                                  const filteredMarkets = [];
+
+                                  const binanceAlpha =
+                                    cherryStats.result.markets.find((m: any) =>
+                                      m.exchangeName.includes("Binance")
+                                    );
+                                  if (binanceAlpha)
+                                    filteredMarkets.push(binanceAlpha);
+
+                                  const mexc = cherryStats.result.markets.find(
+                                    (m: any) => m.exchangeName.includes("MEXC")
+                                  );
+                                  if (mexc) filteredMarkets.push(mexc);
+
+                                  const gate = cherryStats.result.markets.find(
+                                    (m: any) => m.exchangeName.includes("Gate")
+                                  );
+                                  if (gate) filteredMarkets.push(gate);
+
+                                  const pancakeSwap =
+                                    cherryStats.result.markets.find(
+                                      (m: any) =>
+                                        m.exchangeName.includes("Pancake") &&
+                                        m.rank === 1
+                                    );
+                                  if (pancakeSwap)
+                                    filteredMarkets.push(pancakeSwap);
+
+                                  return filteredMarkets.map(
+                                    (market: any, index: number) => (
+                                      <tr
+                                        key={market.marketId}
+                                        className="hover:bg-white/5 transition-colors duration-200"
+                                      >
+                                        <td className="py-3 pr-4 flex items-center gap-3">
+                                          <a
+                                            href={market.marketUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:opacity-80 transition-opacity flex items-center gap-2"
+                                          >
+                                            <img
+                                              src={getExchangeLogo(
+                                                market.exchangeName
+                                              )}
+                                              className="h-6 object-contain rounded"
+                                              alt={`${market.exchangeName} Logo`}
+                                            />
+                                            <span className="text-sm">
+                                              {market.exchangeName}
+                                            </span>
+                                          </a>
+                                        </td>
+                                        <td className="py-3 pr-4 text-white/80">
+                                          ${market.volumeUsd.toLocaleString()}
+                                        </td>
+                                        <td className="py-3 pr-4 text-white/80">
+                                          ${market.price.toFixed(6)}
+                                        </td>
+                                        <td className="py-3 pr-4 text-right">
+                                          <button
+                                            onClick={() => {
+                                              window.open(
+                                                market.marketUrl,
+                                                "_blank"
+                                              );
+                                            }}
+                                            className={`px-3 py-2 rounded-sm text-sm border transition-colors duration-200 ${
+                                              market.exchangeName.includes(
+                                                "Binance"
+                                              )
+                                                ? "bg-yellow-400 text-black border-yellow-400 hover:bg-yellow-300"
+                                                : index === 0
+                                                ? "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                                                : "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                                            }`}
+                                          >
+                                            Buy $AIBOT
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    )
+                                  );
+                                })()}
+                              </tbody>
+                            </table>
+                          ) : (
+                            <div className="text-center py-8 text-white/60">
+                              <div className="mb-3">
+                                No market data available
+                              </div>
+                              <button
+                                onClick={fetchCherryStats}
+                                className="px-4 py-2 text-sm border border-white/20 text-white/80 hover:bg-white/10 transition-colors duration-200 rounded"
+                              >
+                                Try Again
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
 
@@ -793,8 +879,7 @@ const Rewards: React.FC = () => {
                           </h3>
                           <p className="winky-sans-font text-white/80 text-lg max-w-2xl mx-auto">
                             We're working hard to bring you the next generation
-                            of CherryAI features. Stay tuned for revolutionary
-                            updates that will transform your trading experience.
+                            of CherryAI features.
                           </p>
                         </div>
                       </div>
@@ -975,7 +1060,7 @@ const Rewards: React.FC = () => {
                             copyToClipboard={copyToClipboard}
                             userAchievement={userAchievement}
                             userWalletInfo={userWalletInfo}
-                            telegramId={telegramId?.toString()}
+                            telegramId={user?.walletAddress}
                             accessToken={accessToken || undefined}
                           />
                           <StatCards

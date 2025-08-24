@@ -96,7 +96,7 @@ const TelegramAuth: React.FC = () => {
               {/* Navigation Links */}
               <div className="space-y-2">
                 <Link
-                  to="/rewards"
+                  to="/dashboard"
                   onClick={() => setIsDropdownOpen(false)}
                   className="flex items-center gap-3 px-4 py-3 bg-cherry-cream hover:bg-cherry-cream/90 border border-b-2 border-r-2 border-cherry-burgundy hover:border-b-1 hover:border-r-1 hover:translate-y-0.5 hover:translate-x-0.5 rounded-xl transition-all duration-200 transform-gpu shadow-[1px_1px_0px_#321017] hover:shadow-[1px_1px_0px_#321017] group"
                 >

@@ -1,15 +1,34 @@
-export interface TelegramUser {
-  id: number;
-  first_name: string;
-  last_name?: string;
-  username?: string;
-  photo_url?: string;
+export interface User {
+  id: string;
+  walletAddress: string;
+  solanaWalletAddress: string;
   auth_date: number;
-  hash: string;
+  username?: string;
+  authMethod: "wallet" | "telegram";
 }
 
-export interface VerifyTokenRequest {
-  token: string;
+export interface WalletChallenge {
+  message: string;
+  walletAddress: string;
+  nonce: string;
+  iat: number;
+  exp: number;
+  domain: string;
+  version: string;
+}
+
+export interface GenerateWalletChallengeResponse {
+  success: boolean;
+  result: {
+    payload: WalletChallenge;
+  };
+}
+
+export interface CreateTokenByWalletResponse {
+  success: boolean;
+  result: {
+    token: string;
+  };
 }
 
 export interface VerifyTokenResponse {
@@ -21,46 +40,24 @@ export interface VerifyTokenResponse {
   };
 }
 
-export interface RefreshTokenRequest {
-  refreshToken: string;
-}
-
-export interface RefreshTokenResponse {
-  success: boolean;
-  result: {
-    accessToken: string;
-    refreshToken: string;
-    tokenId: string;
-  };
-}
-
-export interface LogoutRequest {
-  refreshToken: string;
-}
-
-export interface LogoutResponse {
-  success: boolean;
-  result: {
-    message: string;
-  };
-}
-
-// Auth State Types
-
 export interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: TelegramUser | null;
+  user: User | null;
   accessToken: string | null;
   refreshToken: string | null;
   tokenId: string | null;
-  telegramId: number | null;
   error: string | null;
 }
 
 export interface AuthContextType extends AuthState {
-  login: () => Promise<void>;
+  loginWithWallet: (
+    walletAddress: string,
+    accessToken: string,
+    refreshToken: string,
+    tokenId: string
+  ) => Promise<void>;
   logout: () => Promise<void>;
-  refreshAuth: () => Promise<void>;
   clearError: () => void;
+  updateWalletAddress: (newWalletAddress: string) => void;
 }

@@ -16,7 +16,12 @@ import RevenueStreams from "../components/RevenueStreams";
 import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
-import { StatCards, CommunityDataModels, Dexes } from "./homepage/components";
+import {
+  StatCards,
+  CommunityDataModels,
+  Dexes,
+  RoboticProfile,
+} from "./homepage/components";
 
 const customAnimations = `
   @keyframes wiggle {
@@ -157,7 +162,7 @@ const HomePage: React.FC = () => {
   );
 
   const handleExploreBot = () => {
-    window.open("https://t.me/CherryTGBot", "_blank");
+    window.open("https://t.me/cherrysniperbot", "_blank");
   };
 
   const handleExploreAnalytics = () => {
@@ -823,6 +828,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
           <MarketForcast />
+          {/* Robotic Profile Section */}
+          <RoboticProfile />
+
           <StatCards
             id="features"
             title="CherryAI Robot Ecosystem Users"
@@ -1377,6 +1385,7 @@ const HomePage: React.FC = () => {
         </div>
 
         <BinanceSupportSection />
+
         {/* Cherry AI in the News Section */}
         <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
           {/* Floating Elements Layer */}

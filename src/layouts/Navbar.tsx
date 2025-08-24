@@ -89,6 +89,11 @@ const Navbar: React.FC = () => {
             <div className="flex items-center">
               <Link to="/" className="flex items-center group">
                 <img
+                  src="/logoCherry.png"
+                  className="w-10 object-contain"
+                  alt=""
+                />
+                <img
                   src="/cherryTextLogo.webp"
                   className="w-44 object-contain"
                   alt=""
@@ -122,6 +127,16 @@ const Navbar: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
+              {/* <button
+                onClick={() =>
+                  window.open("https://Bridge.cherrybot.ai", "_blank")
+                }
+                className="px-4 py-2 cursor-pointer winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
+              >
+                <span className="relative z-10">Bridge</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
+              </button> */}
               {/* <button
                 onClick={() => scrollToSection("community")}
                 className="px-4 py-2 winky-sans-font text-[13px] font-medium text-primary hover:text-accent transition-all duration-300  rounded-sm relative overflow-hidden group"
@@ -190,9 +205,9 @@ const Navbar: React.FC = () => {
             {/* Right Section - Dashboard and Wallet */}
             <div className="hidden lg:flex items-center space-x-3">
               <Link
-                to="/rewards"
+                to="/dashboard"
                 className={`${getDesktopLinkClasses(
-                  "/rewards"
+                  "/dashboard"
                 )} flex items-center gap-2 border border-accent shadow-lg hover:shadow-xl`}
               >
                 <Icon
@@ -328,7 +343,10 @@ const Navbar: React.FC = () => {
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
 
-              <Link to="/rewards" className={getMobileLinkClasses("/rewards")}>
+              <Link
+                to="/dashboard"
+                className={getMobileLinkClasses("/dashboard")}
+              >
                 AIBOT Dashboard
               </Link>
 
