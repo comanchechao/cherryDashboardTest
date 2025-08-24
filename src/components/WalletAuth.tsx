@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { useAuth } from "./AuthProvider";
 import { useWalletConnection } from "../hooks/useWalletConnection";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
@@ -9,7 +8,6 @@ import { useAuthenticationModal } from "../contexts/AuthenticationModalContext";
 const WalletAuth: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { publicKey } = useWallet();
   const {
     isAuthenticated,
     isLoading: authLoading,

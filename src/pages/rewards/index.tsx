@@ -324,7 +324,7 @@ const Rewards: React.FC = () => {
     return () => {
       clearInterval(statsInterval);
     };
-  }, []);
+  }, [accessToken]);
 
   // Sync with URL hash on page load and hash changes
   useEffect(() => {

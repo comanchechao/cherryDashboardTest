@@ -24,15 +24,16 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
   const { publicKey, signMessage } = useWallet();
   const { walletInfo, connected } = useWalletConnection();
   const { loginWithWallet, isAuthenticated } = useAuth();
-  const { showSuccess } = useToastContext();
 
   useEffect(() => {
-    if (open && !isAuthenticated) {
-      setCurrentStep(1);
-      setError(null);
-      setIsProcessing(false);
+    if (open) {
+      if (!isAuthenticated) {
+        setCurrentStep(1);
+        setError(null);
+        setIsProcessing(false);
+      }
     }
-  }, [open]);
+  }, [open, isAuthenticated]);
 
   const handleAuthenticate = async () => {
     if (!connected || !publicKey || !walletInfo) {
@@ -89,10 +90,9 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
       await loginWithWallet(walletAddress, accessToken, refreshToken, tokenId);
 
       setCurrentStep(5);
-      setTimeout(() => {
-        onSuccess();
-        onClose();
-      }, 1500);
+
+      // Call onSuccess immediately
+      onSuccess();
     } catch (error: any) {
       console.error("Authentication failed:", error);
       let errorMessage = "Failed to authenticate with wallet";
@@ -143,7 +143,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
           icon: "mingcute:check-line",
           title: "Authentication Successful",
           message: "Your wallet has been successfully authenticated!",
-          buttonText: "Success!",
+          buttonText: "Confirm",
         };
       default:
         return {
@@ -221,8 +221,14 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
               Cancel
             </button>
             <button
-              onClick={handleAuthenticate}
-              disabled={isProcessing || currentStep > 1}
+              onClick={
+                currentStep === 5
+                  ? () => {
+                      onClose();
+                    }
+                  : handleAuthenticate
+              }
+              disabled={isProcessing || (currentStep > 1 && currentStep < 5)}
               className="flex-1 px-6 py-3 bg-accent text-white rounded-lg disabled:opacity-50 winky-sans-font font-medium cursor-pointer hover:from-accent/90 hover:to-[#020e1f]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-accent/25    "
             >
               {stepConfig.buttonText}
