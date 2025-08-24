@@ -14,55 +14,55 @@ import UnifiedAuth from "../../components/UnifiedAuth";
 import rewardsService from "../../services/rewardsService";
 
 const customAnimations = `
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-  @keyframes pulse-gentle {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-  @keyframes spin-orbital {
-    from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
-    to { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
-  }
-  @keyframes dash-animate {
-    to { stroke-dashoffset: -100; }
-  }
-  @keyframes shimmer {
-    0% { background-position: -200px 0; }
-    100% { background-position: 200px 0; }
-  }
-  @keyframes bounce-subtle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-  }
-  @keyframes glow-pulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(214, 2, 77, 0.3); }
-    50% { box-shadow: 0 0 30px rgba(214, 2, 77, 0.6); }
-  }
-  @keyframes fadeInUp {
-    from { 
-      opacity: 0; 
-      transform: translateY(20px); 
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
     }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
+    @keyframes pulse-gentle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
-  }
-  .referral-shimmer {
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    background-size: 200px 100%;
-    animation: shimmer 2s infinite;
-  }
-  .referral-glow {
-    animation: glow-pulse 3s ease-in-out infinite;
-  }
-  .referral-bounce {
-    animation: bounce-subtle 2s ease-in-out infinite;
-  }
-`;
+    @keyframes spin-orbital {
+      from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+    }
+    @keyframes dash-animate {
+      to { stroke-dashoffset: -100; }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: 200px 0; }
+    }
+    @keyframes bounce-subtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(214, 2, 77, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(214, 2, 77, 0.6); }
+    }
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    .referral-shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      background-size: 200px 100%;
+      animation: shimmer 2s infinite;
+    }
+    .referral-glow {
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+    .referral-bounce {
+      animation: bounce-subtle 2s ease-in-out infinite;
+    }
+  `;
 
 // This component is now accessible via /dashboard route
 const Rewards: React.FC = () => {
@@ -72,8 +72,19 @@ const Rewards: React.FC = () => {
     useState(false);
   const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
   const [showAchievementsModal, setShowAchievementsModal] = useState(false);
+  const [showStakeModal, setShowStakeModal] = useState(false);
+
+  const [modalPhase, setModalPhase] = useState<"info" | "eligibility">("info");
+  const [isEligible, setIsEligible] = useState(true); // For now, set to true as requested
   const [activeTab, setActiveTab] = useState<
-    "home" | "stake" | "comingSoon" | "leaderboard" | "rewards" | "airdrop"
+    | "home"
+    | "stake"
+    | "stakingLeaderboard"
+    | "pointsStored"
+    | "stakingTiers"
+    | "leaderboard"
+    | "rewards"
+    | "airdrop"
   >("home");
   const [leaderboardData, setLeaderboardData] = useState<any[]>([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
@@ -102,7 +113,15 @@ const Rewards: React.FC = () => {
 
   // Function to handle tab changes and update URL hash
   const handleTabChange = (
-    tab: "home" | "stake" | "comingSoon" | "leaderboard" | "rewards" | "airdrop"
+    tab:
+      | "home"
+      | "stake"
+      | "stakingLeaderboard"
+      | "pointsStored"
+      | "stakingTiers"
+      | "leaderboard"
+      | "rewards"
+      | "airdrop"
   ) => {
     setActiveTab(tab);
 
@@ -335,7 +354,9 @@ const Rewards: React.FC = () => {
         [
           "home",
           "stake",
-          "comingSoon",
+          "stakingLeaderboard",
+          "pointsStored",
+          "stakingTiers",
           "leaderboard",
           "rewards",
           "airdrop",
@@ -431,50 +452,74 @@ const Rewards: React.FC = () => {
                       <span className="winky-sans-font">Stake $AIBOT</span>
                     </button>
                     <button
-                      onClick={() => handleTabChange("comingSoon")}
+                      onClick={() => handleTabChange("stakingLeaderboard")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                        activeTab === "comingSoon"
-                          ? "bg-white/10 text-white"
-                          : "hover:bg-white/5 text-white"
-                      }`}
-                    >
-                      <Icon icon="mdi:clock" width={20} height={20} />
-                      <span className="winky-sans-font">Coming Soon</span>
-                    </button>
-                    <div className="h-px bg-white/10 my-4" />
-                    {/* <button
-                      onClick={() => setActiveTab("leaderboard")}
-                      className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                        activeTab === "leaderboard"
+                        activeTab === "stakingLeaderboard"
                           ? "bg-white/10 text-white"
                           : "hover:bg-white/5 text-white"
                       }`}
                     >
                       <Icon icon="tabler:trophy" width={20} height={20} />
-                      <span className="winky-sans-font">Leaderboard</span>
+                      <span className="winky-sans-font">
+                        Staking Leaderboard
+                      </span>
                     </button>
                     <button
-                      onClick={() => setActiveTab("rewards")}
+                      onClick={() => handleTabChange("pointsStored")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                        activeTab === "rewards"
+                        activeTab === "pointsStored"
                           ? "bg-white/10 text-white"
                           : "hover:bg-white/5 text-white"
                       }`}
                     >
-                      <Icon icon="mdi:gift" width={20} height={20} />
-                      <span className="winky-sans-font">Rewards</span>
+                      <Icon icon="mdi:database" width={20} height={20} />
+                      <span className="winky-sans-font">Points Stored</span>
                     </button>
                     <button
-                      onClick={() => setActiveTab("airdrop")}
+                      onClick={() => handleTabChange("stakingTiers")}
                       className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                        activeTab === "airdrop"
+                        activeTab === "stakingTiers"
                           ? "bg-white/10 text-white"
                           : "hover:bg-white/5 text-white"
                       }`}
                     >
-                      <Icon icon="mdi:airplane" width={20} height={20} />
-                      <span className="winky-sans-font">Airdrop</span>
-                    </button> */}
+                      <Icon icon="mdi:layers" width={20} height={20} />
+                      <span className="winky-sans-font">Staking Tiers</span>
+                    </button>
+                    <div className="h-px bg-white/10 my-4" />
+                    {/* <button
+                        onClick={() => setActiveTab("leaderboard")}
+                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
+                          activeTab === "leaderboard"
+                            ? "bg-white/10 text-white"
+                            : "hover:bg-white/5 text-white"
+                        }`}
+                      >
+                        <Icon icon="tabler:trophy" width={20} height={20} />
+                        <span className="winky-sans-font">Leaderboard</span>
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("rewards")}
+                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
+                          activeTab === "rewards"
+                            ? "bg-white/10 text-white"
+                            : "hover:bg-white/5 text-white"
+                        }`}
+                      >
+                        <Icon icon="mdi:gift" width={20} height={20} />
+                        <span className="winky-sans-font">Rewards</span>
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("airdrop")}
+                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
+                          activeTab === "airdrop"
+                            ? "bg-white/10 text-white"
+                            : "hover:bg-white/5 text-white"
+                        }`}
+                      >
+                        <Icon icon="mdi:airplane" width={20} height={20} />
+                        <span className="winky-sans-font">Airdrop</span>
+                      </button> */}
                   </nav>
                 </div>
                 <div className="px-2">
@@ -497,7 +542,10 @@ const Rewards: React.FC = () => {
                   <h2 className="maladroit-font text-2xl md:text-3xl text-white">
                     {activeTab === "home" && "Home"}
                     {activeTab === "stake" && "Stake $AIBOT"}
-                    {activeTab === "comingSoon" && "Coming Soon"}
+                    {activeTab === "stakingLeaderboard" &&
+                      "Staking Leaderboard"}
+                    {activeTab === "pointsStored" && "Point Store"}
+                    {activeTab === "stakingTiers" && "Staking Tiers"}
                     {activeTab === "leaderboard" && "Leaderboard"}
                     {activeTab === "rewards" && "Rewards"}
                     {activeTab === "airdrop" && "Airdrop"}
@@ -755,110 +803,185 @@ const Rewards: React.FC = () => {
                       {/* Main Staking Section */}
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {/* Total Staked Card */}
-                        <div className="bg-white/5 border border-white/10 rounded-sm p-6">
-                          <h3 className="winky-sans-font text-white/70 text-sm mb-2">
-                            Total Staked
-                          </h3>
-                          <div className="maladroit-font text-4xl text-white mb-4">
-                            - $AIBOT
-                          </div>
+                        <div className="flex flex-col gap-4">
+                          {" "}
+                          <div className="bg-white/5 border border-white/10 rounded-sm p-6">
+                            <h3 className="winky-sans-font text-white/70 text-sm mb-2">
+                              Total Staked
+                            </h3>
+                            <div className="maladroit-font text-2xl text-white mb-4">
+                              - $AIBOT
+                            </div>
 
-                          {/* Graph Placeholder */}
-                          <div className="w-full h-40   rounded-sm mb-4 flex items-center justify-center">
-                            <img
-                              src="/chartFake.png"
-                              alt="Chart"
-                              className="w-full h-full object-contain"
-                            />
-                            {/* Place chart image here later */}
-                          </div>
+                            {/* Graph Placeholder */}
+                            <div className="w-full h-40   rounded-sm mb-4 flex items-center justify-center">
+                              <img
+                                src="/chartFake.png"
+                                alt="Chart"
+                                className="w-full h-full object-contain"
+                              />
+                              {/* Place chart image here later */}
+                            </div>
 
-                          {/* APY Rates Grid */}
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="bg-white/5 rounded-sm p-3 text-center">
-                              <div className="winky-sans-font text-white/70 text-xs mb-1">
-                                Base
+                            {/* APY Rates Grid */}
+                            <div className="grid grid-cols-2 gap-3">
+                              <div className="bg-white/5 rounded-sm p-3 text-center">
+                                <div className="winky-sans-font text-white/70 text-xs mb-1">
+                                  Base
+                                </div>
+                                <div className="maladroit-font text-lg text-white">
+                                  5% APY
+                                </div>
                               </div>
-                              <div className="maladroit-font text-lg text-white">
-                                5% APY
+                              <div className="bg-white/5 rounded-sm p-3 text-center">
+                                <div className="winky-sans-font text-white/70 text-xs mb-1">
+                                  30D Lock
+                                </div>
+                                <div className="maladroit-font text-lg text-white">
+                                  10% APY
+                                </div>
                               </div>
-                            </div>
-                            <div className="bg-white/5 rounded-sm p-3 text-center">
-                              <div className="winky-sans-font text-white/70 text-xs mb-1">
-                                30D Lock
+                              <div className="bg-white/5 rounded-sm p-3 text-center">
+                                <div className="winky-sans-font text-white/70 text-xs mb-1">
+                                  6M Lock
+                                </div>
+                                <div className="maladroit-font text-lg text-white">
+                                  14% APY
+                                </div>
                               </div>
-                              <div className="maladroit-font text-lg text-white">
-                                10% APY
-                              </div>
-                            </div>
-                            <div className="bg-white/5 rounded-sm p-3 text-center">
-                              <div className="winky-sans-font text-white/70 text-xs mb-1">
-                                6M Lock
-                              </div>
-                              <div className="maladroit-font text-lg text-white">
-                                14% APY
-                              </div>
-                            </div>
-                            <div className="bg-white/5 rounded-sm p-3 text-center">
-                              <div className="winky-sans-font text-white/70 text-xs mb-1">
-                                1Y Lock
-                              </div>
-                              <div className="maladroit-font text-lg text-white">
-                                17% APY
+                              <div className="bg-white/5 rounded-sm p-3 text-center">
+                                <div className="winky-sans-font text-white/70 text-xs mb-1">
+                                  1Y Lock
+                                </div>
+                                <div className="maladroit-font text-lg text-white">
+                                  17% APY
+                                </div>
                               </div>
                             </div>
                           </div>
+                          {/* Robot Image Card */}
                         </div>
+                        {!isAuthenticated ? (
+                          <div className=" rounded-sm w-full h-full overflow-hidden flex flex-col items-center justify-center">
+                            <img
+                              src="/dashboardRobot.png"
+                              alt="Robot Image"
+                              className="h-full object-contain mb-4"
+                            />
+                          </div>
+                        ) : (
+                          <div className=" rounded-sm w-full h-full overflow-hidden">
+                            {/* Your Stake Card */}
+                            <div className="bg-white/5 border border-white/10 rounded-sm p-6 h-full">
+                              <h3 className="winky-sans-font text-white/70 text-sm mb-4">
+                                Your Stake
+                              </h3>
 
-                        {/* Robot Image Card */}
-                        <div className=" rounded-sm w-full h-full overflow-hidden flex items-center justify-center">
-                          <img
-                            src="/dashboardRobot.png"
-                            alt="Robot Image"
-                            className="h-full   object-contain"
-                          />
+                              <div className="space-y-4 mb-6">
+                                <div className="flex justify-between items-center">
+                                  <span className="winky-sans-font text-white/70 text-sm">
+                                    Your Stake:
+                                  </span>
+                                  <span className="maladroit-font text-lg text-white">
+                                    1000 $AIBOT
+                                  </span>
+                                </div>
+
+                                <div className="flex justify-between items-center">
+                                  <span className="winky-sans-font text-white/70 text-sm">
+                                    Cherry Points Earned:
+                                  </span>
+                                  <span className="maladroit-font text-lg text-white">
+                                    400
+                                  </span>
+                                </div>
+
+                                <div className="flex justify-between items-center">
+                                  <span className="winky-sans-font text-white/70 text-sm">
+                                    Your APR:
+                                  </span>
+                                  <span className="maladroit-font text-lg text-green-400">
+                                    10%
+                                  </span>
+                                </div>
+
+                                <div className="flex justify-between items-center">
+                                  <span className="winky-sans-font text-white/70 text-sm">
+                                    Lockup Time:
+                                  </span>
+                                  <span className="maladroit-font text-lg text-white">
+                                    24 Days
+                                  </span>
+                                </div>
+
+                                <div className="flex justify-between items-center">
+                                  <span className="winky-sans-font text-white/70 text-sm">
+                                    $AIBOT Earned:
+                                  </span>
+                                  <span className="maladroit-font text-lg text-green-400">
+                                    50
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        <div className="space-y-4">
+                          <div className="bg-white/5 border border-white/10 rounded-sm p-4 flex items-start gap-3">
+                            <Icon
+                              icon="mdi:lock"
+                              width={20}
+                              height={20}
+                              className="text-white/70 mt-0.5"
+                            />
+                            <div>
+                              <p className="winky-sans-font text-white text-sm">
+                                Locking $AIBOT set APY for your lock duration.
+                                After your lock period ends you will continue to
+                                earn at the base APY rate.
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="bg-white/5 border border-white/10 rounded-sm p-4 flex items-start gap-3">
+                            <Icon
+                              icon="mdi:refresh"
+                              width={20}
+                              height={20}
+                              className="text-white/70 mt-0.5"
+                            />
+                            <div>
+                              <p className="winky-sans-font text-white text-sm">
+                                Staking $AIBOT also grants stakers with CherryAI
+                                points which can be used to buy lootboxes that
+                                contain rewards.
+                              </p>
+                            </div>
+                          </div>
+                        </div>{" "}
+                        <div className="flex h-fit justify-center">
+                          <button
+                            onClick={() => {
+                              setShowStakeModal(true);
+                              setModalPhase("info");
+                            }}
+                            className="flex items-center gap-3 px-6 py-3 bg-[#020e1f] cursor-pointer text-[var(--color-accent)] rounded-sm border border-[var(--color-accent)]/30 hover:from-[var(--color-accent)]/30 hover:to-[var(--color-accent)]/30 transition-all duration-300 winky-sans-font font-medium shadow-lg hover:shadow-xl hover:shadow-accent/25"
+                          >
+                            <Icon
+                              icon="mdi:lock"
+                              className="w-5 h-5 text-accent"
+                            />
+                            <span>Stake $AIBOT</span>
+                          </button>
                         </div>
                       </div>
 
                       {/* Information Boxes */}
-                      <div className="space-y-4">
-                        <div className="bg-white/5 border border-white/10 rounded-sm p-4 flex items-start gap-3">
-                          <Icon
-                            icon="mdi:lock"
-                            width={20}
-                            height={20}
-                            className="text-white/70 mt-0.5"
-                          />
-                          <div>
-                            <p className="winky-sans-font text-white text-sm">
-                              Locking $AIBOT set APY for your lock duration.
-                              After your lock period ends you will continue to
-                              earn at the base APY rate.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="bg-white/5 border border-white/10 rounded-sm p-4 flex items-start gap-3">
-                          <Icon
-                            icon="mdi:refresh"
-                            width={20}
-                            height={20}
-                            className="text-white/70 mt-0.5"
-                          />
-                          <div>
-                            <p className="winky-sans-font text-white text-sm">
-                              Staking $AIBOT also grants stakers with CherryAI
-                              points which can be used to buy lootboxes that
-                              contain rewards.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
                     </motion.div>
                   )}
-                  {activeTab === "comingSoon" && (
+                  {activeTab === "stakingLeaderboard" && (
                     <motion.div
-                      key="comingSoon"
+                      key="stakingLeaderboard"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
@@ -869,18 +992,14 @@ const Rewards: React.FC = () => {
                       <div className="bg-white/5 border border-white/10 rounded-sm p-8 text-center">
                         <div className="mb-6">
                           <Icon
-                            icon="mdi:rocket-launch"
-                            width={80}
-                            height={80}
+                            icon="tabler:trophy"
+                            width={60}
+                            height={60}
                             className="text-white/70 mx-auto mb-6  "
                           />
-                          <h3 className="maladroit-font text-4xl text-white mb-4">
-                            Exciting Features Coming Soon!
+                          <h3 className="maladroit-font text-2xl text-white mb-4">
+                            Staking Leaderboard Coming Soon!
                           </h3>
-                          <p className="winky-sans-font text-white/80 text-lg max-w-2xl mx-auto">
-                            We're working hard to bring you the next generation
-                            of CherryAI features.
-                          </p>
                         </div>
                       </div>
 
@@ -890,8 +1009,8 @@ const Rewards: React.FC = () => {
                           Stay Updated
                         </h4>
                         <p className="winky-sans-font text-white/70 text-lg mb-6">
-                          Get notified when these features launch and receive
-                          exclusive early access!
+                          Get notified when the staking leaderboard launches and
+                          receive exclusive early access!
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                           <input
@@ -906,6 +1025,101 @@ const Rewards: React.FC = () => {
                       </div>
                     </motion.div>
                   )}
+
+                  {activeTab === "pointsStored" && (
+                    <motion.div
+                      key="pointsStored"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-6"
+                    >
+                      {/* Hero Section */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-8 text-center">
+                        <div className="mb-6">
+                          <Icon
+                            icon="mdi:database"
+                            width={60}
+                            height={60}
+                            className="text-white/70 mx-auto mb-6  "
+                          />
+                          <h3 className="maladroit-font text-2xl text-white mb-4">
+                            Points Stored Coming Soon!
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* Newsletter Signup */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-6 text-center">
+                        <h4 className="maladroit-font text-2xl text-white mb-4">
+                          Stay Updated
+                        </h4>
+                        <p className="winky-sans-font text-white/70 text-lg mb-6">
+                          Get notified when the points storage system launches
+                          and receive exclusive early access!
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                          <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/50 winky-sans-font focus:outline-none focus:border-white/40"
+                          />
+                          <button className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 hover:scale-105">
+                            Subscribe
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === "stakingTiers" && (
+                    <motion.div
+                      key="stakingTiers"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-6"
+                    >
+                      {/* Hero Section */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-8 text-center">
+                        <div className="mb-6">
+                          <Icon
+                            icon="mdi:layers"
+                            width={60}
+                            height={60}
+                            className="text-white/70 mx-auto mb-6  "
+                          />
+                          <h3 className="maladroit-font text-2xl text-white mb-4">
+                            Staking Tiers Coming Soon!
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* Newsletter Signup */}
+                      <div className="bg-white/5 border border-white/10 rounded-sm p-6 text-center">
+                        <h4 className="maladroit-font text-2xl text-white mb-4">
+                          Stay Updated
+                        </h4>
+                        <p className="winky-sans-font text-white/70 text-lg mb-6">
+                          Get notified when the staking tiers system launches
+                          and receive exclusive early access!
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                          <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/50 winky-sans-font focus:outline-none focus:border-white/40"
+                          />
+                          <button className="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 hover:scale-105">
+                            Subscribe
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
                   {activeTab === "leaderboard" && (
                     <motion.div
                       key="leaderboard"
@@ -1289,6 +1503,194 @@ const Rewards: React.FC = () => {
                     visible={showAchievementsModal}
                     onClose={() => setShowAchievementsModal(false)}
                   />
+
+                  {/* Stake AIBOT Modal */}
+                  <AnimatePresence>
+                    {showStakeModal && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                        onClick={() => setShowStakeModal(false)}
+                      >
+                        <motion.div
+                          initial={{ scale: 0.9, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.9, opacity: 0 }}
+                          transition={{
+                            type: "spring",
+                            damping: 25,
+                            stiffness: 300,
+                          }}
+                          className="bg-[#020e1f] border border-white/10 rounded-lg p-8 max-w-md w-full backdrop-blur-sm"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {modalPhase === "info" && (
+                            <div className="text-center mb-6">
+                              <Icon
+                                icon="mdi:wallet"
+                                width={60}
+                                height={60}
+                                className="text-accent mx-auto mb-4"
+                              />
+                              <h3 className="maladroit-font text-2xl text-white mb-2">
+                                Stake $AIBOT
+                              </h3>
+                            </div>
+                          )}
+
+                          {!isAuthenticated ? (
+                            <div className="space-y-4">
+                              <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
+                                <Icon
+                                  icon="mdi:wallet-off"
+                                  width={40}
+                                  height={40}
+                                  className="text-white/50 mx-auto mb-3"
+                                />
+                                <p className="winky-sans-font text-white/70 text-sm mb-4">
+                                  You need to connect your wallet to stake
+                                  $AIBOT
+                                </p>
+                                <UnifiedAuth />
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="space-y-6">
+                              {modalPhase === "info" ? (
+                                /* Info Phase */
+                                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                                  <div className="text-center mb-6">
+                                    <Icon
+                                      icon="mdi:information"
+                                      width={60}
+                                      height={60}
+                                      className="text-blue-400 mx-auto mb-4"
+                                    />
+
+                                    <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+                                      <Icon
+                                        icon="mdi:alert-circle"
+                                        width={24}
+                                        height={24}
+                                        className="text-yellow-400 inline mr-2"
+                                      />
+                                      <span className="winky-sans-font text-yellow-400 text-sm">
+                                        Buying or Selling $AIBOT during staking
+                                        could increase or decrease the rate that
+                                        you earn points
+                                      </span>
+                                    </div>
+                                    <p className="winky-sans-font text-white/70 text-sm">
+                                      Please read the information above
+                                      carefully before proceeding to stake your
+                                      $AIBOT tokens.
+                                    </p>
+                                  </div>
+
+                                  <div className="flex gap-3">
+                                    <button
+                                      onClick={() => setShowStakeModal(false)}
+                                      className="flex-1 bg-white/10  cursor-pointer hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                                    >
+                                      Cancel
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        setModalPhase("eligibility")
+                                      }
+                                      className="flex-1 bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                    >
+                                      Next
+                                    </button>
+                                  </div>
+                                </div>
+                              ) : (
+                                /* Eligibility Phase */
+                                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                                  <div className="text-center mb-6">
+                                    <Icon
+                                      icon={
+                                        isEligible
+                                          ? "mdi:check-circle"
+                                          : "mdi:close-circle"
+                                      }
+                                      width={60}
+                                      height={60}
+                                      className={
+                                        isEligible
+                                          ? "text-green-400 mx-auto mb-4"
+                                          : "text-red-400 mx-auto mb-4"
+                                      }
+                                    />
+                                    <h4 className="maladroit-font text-xl text-white mb-4">
+                                      Eligibility Check
+                                    </h4>
+                                    {isEligible ? (
+                                      <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6">
+                                        <Icon
+                                          icon="mdi:check-circle"
+                                          width={24}
+                                          height={24}
+                                          className="text-green-400 inline mr-2"
+                                        />
+                                        <span className="winky-sans-font text-green-400 text-sm">
+                                          You are eligible to stake $AIBOT!
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+                                        <Icon
+                                          icon="mdi:close-circle"
+                                          width={24}
+                                          height={24}
+                                          className="text-red-400 inline mr-2"
+                                        />
+                                        <span className="winky-sans-font text-red-400 text-sm">
+                                          Minimum amount of $AIBOT required is
+                                          1000
+                                        </span>
+                                      </div>
+                                    )}
+                                    <p className="winky-sans-font text-white/70 text-sm mb-6">
+                                      {isEligible
+                                        ? "You meet all the requirements to participate in staking. You can now proceed to stake your tokens."
+                                        : "You need to have at least 1000 $AIBOT tokens to be eligible for staking."}
+                                    </p>
+                                  </div>
+
+                                  <div className="flex gap-3">
+                                    <button
+                                      onClick={() => setModalPhase("info")}
+                                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 cursor-pointer"
+                                    >
+                                      Back
+                                    </button>
+                                    {isEligible ? (
+                                      <button
+                                        onClick={() => setShowStakeModal(false)}
+                                        className="flex-1 bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                      >
+                                        Stake
+                                      </button>
+                                    ) : (
+                                      <button
+                                        onClick={() => setShowStakeModal(false)}
+                                        className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                                      >
+                                        Close
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </div>

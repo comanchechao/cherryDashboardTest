@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Icon } from "@iconify/react";
 
 const RoboticProfile: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,6 +19,14 @@ const RoboticProfile: React.FC = () => {
       image: "/thirdSlide.png",
     },
   ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);

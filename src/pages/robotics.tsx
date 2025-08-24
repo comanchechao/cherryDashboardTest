@@ -157,16 +157,22 @@ const Robotics: React.FC = () => {
               {[
                 {
                   name: "SKILD AI",
+                  logo: "/skild.png",
+                  logoSize: "h-24", // Custom size for SKILD AI
                   description:
                     "This SoftBank backed company valued at $1.5 billion, focuses on building the data models required for robots to have the ability to perceive, reason, and adapt to diverse real-world tasks.",
                 },
                 {
                   name: "SIMBE",
+                  logo: "/simbe.webp",
+                  logoSize: "h-12", // Custom size for SIMBE
                   description:
                     "Simbe is a $100 million Goldman Sachs backed robotics company that builds the hardware and software for robots that can participate in helping stores in retail settings.",
                 },
                 {
                   name: "UBTECH ROBOTICS",
+                  logo: "/ubtech.png",
+                  logoSize: "h-14", // Custom size for UBTECH
                   description:
                     "UBTech is a $5 billion company backed by Tencent and their primary business model is selling software subscriptions for robots to enterprises.",
                 },
@@ -175,7 +181,14 @@ const Robotics: React.FC = () => {
                   key={index}
                   className="glass-effect border border-glass rounded-xl p-6 hover:border-[var(--color-accent)]/50 hover:bg-[var(--color-accent)]/5 transition-all duration-300 group"
                 >
-                  <h3 className="winky-sans-font text-xl   text-[var(--color-text-primary)] mb-4 text-center group-hover:text-[var(--color-accent)] transition-colors duration-300">
+                  <div className="flex justify-center mb-4">
+                    <img
+                      src={company.logo}
+                      alt={`${company.name} logo`}
+                      className={`${company.logoSize} w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
+                    />
+                  </div>
+                  <h3 className="winky-sans-font  text-xl text-[var(--color-text-primary)] mb-4 text-center group-hover:text-[var(--color-accent)] transition-colors duration-300">
                     {company.name}
                   </h3>
                   <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90 leading-relaxed text-center">
