@@ -605,26 +605,6 @@ const Rewards: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Connect Wallet Message */}
-                      {!isAuthenticated && (
-                        <div className="bg-white/5 border border-white/10 rounded-sm p-6 text-center">
-                          <div className="mb-4">
-                            <Icon
-                              icon="mdi:wallet"
-                              width={48}
-                              height={48}
-                              className="text-white/70 mx-auto mb-3"
-                            />
-                            <h4 className="maladroit-font text-xl text-white mb-2">
-                              Connect Your Wallet
-                            </h4>
-                            <p className="winky-sans-font text-white/70 text-sm">
-                              Connect your wallet to view market stats and your
-                              personal data
-                            </p>
-                          </div>
-                        </div>
-                      )}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="bg-white/5 border border-white/10 rounded-sm p-4">
                           <div className="winky-sans-font text-white/70 text-sm mb-2">
