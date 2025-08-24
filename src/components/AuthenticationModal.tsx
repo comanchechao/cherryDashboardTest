@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletConnection } from "../hooks/useWalletConnection";
 import { useAuth } from "./AuthProvider";
-import { useToastContext } from "../contexts/ToastContext";
 import authService from "../services/authService";
 
 interface AuthenticationModalProps {
