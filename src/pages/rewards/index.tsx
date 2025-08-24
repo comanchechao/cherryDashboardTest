@@ -75,7 +75,7 @@ const Rewards: React.FC = () => {
   const [showStakeModal, setShowStakeModal] = useState(false);
 
   const [modalPhase, setModalPhase] = useState<"info" | "eligibility">("info");
-  const [isEligible, setIsEligible] = useState(true); // For now, set to true as requested
+  const [isEligible] = useState(true); // For now, set to true as requested
   const [activeTab, setActiveTab] = useState<
     | "home"
     | "stake"
