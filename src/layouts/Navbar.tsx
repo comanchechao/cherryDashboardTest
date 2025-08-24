@@ -200,6 +200,14 @@ const Navbar: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
+              <Link
+                to="/robotics"
+                className={`${getDesktopLinkClasses(
+                  "/robotics"
+                )} flex items-center gap-2`}
+              >
+                Robotics
+              </Link>
             </div>
 
             {/* Right Section - Dashboard and Wallet */}
@@ -342,6 +350,13 @@ const Navbar: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out"></div>
               </button>
+
+              <Link
+                to="/robotics"
+                className={getMobileLinkClasses("/robotics")}
+              >
+                Robotics
+              </Link>
 
               <Link
                 to="/dashboard"

@@ -10,6 +10,7 @@ import HomePage from "./pages/homepage";
 // import CherrySniper from "./pages/cherrySniper";
 // import CherryToken from "./pages/cherry";
 import ComingSoon from "./pages/comingSoon";
+import Robotics from "./pages/robotics";
 import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
@@ -147,6 +148,15 @@ function App() {
                 element={
                   <PageLayout>
                     <HomePage />
+                  </PageLayout>
+                }
+              />
+
+              <Route
+                path="/robotics"
+                element={
+                  <PageLayout>
+                    <Robotics />
                   </PageLayout>
                 }
               />

@@ -161,21 +161,6 @@ const RoboticProfile: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 bg-[var(--color-accent)]/80 hover:bg-[var(--color-accent)] text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-          >
-            <Icon icon="mdi:chevron-left" className="text-2xl" />
-          </button>
-
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 w-12 h-12 bg-[var(--color-accent)]/80 hover:bg-[var(--color-accent)] text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-          >
-            <Icon icon="mdi:chevron-right" className="text-2xl" />
-          </button>
-
           {/* Dots Indicator */}
           <div className="flex justify-center mt-8 space-x-3">
             {slides.map((_, index) => (
