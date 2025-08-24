@@ -842,7 +842,7 @@ const Rewards: React.FC = () => {
                           {/* Robot Image Card */}
                         </div>
                         {!isAuthenticated ? (
-                          <div className=" rounded-sm w-full h-full overflow-hidden flex flex-col items-center justify-center">
+                          <div className=" rounded-sm w-full h-fit overflow-hidden flex flex-col items-center justify-center">
                             <img
                               src="/dashboardRobot.png"
                               alt="Robot Image"
@@ -853,53 +853,53 @@ const Rewards: React.FC = () => {
                           <div className=" rounded-sm w-full h-full overflow-hidden">
                             {/* Your Stake Card */}
                             <div className="bg-white/5 border border-white/10 rounded-sm p-6 h-full">
-                              <h3 className="winky-sans-font text-white/70 text-sm mb-4">
+                              <h3 className="maladroit-font text-white/70 text-sm mb-4">
                                 Your Stake
                               </h3>
 
                               <div className="space-y-4 mb-6">
-                                <div className="flex justify-between items-center">
-                                  <span className="winky-sans-font text-white/70 text-sm">
+                                <div className="flex flex-col justify-between items-start">
+                                  <span className="maladroit-font text-white/70 text-sm">
                                     Your Stake:
                                   </span>
-                                  <span className="maladroit-font text-lg text-white">
+                                  <span className="maladroit-font text-3xl text-white">
                                     1000 $AIBOT
                                   </span>
                                 </div>
 
-                                <div className="flex justify-between items-center">
-                                  <span className="winky-sans-font text-white/70 text-sm">
+                                <div className="flex flex-col justify-between items-start">
+                                  <span className="maladroit-font text-white/70 text-sm">
                                     Cherry Points Earned:
                                   </span>
-                                  <span className="maladroit-font text-lg text-white">
+                                  <span className="maladroit-font text-3xl text-white">
                                     400
                                   </span>
                                 </div>
 
-                                <div className="flex justify-between items-center">
-                                  <span className="winky-sans-font text-white/70 text-sm">
+                                <div className="flex flex-col justify-between items-start">
+                                  <span className="maladroit-font text-white/70 text-sm">
                                     Your APR:
                                   </span>
-                                  <span className="maladroit-font text-lg text-green-400">
-                                    10%
+                                  <span className="maladroit-font text-lg text-white/70">
+                                    Coming Soon
                                   </span>
                                 </div>
 
-                                <div className="flex justify-between items-center">
-                                  <span className="winky-sans-font text-white/70 text-sm">
+                                <div className="flex flex-col justify-between items-start">
+                                  <span className="maladroit-font text-white/70 text-sm">
                                     Lockup Time:
                                   </span>
-                                  <span className="maladroit-font text-lg text-white">
-                                    24 Days
+                                  <span className="maladroit-font text-lg text-white/70">
+                                    Coming Soon
                                   </span>
                                 </div>
 
-                                <div className="flex justify-between items-center">
-                                  <span className="winky-sans-font text-white/70 text-sm">
+                                <div className="flex flex-col justify-between items-start">
+                                  <span className="text-white/70 text-white/70 text-sm">
                                     $AIBOT Earned:
                                   </span>
-                                  <span className="maladroit-font text-lg text-green-400">
-                                    50
+                                  <span className="maladroit-font text-lg text-white/70">
+                                    Coming Soon
                                   </span>
                                 </div>
                               </div>
