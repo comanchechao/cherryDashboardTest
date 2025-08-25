@@ -605,7 +605,17 @@ const Rewards: React.FC = () => {
                               Total Staked
                             </h3>
                             <div className="maladroit-font text-2xl text-white mb-4">
-                              - $AIBOT
+                              {(() => {
+                                const balance =
+                                  eligibility?.updated?.lastBalance ||
+                                  eligibility?.points?.lastBalance;
+                                if (balance && parseFloat(balance) >= 1000) {
+                                  return `${parseFloat(balance).toFixed(
+                                    2
+                                  )} $AIBOT`;
+                                }
+                                return "0 $AIBOT";
+                              })()}{" "}
                             </div>
 
                             {/* Graph Placeholder */}
@@ -700,34 +710,6 @@ const Rewards: React.FC = () => {
                                       eligibility?.points?.points ||
                                       0}
                                   </span>
-                                  {(() => {
-                                    const lastAwardedAt =
-                                      eligibility?.updated?.lastAwardedAt ||
-                                      eligibility?.points?.lastAwardedAt;
-                                    if (lastAwardedAt) {
-                                      const lastAwarded = new Date(
-                                        lastAwardedAt
-                                      );
-                                      const now = new Date();
-                                      const timeDiff =
-                                        now.getTime() - lastAwarded.getTime();
-                                      const hoursDiff =
-                                        timeDiff / (1000 * 60 * 60);
-
-                                      if (hoursDiff < 2) {
-                                        const remainingMinutes = Math.ceil(
-                                          (2 - hoursDiff) * 60
-                                        );
-                                        return (
-                                          <div className="winky-sans-font text-yellow-400 text-sm mt-2">
-                                            Wait {remainingMinutes} minutes
-                                            before earning more points
-                                          </div>
-                                        );
-                                      }
-                                    }
-                                    return null;
-                                  })()}
                                 </div>
 
                                 <div className="flex flex-col justify-between items-start">
@@ -1054,9 +1036,14 @@ const Rewards: React.FC = () => {
                                       onClick={() =>
                                         setModalPhase("eligibility")
                                       }
-                                      className="flex-1 bg-[#010e1f]  hover:text-white   text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                      className="flex-1 flex items-center justify-center bg-[#010e1f]  hover:text-white   text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
                                     >
-                                      Next
+                                      <Icon
+                                        icon="material-symbols:arrow-right-alt-rounded"
+                                        width="66"
+                                        height="30"
+                                        style={{ color: "#35fdff" }}
+                                      />
                                     </button>
                                   </div>
                                 </div>
@@ -1092,16 +1079,16 @@ const Rewards: React.FC = () => {
                                           Eligibility Check
                                         </h4>
                                         {eligibility?.eligible ? (
-                                          <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6">
+                                          <div className="bg-green-500/10 border flex items-center justify-center border-green-500/30 rounded-lg p-4 mb-6">
                                             <Icon
                                               icon="mdi:check-circle"
                                               width={24}
                                               height={24}
                                               className="text-green-400 inline mr-2"
                                             />
-                                            <span className="winky-sans-font text-green-400 text-sm">
+                                            <span className="winky-sans-font text-green-400 text-lg">
                                               {eligibility?.points
-                                                ? "Points already awarded recently"
+                                                ? "You are eligible to stake $AIBOT!"
                                                 : "You are eligible to stake $AIBOT!"}
                                             </span>
                                           </div>
@@ -1119,54 +1106,29 @@ const Rewards: React.FC = () => {
                                           </div>
                                         )}
 
-                                        {/* Show wait timer if points response */}
-                                        {eligibility?.points &&
-                                          (() => {
-                                            const lastAwardedAt =
-                                              eligibility.points.lastAwardedAt;
-                                            if (lastAwardedAt) {
-                                              const lastAwarded = new Date(
-                                                lastAwardedAt
-                                              );
-                                              const now = new Date();
-                                              const timeDiff =
-                                                now.getTime() -
-                                                lastAwarded.getTime();
-                                              const hoursDiff =
-                                                timeDiff / (1000 * 60 * 60);
-
-                                              if (hoursDiff < 2) {
-                                                const remainingMinutes =
-                                                  Math.ceil(
-                                                    (2 - hoursDiff) * 60
-                                                  );
-                                                return (
-                                                  <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
-                                                    <Icon
-                                                      icon="mdi:timer-sand"
-                                                      width={24}
-                                                      height={24}
-                                                      className="text-yellow-400 inline mr-2"
-                                                    />
-                                                    <span className="winky-sans-font text-yellow-400 text-sm">
-                                                      Wait {remainingMinutes}{" "}
-                                                      minutes before earning
-                                                      more points
-                                                    </span>
-                                                  </div>
-                                                );
-                                              }
-                                            }
-                                            return null;
-                                          })()}
-
                                         <p className="winky-sans-font text-white/70 text-sm mb-6">
                                           {eligibility?.points
-                                            ? "You have recently received points. Please wait for the 2-hour cooldown period before requesting more points."
+                                            ? ""
                                             : eligibility?.eligible
                                             ? "You meet all the requirements to participate in staking. You can now proceed to stake your tokens."
                                             : "You need to have at least 1000 $AIBOT tokens to be eligible for staking"}
                                         </p>
+
+                                        {eligibility?.eligible && (
+                                          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
+                                            <Icon
+                                              icon="mdi:clock-outline"
+                                              width={24}
+                                              height={24}
+                                              className="text-blue-400 inline mr-2"
+                                            />
+                                            <span className="winky-sans-font text-blue-400 text-sm">
+                                              🎉 Congratulations! You will
+                                              receive points every minute while
+                                              staking $AIBOT.
+                                            </span>
+                                          </div>
+                                        )}
                                       </>
                                     )}
                                   </div>
