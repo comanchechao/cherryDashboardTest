@@ -84,6 +84,7 @@ const Rewards: React.FC = () => {
       holdingSince: string;
       holdingSinceBlock: number;
       lastAwardedAt: string;
+      lastBalance?: string;
       updatedAt: string;
       windowCheckedAt: string;
       windowEligible: boolean;
@@ -97,6 +98,7 @@ const Rewards: React.FC = () => {
       holdingSince: string;
       holdingSinceBlock: number;
       lastAwardedAt: string;
+      lastBalance?: string;
       updatedAt: string;
       windowCheckedAt: string;
       windowEligible: boolean;
@@ -672,7 +674,20 @@ const Rewards: React.FC = () => {
                                     Your Stake:
                                   </span>
                                   <span className="maladroit-font text-3xl text-white">
-                                    0 $AIBOT
+                                    {(() => {
+                                      const balance =
+                                        eligibility?.updated?.lastBalance ||
+                                        eligibility?.points?.lastBalance;
+                                      if (
+                                        balance &&
+                                        parseFloat(balance) >= 1000
+                                      ) {
+                                        return `${parseFloat(balance).toFixed(
+                                          2
+                                        )} $AIBOT`;
+                                      }
+                                      return "0 $AIBOT";
+                                    })()}
                                   </span>
                                 </div>
 
@@ -1166,7 +1181,7 @@ const Rewards: React.FC = () => {
                                     {eligibility?.eligible ? (
                                       <button
                                         onClick={() => setShowStakeModal(false)}
-                                        className="flex-1 bg-accent hover:bg-accent/80 cursor-pointer text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                        className="flex-1 bg-[#010e1f]  hover:text-white   text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
                                       >
                                         Stake
                                       </button>
