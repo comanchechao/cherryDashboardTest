@@ -3,16 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import Navbar from "../../layouts/Navbar";
 import Footer from "../../layouts/Footer";
-import RewardSection from "./components/rewardSection";
-import AchievementsModal from "./components/AchievementsModal";
-import StatCards from "./components/statCards";
-import Leaderboard from "./components/leaderboard";
-// import PointsLeaderboard from "./components/pointsLeaderboard";
-import CherryAirdrop from "./components/cherryAirdrop";
-import { useAuth } from "../../components/AuthProvider";
 import UnifiedAuth from "../../components/UnifiedAuth";
-import rewardsService from "../../services/rewardsService";
-import { useWalletConnection } from "../../hooks/useWalletConnection";
+import { useWallet } from "../../components/BSCWalletProvider";
+import BSCWalletButton from "../../components/BSCWalletButton";
+import axios from "axios";
 
 const customAnimations = `
     @keyframes float-slow {
@@ -67,51 +61,50 @@ const customAnimations = `
 
 // This component is now accessible via /dashboard route
 const Rewards: React.FC = () => {
-  const [toastVisible, setToastVisible] = useState(false);
-  const [successToastVisible, setSuccessToastVisible] = useState(false);
-  const [alreadySubscribedToastVisible, setAlreadySubscribedToastVisible] =
-    useState(false);
-  const [showHowItWorksModal, setShowHowItWorksModal] = useState(false);
-  const [showAchievementsModal, setShowAchievementsModal] = useState(false);
   const [showStakeModal, setShowStakeModal] = useState(false);
 
   const [modalPhase, setModalPhase] = useState<"info" | "eligibility">("info");
-  const [isEligible] = useState(true); // For now, set to true as requested
   const [activeTab, setActiveTab] = useState<
-    | "home"
-    | "stake"
-    | "stakingLeaderboard"
-    | "pointsStored"
-    | "stakingTiers"
-    | "leaderboard"
-    | "rewards"
-    | "airdrop"
+    "home" | "stake" | "stakingLeaderboard" | "pointsStored" | "stakingTiers"
   >("home");
-  const [leaderboardData, setLeaderboardData] = useState<any[]>([]);
-  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
-  const [userWalletInfo, setUserWalletInfo] = useState<{
-    solAddress: string;
-    solBalance: string;
-    solBalanceUSD: string;
-    tokens: Array<{
-      symbol: string;
-      balance: string;
-      name: string;
-    }>;
-    userPoints: number;
-    totalUsdVolume: number;
-    tier: string;
-  } | null>(null);
 
   // Cherry stats state (contains both holder count and market data)
   const [cherryStats, setCherryStats] = useState<any>(null);
   const [cherryStatsLoading, setCherryStatsLoading] = useState(false);
 
-  const { isAuthenticated, user, accessToken, logout } = useAuth();
-  const { connected } = useWalletConnection();
+  // const { isAuthenticated, user, accessToken, logout } = useAuth();
+  const { isConnected, address } = useWallet();
+  const [eligibility, setEligibility] = useState<{
+    eligible?: boolean;
+    reason?: string;
+    updated?: {
+      _id: string;
+      address: string;
+      points: number;
+      holdingSince: string;
+      holdingSinceBlock: number;
+      lastAwardedAt: string;
+      updatedAt: string;
+      windowCheckedAt: string;
+      windowEligible: boolean;
+      windowFromBlock: number;
+      windowMethod: string;
+    };
+    points?: {
+      _id: string;
+      address: string;
+      points: number;
+      holdingSince: string;
+      holdingSinceBlock: number;
+      lastAwardedAt: string;
+      updatedAt: string;
+      windowCheckedAt: string;
+      windowEligible: boolean;
+      windowFromBlock: number;
+      windowMethod: string;
+    };
+  } | null>(null);
+  const [eligibilityLoading, setEligibilityLoading] = useState(false);
 
   // Function to handle tab changes and update URL hash
   const handleTabChange = (
@@ -121,9 +114,6 @@ const Rewards: React.FC = () => {
       | "stakingLeaderboard"
       | "pointsStored"
       | "stakingTiers"
-      | "leaderboard"
-      | "rewards"
-      | "airdrop"
   ) => {
     setActiveTab(tab);
 
@@ -153,16 +143,10 @@ const Rewards: React.FC = () => {
     try {
       setCherryStatsLoading(true);
 
-      if (!accessToken) {
-        console.log("No access token available, skipping cherry stats fetch");
-        return;
-      }
-
       const response = await fetch(
         "https://sniper.cherrybot.ai/api/v1/stats/cherry",
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
         }
@@ -181,85 +165,6 @@ const Rewards: React.FC = () => {
     }
   };
 
-  const updateUserBalance = async () => {
-    if (!isAuthenticated || !accessToken || !user) {
-      console.log(
-        "🔒 [Rewards] User not authenticated, skipping balance update"
-      );
-      return;
-    }
-
-    try {
-      console.log(
-        "💰 [Rewards] Updating user balance for wallet address:",
-        user.walletAddress
-      );
-
-      const balanceResponse = await rewardsService.updateBalance(
-        user.walletAddress,
-        accessToken!
-      );
-
-      console.log("✅ [Rewards] UpdateBalance API response:", {
-        success: balanceResponse.success,
-        result: balanceResponse.result,
-      });
-
-      if (balanceResponse.success && balanceResponse.result) {
-        const solWallet = balanceResponse.result.find(
-          (wallet) => wallet.parentId === null
-        );
-        const tokenWallets = balanceResponse.result.filter(
-          (wallet) => wallet.parentId !== null
-        );
-
-        if (solWallet) {
-          const processedWalletInfo = {
-            solAddress: solWallet.address,
-            solBalance: solWallet.confirmedBalance,
-            solBalanceUSD: solWallet.confirmedBalanceUSD || "0",
-            tokens: tokenWallets.map((wallet) => ({
-              symbol: wallet.token.symbol,
-              balance: wallet.confirmedBalance,
-              name: wallet.token.name,
-            })),
-            userPoints: balanceResponse.userPoint?.points || 0,
-            totalUsdVolume: balanceResponse.userPoint?.totalUsdVolume || 0,
-            tier: balanceResponse.userPoint?.tier || "Default",
-          };
-
-          setUserWalletInfo(processedWalletInfo);
-
-          console.log("💰 [Rewards] Processed wallet info:", {
-            solAddress: processedWalletInfo.solAddress,
-            solBalance: processedWalletInfo.solBalance,
-            solBalanceUSD: processedWalletInfo.solBalanceUSD,
-            tokensCount: processedWalletInfo.tokens.length,
-            userPoints: processedWalletInfo.userPoints,
-            tier: processedWalletInfo.tier,
-          });
-        }
-      }
-    } catch (error: any) {
-      console.error("❌ [Rewards] Failed to update balance:", {
-        error: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-      });
-    }
-  };
-
-  const userAchievement = {
-    badge: "Diamond",
-    level: 5,
-    points: 98400,
-    volume: "$100,000",
-    nextBadge: "Ruby",
-    nextVolume: "$250,000",
-    nextPoints: 150000,
-    progress: 75,
-  };
-
   useEffect(() => {
     const styleSheet = document.createElement("style");
     styleSheet.type = "text/css";
@@ -271,73 +176,6 @@ const Rewards: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const fetchLeaderboards = async () => {
-      try {
-        setLeaderboardLoading(true);
-
-        let response;
-
-        if (isAuthenticated && accessToken && user?.walletAddress) {
-          console.log(
-            "🏆 [Rewards] Fetching authenticated leaderboards for wallet:",
-            user.walletAddress
-          );
-          response = await rewardsService.getLeaderboards(
-            user.walletAddress,
-            currentPage, // pageNumber
-            10, // pageSize
-            accessToken
-          );
-        } else {
-          console.log(
-            "🏆 [Rewards] Fetching public leaderboards (unauthenticated)"
-          );
-          response = await rewardsService.getPublicLeaderboards(
-            currentPage, // pageNumber
-            10 // pageSize
-          );
-        }
-
-        console.log("✅ [Rewards] Leaderboards API response:", {
-          success: response.success,
-          totalUsers: response.result?.totalCount,
-          usersInPage: response.result?.leaderboards?.length,
-          pageInfo: {
-            pageNumber: response.result?.pageNumber,
-            pageSize: response.result?.pageSize,
-            totalPages: response.result?.totalPages,
-            isLastPage: response.result?.isLastPage,
-          },
-          sampleUser: response.result?.leaderboards?.[0],
-        });
-
-        if (response.success && response.result?.leaderboards) {
-          setLeaderboardData(response.result.leaderboards);
-          setTotalPages(response.result.totalPages || 1);
-          setTotalCount(response.result.totalCount || 0);
-        }
-      } catch (error: any) {
-        console.error("❌ [Rewards] Failed to fetch leaderboards:", {
-          error: error.message,
-          status: error.response?.status,
-          data: error.response?.data,
-        });
-      } finally {
-        setLeaderboardLoading(false);
-      }
-    };
-
-    fetchLeaderboards();
-    updateUserBalance();
-  }, [isAuthenticated, accessToken, user?.walletAddress, currentPage]);
-
-  useEffect(() => {
-    if (activeTab === "airdrop") {
-      updateUserBalance();
-    }
-  }, [activeTab]);
-
-  useEffect(() => {
     fetchCherryStats(); // Fetch cherry stats on startup
 
     const statsInterval = setInterval(fetchCherryStats, 300000); // Update every 5 minutes
@@ -345,7 +183,7 @@ const Rewards: React.FC = () => {
     return () => {
       clearInterval(statsInterval);
     };
-  }, [accessToken]);
+  }, []);
 
   // Sync with URL hash on page load and hash changes
   useEffect(() => {
@@ -359,9 +197,6 @@ const Rewards: React.FC = () => {
           "stakingLeaderboard",
           "pointsStored",
           "stakingTiers",
-          "leaderboard",
-          "rewards",
-          "airdrop",
         ].includes(hash)
       ) {
         setActiveTab(hash as any);
@@ -379,33 +214,45 @@ const Rewards: React.FC = () => {
     };
   }, []);
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
+  useEffect(() => {
+    if (modalPhase === "eligibility" && isConnected && address) {
+      const runEligibilityCheck = async () => {
+        try {
+          setEligibilityLoading(true);
+          setEligibility(null);
+          const payload = { address };
+          const res = await axios.post(
+            "https://monitor.cherrypump.com/token/api/wallets/check",
+            payload,
+            {
+              headers: { "Content-Type": "application/json" },
+              maxBodyLength: Infinity,
+            }
+          );
+          console.log("[Eligibility API] Response:", res.data);
 
-  const handleTrade = () => {
-    window.open("https://t.me/cherrysniperbot", "_blank");
-  };
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setToastVisible(true);
-        setTimeout(() => setToastVisible(false), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error("Logout failed:", error);
+          if (res.data.points) {
+            setEligibility({
+              eligible: true,
+              reason: "Points already awarded recently, timer active",
+              points: res.data.points,
+            });
+          } else {
+            setEligibility(res.data);
+          }
+        } catch (err: any) {
+          console.error("[Eligibility API] Error:", err);
+          setEligibility({
+            eligible: false,
+            reason: "Eligibility check failed",
+          });
+        } finally {
+          setEligibilityLoading(false);
+        }
+      };
+      runEligibilityCheck();
     }
-  };
+  }, [modalPhase, isConnected, address]);
 
   return (
     <>
@@ -489,51 +336,18 @@ const Rewards: React.FC = () => {
                       <span className="winky-sans-font">Staking Tiers</span>
                     </button>
                     <div className="h-px bg-white/10 my-4" />
-                    {/* <button
-                        onClick={() => setActiveTab("leaderboard")}
-                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                          activeTab === "leaderboard"
-                            ? "bg-white/10 text-white"
-                            : "hover:bg-white/5 text-white"
-                        }`}
-                      >
-                        <Icon icon="tabler:trophy" width={20} height={20} />
-                        <span className="winky-sans-font">Leaderboard</span>
-                      </button>
-                      <button
-                        onClick={() => setActiveTab("rewards")}
-                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                          activeTab === "rewards"
-                            ? "bg-white/10 text-white"
-                            : "hover:bg-white/5 text-white"
-                        }`}
-                      >
-                        <Icon icon="mdi:gift" width={20} height={20} />
-                        <span className="winky-sans-font">Rewards</span>
-                      </button>
-                      <button
-                        onClick={() => setActiveTab("airdrop")}
-                        className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition ${
-                          activeTab === "airdrop"
-                            ? "bg-white/10 text-white"
-                            : "hover:bg-white/5 text-white"
-                        }`}
-                      >
-                        <Icon icon="mdi:airplane" width={20} height={20} />
-                        <span className="winky-sans-font">Airdrop</span>
-                      </button> */}
                   </nav>
                 </div>
                 <div className="px-2">
-                  {isAuthenticated && (
-                    <button
-                      onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition hover:bg-white/5 text-white"
-                    >
-                      <Icon icon="mdi:logout" width={20} height={20} />
-                      <span className="winky-sans-font">Log Out</span>
-                    </button>
-                  )}
+                  {/* {isAuthenticated && ( */}
+                  <button
+                    // onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-3 py-3 rounded-sm  text-left transition hover:bg-white/5 text-white"
+                  >
+                    <Icon icon="mdi:logout" width={20} height={20} />
+                    <span className="winky-sans-font">Log Out</span>
+                  </button>
+                  {/* )} */}
                 </div>
               </aside>
 
@@ -548,9 +362,6 @@ const Rewards: React.FC = () => {
                       "Staking Leaderboard"}
                     {activeTab === "pointsStored" && "Point Store"}
                     {activeTab === "stakingTiers" && "Staking Tiers"}
-                    {activeTab === "leaderboard" && "Leaderboard"}
-                    {activeTab === "rewards" && "Rewards"}
-                    {activeTab === "airdrop" && "Airdrop"}
                   </h2>
                   <UnifiedAuth />
                 </div>
@@ -843,7 +654,7 @@ const Rewards: React.FC = () => {
                           </div>
                           {/* Robot Image Card */}
                         </div>
-                        {!connected ? (
+                        {!isConnected ? (
                           <div className=" rounded-sm w-full h-fit overflow-hidden flex flex-col items-center justify-center">
                             <img
                               src="/dashboardRobot.png"
@@ -855,10 +666,6 @@ const Rewards: React.FC = () => {
                           <div className=" rounded-sm w-full h-full overflow-hidden">
                             {/* Your Stake Card */}
                             <div className="bg-white/5 border border-white/10 rounded-sm p-6 h-full">
-                              <h3 className="maladroit-font text-white/70 text-sm mb-4">
-                                Your Stake
-                              </h3>
-
                               <div className="space-y-4 mb-6">
                                 <div className="flex flex-col justify-between items-start">
                                   <span className="maladroit-font text-white/70 text-sm">
@@ -874,8 +681,38 @@ const Rewards: React.FC = () => {
                                     Cherry Points Earned:
                                   </span>
                                   <span className="maladroit-font text-3xl text-white">
-                                    400
+                                    {eligibility?.updated?.points ||
+                                      eligibility?.points?.points ||
+                                      0}
                                   </span>
+                                  {(() => {
+                                    const lastAwardedAt =
+                                      eligibility?.updated?.lastAwardedAt ||
+                                      eligibility?.points?.lastAwardedAt;
+                                    if (lastAwardedAt) {
+                                      const lastAwarded = new Date(
+                                        lastAwardedAt
+                                      );
+                                      const now = new Date();
+                                      const timeDiff =
+                                        now.getTime() - lastAwarded.getTime();
+                                      const hoursDiff =
+                                        timeDiff / (1000 * 60 * 60);
+
+                                      if (hoursDiff < 2) {
+                                        const remainingMinutes = Math.ceil(
+                                          (2 - hoursDiff) * 60
+                                        );
+                                        return (
+                                          <div className="winky-sans-font text-yellow-400 text-sm mt-2">
+                                            Wait {remainingMinutes} minutes
+                                            before earning more points
+                                          </div>
+                                        );
+                                      }
+                                    }
+                                    return null;
+                                  })()}
                                 </div>
 
                                 <div className="flex flex-col justify-between items-start">
@@ -1101,391 +938,9 @@ const Rewards: React.FC = () => {
                       </div>
                     </motion.div>
                   )}
-
-                  {activeTab === "leaderboard" && (
-                    <motion.div
-                      key="leaderboard"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="space-y-8"
-                    >
-                      <Leaderboard
-                        leaderboardData={leaderboardData}
-                        loading={leaderboardLoading}
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        totalCount={totalCount}
-                        onPageChange={handlePageChange}
-                      />
-                      {/* <PointsLeaderboard /> */}
-                    </motion.div>
-                  )}
-
-                  {activeTab === "rewards" && (
-                    <motion.div
-                      key="rewards"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="space-y-8"
-                    >
-                      {!isAuthenticated ? (
-                        <div className="bg-cherry-cream w-full rounded-sm border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
-                          {/* Header */}
-                          <div className="bg-black px-4 lg:px-6 py-4 flex items-center justify-between">
-                            <h3 className="maladroit-font text-sm lg:text-2xl text-white flex items-center gap-2">
-                              <Icon
-                                icon="mdi:gift"
-                                width={28}
-                                height={28}
-                                className="text-cherry-red  "
-                              />
-                              Your Rewards Dashboard
-                            </h3>
-                          </div>
-
-                          {/* Login Prompt */}
-                          <div className="p-8 text-center">
-                            <div className="mb-6">
-                              <Icon
-                                icon="mdi:lock"
-                                width={64}
-                                height={64}
-                                className="text-white mx-auto mb-4"
-                              />
-                              <h4 className="maladroit-font text-2xl text-white mb-4">
-                                Login Required
-                              </h4>
-                              <p className="winky-sans-font text-white text-lg mb-6">
-                                Please log in to your account to view your
-                                personal rewards dashboard
-                              </p>
-                            </div>
-
-                            <div className="bg-cherry-burgundy/10 rounded-sm  p-6 mb-6 border-2 border-cherry-burgundy">
-                              <h5 className="winky-sans-font text-white font-bold mb-3">
-                                What you'll see:
-                              </h5>
-                              <div className="space-y-2 text-sm">
-                                <div className="flex items-center gap-2">
-                                  <Icon
-                                    icon="mdi:check-circle"
-                                    className="text-cherry-red"
-                                    width={16}
-                                    height={16}
-                                  />
-                                  <span className="winky-sans-font text-white">
-                                    Your trading points and achievements
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Icon
-                                    icon="mdi:check-circle"
-                                    className="text-cherry-red"
-                                    width={16}
-                                    height={16}
-                                  />
-                                  <span className="winky-sans-font text-white">
-                                    Wallet balance and token holdings
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Icon
-                                    icon="mdi:check-circle"
-                                    className="text-cherry-red"
-                                    width={16}
-                                    height={16}
-                                  />
-                                  <span className="winky-sans-font text-white">
-                                    Referral earnings and commission
-                                  </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <Icon
-                                    icon="mdi:check-circle"
-                                    className="text-cherry-red"
-                                    width={16}
-                                    height={16}
-                                  />
-                                  <span className="winky-sans-font text-white">
-                                    Exclusive rewards and airdrops
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <button
-                              onClick={() => {
-                                window.open(
-                                  "https://t.me/cherrysniperbot?start=login_cherry",
-                                  "_blank"
-                                );
-                              }}
-                              className="bg-cherry-red text-white font-bold py-4 px-8 rounded-sm  border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-3 mx-auto"
-                            >
-                              <Icon
-                                icon="ic:baseline-telegram"
-                                width={24}
-                                height={24}
-                                className="text-white"
-                              />
-                              <span className="text-white">Connect Wallet</span>
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <RewardSection
-                            toastVisible={toastVisible}
-                            setToastVisible={setToastVisible}
-                            successToastVisible={successToastVisible}
-                            setSuccessToastVisible={setSuccessToastVisible}
-                            alreadySubscribedToastVisible={
-                              alreadySubscribedToastVisible
-                            }
-                            setAlreadySubscribedToastVisible={
-                              setAlreadySubscribedToastVisible
-                            }
-                            showAchievementsModal={showAchievementsModal}
-                            setShowAchievementsModal={setShowAchievementsModal}
-                            handleTrade={handleTrade}
-                            handleLogout={handleLogout}
-                            copyToClipboard={copyToClipboard}
-                            userAchievement={userAchievement}
-                            userWalletInfo={userWalletInfo}
-                            telegramId={user?.walletAddress}
-                            accessToken={accessToken || undefined}
-                          />
-                          <StatCards
-                            userPoints={userWalletInfo?.userPoints || 0}
-                          />
-                        </>
-                      )}
-                    </motion.div>
-                  )}
-
-                  {activeTab === "airdrop" && (
-                    <motion.div
-                      key="airdrop"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="space-y-8"
-                    >
-                      {!isAuthenticated ? (
-                        <div className="bg-cherry-cream rounded-sm border-4 border-[#111929] overflow-hidden shadow-[8px_8px_0px_#111929] relative mb-8">
-                          {/* Header */}
-                          <div className="bg-black px-4 lg:px-6 py-4 flex items-center justify-between">
-                            <h3 className="maladroit-font text-sm lg:text-2xl text-white flex items-center gap-2">
-                              <Icon
-                                icon="mdi:airplane"
-                                width={28}
-                                height={28}
-                                className="text-cherry-red  "
-                              />
-                              Airdrop – Login Required
-                            </h3>
-                          </div>
-
-                          {/* Login Prompt */}
-                          <div className="p-8 text-center">
-                            <div className="mb-6">
-                              <Icon
-                                icon="mdi:lock"
-                                width={64}
-                                height={64}
-                                className="text-white mx-auto mb-4"
-                              />
-                              <h4 className="maladroit-font text-2xl text-white mb-4">
-                                Login to View Your Points
-                              </h4>
-                              <p className="winky-sans-font text-white text-lg mb-6">
-                                Sign in with Telegram to see your points and
-                                estimated $AIBOT tokens
-                              </p>
-                            </div>
-
-                            <button
-                              onClick={() => {
-                                window.open(
-                                  "https://t.me/cherrysniperbot?start=login_cherry",
-                                  "_blank"
-                                );
-                              }}
-                              className="bg-cherry-red text-white font-bold py-4 px-8 rounded-sm  border-2 border-cherry-burgundy hover:border-b-4 hover:border-r-4 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-3 mx-auto"
-                            >
-                              <Icon
-                                icon="ic:baseline-telegram"
-                                width={24}
-                                height={24}
-                                className="text-white"
-                              />
-                              <span className="text-white">
-                                Login with Telegram
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <CherryAirdrop
-                          userPoints={userWalletInfo?.userPoints || 0}
-                        />
-                      )}
-                    </motion.div>
-                  )}
                 </AnimatePresence>
 
                 <div className="w-full flex gap-10 h-auto items-start flex-col lg:flex-row justify-center">
-                  {/* How It Works Modal */}
-                  {showHowItWorksModal && (
-                    <div
-                      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-                      onClick={() => setShowHowItWorksModal(false)}
-                    >
-                      <div
-                        className="bg-cherry-cream rounded-sm border-4 border-cherry-burgundy   max-w-md w-full max-h-[90vh] overflow-y-auto"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {/* Modal Header */}
-                        <div className="bg-black px-6 py-4 flex items-center justify-between">
-                          <h3 className="maladroit-font text-xl text-white flex items-center gap-2">
-                            <Icon
-                              icon="mdi:lightbulb"
-                              width={24}
-                              height={24}
-                              className="text-white"
-                            />
-                            How It Works
-                          </h3>
-                          <button
-                            onClick={() => setShowHowItWorksModal(false)}
-                            className="text-white hover:text-cherry-red transition-colors"
-                          >
-                            <Icon icon="mdi:close" width={24} height={24} />
-                          </button>
-                        </div>
-
-                        {/* Modal Content */}
-                        <div className="p-6">
-                          <div className="space-y-4 mb-6">
-                            <div className="flex items-start gap-3">
-                              <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="winky-sans-font text-sm text-white font-bold">
-                                  1
-                                </span>
-                              </div>
-                              <div>
-                                <h4 className="winky-sans-font text-base leading-tight text-white    ">
-                                  Share Your Link
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm">
-                                  Share your unique referral link with friends
-                                  and family
-                                </p>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                              <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="winky-sans-font text-sm text-white font-bold">
-                                  2
-                                </span>
-                              </div>
-                              <div>
-                                <h4 className="winky-sans-font text-base leading-tight text-white    ">
-                                  They Start Trading
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm">
-                                  Your friends sign up and start trading using
-                                  SniperAI Bot
-                                </p>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                              <div className="w-8 h-8 bg-cherry-red rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <span className="winky-sans-font text-sm text-white font-bold">
-                                  3
-                                </span>
-                              </div>
-                              <div>
-                                <h4 className="winky-sans-font text-base leading-tight text-white    ">
-                                  You Earn Commission
-                                </h4>
-                                <p className="winky-sans-font text-white text-sm">
-                                  You earn up to 55% commission on all their
-                                  trading fees automatically
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Earnings Breakdown */}
-                          <div className="bg-cherry-burgundy/10  rounded-sm p-4 mb-6">
-                            <h5 className="winky-sans-font text-white font-bold mb-3">
-                              Commission Breakdown:
-                            </h5>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span className="winky-sans-font text-white">
-                                  Direct Referrals:
-                                </span>
-                                <span className="winky-sans-font text-white font-bold">
-                                  55%
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="winky-sans-font text-white">
-                                  Indirect Referrals:
-                                </span>
-                                <span className="winky-sans-font text-white font-bold">
-                                  5%
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="winky-sans-font text-white">
-                                  Extended Network:
-                                </span>
-                                <span className="winky-sans-font text-white font-bold">
-                                  2.5%
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* CTA Button */}
-                          <button
-                            onClick={() => {
-                              copyToClipboard(
-                                "https://t.me/CherrySniperBot?start=ref_GihKTmp"
-                              );
-                              setShowHowItWorksModal(false);
-                            }}
-                            className="w-full bg-cherry-red text-white font-bold py-3 px-6 rounded-sm  border border-b-4 border-r-4 border-cherry-burgundy hover:border-b-2 hover:border-r-2 hover:translate-y-1 hover:translate-x-1 transition-all duration-200 transform-gpu   hover:  winky-sans-font flex items-center justify-center gap-2"
-                          >
-                            <Icon
-                              icon="mdi:content-copy"
-                              width={20}
-                              height={20}
-                              className="text-white"
-                            />
-                            <span className="text-white">Copy and Start</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Achievements Modal */}
-                  <AchievementsModal
-                    visible={showAchievementsModal}
-                    onClose={() => setShowAchievementsModal(false)}
-                  />
-
                   {/* Stake AIBOT Modal */}
                   <AnimatePresence>
                     {showStakeModal && (
@@ -1522,7 +977,7 @@ const Rewards: React.FC = () => {
                             </div>
                           )}
 
-                          {!connected ? (
+                          {!isConnected ? (
                             <div className="space-y-4">
                               <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
                                 <Icon
@@ -1535,7 +990,9 @@ const Rewards: React.FC = () => {
                                   You need to connect your wallet to stake
                                   $AIBOT
                                 </p>
-                                <UnifiedAuth />
+                                <div className="flex justify-center">
+                                  <BSCWalletButton />
+                                </div>
                               </div>
                             </div>
                           ) : (
@@ -1579,8 +1036,10 @@ const Rewards: React.FC = () => {
                                       Cancel
                                     </button>
                                     <button
-                                      onClick={() => setModalPhase("eligibility")}
-                                      className="flex-1 bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                      onClick={() =>
+                                        setModalPhase("eligibility")
+                                      }
+                                      className="flex-1 bg-[#010e1f]  hover:text-white   text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
                                     >
                                       Next
                                     </button>
@@ -1590,54 +1049,111 @@ const Rewards: React.FC = () => {
                                 /* Eligibility Phase */
                                 <div className="bg-white/5 border border-white/10 rounded-lg p-6">
                                   <div className="text-center mb-6">
-                                    <Icon
-                                      icon={
-                                        isEligible
-                                          ? "mdi:check-circle"
-                                          : "mdi:close-circle"
-                                      }
-                                      width={60}
-                                      height={60}
-                                      className={
-                                        isEligible
-                                          ? "text-green-400 mx-auto mb-4"
-                                          : "text-red-400 mx-auto mb-4"
-                                      }
-                                    />
-                                    <h4 className="maladroit-font text-xl text-white mb-4">
-                                      Eligibility Check
-                                    </h4>
-                                    {isEligible ? (
-                                      <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6">
-                                        <Icon
-                                          icon="mdi:check-circle"
-                                          width={24}
-                                          height={24}
-                                          className="text-green-400 inline mr-2"
-                                        />
-                                        <span className="winky-sans-font text-green-400 text-sm">
-                                          You are eligible to stake $AIBOT!
-                                        </span>
+                                    {eligibilityLoading ? (
+                                      <div className="flex flex-col items-center gap-3">
+                                        <div className="animate-spin    h-8 w-8 border-b-2 border-[var(--color-accent)] rounded-3xl"></div>
+                                        <p className="winky-sans-font text-white/70 text-sm">
+                                          Checking eligibility...
+                                        </p>
                                       </div>
                                     ) : (
-                                      <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+                                      <>
                                         <Icon
-                                          icon="mdi:close-circle"
-                                          width={24}
-                                          height={24}
-                                          className="text-red-400 inline mr-2"
+                                          icon={
+                                            eligibility?.eligible
+                                              ? "mdi:check-circle"
+                                              : "mdi:close-circle"
+                                          }
+                                          width={60}
+                                          height={60}
+                                          className={
+                                            (eligibility?.eligible
+                                              ? "text-green-400"
+                                              : "text-red-400") +
+                                            " mx-auto mb-4"
+                                          }
                                         />
-                                        <span className="winky-sans-font text-red-400 text-sm">
-                                          Minimum amount of $AIBOT required is
-                                          1000
-                                        </span>
-                                      </div>
+                                        <h4 className="maladroit-font text-xl text-white mb-4">
+                                          Eligibility Check
+                                        </h4>
+                                        {eligibility?.eligible ? (
+                                          <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 mb-6">
+                                            <Icon
+                                              icon="mdi:check-circle"
+                                              width={24}
+                                              height={24}
+                                              className="text-green-400 inline mr-2"
+                                            />
+                                            <span className="winky-sans-font text-green-400 text-sm">
+                                              {eligibility?.points
+                                                ? "Points already awarded recently"
+                                                : "You are eligible to stake $AIBOT!"}
+                                            </span>
+                                          </div>
+                                        ) : (
+                                          <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+                                            <Icon
+                                              icon="mdi:close-circle"
+                                              width={24}
+                                              height={24}
+                                              className="text-red-400 inline mr-2"
+                                            />
+                                            <span className="winky-sans-font text-red-400 text-sm">
+                                              Not eligible
+                                            </span>
+                                          </div>
+                                        )}
+
+                                        {/* Show wait timer if points response */}
+                                        {eligibility?.points &&
+                                          (() => {
+                                            const lastAwardedAt =
+                                              eligibility.points.lastAwardedAt;
+                                            if (lastAwardedAt) {
+                                              const lastAwarded = new Date(
+                                                lastAwardedAt
+                                              );
+                                              const now = new Date();
+                                              const timeDiff =
+                                                now.getTime() -
+                                                lastAwarded.getTime();
+                                              const hoursDiff =
+                                                timeDiff / (1000 * 60 * 60);
+
+                                              if (hoursDiff < 2) {
+                                                const remainingMinutes =
+                                                  Math.ceil(
+                                                    (2 - hoursDiff) * 60
+                                                  );
+                                                return (
+                                                  <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+                                                    <Icon
+                                                      icon="mdi:timer-sand"
+                                                      width={24}
+                                                      height={24}
+                                                      className="text-yellow-400 inline mr-2"
+                                                    />
+                                                    <span className="winky-sans-font text-yellow-400 text-sm">
+                                                      Wait {remainingMinutes}{" "}
+                                                      minutes before earning
+                                                      more points
+                                                    </span>
+                                                  </div>
+                                                );
+                                              }
+                                            }
+                                            return null;
+                                          })()}
+
+                                        <p className="winky-sans-font text-white/70 text-sm mb-6">
+                                          {eligibility?.points
+                                            ? "You have recently received points. Please wait for the 2-hour cooldown period before requesting more points."
+                                            : eligibility?.eligible
+                                            ? "You meet all the requirements to participate in staking. You can now proceed to stake your tokens."
+                                            : "You need to have at least 1000 $AIBOT tokens to be eligible for staking"}
+                                        </p>
+                                      </>
                                     )}
-                                    <p className="winky-sans-font text-white/70 text-sm mb-6">
-                                      {isEligible
-                                        ? "You meet all the requirements to participate in staking. You can now proceed to stake your tokens."
-                                        : "You need to have at least 1000 $AIBOT tokens to be eligible for staking."}
-                                    </p>
                                   </div>
 
                                   <div className="flex gap-3">
@@ -1647,17 +1163,17 @@ const Rewards: React.FC = () => {
                                     >
                                       Back
                                     </button>
-                                    {isEligible ? (
+                                    {eligibility?.eligible ? (
                                       <button
                                         onClick={() => setShowStakeModal(false)}
-                                        className="flex-1 bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                                        className="flex-1 bg-accent hover:bg-accent/80 cursor-pointer text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
                                       >
                                         Stake
                                       </button>
                                     ) : (
                                       <button
                                         onClick={() => setShowStakeModal(false)}
-                                        className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                                        className="flex-1 bg-white/10 cursor-pointer hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
                                       >
                                         Close
                                       </button>

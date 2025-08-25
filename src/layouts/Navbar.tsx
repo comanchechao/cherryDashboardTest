@@ -254,8 +254,6 @@ const Navbar: React.FC = () => {
                   />
                 </a>
               </div>
-
-              {/* Wallet Section */}
             </div>
 
             {/* Mobile menu button */}

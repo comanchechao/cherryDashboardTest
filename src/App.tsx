@@ -15,161 +15,167 @@ import PageLayout from "./layouts/PageLayout";
 import ScrollToTop from "./components/ScrollToTop";
 import Rewards from "./pages/rewards/index";
 import { ToastProvider } from "./contexts/ToastContext";
+import { BSCWalletProvider } from "./components/BSCWalletProvider";
 // import WebTrending from "./pages/webTrending";
 // import CommunityAI from "./pages/communityAI";
 // import AIAnalytics from "./pages/aiAnalytics";
+
 function App() {
   const location = useLocation();
 
   return (
     <ToastProvider>
-      <>
-        <ScrollToTop />
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route
-              path="/"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/homepage"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/careers"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/features"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
+      <BSCWalletProvider>
+        {/* <AuthProvider> */}
+        <>
+          <ScrollToTop />
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route
+                path="/"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/homepage"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/careers"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/features"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
 
-            <Route
-              path="/aboutUs"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/roadmap"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/userGrowth"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/cherrySniper"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/cherry"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/communityAI"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <PageLayout>
-                  <Rewards />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/rewards"
-              element={
-                <PageLayout>
-                  <Rewards />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/webTrending"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/coming-soon"
-              element={
-                <PageLayout>
-                  <ComingSoon />
-                </PageLayout>
-              }
-            />
-            <Route
-              path="/ai-analytics"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
+              <Route
+                path="/aboutUs"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/roadmap"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/userGrowth"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/cherrySniper"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/cherry"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/communityAI"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PageLayout>
+                    <Rewards />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/rewards"
+                element={
+                  <PageLayout>
+                    <Rewards />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/webTrending"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/coming-soon"
+                element={
+                  <PageLayout>
+                    <ComingSoon />
+                  </PageLayout>
+                }
+              />
+              <Route
+                path="/ai-analytics"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
 
-            <Route
-              path="/robotics"
-              element={
-                <PageLayout>
-                  <Robotics />
-                </PageLayout>
-              }
-            />
+              <Route
+                path="/robotics"
+                element={
+                  <PageLayout>
+                    <Robotics />
+                  </PageLayout>
+                }
+              />
 
-            <Route
-              path="*"
-              element={
-                <PageLayout>
-                  <HomePage />
-                </PageLayout>
-              }
-            />
-          </Routes>
-        </AnimatePresence>
-        {/* <AuthenticationModalWrapper /> */}
-      </>
+              <Route
+                path="*"
+                element={
+                  <PageLayout>
+                    <HomePage />
+                  </PageLayout>
+                }
+              />
+            </Routes>
+          </AnimatePresence>
+          {/* <AuthenticationModalWrapper /> */}
+        </>
+        {/* </AuthProvider> */}
+      </BSCWalletProvider>
     </ToastProvider>
   );
 }

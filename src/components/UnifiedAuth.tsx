@@ -1,7 +1,26 @@
-import WalletConnectionManager from "./WalletConnectionManager";
+import React from "react";
+// import WalletAuth from "./WalletAuth";
+// import WalletConnectionManager from "./WalletConnectionManager";
+// import { useAuth } from "./AuthProvider";
+import BSCWalletButton from "./BSCWalletButton";
 
-const UnifiedAuth = () => {
-  return <WalletConnectionManager />;
+const UnifiedAuth: React.FC = () => {
+  // const { isAuthenticated, user } = useAuth();
+
+  return (
+    <div className="flex items-center gap-3">
+      {/* {isAuthenticated ? (
+        user?.authMethod === "telegram" ? (
+          <WalletConnectionManager />
+        ) : (
+          <WalletAuth />
+        )
+      ) : (
+        <WalletAuth />
+      )} */}
+      <BSCWalletButton />
+    </div>
+  );
 };
 
 export default UnifiedAuth;
