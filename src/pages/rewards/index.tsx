@@ -672,7 +672,7 @@ const Rewards: React.FC = () => {
                                     Your Stake:
                                   </span>
                                   <span className="maladroit-font text-3xl text-white">
-                                    1000 $AIBOT
+                                    0 $AIBOT
                                   </span>
                                 </div>
 
