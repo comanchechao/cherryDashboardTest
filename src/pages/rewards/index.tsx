@@ -845,7 +845,7 @@ const Rewards: React.FC = () => {
                             />
                             <div>
                               <p className="winky-sans-font text-white text-sm">
-                                Staking $AIBOT also grants stakers with CherryAI
+                                Staking $AIBOT also grants stakers with AIBOT
                                 points which can be used to buy lootboxes that
                                 contain rewards.
                               </p>
