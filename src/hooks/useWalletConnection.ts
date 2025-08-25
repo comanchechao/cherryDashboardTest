@@ -1,86 +1,122 @@
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useConnection } from "@solana/wallet-adapter-react";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+interface WalletInfo {
+  name: string;
+  icon?: string;
+  address: string;
+  formattedAddress: string;
+  balance: number | null;
+  isLoadingBalance: boolean;
+}
+
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 export const useWalletConnection = () => {
-  const { wallet, connect, disconnect, connected, connecting, publicKey } =
-    useWallet();
-  const { connection } = useConnection();
+  const [connected, setConnected] = useState(false);
+  const [connecting, setConnecting] = useState(false);
+  const [address, setAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingBalance, setIsLoadingBalance] = useState(false);
 
-  const fetchBalance = async () => {
-    if (!publicKey || !connection) return;
+  const formatAddress = (addr: string) => `${addr.slice(0, 6)}...${addr.slice(-4)}`;
 
+  const fetchBalance = useCallback(async (addr: string) => {
+    if (!window.ethereum || !addr) return;
     try {
-      setIsLoading(true);
-      const lamports = await connection.getBalance(publicKey);
-      const solBalance = lamports / LAMPORTS_PER_SOL;
-      setBalance(solBalance);
+      setIsLoadingBalance(true);
+      const wei = await window.ethereum.request({
+        method: "eth_getBalance",
+        params: [addr, "latest"],
+      });
+      const eth = parseInt(wei, 16) / 1e18;
+      setBalance(eth);
     } catch (error) {
       console.error("Error fetching balance:", error);
       setBalance(null);
     } finally {
-      setIsLoading(false);
+      setIsLoadingBalance(false);
     }
-  };
+  }, []);
+
+  const connectWallet = useCallback(async () => {
+    if (!window.ethereum) {
+      window.alert("MetaMask is not installed. Please install it to connect.");
+      return;
+    }
+    try {
+      setConnecting(true);
+      const accounts: string[] = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const acc = accounts?.[0];
+      if (acc) {
+        setAddress(acc);
+        setConnected(true);
+        fetchBalance(acc);
+      }
+    } catch (error) {
+      console.error("Error connecting MetaMask:", error);
+      throw error;
+    } finally {
+      setConnecting(false);
+    }
+  }, [fetchBalance]);
+
+  const disconnectWallet = useCallback(async () => {
+    // MetaMask does not support programmatic disconnect; clear local state
+    setConnected(false);
+    setAddress(null);
+    setBalance(null);
+  }, []);
 
   useEffect(() => {
-    if (connected && publicKey) {
-      fetchBalance();
-    } else {
-      setBalance(null);
-    }
-  }, [connected, publicKey, connection]);
+    if (!window.ethereum) return;
 
-  const formatAddress = (address: string) => {
-    return `${address.slice(0, 4)}...${address.slice(-4)}`;
-  };
-
-  const getWalletInfo = () => {
-    if (!wallet || !publicKey) return null;
-
-    return {
-      name: wallet.adapter.name,
-      icon: wallet.adapter.icon,
-      address: publicKey.toString(),
-      formattedAddress: formatAddress(publicKey.toString()),
-      balance: balance,
-      isLoadingBalance: isLoading,
+    const handleAccountsChanged = (accounts: string[]) => {
+      const acc = accounts?.[0] ?? null;
+      setAddress(acc);
+      const isNowConnected = Boolean(acc);
+      setConnected(isNowConnected);
+      if (acc) fetchBalance(acc);
+      else setBalance(null);
     };
-  };
 
-  const connectWallet = async () => {
-    try {
-      await connect();
-    } catch (error) {
-      console.error("Error connecting wallet:", error);
-      throw error;
-    }
-  };
+    window.ethereum.request({ method: "eth_accounts" }).then((accounts: string[]) => {
+      if (accounts && accounts[0]) {
+        handleAccountsChanged(accounts);
+      }
+    });
 
-  const disconnectWallet = async () => {
-    try {
-      await disconnect();
-      setBalance(null);
-    } catch (error) {
-      console.error("Error disconnecting wallet:", error);
-      throw error;
-    }
-  };
+    window.ethereum.on?.("accountsChanged", handleAccountsChanged);
+
+    return () => {
+      try {
+        window.ethereum?.removeListener?.("accountsChanged", handleAccountsChanged);
+      } catch {}
+    };
+  }, [fetchBalance]);
+
+  const walletInfo: WalletInfo | null = address
+    ? {
+        name: "MetaMask",
+        address,
+        formattedAddress: formatAddress(address),
+        balance,
+        isLoadingBalance,
+      }
+    : null;
 
   return {
-    wallet,
     connected,
     connecting,
-    publicKey,
-    walletInfo: getWalletInfo(),
     connectWallet,
     disconnectWallet,
-    fetchBalance,
-    formatAddress,
-    balance,
-    isLoadingBalance: isLoading,
+    walletInfo,
   };
 };
+
+export default useWalletConnection;

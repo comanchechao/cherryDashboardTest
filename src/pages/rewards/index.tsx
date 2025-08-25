@@ -12,6 +12,7 @@ import CherryAirdrop from "./components/cherryAirdrop";
 import { useAuth } from "../../components/AuthProvider";
 import UnifiedAuth from "../../components/UnifiedAuth";
 import rewardsService from "../../services/rewardsService";
+import { useWalletConnection } from "../../hooks/useWalletConnection";
 
 const customAnimations = `
     @keyframes float-slow {
@@ -110,6 +111,7 @@ const Rewards: React.FC = () => {
   const [cherryStatsLoading, setCherryStatsLoading] = useState(false);
 
   const { isAuthenticated, user, accessToken, logout } = useAuth();
+  const { connected } = useWalletConnection();
 
   // Function to handle tab changes and update URL hash
   const handleTabChange = (
@@ -841,7 +843,7 @@ const Rewards: React.FC = () => {
                           </div>
                           {/* Robot Image Card */}
                         </div>
-                        {!isAuthenticated ? (
+                        {!connected ? (
                           <div className=" rounded-sm w-full h-fit overflow-hidden flex flex-col items-center justify-center">
                             <img
                               src="/dashboardRobot.png"
@@ -1520,7 +1522,7 @@ const Rewards: React.FC = () => {
                             </div>
                           )}
 
-                          {!isAuthenticated ? (
+                          {!connected ? (
                             <div className="space-y-4">
                               <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-center">
                                 <Icon
@@ -1577,9 +1579,7 @@ const Rewards: React.FC = () => {
                                       Cancel
                                     </button>
                                     <button
-                                      onClick={() =>
-                                        setModalPhase("eligibility")
-                                      }
+                                      onClick={() => setModalPhase("eligibility")}
                                       className="flex-1 bg-accent hover:bg-accent/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
                                     >
                                       Next

@@ -1,16 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useWalletConnection } from "../hooks/useWalletConnection";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { useAuth } from "./AuthProvider";
 
 const WalletConnectionManager: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { connected, connecting, disconnectWallet, walletInfo } =
+  const { connected, connecting, connectWallet, disconnectWallet, walletInfo } =
     useWalletConnection();
-  const { setVisible } = useWalletModal();
-  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -27,7 +23,7 @@ const WalletConnectionManager: React.FC = () => {
   }, []);
 
   const handleConnectWallet = () => {
-    setVisible(true);
+    connectWallet();
   };
 
   const handleDisconnectWallet = async () => {
@@ -39,7 +35,6 @@ const WalletConnectionManager: React.FC = () => {
     }
   };
 
-  // Show connection status when wallet is connected
   if (connected && walletInfo) {
     return (
       <div className="relative" ref={dropdownRef}>
@@ -49,11 +44,6 @@ const WalletConnectionManager: React.FC = () => {
         >
           <Icon icon="ph:wallet-fill" className="w-5 h-5 text-accent" />
           <span>{walletInfo.formattedAddress}</span>
-          {isAuthenticated && user?.authMethod === "wallet" && (
-            <span className="ml-1 text-xs text-yellow-300 bg-yellow-500/20 px-2 py-1 rounded-full border border-yellow-500/30">
-              AUTH
-            </span>
-          )}
           <Icon
             icon={isDropdownOpen ? "mdi:chevron-up" : "mdi:chevron-down"}
             className="w-4 h-4 text-accent"
@@ -86,7 +76,6 @@ const WalletConnectionManager: React.FC = () => {
     );
   }
 
-  // Show connect button when wallet is not connected
   if (!connected) {
     if (connecting) {
       return (
