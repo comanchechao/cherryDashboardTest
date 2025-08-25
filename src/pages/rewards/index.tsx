@@ -610,9 +610,12 @@ const Rewards: React.FC = () => {
                                   eligibility?.updated?.lastBalance ||
                                   eligibility?.points?.lastBalance;
                                 if (balance && parseFloat(balance) >= 1000) {
-                                  return `${parseFloat(balance).toFixed(
-                                    2
-                                  )} $AIBOT`;
+                                  const balanceNum = parseFloat(balance);
+                                  return `${
+                                    balanceNum % 1 === 0
+                                      ? balanceNum.toFixed(0)
+                                      : balanceNum.toFixed(2)
+                                  } $AIBOT`;
                                 }
                                 return "0 $AIBOT";
                               })()}{" "}
@@ -692,9 +695,13 @@ const Rewards: React.FC = () => {
                                         balance &&
                                         parseFloat(balance) >= 1000
                                       ) {
-                                        return `${parseFloat(balance).toFixed(
-                                          2
-                                        )} $AIBOT`;
+                                        const balanceNum = parseFloat(balance);
+                                        // Remove trailing zeros after decimal point
+                                        return `${
+                                          balanceNum % 1 === 0
+                                            ? balanceNum.toFixed(0)
+                                            : balanceNum.toFixed(2)
+                                        } $AIBOT`;
                                       }
                                       return "0 $AIBOT";
                                     })()}
