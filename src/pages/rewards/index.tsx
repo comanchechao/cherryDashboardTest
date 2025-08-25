@@ -90,6 +90,7 @@ const Rewards: React.FC = () => {
       windowEligible: boolean;
       windowFromBlock: number;
       windowMethod: string;
+      lastCheckedAt?: string;
     };
     points?: {
       _id: string;
@@ -104,9 +105,13 @@ const Rewards: React.FC = () => {
       windowEligible: boolean;
       windowFromBlock: number;
       windowMethod: string;
+      lastCheckedAt?: string;
     };
   } | null>(null);
   const [eligibilityLoading, setEligibilityLoading] = useState(false);
+  const [pointsInterval, setPointsInterval] = useState<NodeJS.Timeout | null>(
+    null
+  );
 
   // Function to handle tab changes and update URL hash
   const handleTabChange = (
@@ -164,6 +169,47 @@ const Rewards: React.FC = () => {
       console.error("Failed to fetch cherry stats:", error);
     } finally {
       setCherryStatsLoading(false);
+    }
+  };
+
+  const fetchUserPoints = async (walletAddress: string) => {
+    try {
+      const response = await fetch(
+        `https://monitor.cherrypump.com/token/api/wallets/${walletAddress}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      // Detect changes in either points or lastBalance
+      const prev = eligibility?.points ?? eligibility?.updated;
+      const prevPoints = prev?.points;
+      const prevBalance = prev?.lastBalance;
+
+      if (prevPoints !== data.points || prevBalance !== data.lastBalance) {
+        console.log("[Points/Balance Update] New wallet data:", data);
+
+        // Update eligibility state with new data
+        setEligibility((prevState) => {
+          if (prevState?.points) {
+            return { ...prevState, points: data };
+          } else if (prevState?.updated) {
+            return { ...prevState, updated: data };
+          } else {
+            return { eligible: true, updated: data };
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch user points:", error);
     }
   };
 
@@ -255,6 +301,30 @@ const Rewards: React.FC = () => {
       runEligibilityCheck();
     }
   }, [modalPhase, isConnected, address]);
+
+  useEffect(() => {
+    if (isConnected && address) {
+      fetchUserPoints(address);
+
+      const interval = setInterval(() => {
+        fetchUserPoints(address);
+      }, 60000);
+
+      setPointsInterval(interval);
+
+      return () => {
+        if (interval) {
+          clearInterval(interval);
+          setPointsInterval(null);
+        }
+      };
+    } else {
+      if (pointsInterval) {
+        clearInterval(pointsInterval);
+        setPointsInterval(null);
+      }
+    }
+  }, [isConnected, address]);
 
   return (
     <>
