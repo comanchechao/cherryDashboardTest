@@ -35,6 +35,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
       windowFromBlock: number;
       windowMethod: string;
       lastCheckedAt?: string;
+      stakePoints?: number;
     };
     points?: {
       _id: string;
@@ -50,13 +51,11 @@ const StakeTab: React.FC<StakeTabProps> = ({
       windowFromBlock: number;
       windowMethod: string;
       lastCheckedAt?: string;
+      stakePoints?: number;
     };
   } | null>(null);
   const [pointsInterval, setPointsInterval] = useState<NodeJS.Timeout | null>(
     null
-  );
-  const [activeAPYTab, setActiveAPYTab] = useState<"rewards" | "stakers">(
-    "rewards"
   );
 
   const CONTRACT_ADDRESS = "0xd6A07b8065f9e8386A9a5bBA6A754a10A9CD1074";
@@ -76,7 +75,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
   // Staking data state
   const [stakedAmount, setStakedAmount] = useState<string>("0");
   const [pendingRewards, setPendingRewards] = useState<string>("0");
-  const [totalStaked, setTotalStaked] = useState<string>("0");
   const [withdrawAmount, setWithdrawAmount] = useState<string>("");
   const [isWithdrawing, setIsWithdrawing] = useState(false);
   const [tokenDecimals, setTokenDecimals] = useState<number>(18);
@@ -112,13 +110,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
       // Fetch decimals
       const decimals = await tokenContract.decimals();
       setTokenDecimals(decimals);
-
-      // Format total staked
-      const totalStakedFormatted = ethers.utils.formatUnits(
-        totalStakedBN,
-        decimals
-      );
-      setTotalStaked(totalStakedFormatted);
 
       // Fetch user staked amount
       const userInfo = await stakingContract.userInfo(address, POOL_ID);
@@ -492,15 +483,33 @@ const StakeTab: React.FC<StakeTabProps> = ({
               <h3 className="maladroit-font text-xl text-white">
                 Your Staking
               </h3>
-              <div className="flex items-center gap-2 px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="winky-sans-font text-green-400 text-sm font-medium">
-                  Active
-                </span>
+              <div className="flex items-center justify-center">
+                <div className="flex items-center gap-2 px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="winky-sans-font text-green-400 text-sm font-medium">
+                    Active
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={async () => {
+                      await fetchStakingData();
+                    }}
+                    className="p-2 hover:bg-white/10 rounded-sm transition-colors group"
+                    title="Refresh staking data"
+                  >
+                    <Icon
+                      icon="mdi:refresh"
+                      className="text-white/70 group-hover:text-white transition-colors"
+                      width={18}
+                      height={18}
+                    />
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               <div className="bg-white/5 border border-white/10 rounded-sm p-4">
                 <div className="winky-sans-font text-white/70 text-xs mb-2 uppercase tracking-wide">
                   Your Staked
@@ -532,6 +541,21 @@ const StakeTab: React.FC<StakeTabProps> = ({
                 </div>
                 <div className="winky-sans-font text-white/60 text-xs mt-1">
                   Variable
+                </div>
+              </div>
+              <div className="bg-white/5 border border-white/10 rounded-sm p-4">
+                <div className="winky-sans-font text-white/70 text-xs mb-2 uppercase tracking-wide">
+                  Points
+                </div>
+                <div className="maladroit-font text-xl text-yellow-400 font-bold">
+                  {eligibility?.updated?.stakePoints ||
+                    eligibility?.points?.stakePoints ||
+                    eligibility?.updated?.points ||
+                    eligibility?.points?.points ||
+                    0}
+                </div>
+                <div className="winky-sans-font text-white/60 text-xs mt-1">
+                  Points Earned
                 </div>
               </div>
             </div>
@@ -583,202 +607,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
           </div>
         )}
 
-        <div className="flex items-center justify-between ">
-          <div className="flex space-x-1 bg-white/5 border border-white/10 rounded-sm p-1">
-            <button
-              onClick={() => setActiveAPYTab("rewards")}
-              className={`px-6 py-2 cursor-pointer rounded-sm text-sm font-medium transition-all duration-200 ${
-                activeAPYTab === "rewards"
-                  ? "bg-[var(--color-accent)] text-black shadow-lg"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Icon icon="mdi:gift" width={16} height={16} />
-                <span className="winky-sans-font">Rewards</span>
-                <span className="bg-[var(--color-accent)]/20 text-[var(--color-accent)] text-xs px-2 py-0.5 rounded-full">
-                  0
-                </span>
-              </div>
-            </button>
-            <button
-              onClick={() => setActiveAPYTab("stakers")}
-              className={`px-6 py-2 cursor-pointer rounded-sm text-sm font-medium transition-all duration-200 ${
-                activeAPYTab === "stakers"
-                  ? "bg-[var(--color-accent)] text-black shadow-lg"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Icon icon="mdi:account-group" width={16} height={16} />
-                <span className="winky-sans-font">Stakers</span>
-                <span className="bg-white/20 text-white/60 text-xs px-2 py-0.5 rounded-full">
-                  48
-                </span>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Tab Content */}
-        {activeAPYTab === "rewards" && (
-          <div className="bg-white/5 border border-white/10 rounded-sm p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="maladroit-font text-xl text-white mb-1">
-                  reward streams
-                </h3>
-                <p className="winky-sans-font text-white/60 text-sm">
-                  Stake your tokens and subscribe to begin receiving rewards
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={async () => {
-                    showSuccess(
-                      "Refreshing Data 🔄",
-                      "Fetching latest staking information...",
-                      2000
-                    );
-                    await fetchStakingData();
-                  }}
-                  className="p-2 hover:bg-white/10 rounded-sm transition-colors group"
-                  title="Refresh staking data"
-                >
-                  <Icon
-                    icon="mdi:refresh"
-                    className="text-white/70 group-hover:text-white transition-colors"
-                    width={18}
-                    height={18}
-                  />
-                </button>
-              </div>
-            </div>
-
-            {/* Reward Stream Card with enhanced design */}
-            <div className="bg-white/5 border border-white/10 rounded-sm p-5 hover:bg-white/10 transition-all duration-200 group">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <div className="maladroit-font text-white text-lg font-bold">
-                        $AIBOT
-                      </div>
-                      <div className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full winky-sans-font">
-                        Active
-                      </div>
-                    </div>
-                    <div className="winky-sans-font text-white/70 text-sm flex items-center gap-3">
-                      <span className="flex items-center gap-1">
-                        <Icon icon="mdi:clock-outline" width={14} height={14} />
-                        Ends in 5 months
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Icon
-                          icon="mdi:account-multiple"
-                          width={14}
-                          height={14}
-                        />
-                        39 stakers
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Icon icon="mdi:currency-usd" width={14} height={14} />
-                        195M pool
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="maladroit-font text-green-400 text-xl font-bold">
-                    5% APR
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeAPYTab === "stakers" && (
-          <div className="bg-white/5 border border-white/10 rounded-sm p-6">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h3 className="maladroit-font text-xl text-white mb-1">
-                  Top Stakers
-                </h3>
-                <p className="winky-sans-font text-white/60 text-sm">
-                  48 active stakers • Total staked: 204M $AIBOT
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button className="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white/70 text-xs rounded-sm transition-colors winky-sans-font">
-                  24h
-                </button>
-                <button className="px-3 py-1.5 bg-green-500/20 text-green-400 text-xs rounded-sm winky-sans-font">
-                  7d
-                </button>
-                <button className="px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white/70 text-xs rounded-sm transition-colors winky-sans-font">
-                  30d
-                </button>
-              </div>
-            </div>
-
-            {/* Stakers leaderboard placeholder */}
-            <div className="space-y-3">
-              {[1, 2, 3, 4, 5].map((rank) => (
-                <div
-                  key={rank}
-                  className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-sm hover:bg-white/10 transition-colors"
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-                        rank === 1
-                          ? "bg-yellow-500/20 text-yellow-400"
-                          : rank === 2
-                          ? "bg-gray-500/20 text-gray-400"
-                          : rank === 3
-                          ? "bg-orange-500/20 text-orange-400"
-                          : "bg-white/10 text-white/60"
-                      }`}
-                    >
-                      #{rank}
-                    </div>
-                    <div>
-                      <div className="text-white font-medium winky-sans-font">
-                        {rank === 1
-                          ? "0x1234...5678"
-                          : `0x${Math.random()
-                              .toString(16)
-                              .substr(2, 4)}...${Math.random()
-                              .toString(16)
-                              .substr(2, 4)}`}
-                      </div>
-                      <div className="text-white/60 text-xs winky-sans-font">
-                        Staking for {Math.floor(Math.random() * 90 + 10)} days
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-white font-bold winky-sans-font">
-                      {(Math.random() * 50 + 10).toFixed(1)}M
-                    </div>
-                    <div className="text-white/60 text-xs winky-sans-font">
-                      $AIBOT
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* View all button */}
-            <div className="mt-6 text-center">
-              <button className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-sm transition-colors winky-sans-font">
-                View all stakers
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Back to Choice Button */}
         <div className="flex justify-center">
           <button
@@ -790,7 +618,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
                 2000
               );
             }}
-            className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-sm border border-white/20 transition-all duration-200 winky-sans-font flex items-center gap-2"
+            className="px-6 py-3 cursor-pointer bg-white/10 hover:bg-white/20 text-white rounded-sm border border-white/20 transition-all duration-200 winky-sans-font flex items-center gap-2"
           >
             <Icon icon="mdi:arrow-left" width={16} height={16} />
             Back to Staking Options

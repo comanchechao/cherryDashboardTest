@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { useWallet } from "../../../components/BSCWalletProvider";
 import BSCWalletButton from "../../../components/BSCWalletButton";
 import { useToastContext } from "../../../contexts/ToastContext";
-// import axios from "axios"; // Commented out for testing - eligibility always true
+import axios from "axios"; // Commented out for testing - eligibility always true
 // @ts-ignore - ethers import issue
 import { ethers } from "ethers";
 
@@ -524,7 +524,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
     }
   };
 
-  // Run eligibility check - ALWAYS TRUE FOR TESTING
+  // Run eligibility check
   const runEligibilityCheck = async () => {
     if (!isConnected || !address) return;
 
@@ -532,16 +532,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
     setEligibility(null);
     setError("");
 
-    // Mock loading delay for testing
-    setTimeout(() => {
-      setEligibility({
-        eligible: true,
-        reason: "Test mode - always eligible",
-      });
-      setEligibilityLoading(false);
-    }, 1000);
-
-    /* Real eligibility check - commented out for testing:
     try {
       const payload = { address };
       const res = await axios.post(
@@ -571,7 +561,6 @@ const StakeModal: React.FC<StakeModalProps> = ({
     } finally {
       setEligibilityLoading(false);
     }
-    */
   };
 
   useEffect(() => {
