@@ -43,7 +43,7 @@ const Robotics: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <div className="min-h-screen relative bg-[#080e23] text-[var(--color-text-primary)]">
       {/* Radial Energy Field Background */}
       <Navbar />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -105,7 +105,7 @@ const Robotics: React.FC = () => {
                   <div className="absolute inset-0 rounded-[20px] pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
                   <div className="aspect-[16/9] flex items-center justify-center rounded-[12px]  ">
                     <img
-                      src="/chart.webp"
+                      src="https://storage.cherrybot.ai/chart.webp"
                       alt="Market Forecast Chart"
                       className="w-full h-auto object-contain rounded-[12px]"
                     />
@@ -160,40 +160,50 @@ const Robotics: React.FC = () => {
                   logo: "/skild.png",
                   logoSize: "h-24", // Custom size for SKILD AI
                   description:
-                    "This SoftBank backed company valued at $1.5 billion, focuses on building the data models required for robots to have the ability to perceive, reason, and adapt to diverse real-world tasks.",
+                    "This SoftBank backed company valued at $1.5 Billion, focuses on building the data models required for robots to have the ability to perceive, reason, and adapt to diverse real-world tasks.",
                 },
                 {
-                  name: "SIMBE",
+                  name: "SIMBE ROBOTICS",
                   logo: "/simbe.webp",
-                  logoSize: "h-12", // Custom size for SIMBE
+                  logoSize: "h-24", // Custom size for SIMBE
                   description:
-                    "Simbe is a $100 million Goldman Sachs backed robotics company that builds the hardware and software for robots that can participate in helping stores in retail settings.",
+                    "Simbe is a $300 million goldman sachs backed Robotics company that builds the hardware and software for robots that can participate in helping stores in retail settings.",
                 },
                 {
                   name: "UBTECH ROBOTICS",
                   logo: "/ubtech.png",
-                  logoSize: "h-14", // Custom size for UBTECH
+                  logoSize: "h-20", // Custom size for UBTECH
                   description:
-                    "UBTech is a $5 billion company backed by Tencent and their primary business model is selling software subscriptions for robots to enterprises.",
+                    "UBTech is a $6.1 Billion company backed by Tencent and their primary business model is selling software subscriptions for robots to enterprises.",
                 },
               ].map((company, index) => (
                 <div
                   key={index}
-                  className="glass-effect border border-glass rounded-xl p-6 hover:border-[var(--color-accent)]/50 hover:bg-[var(--color-accent)]/5 transition-all duration-300 group"
+                  className="relative   border hover:border-glass rounded-xl p-8  border-[var(--color-accent)]/50 bg-[var(--color-accent)]/5 transition-all duration-300 group overflow-hidden min-h-[170px] flex flex-col"
                 >
-                  <div className="flex justify-center mb-4">
+                  {/* Large background logo with low opacity */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <img
                       src={company.logo}
-                      alt={`${company.name} logo`}
-                      className={`${company.logoSize} w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300`}
+                      alt={`${company.name} background logo`}
+                      className="w-72 h-72 object-contain  opacity-20 group-hover:opacity-8 transition-opacity duration-300"
                     />
                   </div>
-                  <h3 className="winky-sans-font  text-xl text-[var(--color-text-primary)] mb-4 text-center group-hover:text-[var(--color-accent)] transition-colors duration-300">
-                    {company.name}
-                  </h3>
-                  <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]/90 leading-relaxed text-center">
-                    {company.description}
-                  </p>
+
+                  {/* Content overlay */}
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Small logo at top */}
+
+                    {/* Company name */}
+                    <h3 className="winky-sans-font text-xl text-[var(--color-text-primary)] mb-6 text-center group-hover:text-[var(--color-accent)] transition-colors duration-300 font-semibold">
+                      {company.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="winky-sans-font text-sm text-white/90 leading-relaxed text-left flex-grow flex items-center">
+                      {company.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

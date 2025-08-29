@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-block relative">
             <img
-              src="/footer.png"
+              src="https://storage.cherrybot.ai/footer.png"
               loading="lazy"
               alt="Cherry mascot"
               className="w-[28rem]  object-contain animate-float relative z-10"

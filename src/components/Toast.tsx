@@ -97,7 +97,9 @@ const Toast: React.FC<ToastProps> = ({
       <div className="relative z-10 p-4 sm:p-6">
         <div className="flex items-start gap-3 sm:gap-4">
           {/* Icon Container */}
-          <div className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 ${config.accentColor} rounded-[16px] flex items-center justify-center`}>
+          <div
+            className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 ${config.accentColor} rounded-[16px] flex items-center justify-center`}
+          >
             <Icon
               icon={config.icon}
               className={`${config.iconColor} w-5 h-5 sm:w-6 sm:h-6`}
@@ -108,17 +110,35 @@ const Toast: React.FC<ToastProps> = ({
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1">
-                <h3 className={`maladroit-font text-base sm:text-lg font-medium ${config.titleColor} mb-1`}>
+                <h3
+                  className={`maladroit-font text-base sm:text-lg font-medium ${config.titleColor} mb-1`}
+                >
                   {title}
                 </h3>
-                <p className={`winky-sans-font text-sm sm:text-base ${config.messageColor} leading-relaxed`}>
+                <p
+                  className={`winky-sans-font text-sm sm:text-base ${config.messageColor} leading-relaxed`}
+                >
                   {message}
                 </p>
                 {txSignature && (
                   <div className="mt-2 p-2 bg-[var(--color-bg-secondary)]/20 rounded-[12px] border border-[var(--color-accent)]/10">
-                    <p className={`winky-sans-font text-xs ${config.messageColor} opacity-70 break-all`}>
-                      <span className="font-medium">Tx:</span> {txSignature}
-                    </p>
+                    <div className="flex items-center justify-between gap-2">
+                      <p
+                        className={`winky-sans-font text-xs ${config.messageColor} opacity-70 break-all flex-1`}
+                      >
+                        <span className="font-medium">Tx:</span>{" "}
+                        {txSignature.slice(0, 10)}...{txSignature.slice(-8)}
+                      </p>
+                      <a
+                        href={`https://bscscan.com/tx/${txSignature}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 bg-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/20 text-[var(--color-accent)] px-2 py-1 rounded-[8px] text-xs transition-all duration-200 hover:scale-105 flex-shrink-0"
+                      >
+                        <Icon icon="mdi:open-in-new" width={12} height={12} />
+                        BSCScan
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>

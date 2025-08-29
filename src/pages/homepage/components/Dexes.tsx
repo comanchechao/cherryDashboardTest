@@ -11,7 +11,7 @@ const Dexes: React.FC = () => {
               <span className="text-sm maladroit-font text-[var(--color-accent)]">
                 First Robotics IDO on{" "}
                 <img
-                  src="/binanceLogo.png"
+                  src="https://storage.cherrybot.ai/binanceLogo.png"
                   className="w-24 object-contain"
                   alt=""
                 />{" "}
@@ -28,7 +28,7 @@ const Dexes: React.FC = () => {
                     {/* Logo */}
                     <div className="h-6     flex items-center justify-center">
                       <img
-                        src="/binanceAlpha.png"
+                        src="https://storage.cherrybot.ai/binanceAlpha.png"
                         alt="Binance AlphaQ"
                         className="w-full h-full object-contain"
                       />
@@ -51,7 +51,7 @@ const Dexes: React.FC = () => {
                     {/* Logo */}
                     <div className="h-6  flex items-center justify-center">
                       <img
-                        src="/mexc.png"
+                        src="https://storage.cherrybot.ai/mexc.png"
                         alt="MEXC"
                         className="w-full h-full object-contain"
                       />
@@ -78,7 +78,7 @@ const Dexes: React.FC = () => {
                     {/* Logo */}
                     <div className="h-6   flex items-center justify-center">
                       <img
-                        src="/gate.png"
+                        src="https://storage.cherrybot.ai/gate.png"
                         alt="Gate.io"
                         className="w-full h-full object-contain"
                       />

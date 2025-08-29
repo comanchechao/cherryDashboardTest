@@ -33,7 +33,7 @@ const BSCWalletButton: React.FC = () => {
       className="flex items-center cursor-pointer space-x-2 bg-[#010e1f] text-white px-4 py-2 rounded-sm border border-[var(--color-accent)]/30 backdrop-blur-sm hover:from-[var(--color-accent)]/30 hover:to-[var(--color-accent)]80 transition-all duration-300 winky-sans-font font-medium shadow-lg hover:shadow-xl hover:shadow-accent/25"
     >
       <Icon icon="ph:wallet-fill" className="w-5 h-5 text-accent" />
-      <span>Connect MetaMask</span>
+      <span>Connect Wallet</span>
     </button>
   );
 };

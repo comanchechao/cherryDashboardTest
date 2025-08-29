@@ -72,7 +72,7 @@ const CherryWebApp: React.FC = () => {
                 {/* Right Panel - Web App Interface */}
                 <div className="webapp-card rounded-2xl p-6">
                   <img
-                    src="/staticwebapp.webp"
+                    src="https://storage.cherrybot.ai/staticwebapp.webp"
                     alt="Cherry Web App"
                     className="w-full h-full object-cover"
                   />

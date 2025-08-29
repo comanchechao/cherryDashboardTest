@@ -75,7 +75,7 @@ const TokenOverviewSection: React.FC<TokenOverviewSectionProps> = () => {
               <div className="absolute inset-0 rounded-[20px] pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
               <div className="aspect-[16/9] flex items-center justify-center rounded-[12px]  ">
                 <img
-                  src="/staking.webp"
+                  src="https://storage.cherrybot.ai/staking.webp"
                   alt="Market Forecast Chart"
                   className="w-full h-auto object-contain rounded-[12px]"
                 />

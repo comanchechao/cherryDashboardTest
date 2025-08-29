@@ -115,7 +115,7 @@ const CherryTradeSection: React.FC = () => {
               <div className="w-fit px-10 my-3">
                 <div className="relative rounded-2xl overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
                   <img
-                    src="/phone.webp"
+                    src="https://storage.cherrybot.ai/phone.webp"
                     className="h-[20rem] object-contain -scale-x-100"
                   />
                 </div>

@@ -25,7 +25,6 @@ function App() {
 
   return (
     <ToastProvider>
-      <BSCWalletProvider>
         {/* <AuthProvider> */}
         <>
           <ScrollToTop />
@@ -115,17 +114,21 @@ function App() {
               <Route
                 path="/dashboard"
                 element={
-                  <PageLayout>
-                    <Rewards />
-                  </PageLayout>
+                  <BSCWalletProvider>
+                    <PageLayout>
+                      <Rewards />
+                    </PageLayout>
+                  </BSCWalletProvider>
                 }
               />
               <Route
                 path="/rewards"
                 element={
-                  <PageLayout>
-                    <Rewards />
-                  </PageLayout>
+                  <BSCWalletProvider>
+                    <PageLayout>
+                      <Rewards />
+                    </PageLayout>
+                  </BSCWalletProvider>
                 }
               />
               <Route
@@ -175,7 +178,6 @@ function App() {
           {/* <AuthenticationModalWrapper /> */}
         </>
         {/* </AuthProvider> */}
-      </BSCWalletProvider>
     </ToastProvider>
   );
 }

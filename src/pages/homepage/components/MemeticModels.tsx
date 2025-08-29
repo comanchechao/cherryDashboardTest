@@ -39,7 +39,7 @@ const MemeticModels: React.FC = () => {
             <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[16px] overflow-hidden">
               <div className="relative aspect-video">
                 <img
-                  src="/phoneTrending.webp"
+                  src="https://storage.cherrybot.ai/phoneTrending.webp"
                   alt="Robot holding a phone"
                   className="w-full h-full object-cover"
                 />

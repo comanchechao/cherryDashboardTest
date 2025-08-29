@@ -19,7 +19,7 @@ const ChatbotSection: React.FC = () => {
             </div>
             <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-xl h-56 flex items-center justify-center">
               <img
-                src="/chatbot.webp"
+                src="https://storage.cherrybot.ai/chatbot.webp"
                 alt="Chatbot"
                 className="w-full h-full object-cover"
               />

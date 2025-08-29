@@ -102,7 +102,7 @@ const DashboardPreview: React.FC = () => {
           <div className="bg-[var(--color-glass)] h-80 rounded-xl border-2 border-[var(--color-accent)] p-2 shadow-[4px_4px_0px_rgba(67,103,201,0.3)] hover:shadow-[6px_6px_0px_rgba(67,103,201,0.4)] transition-all duration-300 group">
             <div className="w-full h-full overflow-hidden rounded-lg">
               <img
-                src="/screenshot.jpg"
+                src="https://storage.cherrybot.ai/screenshot.jpg"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 alt="SniperAI Bot"
               />
@@ -112,7 +112,7 @@ const DashboardPreview: React.FC = () => {
           <div className="bg-[var(--color-glass)] h-80 rounded-xl border-2 border-[var(--color-accent)] p-2 shadow-[4px_4px_0px_rgba(67,103,201,0.3)] hover:shadow-[6px_6px_0px_rgba(67,103,201,0.4)] transition-all duration-300 group">
             <div className="w-full h-full overflow-hidden rounded-lg">
               <img
-                src="/screenshot2.jpg"
+                src="https://storage.cherrybot.ai/screenshot2.jpg"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 alt="SniperAI Bot"
               />

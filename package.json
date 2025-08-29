@@ -20,6 +20,7 @@
     "bs58": "^6.0.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "ethers": "5.7.2",
     "eventemitter3": "^5.0.1",
     "events": "^3.3.0",
     "framer-motion": "^12.16.0",

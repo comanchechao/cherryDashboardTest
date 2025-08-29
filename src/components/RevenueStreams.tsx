@@ -422,7 +422,7 @@ const RevenueStreams: React.FC = () => {
             onClick={() => {
               window.open("/cherry", "_blank");
             }}
-            src="/cherryRevenue.svg"
+            src="https://storage.cherrybot.ai/cherryRevenue.svg"
             alt="Cherry"
             className="absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] z-30"
             style={{ filter: "drop-shadow(0 0 15px rgba(67, 103, 201, 0.3))" }}

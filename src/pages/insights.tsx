@@ -1371,12 +1371,12 @@ const Insights: React.FC = () => {
 
                 <div className="lg:w-1/2 flex flex-col gap-6 justify-center">
                   <img
-                    src="/src/public/P24stats.png"
+                    src="https://storage.cherrybot.ai/src/public/P24stats.png"
                     alt="Cherry AI Statistics"
                     className="w-full rounded-xl border-4 border-cherry-burgundy shadow-inner"
                   />
                   <img
-                    src="/src/public/P26stats.png"
+                    src="https://storage.cherrybot.ai/src/public/P26stats.png"
                     alt="Cherry AI Growth Statistics"
                     className="w-full rounded-xl border-4 border-cherry-burgundy shadow-inner"
                   />

@@ -89,12 +89,12 @@ const Navbar: React.FC = () => {
             <div className="flex items-center">
               <Link to="/" className="flex items-center group">
                 <img
-                  src="/logoCherry.png"
+                  src="https://storage.cherrybot.ai/logoCherry.png"
                   className="w-10 object-contain"
                   alt=""
                 />
                 <img
-                  src="/cherryTextLogo.webp"
+                  src="https://storage.cherrybot.ai/cherryTextLogo.webp"
                   className="w-44 object-contain"
                   alt=""
                 />

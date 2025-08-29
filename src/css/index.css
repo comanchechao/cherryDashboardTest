@@ -90,7 +90,11 @@
   .hover-glass {
     transition: all 0.3s ease;
   }
-
+  .no-spinner {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+  }
   .hover-glass:hover {
     background: rgba(1, 16, 32, 0.9);
     border-color: var(--color-accent);
