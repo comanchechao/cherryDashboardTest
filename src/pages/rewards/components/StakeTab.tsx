@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useWallet } from "../../../components/BSCWalletProvider";
 import { useToastContext } from "../../../contexts/ToastContext";
@@ -98,7 +98,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
       // Get pool info to get staking token address
       const poolInfo = await stakingContract.poolInfo(POOL_ID);
       const stakingTokenAddress = poolInfo.stakingToken;
-      const totalStakedBN = poolInfo.totalStaked;
 
       // Initialize token contract
       const tokenContract = new ethers.Contract(
