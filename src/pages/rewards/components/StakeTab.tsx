@@ -536,7 +536,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
                   APR Earned
                 </div>
                 <div className="maladroit-font text-xl text-green-400 font-bold">
-                  5.07%
+                  5%
                 </div>
                 <div className="winky-sans-font text-white/60 text-xs mt-1">
                   Variable
@@ -547,11 +547,13 @@ const StakeTab: React.FC<StakeTabProps> = ({
                   Points
                 </div>
                 <div className="maladroit-font text-xl text-yellow-400 font-bold">
-                  {eligibility?.updated?.stakePoints ||
-                    eligibility?.points?.stakePoints ||
-                    eligibility?.updated?.points ||
-                    eligibility?.points?.points ||
-                    0}
+                  {Number(
+                    eligibility?.updated?.stakePoints ??
+                      eligibility?.points?.stakePoints ??
+                      eligibility?.updated?.points ??
+                      eligibility?.points?.points ??
+                      0
+                  ).toFixed(2)}
                 </div>
                 <div className="winky-sans-font text-white/60 text-xs mt-1">
                   Points Earned
@@ -726,7 +728,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
 
                 <div className="flex flex-col justify-between items-start">
                   <span className="maladroit-font text-white/70 text-sm">
-                    Cherry Points Earned:
+                    Points Earned:
                   </span>
                   <span className="maladroit-font text-2xl lg:text-3xl text-white">
                     {eligibility?.updated?.points ||
