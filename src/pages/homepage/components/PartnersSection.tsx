@@ -9,7 +9,6 @@ interface Partner {
 }
 
 const PartnersSection: React.FC = () => {
-  const [activePartner, setActivePartner] = useState<number>(0);
   const partnersContainerRef = useRef<HTMLDivElement>(null);
   const partnersTitleRef = useRef<HTMLHeadingElement>(null);
 
@@ -161,15 +160,7 @@ const PartnersSection: React.FC = () => {
             {partners.map((partner, index) => (
               <button
                 key={partner.name}
-                onClick={() => {
-                  setActivePartner(index);
-                  gsap.set(".partner-content", { opacity: 0 });
-                  gsap.to(".partner-content", {
-                    opacity: 1,
-                    duration: 0.8,
-                    clearProps: "all",
-                  });
-                }}
+
                 className="partner-tab flex items-center w-full gap-3 px-6 py-4 text-white justify-center rounded-full border transition-all duration-300 bg-[var(--color-accent)] hover:transform hover:-translate-y-1 "
               >
                 <span className="winky-sans-font text-sm md:text-lg font-medium">

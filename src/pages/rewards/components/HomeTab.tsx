@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Icon } from "@iconify/react";
 
 const HomeTab: React.FC = () => {
   const [cherryStats, setCherryStats] = useState<any>(null);

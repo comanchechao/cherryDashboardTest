@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { Icon } from "@iconify/react";
-import VideoPlayer from "../../../components/VideoPlayer";
+import React from "react";
 
 const SniperSpotlightSection: React.FC = () => {
-  const [activeTab] = useState<"manual" | "autobot">("manual");
 
   const handleExploreBot = () => {
     window.open("https://t.me/cherrysniperbot", "_blank");

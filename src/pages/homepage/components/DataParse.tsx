@@ -1,5 +1,4 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const DataParse: React.FC = () => {
   return (

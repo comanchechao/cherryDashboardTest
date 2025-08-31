@@ -37,15 +37,7 @@ const Navbar: React.FC = () => {
     return location.pathname.startsWith(path + "/");
   };
 
-  const getDesktopLinkClasses = (path: string) => {
-    const baseClasses =
-      "px-4 py-2 winky-sans-font text-[13px] font-medium transition-all duration-300 relative nav-link";
-    const activeClasses = isActivePath(path)
-      ? "text-accent"
-      : "text-primary hover:text-accent";
 
-    return `${baseClasses} ${activeClasses}`;
-  };
 
   const getMobileLinkClasses = (path: string) => {
     const baseClasses =
