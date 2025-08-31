@@ -4,8 +4,25 @@ import { BigNumber, Contract, ethers } from "ethers";
 export const STAKING_ADDRESS = "0xF33a3A93C787989aa45426fE77c04555B8452C43";
 export const TOKEN_ADDRESS = "0x96AdaA33e175F4A7f20c099730bc78dd0B45745B";
 
-// BSC configuration
-export const BSC_RPC_URL = "https://bsc-dataseed.binance.org";
+// BSC configuration with fallbacks
+export const BSC_RPC_URLS = [
+  "https://bscrpc.pancakeswap.finance",
+  "https://bsc-dataseed1.binance.org",
+  "https://bsc-dataseed2.binance.org",
+  "https://bsc-dataseed3.binance.org",
+  "https://bsc-dataseed4.binance.org",
+  "https://bsc-dataseed1.defibit.io",
+  "https://bsc-dataseed2.defibit.io",
+  "https://bsc-dataseed3.defibit.io",
+  "https://bsc-dataseed4.defibit.io",
+  "https://bsc-dataseed1.ninicoin.io",
+  "https://bsc-dataseed2.ninicoin.io",
+  "https://bsc-dataseed3.ninicoin.io",
+  "https://bsc-dataseed4.ninicoin.io",
+];
+
+// Legacy export for backward compatibility
+export const BSC_RPC_URL = BSC_RPC_URLS[0];
 
 // ABIs from staking-react.ts
 const stakingAbi = [
@@ -41,6 +58,121 @@ export interface CooldownInfo {
   cooldownStartTime: number;
   isInCooldown: boolean;
   remainingCooldown: number;
+}
+
+// RPC Provider with automatic fallback
+class BSCProviderWithFallback extends ethers.providers.JsonRpcProvider {
+  private currentUrlIndex = 0;
+  private readonly maxRetries = BSC_RPC_URLS.length;
+
+  constructor() {
+    super(BSC_RPC_URLS[0]);
+  }
+
+  async send(method: string, params: Array<any>): Promise<any> {
+    let lastError: Error | null = null;
+
+    for (let attempt = 0; attempt < this.maxRetries; attempt++) {
+      try {
+        const result = await super.send(method, params);
+        // Log successful RPC switch if we're not on the first URL
+        if (this.currentUrlIndex !== 0 && attempt === 0) {
+          console.log(
+            `Successfully switched to RPC: ${
+              BSC_RPC_URLS[this.currentUrlIndex]
+            }`
+          );
+        }
+        return result;
+      } catch (error: any) {
+        lastError = error;
+        const currentUrl = BSC_RPC_URLS[this.currentUrlIndex];
+        console.warn(
+          `RPC ${currentUrl} failed (attempt ${attempt + 1}/${
+            this.maxRetries
+          }):`,
+          error.message
+        );
+
+        // Move to next RPC URL
+        this.currentUrlIndex = (this.currentUrlIndex + 1) % BSC_RPC_URLS.length;
+
+        // Update the connection to use the new URL
+        (this as any).connection = { url: BSC_RPC_URLS[this.currentUrlIndex] };
+
+        // If it's a rate limiting error (429) or network error, try next RPC immediately
+        if (
+          error.code === 429 ||
+          error.code === -32005 ||
+          error.message?.includes("rate limit")
+        ) {
+          console.log(
+            `Rate limit detected, switching to: ${
+              BSC_RPC_URLS[this.currentUrlIndex]
+            }`
+          );
+          continue;
+        }
+
+        // For other errors, still try the next RPC but with a small delay
+        if (attempt < this.maxRetries - 1) {
+          console.log(`Trying next RPC: ${BSC_RPC_URLS[this.currentUrlIndex]}`);
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+      }
+    }
+
+    // If all RPCs failed, throw the last error
+    console.error("All BSC RPC endpoints exhausted");
+    throw new Error(
+      `All BSC RPC endpoints failed. Last error: ${
+        lastError?.message || "Unknown error"
+      }`
+    );
+  }
+}
+
+// Create a BSC provider with fallback support
+export function createBSCProvider(): ethers.providers.JsonRpcProvider {
+  return new BSCProviderWithFallback();
+}
+
+// Helper function to get the best available provider (Web3 or fallback BSC)
+export function getBestProvider(
+  preferWeb3: boolean = true
+): ethers.providers.Provider {
+  if (preferWeb3 && window.ethereum) {
+    return new ethers.providers.Web3Provider(window.ethereum);
+  }
+  return createBSCProvider();
+}
+
+// Test function to validate RPC endpoints (useful for debugging)
+export async function testBSCRPCs(): Promise<
+  {
+    url: string;
+    status: "success" | "failed";
+    latency?: number;
+    error?: string;
+  }[]
+> {
+  const results = [];
+
+  for (const url of BSC_RPC_URLS) {
+    const startTime = Date.now();
+    try {
+      const provider = new ethers.providers.JsonRpcProvider(url);
+      await provider.getBlockNumber();
+      const latency = Date.now() - startTime;
+      results.push({ url, status: "success" as const, latency });
+      console.log(`✅ ${url} - ${latency}ms`);
+    } catch (error: any) {
+      results.push({ url, status: "failed" as const, error: error.message });
+      console.log(`❌ ${url} - ${error.message}`);
+    }
+  }
+
+  return results;
 }
 
 // Helper functions from staking-react.ts

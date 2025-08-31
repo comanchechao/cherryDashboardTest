@@ -10,7 +10,7 @@ import { ethers } from "ethers";
 import {
   STAKING_ADDRESS,
   TOKEN_ADDRESS,
-  BSC_RPC_URL,
+  getBestProvider,
   stake,
 } from "../../../utils/stakingHelpers";
 
@@ -116,9 +116,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   // Initialize provider - use MetaMask if available, fallback to BSC RPC
   // Note: For transactions, we'll create fresh Web3Provider instances to avoid signer issues
-  const provider = window.ethereum
-    ? new ethers.providers.Web3Provider(window.ethereum)
-    : new ethers.providers.JsonRpcProvider(BSC_RPC_URL);
+  const provider = getBestProvider();
 
   // Progress steps configuration
   const steps: { key: ModalStep; label: string; icon: string }[] = [

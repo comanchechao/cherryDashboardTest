@@ -8,7 +8,7 @@ import {
   fetchStakingData,
   unstake,
   formatCooldownTime,
-  BSC_RPC_URL,
+  getBestProvider,
 } from "../../../utils/stakingHelpers";
 
 interface StakeTabProps {
@@ -78,10 +78,8 @@ const StakeTab: React.FC<StakeTabProps> = ({
   const fetchStakingDataLocal = async () => {
     if (!isConnected || !address) return;
     try {
-      // Initialize provider - use MetaMask if available, fallback to BSC RPC
-      const provider = window.ethereum
-        ? new ethers.providers.Web3Provider(window.ethereum)
-        : new ethers.providers.JsonRpcProvider(BSC_RPC_URL);
+      // Initialize provider - use MetaMask if available, fallback to BSC RPC with failover
+      const provider = getBestProvider();
 
       // Fetch staking data using contract-level cooldown detection
       const stakingData = await fetchStakingData(provider, address);
