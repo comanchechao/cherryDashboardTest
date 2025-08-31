@@ -1,7 +1,6 @@
 import React from "react";
 
 const SniperSpotlightSection: React.FC = () => {
-
   const handleExploreBot = () => {
     window.open("https://t.me/cherrysniperbot", "_blank");
   };

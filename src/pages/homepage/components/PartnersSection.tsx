@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react";
-import gsap from "gsap";
+import React, { useRef } from "react";
 
 interface Partner {
   name: string;
@@ -157,10 +156,9 @@ const PartnersSection: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row z-30 gap-8">
           {/* Partners Tabs - Left Side */}
           <div className="lg:w-full grid lg:grid-cols-5 grid-cols-2 place-items-center gap-3">
-            {partners.map((partner, index) => (
+            {partners.map((partner) => (
               <button
                 key={partner.name}
-
                 className="partner-tab flex items-center w-full gap-3 px-6 py-4 text-white justify-center rounded-full border transition-all duration-300 bg-[var(--color-accent)] hover:transform hover:-translate-y-1 "
               >
                 <span className="winky-sans-font text-sm md:text-lg font-medium">

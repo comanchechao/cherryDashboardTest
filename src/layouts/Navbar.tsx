@@ -37,8 +37,6 @@ const Navbar: React.FC = () => {
     return location.pathname.startsWith(path + "/");
   };
 
-
-
   const getMobileLinkClasses = (path: string) => {
     const baseClasses =
       "block py-3 px-4 winky-sans-font text-sm font-medium transition-all duration-300";
