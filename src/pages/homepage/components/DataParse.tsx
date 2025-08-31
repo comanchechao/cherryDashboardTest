@@ -2,7 +2,7 @@ import React from "react";
 
 const DataParse: React.FC = () => {
   return (
-    <div className="w-screen h-auto   p-20 bg-accent relative">
+    <div className="w-full h-auto   p-20 bg-accent relative">
       <div className="absolute inset-0 top-20  h-[66rem] ">
         {" "}
         <img
@@ -23,7 +23,7 @@ const DataParse: React.FC = () => {
             <img
               src="/parseImage.webp"
               alt="Data Parse Tool V1"
-              className="h-72 object-contain"
+              className="w-full object-contain"
             />
           </div>
         </div>
@@ -38,7 +38,7 @@ const DataParse: React.FC = () => {
             <img
               src="/parseImage2.webp"
               alt="Data Parse Tool V1"
-              className="h-72 object-contain"
+              className="w-full object-contain"
             />
           </div>
         </div>

@@ -571,16 +571,13 @@ const StakeTab: React.FC<StakeTabProps> = ({
                   icon="mdi:clock-outline"
                   width={18}
                   height={18}
-                  className="text-blue-400 mt-0.5 flex-shrink-0"
+                  className="text-blue-600  flex-shrink-0"
                 />
                 <div>
-                  <h5 className="winky-sans-font text-blue-600 text-sm font-medium mb-1">
-                    Staking Lock Period
-                  </h5>
-                  <p className="winky-sans-font text-blue-600 text-sm">
-                    After staking, your tokens are locked for a specific period.
-                    You cannot unstake until the lock period expires. Once the
-                    lock period ends, you can unstake your tokens immediately.
+                  <p className="winky-sans-font font-bold text-blue-600 text-sm">
+                    You can start unstaking at any time. Once initiated, a
+                    24-hour cooldown applies and your $AIBOT rewards stop
+                    accruing during the cooldown.
                   </p>
                 </div>
               </div>
