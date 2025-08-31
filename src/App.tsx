@@ -8,7 +8,7 @@ import HomePage from "./pages/homepage";
 // import Roadmap from "./pages/roadmap";
 // import UserGrowth from "./pages/userGrowth";
 // import CherrySniper from "./pages/cherrySniper";
-import CherryToken from "./pages/cherry";
+// import CherryToken from "./pages/cherry";
 import ComingSoon from "./pages/comingSoon";
 import Robotics from "./pages/robotics";
 import PageLayout from "./layouts/PageLayout";
@@ -99,7 +99,7 @@ function App() {
                 path="/cherry"
                 element={
                   <PageLayout>
-                    <CherryToken />
+                    <HomePage />
                   </PageLayout>
                 }
               />

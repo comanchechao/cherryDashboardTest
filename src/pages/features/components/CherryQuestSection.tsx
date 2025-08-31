@@ -268,14 +268,14 @@ const CherryQuestSection: React.FC<CherryQuestSectionProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="stat-card text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-5xl winky-sans-font text-green-400 mb-2">
+                <div className="text-5xl winky-sans-font text-green-600 mb-2">
                   10M+
                 </div>
                 <p className="text-white winky-sans-font text-xl">Users</p>
               </div>
 
               <div className="stat-card text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-5xl winky-sans-font text-green-400 mb-2">
+                <div className="text-5xl winky-sans-font text-green-600 mb-2">
                   300K+
                 </div>
                 <p className="text-white winky-sans-font text-xl">
@@ -284,7 +284,7 @@ const CherryQuestSection: React.FC<CherryQuestSectionProps> = ({
               </div>
 
               <div className="stat-card text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-5xl winky-sans-font text-green-400 mb-2">
+                <div className="text-5xl winky-sans-font text-green-600 mb-2">
                   1000+
                 </div>
                 <p className="text-white winky-sans-font text-xl">

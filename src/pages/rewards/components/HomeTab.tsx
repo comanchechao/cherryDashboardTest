@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
 
 const HomeTab: React.FC = () => {
   const [cherryStats, setCherryStats] = useState<any>(null);
@@ -6,13 +7,13 @@ const HomeTab: React.FC = () => {
 
   const getExchangeLogo = (exchangeName: string) => {
     if (exchangeName.includes("Pancake")) {
-      return "/pancakeSwapLogo.png";
+      return "https://storage.cherrybot.ai/pancakeSwapLogo.png";
     } else if (exchangeName.includes("Binance")) {
-      return "/binanceLogo1.png";
+      return "https://storage.cherrybot.ai/binanceLogo1.png";
     } else if (exchangeName.includes("MEXC")) {
-      return "/mexc.png";
+      return "https://storage.cherrybot.ai/mexc.png";
     } else if (exchangeName.includes("Gate")) {
-      return "/gate.png";
+      return "https://storage.cherrybot.ai/gate.png";
     }
     return "";
   };
@@ -57,13 +58,13 @@ const HomeTab: React.FC = () => {
     <div className="space-y-6">
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
           <div className="flex items-center justify-between mb-2">
-            <div className="winky-sans-font text-white/70 text-xs lg:text-sm">
+            <div className="winky-sans-font text-black text-xs lg:text-sm">
               Total $AIBOT Holders
             </div>
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             {cherryStatsLoading ? (
               <div className="flex items-center gap-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-amber-400"></div>
@@ -76,56 +77,56 @@ const HomeTab: React.FC = () => {
             )}
           </div>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
-          <div className="winky-sans-font text-white/70 text-xs lg:text-sm mb-2">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
+          <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
             Total $AIBOT Stakers
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             -
           </div>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
-          <div className="winky-sans-font text-white/70 text-xs lg:text-sm mb-2">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
+          <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
             Total $AIBOT Staked
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             -
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
-          <div className="winky-sans-font text-white/70 text-xs lg:text-sm mb-2">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
+          <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
             APR
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             5% - 17%
           </div>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
-          <div className="winky-sans-font text-white/70 text-xs lg:text-sm mb-2">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
+          <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
             $AIBOT BuyBacks
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             -
           </div>
         </div>
-        <div className="bg-white/5 border border-white/10 rounded-sm p-3 lg:p-4">
-          <div className="winky-sans-font text-white/70 text-xs lg:text-sm mb-2">
+        <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
+          <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
             $AIBOT Burns
           </div>
-          <div className="maladroit-font text-2xl lg:text-3xl text-white">
+          <div className="maladroit-font text-2xl lg:text-3xl text-black">
             -
           </div>
         </div>
       </div>
 
       {/* Buy Section */}
-      <div className="bg-white/5 border border-white/10 rounded-sm">
-        <div className="border-b border-white/10 px-3 lg:px-4 py-3 flex justify-between items-center">
+      <div className="bg-white/5 border border-black/20 rounded-sm">
+        <div className="border-b border-black/20 px-3 lg:px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <h3 className="maladroit-font text-xl lg:text-2xl text-white">
+            <h3 className="maladroit-font text-xl lg:text-2xl text-black">
               Buy $AIBOT
             </h3>
           </div>
@@ -142,14 +143,14 @@ const HomeTab: React.FC = () => {
               <div className="hidden lg:block overflow-x-auto">
                 <table className="min-w-full">
                   <thead>
-                    <tr className="text-left text-white/60 winky-sans-font text-sm">
+                    <tr className="text-left text-black/60 winky-sans-font text-sm">
                       <th className="py-2 pr-4">Exchange</th>
                       <th className="py-2 pr-4">24h Volume</th>
                       <th className="py-2 pr-4">Price</th>
                       <th className="py-2 pr-4"></th>
                     </tr>
                   </thead>
-                  <tbody className="text-white winky-sans-font">
+                  <tbody className="text-black winky-sans-font">
                     {(() => {
                       const filteredMarkets = [];
 
@@ -197,10 +198,10 @@ const HomeTab: React.FC = () => {
                                 </span>
                               </a>
                             </td>
-                            <td className="py-3 pr-4 text-white/80">
+                            <td className="py-3 pr-4 text-black/80">
                               ${market.volumeUsd.toLocaleString()}
                             </td>
-                            <td className="py-3 pr-4 text-white/80">
+                            <td className="py-3 pr-4 text-black/80">
                               ${market.price.toFixed(6)}
                             </td>
                             <td className="py-3 pr-4 text-right">
@@ -212,8 +213,8 @@ const HomeTab: React.FC = () => {
                                   market.exchangeName.includes("Binance")
                                     ? "bg-yellow-400 text-black border-yellow-400 hover:bg-yellow-300"
                                     : index === 0
-                                    ? "bg-white/10 text-white border-white/10 hover:bg-white/20"
-                                    : "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                                    ? "bg-white/10 text-black border-black/20 hover:bg-white/20"
+                                    : "bg-white/10 text-black border-black/20 hover:bg-white/20"
                                 }`}
                               >
                                 Buy $AIBOT
@@ -256,7 +257,7 @@ const HomeTab: React.FC = () => {
                   return filteredMarkets.map((market: any) => (
                     <div
                       key={market.marketId}
-                      className="bg-white/5 border border-white/10 rounded-sm p-3"
+                      className="bg-white/5 border border-black/20 rounded-sm p-3"
                     >
                       {/* Exchange Header */}
                       <div className="flex items-center justify-between mb-3">
@@ -266,7 +267,7 @@ const HomeTab: React.FC = () => {
                             className="h-8 w-8 object-contain rounded"
                             alt={`${market.exchangeName} Logo`}
                           />
-                          <span className="winky-sans-font text-white font-medium">
+                          <span className="winky-sans-font text-black font-medium">
                             {market.exchangeName}
                           </span>
                         </div>
@@ -277,7 +278,7 @@ const HomeTab: React.FC = () => {
                           className={`px-4 py-2 rounded-sm text-sm border transition-colors duration-200 ${
                             market.exchangeName.includes("Binance")
                               ? "bg-yellow-400 text-black border-yellow-400 hover:bg-yellow-300"
-                              : "bg-white/10 text-white border-white/10 hover:bg-white/20"
+                              : "bg-white/10 text-black border-black/20 hover:bg-white/20"
                           }`}
                         >
                           Buy
@@ -287,18 +288,18 @@ const HomeTab: React.FC = () => {
                       {/* Market Data */}
                       <div className="grid grid-cols-2 gap-3 text-sm">
                         <div>
-                          <div className="text-white/60 winky-sans-font text-xs mb-1">
+                          <div className="text-black/60 winky-sans-font text-xs mb-1">
                             24h Volume
                           </div>
-                          <div className="text-white font-medium">
+                          <div className="text-black font-medium">
                             ${market.volumeUsd.toLocaleString()}
                           </div>
                         </div>
                         <div>
-                          <div className="text-white/60 winky-sans-font text-xs mb-1">
+                          <div className="text-black/60 winky-sans-font text-xs mb-1">
                             Price
                           </div>
-                          <div className="text-white font-medium">
+                          <div className="text-black font-medium">
                             ${market.price.toFixed(6)}
                           </div>
                         </div>
@@ -309,11 +310,11 @@ const HomeTab: React.FC = () => {
               </div>
             </>
           ) : (
-            <div className="text-center py-8 text-white/60">
+            <div className="text-center py-8 text-black/60">
               <div className="mb-3">No market data available</div>
               <button
                 onClick={fetchCherryStats}
-                className="px-4 py-2 text-sm border border-white/20 text-white/80 hover:bg-white/10 transition-colors duration-200 rounded"
+                className="px-4 py-2 text-sm border border-white/20 text-black/80 hover:bg-white/10 transition-colors duration-200 rounded"
               >
                 Try Again
               </button>
@@ -323,7 +324,7 @@ const HomeTab: React.FC = () => {
       </div>
 
       {/* Placeholder panel to match layout spacing */}
-      <div className="bg-white/5 border border-white/10 rounded-sm h-40">
+      <div className="bg-white/5 border border-black/20 rounded-sm h-40">
         <div className="flex items-start justify-start p-4 h-full">
           <div className="maladroit-font text-[var(--color-text-primary)] text-xl mb-2">
             $AIBOT Burn TXs

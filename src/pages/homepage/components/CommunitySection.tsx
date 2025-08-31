@@ -109,10 +109,10 @@ const CommunitySection: React.FC = () => {
           >
             <div className="spotlight-content-wrapper">
               {/* Eyebrow Badge */}
-              <div className="flex items-center justify-center mb-6">
-                <div className="bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/20 rounded-[4px] px-6 py-1 transform hover:rotate-0 transition-all duration-300">
-                  <span className="text-xl md:text-lg winky-sans-font text-[var(--color-accent)]">
-                    Community AI
+              <div className="flex items-center justify-center mb-8">
+                <div className=" border border-[var(--color-accent)] rounded-full px-6 py-1 transform hover:rotate-0 transition-all duration-300">
+                  <span className="text-sm md:text-lg winky-sans-font text-[var(--color-accent)]">
+                    Community Data Funnels
                   </span>
                 </div>
               </div>
@@ -121,9 +121,10 @@ const CommunitySection: React.FC = () => {
                 200k+ Communities Contributing Data For Digital Robots
               </h2>
               {/* Description */}
-              <p className="winky-sans-font text-xl text-[var(--color-text-secondary)]/90 mb-8">
-                Community AI Bots gather data from Web3 communities to build
-                three different types of data models for AI powered robots.
+              <p className="winky-sans-font text-lg text-center text-[var(--color-accent)]/90 mb-8">
+                Cherry AI Robotics has built a community management platform
+                that acts as a data funnel to build 3 different types of data
+                models for robotics.
               </p>
               {/* Info Modal */}
               <CommunityDataModels />

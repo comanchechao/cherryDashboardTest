@@ -10,9 +10,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import RevenueStreams from "../components/RevenueStreams";
-import VideoPlayer from "../components/VideoPlayer";
 import BinanceSupportSection from "../components/BinanceSupportSection";
 import MarketForcast from "../components/MarketForcast";
+import FAQ from "../components/FAQ";
 import {
   StatCards,
   Dexes,
@@ -21,6 +21,7 @@ import {
   SniperSpotlightSection,
   CommunitySection,
   NewsSection,
+  DataParse,
 } from "./homepage/components";
 
 const customAnimations = `
@@ -527,23 +528,27 @@ const HomePage: React.FC = () => {
             ></div>
           </div>
 
-          <div className=" w-full flex  pt-48 lg:flex-row flex-col items-end lg:items-start h-full relative z-10">
+          <div className=" w-full flex   lg:flex-row flex-col items-end lg:items-start h-full relative z-10">
             <div className="  w-full mx-auto">
-              <div className="hero-content-wrapper flex  flex-col lg:flex-row items-center h-full lg:h-auto mb-16 relative z-10 px-10">
+              <div className="hero-content-wrapper pt-44 flex bg-white  flex-col lg:flex-row items-center h-full lg:h-auto  relative z-10 px-10">
                 <div className="flex lg:w-1/2 w-full lg:items-start justify-center flex-col lg:px-16 items-center">
                   <div className="  ">
-                    <h1 className="maladroit-font flex  items-center lg:justify-start justify-center text-3xl md:text-6xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight   max-w-4xl mx-auto">
-                      Cherry
-                      <span className="text-[var(--color-accent)]">
-                        AI
-                      </span>{" "}
-                      <span className="ml-3">Robot</span>
+                    <h1 className="maladroit-font flex flex-col  items-start lg:justify-start justify-center text-3xl md:text-[6rem]   text-[var(--color-text-primary)] leading-28   max-w-4xl mx-auto">
+                      <span>Cherry AI</span> <span>Robotics</span>
                       <span className="block relative">
                         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
                       </span>
                     </h1>
-
-                    <p className="hero-description my-10 lg:text-left text-center text-sm lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
+                    <span className="text-2xl maladroit-font text-[var(--color-accent)]">
+                      First Robotics IDO on{" "}
+                      <img
+                        src="https://storage.cherrybot.ai/binanceLogo.png"
+                        className="w-24 object-contain"
+                        alt=""
+                      />{" "}
+                      Wallet
+                    </span>
+                    <p className="hero-description my-5 lg:text-left text-center text-sm lg:text-2xl text-[var(--color-text-secondary)]/80   max-w-3xl mx-auto leading-7">
                       Ecosystem of products that gather data to build data
                       models for AI powered robots.
                     </p>
@@ -555,14 +560,13 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <div className="relative lg:w-1/2 w-full max-w-4xl mx-auto">
-                  <div className="w-full aspect-[16/9] bg-transparent  relative overflow-hidden">
+                  <div className="w-full aspect-[16/9] bg-transparent  relative  ">
                     {/* Panel Content Placeholder */}{" "}
                     <div className="relative w-full h-full flex items-center justify-center  ">
-                      <div className="absolute inset-0 rounded-[20px] z-10 pointer-events-none shadow-[inset_0_0_24px_rgba(67,103,201,0.25)]"></div>
-                      <VideoPlayer
-                        src="https://storage.cherrybot.ai/loop.mp4"
-                        className="w-full h-full object-cover rounded-[20px]"
-                        autoPlay={true}
+                      <img
+                        src="/landingImage.webp"
+                        className="w-full  object-contain"
+                        alt=""
                       />
                     </div>
                     {/* Inner Glow Effect */}
@@ -576,8 +580,6 @@ const HomePage: React.FC = () => {
         </div>
 
         <PartnersSection />
-        <MarketForcast />
-        <RoboticProfile />
 
         <StatCards
           id="features"
@@ -588,15 +590,19 @@ const HomePage: React.FC = () => {
             { value: "815K+", label: "Active Users" },
             { value: "100K+", label: "Daily Users" },
           ]}
-          className="!mt-24"
+          className="!my-5"
         />
+        <RoboticProfile />
+        <MarketForcast />
         <SniperSpotlightSection />
         <CommunitySection />
+        <DataParse />
 
         <BinanceSupportSection />
 
         <NewsSection />
         <RevenueStreams />
+        <FAQ />
         <Footer />
       </div>
     </>

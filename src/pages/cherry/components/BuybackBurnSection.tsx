@@ -410,7 +410,7 @@ const BuybackBurnSection: React.FC<BuybackBurnSectionProps> = () => {
                       </p>
                       <Icon
                         icon="mdi:trending-up"
-                        className="text-4xl text-green-400"
+                        className="text-4xl text-green-600"
                       />
                     </div>
                     <p className="winky-sans-font text-lg text-[var(--color-text-primary)] opacity-90">

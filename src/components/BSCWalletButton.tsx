@@ -11,11 +11,16 @@ const BSCWalletButton: React.FC = () => {
 
   if (isConnected && address) {
     return (
-      <div className="flex items-center space-x-2 bg-[#010e1f] text-white px-4 py-2 rounded-sm border border-[var(--color-accent)]/30 backdrop-blur-sm hover:from-accent/30 hover:to-pink-500/30 transition-all duration-300 winky-sans-font">
-        <Icon icon="ph:wallet-fill" className="w-5 h-5 text-accent" />
+      <div className="flex items-center space-x-2 bg-[var(--color-glass)] text-[var(--color-text-primary)] px-4 py-2 rounded-sm border border-[var(--color-accent)] backdrop-blur-sm transition-all duration-200 winky-sans-font shadow-lg">
+        <Icon
+          icon="ph:wallet-fill"
+          className="w-5 h-5 text-[var(--color-accent)]"
+        />
         <span>{formatAddress(address)}</span>
         {balance && (
-          <span className="text-xs text-accent/80">{balance} BNB</span>
+          <span className="text-xs text-[var(--color-accent)]/80">
+            {balance} BNB
+          </span>
         )}
         <button
           onClick={disconnect}
@@ -30,9 +35,9 @@ const BSCWalletButton: React.FC = () => {
   return (
     <button
       onClick={connect}
-      className="flex items-center cursor-pointer space-x-2 bg-[#010e1f] text-white px-4 py-2 rounded-sm border border-[var(--color-accent)]/30 backdrop-blur-sm hover:from-[var(--color-accent)]/30 hover:to-[var(--color-accent)]80 transition-all duration-300 winky-sans-font font-medium shadow-lg hover:shadow-xl hover:shadow-accent/25"
+      className="flex items-center cursor-pointer space-x-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-4 py-2 rounded-sm border border-[var(--color-accent)] backdrop-blur-sm transition-all duration-200 winky-sans-font font-medium shadow-lg hover:shadow-xl hover:shadow-[var(--color-accent)]/25 transform hover:-translate-y-0.5"
     >
-      <Icon icon="ph:wallet-fill" className="w-5 h-5 text-accent" />
+      <Icon icon="ph:wallet-fill" className="w-5 h-5 text-white" />
       <span>Connect Wallet</span>
     </button>
   );

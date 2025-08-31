@@ -109,80 +109,10 @@ const NewsSection: React.FC = () => {
   ];
 
   return (
-    <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
-      {/* Floating Elements Layer */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Orbital Rings */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div
-            className="w-88 h-88 border border-[#4367c9]/22 rounded-full animate-spin-slow"
-            style={{ animationDuration: "35s" }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-[#4367c9]/17 rounded-full animate-spin-slow"
-            style={{
-              animationDirection: "reverse",
-              animationDuration: "30s",
-            }}
-          ></div>
-        </div>
-
-        {/* Floating Particles */}
-        <div className="absolute -top-12 -right-12 w-28 h-28 bg-[var(--color-accent)]/20 rounded-full animate-float pointer-events-none"></div>
-        <div
-          className="absolute bottom-24 left-10 w-24 h-24 bg-[var(--color-accent)]/20 rounded-full animate-float pointer-events-none"
-          style={{ animationDelay: "1.5s" }}
-        ></div>
-        <div
-          className="absolute top-1/3 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full rotate-45 animate-float pointer-events-none"
-          style={{ animationDelay: "0.5s" }}
-        ></div>
-      </div>
-
-      {/* Connection Lines SVG */}
-      <div className="absolute inset-0 pointer-events-none opacity-15">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient
-              id="newsConnectionGradient"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                stopColor="var(--color-accent)"
-                stopOpacity="0.2"
-              />
-              <stop
-                offset="100%"
-                stopColor="var(--color-accent)"
-                stopOpacity="0.05"
-              />
-            </linearGradient>
-          </defs>
-          <path
-            d="M50 50 Q 150 30 250 50 T 450 50"
-            stroke="url(#newsConnectionGradient)"
-            strokeWidth="1"
-            fill="none"
-            className="animate-pulse"
-          />
-          <path
-            d="M50 100 Q 150 80 250 100 T 450 100"
-            stroke="url(#newsConnectionGradient)"
-            strokeWidth="1"
-            fill="none"
-            className="animate-pulse"
-            style={{ animationDelay: "0.7s" }}
-          />
-        </svg>
-      </div>
-
+    <div className="news-section relative w-full py-20 mt-16 md:mt-8 bg-white overflow-hidden">
       {/* Section Title */}
       <div className="relative z-20 mb-16 text-center max-w-4xl flex flex-col items-center mx-auto px-4">
-        <h2 className="maladroit-font text-xl md:text-6xl text-[var(--color-text-primary)] mb-6 relative inline-block">
+        <h2 className="text-4xl md:text-6xl font-sans text-black mb-6 relative inline-block">
           Cherry AI in the News
         </h2>
       </div>
@@ -230,42 +160,38 @@ const NewsSection: React.FC = () => {
           <div className="embla__container">
             {newsItems.map((item, index) => (
               <div key={index} className="embla__slide">
-                <div className="h-[29rem] w-[320px] flex flex-col items-center justify-around p-3 bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[4px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 relative">
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
-
+                <div className="h-[20rem] w-[320px] flex flex-col bg-white border border-black rounded-[20px] shadow-sm hover:shadow-md transition-all duration-300 relative">
+                  {/* Logo Area - Top Half */}
                   <div
-                    className={`w-full p-10 overflow-hidden ${item.bgColor} h-1/2 flex items-center justify-center rounded-[20px] border-2 border-[var(--color-accent)]/30`}
+                    className={`w-full h-1/2 flex items-center justify-center rounded-t-[20px] ${item.bgColor} p-8`}
                   >
                     <img
                       src={item.logo}
-                      className="w-full object-cover"
+                      className="w-full h-full object-contain"
                       alt={`${item.name} Logo`}
                     />
                   </div>
 
-                  <div className="w-full h-1/2 text-center flex flex-col items-center justify-around">
-                    <h3 className="maladroit-font text-xl xl:text-2xl text-[var(--color-text-primary)] uppercase">
+                  {/* Content Area - Bottom Half */}
+                  <div className="w-full h-1/2 bg-white p-6 flex flex-col items-center justify-between rounded-b-[20px]">
+                    <h3 className="text-lg font-sans text-black text-center">
                       {item.name}
                     </h3>
                     <a
                       href={item.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="bg-[var(--color-accent)] text-white px-8 py-3 rounded-[16px] border-2 border-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/90 hover:scale-105 transition-all duration-300 flex items-center space-x-2 winky-sans-font font-bold shadow-[0_8px_24px_rgba(67,103,201,0.3)]"
+                      className="bg-black text-white px-6 py-3 rounded-[12px] hover:bg-gray-800 transition-all duration-300 flex items-center space-x-2 font-medium"
                     >
                       <span>Read Article</span>
                       <Icon
                         icon="tabler:external-link"
                         width={16}
                         height={16}
+                        className="text-white"
                       />
                     </a>
                   </div>
-
-                  {/* Bottom Decorative Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
                 </div>
               </div>
             ))}

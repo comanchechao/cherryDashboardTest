@@ -189,8 +189,8 @@ const RevenueStreams: React.FC = () => {
           "circle"
         );
         dot.setAttribute("r", "6"); // Bigger base size
-        dot.setAttribute("fill", "var(--color-accent)");
-        dot.style.filter = "drop-shadow(0 0 12px rgba(67, 103, 201, 0.9))";
+        dot.setAttribute("fill", "white");
+        dot.style.filter = "drop-shadow(0 0 12px rgba(255, 255, 255, 0.6))";
         path.parentElement.appendChild(dot);
 
         const dotDelay = delay + i * dotSpacing;
@@ -286,21 +286,21 @@ const RevenueStreams: React.FC = () => {
     <div
       ref={containerRef}
       id="token-overview"
-      className="min-h-screen  flex flex-col justify-center items-center   w-full py-20 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center items-center w-full py-20 relative overflow-hidden bg-accent"
     >
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
         {/* Multi-layered Radial Gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(67,103,201,0.19)_0%,transparent_40%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_60%,rgba(67,103,201,0.13)_0%,transparent_40%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(0,0,0,0.08)_0%,transparent_40%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_60%,rgba(0,0,0,0.05)_0%,transparent_40%)]"></div>
 
         {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-28">
+        <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: `linear-gradient(rgba(67,103,201,0.13) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(67,103,201,0.13) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)`,
               backgroundSize: "35px 35px",
             }}
           ></div>
@@ -312,23 +312,23 @@ const RevenueStreams: React.FC = () => {
         {/* Orbital Rings */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div
-            className="w-[1000px] h-[1000px] border border-[#4367c9]/28 rounded-full animate-spin-slow"
+            className="w-[1000px] h-[1000px] border border-accent/20 rounded-full animate-spin-slow"
             style={{ animationDuration: "26s" }}
           ></div>
           <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-[#4367c9]/23 rounded-full animate-spin-slow"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-accent/15 rounded-full animate-spin-slow"
             style={{ animationDirection: "reverse", animationDuration: "22s" }}
           ></div>
         </div>
 
         {/* Floating Particles */}
-        <div className="absolute top-20 left-10 w-16 h-16 bg-[var(--color-accent)]/20 rounded-full animate-float  "></div>
+        <div className="absolute top-20 left-10 w-16 h-16 bg-accent/20 rounded-full animate-float"></div>
         <div
-          className="absolute bottom-40 right-10 w-12 h-12 bg-[var(--color-accent)]/15 rounded-full animate-float  "
+          className="absolute bottom-40 right-10 w-12 h-12 bg-accent/15 rounded-full animate-float"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute top-1/2 right-1/4 w-32 h-32 bg-[var(--color-accent)]/10 rounded-full animate-float  "
+          className="absolute top-1/2 right-1/4 w-32 h-32 bg-accent/10 rounded-full animate-float"
           style={{ animationDelay: "1.5s" }}
         ></div>
       </div>
@@ -376,10 +376,10 @@ const RevenueStreams: React.FC = () => {
 
       {/* Title */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 mb-16">
-        <h2 className="revenue-title maladroit-font text-2xl md:text-6xl text-[var(--color-text-primary)] mb-6">
+        <h2 className="revenue-title maladroit-font text-2xl md:text-6xl text-primary mb-6">
           $AIBOT Economy
         </h2>
-        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full" />
+        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-accent via-accent/80 to-accent/60 rounded-full" />
       </div>
 
       {/* Desktop Layout */}
@@ -403,11 +403,11 @@ const RevenueStreams: React.FC = () => {
                   key={index}
                   ref={(el) => (lineRefs.current[index] = el)}
                   d={`M${startX},${startY} L${endX},${endY}`}
-                  stroke="var(--color-accent)"
+                  stroke="#cccccc"
                   strokeWidth="2"
                   fill="none"
                   strokeLinecap="round"
-                  opacity="0.3"
+                  opacity="0.6"
                 />
               );
             })}
@@ -415,17 +415,17 @@ const RevenueStreams: React.FC = () => {
 
           <div
             ref={auraRef}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-[var(--color-accent)]/30 rounded-full z-20"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] bg-accent/30 rounded-full z-20"
           />
           <img
             ref={cherryRef}
             onClick={() => {
               window.open("/cherry", "_blank");
             }}
-            src="https://storage.cherrybot.ai/cherryRevenue.svg"
+            src="/cherryRevenue.png"
             alt="Cherry"
             className="absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] z-30"
-            style={{ filter: "drop-shadow(0 0 15px rgba(67, 103, 201, 0.3))" }}
+            style={{ filter: "drop-shadow(0 0 15px rgba(0, 0, 0, 0.3))" }}
           />
 
           {/* Stream Cards */}
@@ -442,40 +442,46 @@ const RevenueStreams: React.FC = () => {
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 relative">
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                  <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+                <div className="bg-[#1a1a1a]/80 backdrop-blur-sm border border-white/10 rounded-[28px] shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                  {/* Abstract Background Graphics */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {/* Large circle on left side */}
+                    <div className="absolute -left-8 top-4 w-24 h-24 bg-[#2a2a2a]/60 rounded-full"></div>
+                    {/* Large circle in upper right */}
+                    <div className="absolute -right-8 -top-8 w-28 h-28 bg-[#2a2a2a]/60 rounded-full"></div>
+                    {/* Small circle node */}
+                    <div className="absolute right-16 top-1/2 w-6 h-6 bg-[#2a2a2a] rounded-full"></div>
+                    {/* Connecting lines */}
+                    <div className="absolute right-20 top-1/2 w-12 h-px bg-[#2a2a2a]/40"></div>
+                    <div className="absolute right-8 top-1/2 w-8 h-px bg-[#2a2a2a]/40"></div>
+                  </div>
 
-                  {/* Card Header */}
-                  <div className="bg-[var(--color-accent)]/20 p-4 relative overflow-hidden">
-                    <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/20 rounded-full" />
-                    <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
-
+                  {/* Card Header - Top Section (2/3 height) */}
+                  <div className="bg-[#2a2a2a]/40 p-4 relative overflow-hidden h-24 flex items-center">
                     <div className="flex items-center gap-3 relative z-10">
-                      <div className="w-12 h-12 bg-[var(--color-glass)]   rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
+                      <div className="w-12 h-12 bg-[#1a1a1a]/80 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
                         <Icon
                           icon={stream.icon}
-                          className="text-2xl text-[var(--color-accent)]"
+                          className="text-2xl text-white"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
+                        <h3 className="font-sans text-lg text-white font-bold leading-tight">
                           {stream.title}
                         </h3>
                       </div>
                     </div>
                   </div>
 
-                  {/* Card Content */}
-                  <div className="p-4 space-y-3">
-                    <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium leading-relaxed">
+                  {/* Card Content - Bottom Section (1/3 height) */}
+                  <div className="p-4 bg-[#1a1a1a]/60 h-16 flex items-center">
+                    <p className="font-sans text-white text-sm leading-relaxed">
                       {stream.description}
                     </p>
                   </div>
 
-                  {/* Bottom Decorative Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                  {/* Subtle glow outline */}
+                  <div className="absolute inset-0 rounded-[28px] border border-white/5 pointer-events-none"></div>
                 </div>
               </div>
             );
@@ -492,38 +498,46 @@ const RevenueStreams: React.FC = () => {
               ref={(el) => (streamRefs.current[index] = el)}
               className="group"
             >
-              <div className="bg-[var(--color-glass)]   border border-[var(--color-glass-border)] rounded-[28px] shadow-[0_20px_40px_rgba(67,103,201,0.2)] hover:shadow-[0_25px_50px_rgba(67,103,201,0.3)] transition-all duration-300 transform hover:-translate-y-2 h-full relative">
-                {/* Floating Decorative Elements */}
-                <div className="absolute top-2 right-2 w-6 h-6 bg-[var(--color-accent)]/20 rounded-full animate-ping"></div>
-                <div className="absolute bottom-2 left-2 w-4 h-4 bg-[var(--color-accent)]/30 rounded-full animate-float"></div>
+              <div className="bg-[#1a1a1a]/80 backdrop-blur-sm border border-white/10 rounded-[28px] shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-2 h-full relative overflow-hidden">
+                {/* Abstract Background Graphics */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {/* Large circle on left side */}
+                  <div className="absolute -left-8 top-4 w-24 h-24 bg-[#2a2a2a]/60 rounded-full"></div>
+                  {/* Large circle in upper right */}
+                  <div className="absolute -right-8 -top-8 w-28 h-28 bg-[#2a2a2a]/60 rounded-full"></div>
+                  {/* Small circle node */}
+                  <div className="absolute right-16 top-1/2 w-6 h-6 bg-[#2a2a2a] rounded-full"></div>
+                  {/* Connecting lines */}
+                  <div className="absolute right-20 top-1/2 w-12 h-px bg-[#2a2a2a]/40"></div>
+                  <div className="absolute right-8 top-1/2 w-8 h-px bg-[#2a2a2a]/40"></div>
+                </div>
 
-                <div className="bg-[var(--color-accent)]/20 p-4 relative overflow-hidden">
-                  <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--color-accent)]/20 rounded-full" />
-                  <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--color-accent)]/15 rounded-full" />
-
+                {/* Card Header - Top Section (2/3 height) */}
+                <div className="bg-[#2a2a2a]/40 p-4 relative overflow-hidden h-24 flex items-center">
                   <div className="flex items-center gap-3 relative z-10">
-                    <div className="w-12 h-12 bg-[var(--color-glass)]   rounded-full border-2 border-[var(--color-accent)]/30 flex items-center justify-center flex-shrink-0 shadow-[0_8px_24px_rgba(67,103,201,0.3)]">
+                    <div className="w-12 h-12 bg-[#1a1a1a]/80 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
                       <Icon
                         icon={stream.icon}
-                        className="text-2xl text-[var(--color-accent)]"
+                        className="text-2xl text-white"
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="maladroit-font text-lg text-[var(--color-text-primary)] leading-tight">
+                      <h3 className="font-sans text-lg text-white font-bold leading-tight">
                         {stream.title}
                       </h3>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 space-y-3">
-                  <p className="winky-sans-font text-[var(--color-text-secondary)]/90 text-xs font-medium leading-relaxed">
+                {/* Card Content - Bottom Section (1/3 height) */}
+                <div className="p-4 bg-[#1a1a1a]/60 h-16 flex items-center">
+                  <p className="font-sans text-white text-sm leading-relaxed">
                     {stream.description}
                   </p>
                 </div>
 
-                {/* Bottom Decorative Bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/60 to-transparent rounded-b-[28px]"></div>
+                {/* Subtle glow outline */}
+                <div className="absolute inset-0 rounded-[28px] border border-white/5 pointer-events-none"></div>
               </div>
             </div>
           ))}

@@ -8,15 +8,32 @@ interface PlaceholderTabProps {
 
 const PlaceholderTab: React.FC<PlaceholderTabProps> = ({ icon, title }) => {
   return (
-    <div className="bg-white/5 border border-white/10 rounded-sm p-8 text-center">
-      <div className="mb-6">
-        <Icon
-          icon={icon}
-          width={60}
-          height={60}
-          className="text-white/70 mx-auto mb-6"
-        />
-        <h3 className="maladroit-font text-2xl text-white mb-4">{title}</h3>
+    <div className="glass-effect rounded-xl p-12 border border-[var(--color-border)] text-center">
+      <div className="flex flex-col items-center justify-center space-y-6">
+        <div className="w-24 h-24 bg-[var(--color-bg-secondary)] rounded-full flex items-center justify-center">
+          <Icon
+            icon={icon}
+            className="text-[var(--color-accent)]"
+            width={48}
+            height={48}
+          />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="maladroit-font text-3xl md:text-4xl text-[var(--color-text-primary)]">
+            {title}
+          </h3>
+          <p className="winky-sans-font text-lg text-[var(--color-text-secondary)] max-w-md mx-auto">
+            This feature is currently under development. We're working hard to
+            bring you the best staking experience.
+          </p>
+        </div>
+
+        <div className="glass-card rounded-lg p-4 border border-[var(--color-border)]">
+          <p className="winky-sans-font text-sm text-[var(--color-text-secondary)]">
+            Stay tuned for updates and announcements!
+          </p>
+        </div>
       </div>
     </div>
   );

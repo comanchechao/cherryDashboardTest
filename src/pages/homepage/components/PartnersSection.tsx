@@ -152,7 +152,6 @@ const PartnersSection: React.FC = () => {
             className="maladroit-font text-3xl md:text-5xl text-[var(--color-text-primary)] mb-6 relative inline-block"
           >
             Partners & Integrations
-            <div className="absolute -bottom-3 left-0 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
           </h2>
         </div>
 
@@ -171,11 +170,7 @@ const PartnersSection: React.FC = () => {
                     clearProps: "all",
                   });
                 }}
-                className={`partner-tab flex items-center w-full gap-3 px-6 py-4 justify-center rounded-[2px] border transition-all duration-300 hover:transform hover:-translate-y-1 ${
-                  activePartner === index
-                    ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-[0_8px_32px_rgba(67,103,201,0.3)]"
-                    : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-[var(--color-glass-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10"
-                }`}
+                className="partner-tab flex items-center w-full gap-3 px-6 py-4 text-white justify-center rounded-full border transition-all duration-300 bg-[var(--color-accent)] hover:transform hover:-translate-y-1 "
               >
                 <span className="winky-sans-font text-sm md:text-lg font-medium">
                   {partner.name}

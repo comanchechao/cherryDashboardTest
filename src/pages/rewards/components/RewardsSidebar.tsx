@@ -18,11 +18,11 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
   onTabChange,
 }) => {
   return (
-    <aside className="w-64 hidden md:flex flex-col justify-between bg-white/5 border border-white/10 rounded-sm p-4 backdrop-blur-sm">
+    <aside className="w-64 hidden md:flex flex-col justify-between bg-white/5 border border-black/20 rounded-sm p-4 backdrop-blur-sm">
       <div>
-        <div className="maladroit-font text-xl text-white mb-4 px-2">
+        <div className="maladroit-font text-xl text-black mb-4 px-2">
           <img
-            src="https://storage.cherrybot.ai/cherryTextLogo.webp"
+            src="/logoCherry.png"
             alt="CherryAI"
             className="w-full object-contain"
           />
@@ -30,10 +30,10 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
         <nav className="space-y-2">
           <button
             onClick={() => onTabChange("home")}
-            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
+            className={`w-full cursor-pointer border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
               activeTab === "home"
-                ? "bg-white/10 text-white"
-                : "hover:bg-white/5 text-white"
+                ? "bg-white/10 text-black"
+                : "hover:bg-white/5 text-black"
             }`}
           >
             <Icon icon="mdi:home" width={20} height={20} />
@@ -41,10 +41,10 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
           </button>
           <button
             onClick={() => onTabChange("stake")}
-            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
+            className={`w-full cursor-pointer border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
               activeTab === "stake"
-                ? "bg-white/10 text-white"
-                : "hover:bg-white/5 text-white"
+                ? "bg-white/10 text-black"
+                : "hover:bg-white/5 text-black"
             }`}
           >
             <Icon icon="mdi:finance" width={20} height={20} />
@@ -52,10 +52,10 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
           </button>
           <button
             onClick={() => onTabChange("stakingLeaderboard")}
-            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
+            className={`w-full cursor-pointer border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
               activeTab === "stakingLeaderboard"
-                ? "bg-white/10 text-white"
-                : "hover:bg-white/5 text-white"
+                ? "bg-white/10 text-black"
+                : "hover:bg-white/5 text-black"
             }`}
           >
             <Icon icon="tabler:trophy" width={20} height={20} />
@@ -63,10 +63,10 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
           </button>
           <button
             onClick={() => onTabChange("pointsStored")}
-            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
+            className={`w-full cursor-pointer border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
               activeTab === "pointsStored"
-                ? "bg-white/10 text-white"
-                : "hover:bg-white/5 text-white"
+                ? "bg-white/10 text-black"
+                : "hover:bg-white/5 text-black"
             }`}
           >
             <Icon icon="mdi:database" width={20} height={20} />
@@ -74,10 +74,10 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
           </button>
           <button
             onClick={() => onTabChange("stakingTiers")}
-            className={`w-full cursor-pointer flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
+            className={`w-full cursor-pointer border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition ${
               activeTab === "stakingTiers"
-                ? "bg-white/10 text-white"
-                : "hover:bg-white/5 text-white"
+                ? "bg-white/10 text-black"
+                : "hover:bg-white/5 text-black"
             }`}
           >
             <Icon icon="mdi:layers" width={20} height={20} />
@@ -87,7 +87,7 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
         </nav>
       </div>
       <div className="px-2">
-        <button className="w-full flex items-center gap-3 px-3 py-3 rounded-sm text-left transition hover:bg-white/5 text-white">
+        <button className="w-full border border-black/20 flex items-center gap-3 px-3 py-3 rounded-sm text-left transition hover:bg-white/5 text-black">
           <Icon icon="mdi:logout" width={20} height={20} />
           <span className="winky-sans-font">Log Out</span>
         </button>

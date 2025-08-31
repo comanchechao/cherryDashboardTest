@@ -7,3 +7,4 @@ export { default as PartnersSection } from "./PartnersSection";
 export { default as SniperSpotlightSection } from "./SniperSpotlightSection";
 export { default as CommunitySection } from "./CommunitySection";
 export { default as NewsSection } from "./NewsSection";
+export { default as DataParse } from "./DataParse";

@@ -15,110 +15,67 @@ interface MobileTabsProps {
 
 const MobileTabs: React.FC<MobileTabsProps> = ({ activeTab, onTabChange }) => {
   return (
-    <div className="md:hidden mb-6">
-      <div className="bg-white/5 border border-white/10 rounded-lg p-1">
-        <div className="flex flex-wrap overflow-x-auto space-x-1 scrollbar-hide">
+    <div className="lg:hidden mb-6">
+      <div className="glass-effect rounded-xl p-2 border border-[var(--color-border)]">
+        <div className="flex space-x-1">
           <button
             onClick={() => onTabChange("home")}
-            className={`px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
               activeTab === "home"
-                ? "bg-white/20 text-white shadow-lg"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--color-accent)] text-white shadow-lg transform scale-[1.02]"
+                : "text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Icon
-                icon="mdi:home"
-                width={16}
-                height={16}
-                className={
-                  activeTab === "home" ? "text-white" : "text-white/70"
-                }
-              />
-              <span className="winky-sans-font xs:hidden">Home</span>
-            </div>
+            <Icon icon="mdi:home" width={18} height={18} />
+            <span className="winky-sans-font">Home</span>
           </button>
+
           <button
             onClick={() => onTabChange("stake")}
-            className={`px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
               activeTab === "stake"
-                ? "bg-white/20 text-white shadow-lg"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--color-accent)] text-white shadow-lg transform scale-[1.02]"
+                : "text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Icon
-                icon="mdi:finance"
-                width={16}
-                height={16}
-                className={
-                  activeTab === "stake" ? "text-white" : "text-white/70"
-                }
-              />
-              <span className="winky-sans-font xs:hidden">Stake</span>
-            </div>
+            <Icon icon="mdi:finance" width={18} height={18} />
+            <span className="winky-sans-font">Stake</span>
           </button>
+
           <button
             onClick={() => onTabChange("stakingLeaderboard")}
-            className={`px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
               activeTab === "stakingLeaderboard"
-                ? "bg-white/20 text-white shadow-lg"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--color-accent)] text-white shadow-lg transform scale-[1.02]"
+                : "text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Icon
-                icon="tabler:trophy"
-                width={16}
-                height={16}
-                className={
-                  activeTab === "stakingLeaderboard"
-                    ? "text-white"
-                    : "text-white/70"
-                }
-              />
-              <span className="winky-sans-font xs:hidden">Leaderboard</span>
-            </div>
+            <Icon icon="tabler:trophy" width={18} height={18} />
+            <span className="winky-sans-font">Leaderboard</span>
           </button>
+
           <button
             onClick={() => onTabChange("pointsStored")}
-            className={`px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
               activeTab === "pointsStored"
-                ? "bg-white/20 text-white shadow-lg"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--color-accent)] text-white shadow-lg transform scale-[1.02]"
+                : "text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Icon
-                icon="mdi:database"
-                width={16}
-                height={16}
-                className={
-                  activeTab === "pointsStored" ? "text-white" : "text-white/70"
-                }
-              />
-              <span className="winky-sans-font xs:hidden">Points</span>
-            </div>
+            <Icon icon="mdi:database" width={18} height={18} />
+            <span className="winky-sans-font">Store</span>
           </button>
+
           <button
             onClick={() => onTabChange("stakingTiers")}
-            className={`px-4 py-3 rounded-md text-sm font-medium transition-all duration-200 ${
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 ${
               activeTab === "stakingTiers"
-                ? "bg-white/20 text-white shadow-lg"
-                : "text-white/70 hover:text-white hover:bg-white/10"
+                ? "bg-[var(--color-accent)] text-white shadow-lg transform scale-[1.02]"
+                : "text-[var(--color-text-primary)] hover:bg-[var(--color-bg-secondary)]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <Icon
-                icon="mdi:layers"
-                width={16}
-                height={16}
-                className={
-                  activeTab === "stakingTiers" ? "text-white" : "text-white/70"
-                }
-              />
-              <span className="winky-sans-font hiddem">Tiers</span>
-            </div>
+            <Icon icon="mdi:layers" width={18} height={18} />
+            <span className="winky-sans-font">Tiers</span>
           </button>
         </div>
       </div>

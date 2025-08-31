@@ -58,9 +58,8 @@ const StatCards: React.FC<StatCardsProps> = ({
       </div>
 
       {/* Main Title */}
-      <h2 className="transform translate-y-8 text-center maladroit-font text-xl lg:text-5xl text-[var(--color-text-primary)] !mb-16 relative z-10 max-w-6xl">
+      <h2 className="transform translate-y-8 text-center maladroit-font text-xl lg:text-5xl text-[var(--color-text-primary)]   relative z-10 max-w-6xl">
         {title}
-        <div className="absolute -bottom-5 left-1/2  transform -translate-x-1/2 w-full h-2 bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-accent)]/80 to-[var(--color-accent)]/60 rounded-full"></div>
       </h2>
 
       {/* Modular Data Cards */}

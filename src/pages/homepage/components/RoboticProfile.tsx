@@ -7,15 +7,15 @@ const RoboticProfile: React.FC = () => {
   const slides = [
     {
       id: 1,
-      image: "/firstSlide.png",
+      image: "https://storage.cherrybot.ai/firstSlide.png",
     },
     {
       id: 2,
-      image: "/secondSlide.png",
+      image: "https://storage.cherrybot.ai/secondSlide.png",
     },
     {
       id: 3,
-      image: "/thirdSlide.png",
+      image: "https://storage.cherrybot.ai/thirdSlide.png",
     },
   ];
 
@@ -24,7 +24,7 @@ const RoboticProfile: React.FC = () => {
   };
 
   return (
-    <div className="robotic-profile-section relative w-full py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
+    <div className="robotic-profile-section relative w-full bg-accent py-20 mt-16 md:mt-8 bg-opacity-80 overflow-hidden">
       {/* Floating Elements Layer */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Orbital Rings */}
@@ -101,7 +101,7 @@ const RoboticProfile: React.FC = () => {
           {/* Carousel */}
           <div
             ref={carouselRef}
-            className="relative overflow-hidden rounded-[20px] h-fit bg-[var(--color-glass)] border border-[var(--color-glass-border)]"
+            className="relative overflow-hidden rounded-[20px] h-fit   border border-[var(--color-glass-border)]"
           >
             <div className="flex transition-transform duration-500 ease-in-out">
               {slides.map((slide) => (
@@ -113,17 +113,17 @@ const RoboticProfile: React.FC = () => {
                   <div className="flex flex-col lg:flex-row items-start gap-12 p-8 lg:p-12">
                     {/* Left Panel - Static Content */}
                     <div className="lg:w-1/2 w-full">
-                      <div className=" text-[var(--color-text-primary)] rounded-[20px] p-8 h-full flex flex-col justify-center">
-                        <h3 className="maladroit-font text-2xl md:text-4xl   mb-6 text-center">
+                      <div className=" text-white rounded-[20px] p-8 h-full flex flex-col justify-center">
+                        <h3 className="maladroit-font text-2xl md:text-4xl   mb-6 text-left">
                           High Profile Backers of Robotics
                         </h3>
                         <p className="winky-sans-font text-sm md:text-lg   mb-6 leading-relaxed">
-                          The global robotics market, projected to surpass $400
-                          billion within the decade, is still constrained by
+                          The global robotics market, projected to surpass $1.8
+                          trillion within the decade, is still constrained by
                           fragmented data, limited adaptability, and siloed
-                          development. Emerging AI-driven robotics seeks to
-                          break these barriers, creating machines that learn,
-                          evolve, and collaborate at scale.
+                          development. Emerging data robotics companies like
+                          CherryAI Robot seek to break these barriers, creating
+                          machines that learn, evolve and collaborate at scale.
                         </p>
                         <p className="winky-sans-font text-sm md:text-lg   leading-relaxed">
                           Visionaries like Elon Musk, Jensen Huang, and
@@ -138,12 +138,25 @@ const RoboticProfile: React.FC = () => {
 
                     {/* Right Panel - Image Only */}
                     <div className="lg:w-1/2 w-full">
-                      <div className="bg-black rounded-[20px] p-4 h-full flex flex-col justify-center">
+                      <div className="bg-white rounded-[20px] p-1 h-full flex flex-col justify-center">
                         <img
                           src={slide.image}
                           alt={`Robotic Profile Slide ${slide.id}`}
                           className="w-full h-auto rounded-[16px] object-cover"
                         />
+                      </div>{" "}
+                      <div className="flex justify-center mt-8 space-x-3">
+                        {slides.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => goToSlide(index)}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                              index === currentSlide
+                                ? "bg-white scale-125"
+                                : "bg-white scale-125"
+                            }`}
+                          />
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -153,19 +166,6 @@ const RoboticProfile: React.FC = () => {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-3">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? "bg-[var(--color-accent)] scale-125"
-                    : "bg-[var(--color-accent)]/30 hover:bg-[var(--color-accent)]/60"
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>

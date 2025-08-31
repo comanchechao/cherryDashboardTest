@@ -4,23 +4,33 @@ import { Icon } from "@iconify/react";
 import { useWallet } from "../../../components/BSCWalletProvider";
 import BSCWalletButton from "../../../components/BSCWalletButton";
 import { useToastContext } from "../../../contexts/ToastContext";
-import axios from "axios"; // Commented out for testing - eligibility always true
+// import axios from "axios"; // Commented out for testing - eligibility always true
 // @ts-ignore - ethers import issue
 import { ethers } from "ethers";
+import {
+  STAKING_ADDRESS,
+  TOKEN_ADDRESS,
+  BSC_RPC_URL,
+  stake,
+} from "../../../utils/stakingHelpers";
 
 interface StakeModalProps {
   isOpen: boolean;
   onClose: () => void;
   onStakingChoice: (choice: "points" | "pointsAndAPY") => void;
+  onSuccessfulStaking?: (
+    choice: "points" | "pointsAndAPY",
+    amount: string
+  ) => void;
 }
 
 // Contract ABIs
-const STAKING_POOL_ABI = [
-  "function poolInfo(uint256) view returns (address stakingToken, address rewardToken, uint256 lastRewardTimestamp, uint256 accTokenPerShare, uint256 startTime, uint256 endTime, uint256 precision, uint256 totalStaked, uint256 totalReward, address owner)",
-  "function userInfo(address, uint256) view returns (uint256 amount, uint256 rewardDebt)",
-  "function deposit(uint256 _amount, uint256 poolId) external",
-  "function poolLength() view returns (uint256)",
-];
+// const STAKING_POOL_ABI = [
+//   "function poolInfo(uint256) view returns (address stakingToken, address rewardToken, uint256 lastRewardTimestamp, uint256 accTokenPerShare, uint256 startTime, uint256 endTime, uint256 precision, uint256 totalStaked, uint256 totalReward, address owner)",
+//   "function userInfo(address, uint256) view returns (uint256 amount, uint256 rewardDebt)",
+//   "function deposit(uint256 _amount, uint256 poolId) external",
+//   "function poolLength() view returns (uint256)",
+// ];
 
 const ERC20_ABI = [
   "function allowance(address owner, address spender) view returns (uint256)",
@@ -29,9 +39,7 @@ const ERC20_ABI = [
   "function balanceOf(address account) view returns (uint256)",
 ];
 
-const CONTRACT_ADDRESS = "0xd6A07b8065f9e8386A9a5bBA6A754a10A9CD1074";
-const BSC_RPC_URL = "https://bsc-dataseed.binance.org";
-const POOL_ID = 409;
+const CONTRACT_ADDRESS = STAKING_ADDRESS;
 
 type ModalStep = "setup" | "choice" | "apy" | "success";
 
@@ -42,6 +50,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
   isOpen,
   onClose,
   onStakingChoice,
+  onSuccessfulStaking,
 }) => {
   const [currentStep, setCurrentStep] = useState<ModalStep>("setup");
   const [setupSubStep, setSetupSubStep] = useState<SetupSubStep>("wallet");
@@ -264,59 +273,17 @@ const StakeModal: React.FC<StakeModalProps> = ({
   const fetchTokenData = async () => {
     if (!isConnected || !address) return;
 
-    // Check network first
     const isCorrectNetwork = await checkNetwork();
     if (!isCorrectNetwork) return;
 
     try {
       console.log("Fetching token data...");
       console.log("Contract Address:", CONTRACT_ADDRESS);
-      console.log("Pool ID:", POOL_ID);
+      console.log("Token Address:", TOKEN_ADDRESS);
       console.log("User Address:", address);
 
-      const stakingContract = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        STAKING_POOL_ABI,
-        provider
-      );
-
-      // First check if the pool exists by getting pool length
-      try {
-        const poolLength = await stakingContract.poolLength();
-        console.log("Total pools available:", poolLength.toString());
-
-        if (POOL_ID >= poolLength.toNumber()) {
-          throw new Error(
-            `Pool ID ${POOL_ID} does not exist. Available pools: 0 to ${
-              poolLength.toNumber() - 1
-            }`
-          );
-        }
-      } catch (lengthError: any) {
-        console.log("Could not get pool length, trying direct pool call...");
-      }
-
-      // Get pool info to get staking token address
-      console.log("Calling poolInfo for pool ID:", POOL_ID);
-      const poolInfo = await stakingContract.poolInfo(POOL_ID);
-      console.log("Pool info:", poolInfo);
-
-      const stakingTokenAddress = poolInfo.stakingToken;
-      console.log("Staking token address:", stakingTokenAddress);
-
-      // Check if token address is valid
-      if (
-        !stakingTokenAddress ||
-        stakingTokenAddress === "0x0000000000000000000000000000000000000000"
-      ) {
-        throw new Error(
-          `Pool ID ${POOL_ID} does not exist or has no staking token`
-        );
-      }
-
-      // Initialize token contract
       const tokenContract = new ethers.Contract(
-        stakingTokenAddress,
+        TOKEN_ADDRESS,
         ERC20_ABI,
         provider
       );
@@ -342,50 +309,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
       setAllowance(allowanceFormatted);
     } catch (err: any) {
       console.error("Error fetching token data:", err);
-
-      try {
-        const stakingContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          STAKING_POOL_ABI,
-          provider
-        );
-
-        const poolLength = await stakingContract.poolLength();
-        console.log("Available pools to check:", poolLength.toString());
-
-        // Check first few pools to find valid ones
-        for (let i = 0; i < Math.min(10, poolLength.toNumber()); i++) {
-          try {
-            const poolInfo = await stakingContract.poolInfo(i);
-            console.log(`Pool ${i}:`, {
-              stakingToken: poolInfo.stakingToken,
-              rewardToken: poolInfo.rewardToken,
-              totalStaked: poolInfo.totalStaked.toString(),
-            });
-          } catch (poolErr: any) {
-            console.log(`Pool ${i}: Error -`, poolErr.message);
-          }
-        }
-      } catch (scanErr) {
-        console.log("Could not scan available pools:", scanErr);
-      }
-
-      if (
-        err.message.includes("pool ID") ||
-        err.message.includes("does not exist")
-      ) {
-        setError(
-          `Pool ID ${POOL_ID} does not exist on this contract. Check console for available pools.`
-        );
-      } else if (err.code === "CALL_EXCEPTION") {
-        setError(
-          `Contract call failed. Pool ID ${POOL_ID} may not exist. Check console for details.`
-        );
-      } else {
-        setError(
-          "Failed to fetch token data. Make sure you're on BSC Mainnet. Check console for details."
-        );
-      }
+      setError(
+        "Failed to fetch token data. Make sure you're on BSC Mainnet and try again."
+      );
     }
   };
 
@@ -410,19 +336,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
       const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = web3Provider.getSigner();
 
-      const stakingContract = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        STAKING_POOL_ABI,
-        web3Provider
-      );
-
-      // Get pool info to get staking token address
-      const poolInfo = await stakingContract.poolInfo(POOL_ID);
-      const stakingTokenAddress = poolInfo.stakingToken;
-
       // Initialize token contract with signer
       const tokenContract = new ethers.Contract(
-        stakingTokenAddress,
+        TOKEN_ADDRESS,
         ERC20_ABI,
         signer
       );
@@ -451,7 +367,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
       // Show error toast
       showError(
-        "Approval Failed ❌",
+        "Approval Failed",
         errorMessage,
         7000 // 7 seconds
       );
@@ -479,27 +395,19 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
       // Create a fresh provider and signer for the transaction
       const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = web3Provider.getSigner();
 
-      const stakingContract = new ethers.Contract(
-        CONTRACT_ADDRESS,
-        STAKING_POOL_ABI,
-        signer
-      );
+      // Use the stake function from stakingHelpers
+      const receipt = await stake(web3Provider, stakeAmount);
 
-      const amountBN = ethers.utils.parseUnits(stakeAmount, tokenDecimals);
-      const tx = await stakingContract.deposit(amountBN, POOL_ID);
-
-      setStakingTxHash(tx.hash);
-      await tx.wait();
+      setStakingTxHash(receipt.transactionHash);
 
       showSuccess(
-        "Staking Successful! 🎉",
+        "Staking Successful!  ",
         `Successfully staked ${parseFloat(
           stakeAmount
         ).toLocaleString()} $AIBOT tokens with 5% APY!`,
         7000,
-        tx.hash
+        receipt.transactionHash
       );
 
       // Update parent component now that staking is complete
@@ -529,38 +437,41 @@ const StakeModal: React.FC<StakeModalProps> = ({
     if (!isConnected || !address) return;
 
     setEligibilityLoading(true);
-    setEligibility(null);
+    setEligibility({
+      eligible: true,
+    });
     setError("");
+    setEligibilityLoading(false);
 
-    try {
-      const payload = { address };
-      const res = await axios.post(
-        "https://monitor.cherrypump.com/token/api/wallets/check",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
-          maxBodyLength: Infinity,
-        }
-      );
+    // try {
+    //   const payload = { address };
+    //   const res = await axios.post(
+    //     "https://monitor.cherrypump.com/token/api/wallets/check",
+    //     payload,
+    //     {
+    //       headers: { "Content-Type": "application/json" },
+    //       maxBodyLength: Infinity,
+    //     }
+    //   );
 
-      if (res.data.points) {
-        setEligibility({
-          eligible: true,
-          reason: "Points already awarded recently, timer active",
-          points: res.data.points,
-        });
-      } else {
-        setEligibility(res.data);
-      }
-    } catch (err: any) {
-      console.error("[Eligibility API] Error:", err);
-      setEligibility({
-        eligible: false,
-        reason: "Eligibility check failed",
-      });
-    } finally {
-      setEligibilityLoading(false);
-    }
+    //   if (res.data.points) {
+    //     setEligibility({
+    //       eligible: true,
+    //       reason: "Points already awarded recently, timer active",
+    //       points: res.data.points,
+    //     });
+    //   } else {
+    //     setEligibility(res.data);
+    //   }
+    // } catch (err: any) {
+    //   console.error("[Eligibility API] Error:", err);
+    //   setEligibility({
+    //     eligible: false,
+    //     reason: "Eligibility check failed",
+    //   });
+    // } finally {
+    //   setEligibilityLoading(false);
+    // }
   };
 
   useEffect(() => {
@@ -714,14 +625,21 @@ const StakeModal: React.FC<StakeModalProps> = ({
                       : isCompleted
                       ? "bg-green-500 border-green-500 text-white"
                       : isAccessible
-                      ? "border-white/30 text-white/70"
-                      : "border-white/10 text-white/30"
+                      ? "border-[var(--color-accent)]/40 text-[var(--color-accent)]"
+                      : "border-[var(--color-accent)]/30 text-[var(--color-accent)]/70"
                   }`}
                 >
                   {isCompleted ? (
                     <Icon icon="mdi:check" width={20} height={20} />
                   ) : (
-                    <Icon icon={step.icon} width={20} height={20} />
+                    <Icon
+                      icon={step.icon}
+                      className={
+                        isActive ? "text-white" : "text-[var(--color-accent)]"
+                      }
+                      width={20}
+                      height={20}
+                    />
                   )}
                 </div>
                 <div className="ml-2 hidden sm:block">
@@ -730,10 +648,10 @@ const StakeModal: React.FC<StakeModalProps> = ({
                       isActive
                         ? "text-[var(--color-accent)]"
                         : isCompleted
-                        ? "text-green-400"
+                        ? "text-green-600"
                         : isAccessible
-                        ? "text-white/70"
-                        : "text-white/30"
+                        ? "text-[var(--color-accent)]/70"
+                        : "text-[var(--color-text-secondary)]"
                     }`}
                   >
                     {step.label}
@@ -742,7 +660,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
                 {index < visibleSteps.length - 1 && (
                   <div
                     className={`w-8 h-0.5 mx-2 transition-colors duration-200 ${
-                      stepIndex < currentIndex ? "bg-green-500" : "bg-white/20"
+                      stepIndex < currentIndex
+                        ? "bg-green-500"
+                        : "bg-[var(--color-accent)]/30"
                     }`}
                   />
                 )}
@@ -753,7 +673,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
         {/* Setup Sub-Steps */}
         {currentStep === "setup" && (
-          <div className="bg-white/5 border border-white/10 rounded-sm p-3">
+          <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm p-3">
             <div className="flex items-center justify-between">
               {setupSubSteps.map((subStep, index) => {
                 const isActive = subStep.key === setupSubStep;
@@ -771,13 +691,22 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           ? "bg-[var(--color-accent)] border-[var(--color-accent)] text-black"
                           : isCompleted
                           ? "bg-green-500 border-green-500 text-white"
-                          : "border-white/30 text-white/50"
+                          : "border-[var(--color-accent)]/40 text-[var(--color-accent)]"
                       }`}
                     >
                       {isCompleted ? (
                         <Icon icon="mdi:check" width={12} height={12} />
                       ) : (
-                        <Icon icon={subStep.icon} width={12} height={12} />
+                        <Icon
+                          icon={subStep.icon}
+                          className={
+                            isActive
+                              ? "text-white"
+                              : "text-[var(--color-accent)]"
+                          }
+                          width={12}
+                          height={12}
+                        />
                       )}
                     </div>
                     <div className="ml-1 hidden sm:block">
@@ -786,8 +715,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           isActive
                             ? "text-[var(--color-accent)]"
                             : isCompleted
-                            ? "text-green-400"
-                            : "text-white/50"
+                            ? "text-green-600"
+                            : "text-[var(--color-accent)]"
                         }`}
                       >
                         {subStep.label}
@@ -796,7 +725,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
                     {index < setupSubSteps.length - 1 && (
                       <div
                         className={`w-4 h-0.5 mx-1 transition-colors duration-200 ${
-                          isCompleted ? "bg-green-500" : "bg-white/20"
+                          isCompleted
+                            ? "bg-green-500"
+                            : "bg-[var(--color-accent)]/30"
                         }`}
                       />
                     )}
@@ -809,7 +740,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
         {/* APY Sub-Steps */}
         {currentStep === "apy" && (
-          <div className="bg-white/5 border border-white/10 rounded-sm p-3">
+          <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm p-3">
             <div className="flex items-center justify-between">
               {apySubSteps.map((subStep, index) => {
                 const isActive = subStep.key === apySubStep;
@@ -826,13 +757,22 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           ? "bg-[var(--color-accent)] border-[var(--color-accent)] text-black"
                           : isCompleted
                           ? "bg-green-500 border-green-500 text-white"
-                          : "border-white/30 text-white/50"
+                          : "border-[var(--color-accent)]/40 text-[var(--color-accent)]"
                       }`}
                     >
                       {isCompleted ? (
                         <Icon icon="mdi:check" width={12} height={12} />
                       ) : (
-                        <Icon icon={subStep.icon} width={12} height={12} />
+                        <Icon
+                          icon={subStep.icon}
+                          className={
+                            isActive
+                              ? "text-white"
+                              : "text-[var(--color-accent)]"
+                          }
+                          width={12}
+                          height={12}
+                        />
                       )}
                     </div>
                     <div className="ml-1 hidden sm:block">
@@ -841,8 +781,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           isActive
                             ? "text-[var(--color-accent)]"
                             : isCompleted
-                            ? "text-green-400"
-                            : "text-white/50"
+                            ? "text-green-600"
+                            : "text-[var(--color-accent)]"
                         }`}
                       >
                         {subStep.label}
@@ -851,7 +791,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
                     {index < apySubSteps.length - 1 && (
                       <div
                         className={`w-4 h-0.5 mx-1 transition-colors duration-200 ${
-                          isCompleted ? "bg-green-500" : "bg-white/20"
+                          isCompleted
+                            ? "bg-green-500"
+                            : "bg-[var(--color-accent)]/30"
                         }`}
                       />
                     )}
@@ -884,18 +826,27 @@ const StakeModal: React.FC<StakeModalProps> = ({
               damping: 25,
               stiffness: 300,
             }}
-            className="bg-[#020e1f] border border-white/10 rounded-lg p-8 max-w-xl w-full backdrop-blur-sm max-h-[90vh] overflow-y-auto"
+            className="bg-[var(--color-bg-primary)] border border-[var(--color-glass-border)] rounded-lg p-8 max-w-xl w-full backdrop-blur-sm max-h-[90vh] overflow-y-auto relative overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute top-4 right-4 w-16 h-16 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
+              <div className="absolute bottom-4 left-4 w-12 h-12 bg-[var(--color-accent)]/8 rounded-full animate-float-slow"></div>
+              <div
+                className="absolute top-1/2 left-4 w-8 h-8 bg-[var(--color-accent)]/6 rounded-full animate-float"
+                style={{ animationDelay: "2s" }}
+              ></div>
+            </div>
             {/* Header */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-6 relative z-10">
               <Icon
                 icon="mdi:wallet"
                 width={60}
                 height={60}
-                className="text-accent mx-auto mb-4"
+                className="text-[var(--color-accent)] mx-auto mb-4"
               />
-              <h3 className="maladroit-font text-2xl text-white mb-2">
+              <h3 className="maladroit-font text-2xl text-[var(--color-text-primary)] mb-2">
                 Stake $AIBOT
               </h3>
               {networkInfo && (
@@ -903,7 +854,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
                   <div
                     className={`inline-flex items-center px-3 py-1 rounded-full text-xs ${
                       networkInfo.chainId === 56
-                        ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                        ? "bg-green-500/20 text-green-600 border border-green-500/30"
                         : "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
                     }`}
                   >
@@ -937,7 +888,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
             {/* Error Display */}
             {error && (
-              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6 relative overflow-hidden">
+                <div className="absolute top-2 right-2 w-4 h-4 bg-red-500/20 rounded-full animate-ping"></div>
                 <Icon
                   icon="mdi:alert-circle"
                   width={20}
@@ -953,14 +905,15 @@ const StakeModal: React.FC<StakeModalProps> = ({
             {/* Step Content */}
             <div className="space-y-6">
               {currentStep === "setup" && setupSubStep === "wallet" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6 text-center">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 flex items-center justify-center flex-col text-center relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <Icon
                     icon="mdi:wallet-off"
                     width={60}
                     height={60}
-                    className="text-white/50 mx-auto mb-4"
+                    className="text-[var(--color-text-secondary)] mx-auto mb-4"
                   />
-                  <p className="winky-sans-font text-white/70 text-sm mb-4">
+                  <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm mb-4">
                     Connect your wallet to continue
                   </p>
                   <BSCWalletButton />
@@ -968,27 +921,28 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "setup" && setupSubStep === "info" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     <Icon
                       icon="mdi:information"
                       width={60}
                       height={60}
-                      className="text-blue-400 mx-auto mb-4"
+                      className="text-[var(--color-accent)] mx-auto mb-4"
                     />
                     <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
                       <Icon
                         icon="mdi:alert-circle"
                         width={24}
                         height={24}
-                        className="text-yellow-400 inline mr-2"
+                        className="text-yellow-800 inline mr-2"
                       />
-                      <span className="winky-sans-font text-yellow-400 text-sm">
+                      <span className="winky-sans-font text-yellow-800 text-sm">
                         Buying or Selling $AIBOT during staking could increase
                         or decrease the rate that you earn points
                       </span>
                     </div>
-                    <p className="winky-sans-font text-white/70 text-sm">
+                    <p className="winky-sans-font text-[var(--color-accent)] text-sm">
                       Please read the information above carefully before
                       proceeding to stake your $AIBOT tokens.
                     </p>
@@ -996,13 +950,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
                   <div className="flex gap-3">
                     <button
                       onClick={handleClose}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={() => setSetupSubStep("eligibility")}
-                      className="flex-1 bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                      className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
                     >
                       Continue
                     </button>
@@ -1011,12 +965,13 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "setup" && setupSubStep === "eligibility" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     {eligibilityLoading ? (
                       <div className="flex flex-col items-center gap-3">
                         <div className="animate-spin h-8 w-8 border-b-2 border-[var(--color-accent)] rounded-full"></div>
-                        <p className="winky-sans-font text-white/70 text-sm">
+                        <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm">
                           Checking eligibility...
                         </p>
                       </div>
@@ -1032,11 +987,11 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           height={60}
                           className={`${
                             eligibility?.eligible
-                              ? "text-green-400"
+                              ? "text-green-600"
                               : "text-red-400"
                           } mx-auto mb-4`}
                         />
-                        <h4 className="maladroit-font text-xl text-white mb-4">
+                        <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                           Eligibility Check
                         </h4>
                         {eligibility?.eligible ? (
@@ -1045,9 +1000,9 @@ const StakeModal: React.FC<StakeModalProps> = ({
                               icon="mdi:check-circle"
                               width={24}
                               height={24}
-                              className="text-green-400 inline mr-2"
+                              className="text-green-600 inline mr-2"
                             />
-                            <span className="winky-sans-font text-green-400 text-sm">
+                            <span className="winky-sans-font text-green-600 text-sm">
                               You are eligible to stake $AIBOT!
                             </span>
                           </div>
@@ -1071,21 +1026,21 @@ const StakeModal: React.FC<StakeModalProps> = ({
                   <div className="flex gap-3">
                     <button
                       onClick={() => setSetupSubStep("info")}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
                     >
                       Back
                     </button>
                     {eligibility?.eligible ? (
                       <button
                         onClick={() => setCurrentStep("choice")}
-                        className="flex-1 bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                        className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
                       >
                         Continue
                       </button>
                     ) : (
                       <button
                         onClick={handleClose}
-                        className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                        className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
                       >
                         Close
                       </button>
@@ -1095,41 +1050,46 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "choice" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     <Icon
                       icon="mdi:layers"
                       width={60}
                       height={60}
-                      className="text-blue-400 mx-auto mb-4"
+                      className="text-[var(--color-accent)] mx-auto mb-4"
                     />
-                    <h4 className="maladroit-font text-xl text-white mb-4">
+                    <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                       Choose your staking option
                     </h4>
                   </div>
                   <div className="space-y-4 mb-6">
-                    <div className="bg-white/5 border border-white/10 rounded-sm p-4">
-                      <p className="winky-sans-font text-white/70 text-sm mb-3">
-                        <strong className="text-white">AI Bot points:</strong>{" "}
+                    <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm p-4">
+                      <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm mb-3">
+                        <strong className="text-[var(--color-text-primary)]">
+                          AI Bot points:
+                        </strong>{" "}
                         Only rewards points and tokens will remain in your
                         wallet
                       </p>
                       <button
                         onClick={() => handleStakingChoice("points")}
-                        className="w-full bg-[#010e1f] hover:text-white text-accent px-4 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                        className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-4 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
                       >
                         AI Bot Points Only
                       </button>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-sm p-4">
-                      <p className="winky-sans-font text-white/70 text-sm mb-3">
-                        <strong className="text-white">Points and APY:</strong>{" "}
+                    <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm p-4">
+                      <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm mb-3">
+                        <strong className="text-[var(--color-text-primary)]">
+                          Points and APY:
+                        </strong>{" "}
                         You will earn points and 5% APY, and the tokens will be
                         sent to smart contract
                       </p>
                       <button
                         onClick={() => handleStakingChoice("pointsAndAPY")}
-                        className="w-full bg-[#010e1f] hover:text-white text-accent px-4 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
+                        className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-4 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
                       >
                         AI Bot Points + 5% APY
                       </button>
@@ -1141,7 +1101,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
                         setCurrentStep("setup");
                         setSetupSubStep("eligibility");
                       }}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
                     >
                       Back
                     </button>
@@ -1150,18 +1110,21 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "apy" && apySubStep === "amount" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
-                    <h4 className="maladroit-font text-xl text-white mb-4">
+                    <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                       Enter Stake Amount
                     </h4>
                   </div>
 
                   <div className="space-y-4 mb-6">
-                    <div className="bg-white/5 border border-white/10 rounded-sm p-4">
+                    <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm p-4">
                       <div className="flex justify-between text-sm mb-2">
-                        <span className="text-white/70">Balance:</span>
-                        <span className="text-white font-medium">
+                        <span className="text-[var(--color-text-secondary)]">
+                          Balance:
+                        </span>
+                        <span className="text-[var(--color-text-primary)] font-medium">
                           {parseFloat(tokenBalance).toLocaleString()} $AIBOT
                         </span>
                       </div>
@@ -1171,7 +1134,7 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           value={stakeAmount}
                           onChange={(e) => setStakeAmount(e.target.value)}
                           placeholder="0.0"
-                          className="w-full bg-white/5 border border-white/20 rounded-sm px-4 py-1 text-white text-lg no-spinner focus:border-[var(--color-accent)] focus:outline-none transition-colors"
+                          className="w-full bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-sm px-4 py-1 text-[var(--color-text-primary)] text-lg no-spinner focus:border-[var(--color-accent)] focus:outline-none transition-colors"
                         />
                         <button
                           onClick={() => setStakeAmount(tokenBalance)}
@@ -1186,14 +1149,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
                   <div className="flex gap-3">
                     <button
                       onClick={() => setCurrentStep("choice")}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
                     >
                       Back
                     </button>
                     <button
                       onClick={handleAmountSubmit}
                       disabled={!stakeAmount || parseFloat(stakeAmount) <= 0}
-                      className="flex-1 bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Continue
                     </button>
@@ -1202,7 +1165,8 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "apy" && apySubStep === "approval" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     <Icon
                       icon="fa:check"
@@ -1210,10 +1174,10 @@ const StakeModal: React.FC<StakeModalProps> = ({
                       height={60}
                       className="text-[var(--color-accent)] mx-auto mb-4"
                     />
-                    <h4 className="maladroit-font text-xl text-white mb-4">
+                    <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                       Approve Tokens
                     </h4>
-                    <p className="winky-sans-font text-white/70 text-sm">
+                    <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm">
                       Approve {parseFloat(stakeAmount).toLocaleString()} $AIBOT
                       tokens for staking
                     </p>
@@ -1237,14 +1201,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
                     <button
                       onClick={() => setApySubStep("amount")}
                       disabled={isApproving}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 disabled:opacity-50"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200 disabled:opacity-50"
                     >
                       Back
                     </button>
                     <button
                       onClick={approveTokens}
                       disabled={isApproving}
-                      className="flex-1 bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80 disabled:opacity-50 flex items-center justify-center gap-2"
+                      className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
                     >
                       {isApproving ? (
                         <>
@@ -1260,18 +1224,19 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "apy" && apySubStep === "staking" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     <Icon
                       icon="mdi:lock"
                       width={60}
                       height={60}
-                      className="text-green-400 mx-auto mb-4"
+                      className="text-green-600 mx-auto mb-4"
                     />
-                    <h4 className="maladroit-font text-xl text-white mb-4">
+                    <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                       Stake Tokens
                     </h4>
-                    <p className="winky-sans-font text-white/70 text-sm">
+                    <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm">
                       Stake {parseFloat(stakeAmount).toLocaleString()} $AIBOT
                       tokens to earn 5% APY
                     </p>
@@ -1295,14 +1260,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
                     <button
                       onClick={() => setApySubStep("approval")}
                       disabled={isStaking}
-                      className="flex-1 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-sm border border-white/20 winky-sans-font transition-all duration-200 disabled:opacity-50"
+                      className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200 disabled:opacity-50"
                     >
                       Back
                     </button>
                     <button
                       onClick={stakeTokens}
                       disabled={isStaking}
-                      className="flex-1 bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80 disabled:opacity-50 flex items-center justify-center gap-2"
+                      className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
                     >
                       {isStaking ? (
                         <>
@@ -1318,18 +1283,19 @@ const StakeModal: React.FC<StakeModalProps> = ({
               )}
 
               {currentStep === "success" && (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-6">
+                <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-lg p-6 relative overflow-hidden">
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
                   <div className="text-center mb-6">
                     <Icon
                       icon="mdi:check-all"
                       width={60}
                       height={60}
-                      className="text-green-400 mx-auto mb-4"
+                      className="text-green-600 mx-auto mb-4"
                     />
-                    <h4 className="maladroit-font text-xl text-white mb-4">
+                    <h4 className="maladroit-font text-xl text-[var(--color-text-primary)] mb-4">
                       Staking Successful! 🎉
                     </h4>
-                    <p className="winky-sans-font text-white/70 text-sm mb-4">
+                    <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm mb-4">
                       You have successfully staked{" "}
                       {parseFloat(stakeAmount).toLocaleString()} $AIBOT tokens
                     </p>
@@ -1343,18 +1309,43 @@ const StakeModal: React.FC<StakeModalProps> = ({
                           className="text-blue-400 inline mr-2"
                         />
                         <span className="text-blue-400 text-sm">
-                          Transaction: {stakingTxHash.slice(0, 10)}...
+                          Transaction: {stakingTxHash.slice(0, 8)}...
                         </span>
                       </div>
                     )}
                   </div>
 
-                  <button
-                    onClick={handleClose}
-                    className="w-full bg-[#010e1f] hover:text-white text-accent px-6 py-3 rounded-sm border border-[var(--color-accent)]/30 cursor-pointer winky-sans-font font-medium transition-all duration-200 hover:bg-[var(--color-accent)]/80"
-                  >
-                    Close
-                  </button>
+                  <div className="flex gap-3">
+                    {stakingChoice === "pointsAndAPY" ? (
+                      <>
+                        <button
+                          onClick={() => {
+                            handleClose();
+                            // Automatically redirect to stake tab to show dashboard
+                            if (onSuccessfulStaking) {
+                              onSuccessfulStaking(stakingChoice, stakeAmount);
+                            }
+                          }}
+                          className="flex-1 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
+                        >
+                          View Dashboard
+                        </button>
+                        <button
+                          onClick={handleClose}
+                          className="flex-1 bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
+                        >
+                          Close
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={handleClose}
+                        className="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
+                      >
+                        Close
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

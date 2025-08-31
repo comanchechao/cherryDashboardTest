@@ -1145,7 +1145,7 @@ const Insights: React.FC = () => {
                   <div className="bg-[#7e1331] rounded-xl border-2 border-cherry-burgundy p-6">
                     <p className="winky-sans-font text-xl text-cherry-cream">
                       Cherry AI is projected to generate{" "}
-                      <span className="text-green-400">$100 million</span> in
+                      <span className="text-green-600">$100 million</span> in
                       revenue during its first operational years.
                     </p>
                   </div>
@@ -1282,7 +1282,7 @@ const Insights: React.FC = () => {
                         <div className="border-2 border-cherry-burgundy rounded-lg p-4">
                           <p className="winky-sans-font text-cherry-cream">
                             Our flagship product with{" "}
-                            <span className="text-green-400 font-bold">
+                            <span className="text-green-600 font-bold">
                               170K installs
                             </span>{" "}
                             and{" "}
@@ -1323,7 +1323,7 @@ const Insights: React.FC = () => {
                             </p>
                             <p>
                               Current Revenue:{" "}
-                              <span className="text-green-400 font-bold">
+                              <span className="text-green-600 font-bold">
                                 $500K/month
                               </span>{" "}
                               from trending slots and raids.
@@ -1348,12 +1348,12 @@ const Insights: React.FC = () => {
                         <div className="border-2 border-cherry-burgundy rounded-lg p-4">
                           <p className="winky-sans-font text-cherry-cream">
                             With over{" "}
-                            <span className="text-green-400 font-bold">
+                            <span className="text-green-600 font-bold">
                               10 million users
                             </span>
                             , Cherry Game is a major driver for user engagement
                             and revenue through task-based monetization.{" "}
-                            <span className="text-green-400 font-bold">
+                            <span className="text-green-600 font-bold">
                               $0.1 per user
                             </span>{" "}
                             for quest listing, supported by an active user base
@@ -1405,7 +1405,7 @@ const Insights: React.FC = () => {
                             In just three months, we've built a strong user base
                             and revenue stream. With the full rollout of ad
                             services and expanded raid features, we anticipate a{" "}
-                            <span className="text-green-400 font-bold text-2xl">
+                            <span className="text-green-600 font-bold text-2xl">
                               5x
                             </span>{" "}
                             revenue increase within the next five months.
@@ -1413,13 +1413,13 @@ const Insights: React.FC = () => {
                           <div className="flex flex-col md:flex-row md:gap-12 gap-2">
                             <p>
                               Current:{" "}
-                              <span className="text-green-400 font-bold">
+                              <span className="text-green-600 font-bold">
                                 $500K/month
                               </span>
                             </p>
                             <p>
                               5-Month Projection:{" "}
-                              <span className="text-green-400 font-bold">
+                              <span className="text-green-600 font-bold">
                                 $3.3M+/month
                               </span>
                             </p>
@@ -1452,7 +1452,7 @@ const Insights: React.FC = () => {
                             features, we project that within the next five
                             months, Cherry AI could achieve a revenue run rate
                             equivalent to{" "}
-                            <span className="text-green-400 font-bold">
+                            <span className="text-green-600 font-bold">
                               $8-9 million
                             </span>{" "}
                             annually.
@@ -1516,7 +1516,7 @@ const Insights: React.FC = () => {
               <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
                   Automated Buybacks & Burns (
-                  <span className="text-green-400">20%</span> of Cherry AI
+                  <span className="text-green-600">20%</span> of Cherry AI
                   Revenue)
                 </h3>
                 <div className="pl-4 space-y-3">
@@ -1537,7 +1537,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       Based on current Cherry AI's growth revenue, this could
-                      result in <span className="text-green-400">mid-6</span>{" "}
+                      result in <span className="text-green-600">mid-6</span>{" "}
                       figures monthly being bought and burned.
                     </p>
                   </div>
@@ -1566,7 +1566,7 @@ const Insights: React.FC = () => {
               </div>
               <div className="lg:w-5/6 bg-cherry-red rounded-xl border-4 border-cherry-burgundy  ] p-6">
                 <h3 className="maladroit-font text-2xl text-cherry-cream mb-3">
-                  Cherry Bomb (<span className="text-green-400">20%</span> of
+                  Cherry Bomb (<span className="text-green-600">20%</span> of
                   Cherry AI Revenue)
                 </h3>
                 <div className="pl-4 space-y-3">
@@ -1694,7 +1694,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       Stakers will receive{" "}
-                      <span className="text-green-400">2X</span> the voting
+                      <span className="text-green-600">2X</span> the voting
                       power, allowing for greater influence on platform
                       decisions.
                     </p>

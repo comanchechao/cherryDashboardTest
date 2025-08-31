@@ -54,10 +54,10 @@ const CommunityDataModels: React.FC = () => {
           <button
             key={card.id}
             onClick={() => handleTabChange(card.id)}
-            className={`px-3  w-full py-3 rounded-[8px] border transition-all duration-300 winky-sans-font text-xs md:text-xs cursor-pointer font-medium ${
+            className={`px-3  w-full py-3 rounded-full border transition-all duration-300 winky-sans-font text-xs md:text-xs cursor-pointer font-medium ${
               activeTab === card.id
                 ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-lg"
-                : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-[var(--color-glass-border)] hover:bg-[var(--color-accent)]/10 hover:border-[var(--color-accent)]/40"
+                : "bg-[var(--color-glass)] text-[var(--color-text-primary)] border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10 hover:border-[var(--color-accent)]/40"
             }`}
           >
             {card.title}
@@ -66,7 +66,7 @@ const CommunityDataModels: React.FC = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-[var(--color-glass)] border border-[var(--color-glass-border)] rounded-[20px] p-6 md:p-8 overflow-hidden backdrop-blur-xl w-full transition-all duration-300 ease-out min-h-[400px]">
+      <div className="bg-[var(--color-accent)] border border-[var(--color-glass-border)] rounded-[20px] p-6 md:p-4 overflow-hidden backdrop-blur-xl w-full transition-all duration-300 ease-out min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -82,13 +82,13 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ scale: 0.95 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-[var(--color-bg-secondary)]/20 max-w-3xl rounded-[16px] p-4 border border-[var(--color-accent)]/20"
+                className="  max-w-3xl rounded-[16px]     "
               >
-                <div className="aspect-video overflow-hidden rounded-[12px]">
+                <div className="    rounded-[16px]">
                   <img
                     src={activeCard?.image}
                     alt={activeCard?.imageAlt}
-                    className="w-full h-full object-cover"
+                    className="w-full rounded-[16px]   object-cover"
                   />
                 </div>
               </motion.div>
@@ -106,7 +106,7 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
-                className="maladroit-font text-2xl md:text-3xl text-[var(--color-text-primary)] mb-4"
+                className="maladroit-font text-2xl md:text-3xl text-white mb-4"
               >
                 {activeCard?.title}
               </motion.h3>
@@ -114,7 +114,7 @@ const CommunityDataModels: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="winky-sans-font text-[var(--color-text-secondary)]/90 text-sm md:text-base leading-relaxed whitespace-pre-line"
+                className="winky-sans-font text-white text-sm md:text-base leading-relaxed whitespace-pre-line"
               >
                 {activeCard?.content}
               </motion.p>

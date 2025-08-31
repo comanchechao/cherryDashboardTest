@@ -199,8 +199,8 @@ const RewardsLayout: React.FC = () => {
               {/* Main Content */}
               <div className="flex-1">
                 {/* Header Bar */}
-                <div className="flex lg:items-center items-start justify-between lg:flex-row flex-col gap-3 bg-white/5 border border-white/10 rounded-sm px-4 py-3 mb-6">
-                  <h2 className="maladroit-font text-2xl md:text-3xl text-white">
+                <div className="flex lg:items-center items-start justify-between lg:flex-row flex-col gap-3 bg-white/5 border border-black/20 rounded-sm px-4 py-3 mb-6">
+                  <h2 className="maladroit-font text-2xl md:text-3xl text-black">
                     {activeTab === "home" && "Home"}
                     {activeTab === "stake" && "Stake $AIBOT"}
                     {activeTab === "stakingLeaderboard" &&

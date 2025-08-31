@@ -3,142 +3,76 @@ import { Icon } from "@iconify/react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-[#01030f] via-[#011020] to-[#01030f] py-20">
-      {/* Advanced Background Effects */}
-      <div className="absolute inset-0">
-        {/* Multi-layered Radial Gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(67,103,201,0.15)_0%,transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(67,103,201,0.1)_0%,transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(67,103,201,0.08)_0%,transparent_70%)]"></div>
-
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(67,103,201,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(67,103,201,0.1) 1px, transparent 1px)`,
-              backgroundSize: "50px 50px",
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Floating Elements Layer */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Orbital Rings */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-96 h-96 border border-[#4367c9]/20 rounded-full animate-spin-slow"></div>
-          <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-[#4367c9]/15 rounded-full animate-spin-slow"
-            style={{ animationDirection: "reverse", animationDuration: "30s" }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-[#4367c9]/10 rounded-full animate-spin-slow"
-            style={{ animationDuration: "20s" }}
-          ></div>
-        </div>
-
-        {/* Floating Particles */}
-        <div className="absolute top-20 left-20 w-4 h-4 bg-[#4367c9] rounded-full animate-ping"></div>
-        <div
-          className="absolute top-40 right-32 w-3 h-3 bg-[#4367c9]/80 rounded-full animate-float"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute bottom-32 left-1/3 w-2 h-2 bg-[#4367c9]/60 rounded-full animate-float"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute top-1/3 right-20 w-5 h-5 bg-[#4367c9]/40 rounded-full animate-ping"
-          style={{ animationDelay: "0.5s" }}
-        ></div>
-
-        {/* Energy Waves */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#4367c9]/10 via-transparent to-transparent"></div>
-      </div>
-
+    <footer className="relative bg-white py-20">
+      <div className="absolute inset-0 bg-accent h-1 w-1/2 left-1/4"></div>
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
-        <div className="text-center mb-16">
-          <div className="inline-block relative">
+        <div className="mb-16">
+          {/* Logo and Company Name */}
+          <div className="flex items-center gap-3 mb-8">
             <img
-              src="https://storage.cherrybot.ai/footer.png"
+              src="/logoCherry.png"
               loading="lazy"
-              alt="Cherry mascot"
-              className="w-[28rem]  object-contain animate-float relative z-10"
+              alt="Cherry logo"
+              className="w-72 object-contain"
             />
-            {/* Glow Effect */}
-            <div className="absolute inset-0 w-32 h-32 bg-[#4367c9]/30 rounded-full blur-2xl animate-pulse"></div>
           </div>
 
-          <h2 className="maladroit-font text-4xl md:text-6xl font-bold text-white mt-8 mb-4">
-            Join the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4367c9] to-[#8baafe]">
-              Robotics Revolution
-            </span>
+          {/* Main Heading */}
+          <h2 className="text-black font-sans text-4xl md:text-6xl font-bold mb-4">
+            Join the Robotics Revolution
           </h2>
-          <p className="winky-sans-font text-lg text-[#a0a0a0] max-w-2xl mx-auto">
+
+          {/* Description */}
+          <p className="text-black font-sans text-base max-w-2xl mb-8">
             Connect with the Cherry AI community and stay updated with the
             latest developments in Robotics
           </p>
-        </div>
 
-        {/* Social Links Grid */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 max-w-4xl mx-auto">
-          {[
-            {
-              icon: "ic:baseline-telegram",
-              label: "Community",
-              url: "https://t.me/cherrycommunity",
-            },
-            {
-              icon: "mdi:twitter",
-              label: "Twitter",
-              url: "https://x.com/cherrytgbot",
-            },
-            {
-              icon: "mdi:robot",
-              label: "Bot",
-              url: "https://t.me/CherryTGBot",
-            },
-            {
-              icon: "mdi:chart-line",
-              label: "Trending",
-              url: "https://t.me/cherrytrending",
-            },
-          ].map((social, index) => (
-            <button
-              key={index}
-              onClick={() => window.open(social.url, "_blank")}
-              className="px-4 py-2 bg-[#011020]/60 cursor-pointer backdrop-blur-xl border border-[#4367c9]/20 rounded-lg hover:bg-[#4367c9]/20 hover:border-[#4367c9]/40 transition-all duration-300 text-white text-sm winky-sans-font flex items-center gap-2"
-            >
-              <Icon icon={social.icon} className="w-4 h-4" />
-              {social.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center justify-center mb-12">
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
-          <div className="w-3 h-3 bg-[#4367c9] rounded-full mx-4 animate-pulse"></div>
-          <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
-        </div>
-
-        {/* Copyright & Legal */}
-        <div className="text-center">
-          <div className="bg-[#011020]/60  flex items-center justify-center backdrop-blur-xl border border-[#4367c9]/20 rounded-2xl p-3 max-w-2xl mx-auto">
-            <p className="winky-sans-font text-[#a0a0a0]  ">
-              COPYRIGHT © 2025 CHERRY AI. ALL RIGHTS RESERVED.
-            </p>
+          {/* Social Links Grid */}
+          <div className="flex flex-wrap gap-4">
+            {[
+              {
+                icon: "ic:baseline-telegram",
+                label: "Community",
+                url: "https://t.me/cherrycommunity",
+              },
+              {
+                icon: "mdi:twitter",
+                label: "Twitter",
+                url: "https://x.com/cherrytgbot",
+              },
+              {
+                icon: "mdi:robot",
+                label: "Bot",
+                url: "https://t.me/CherryTGBot",
+              },
+              {
+                icon: "mdi:chart-line",
+                label: "Trending",
+                url: "https://t.me/cherrytrending",
+              },
+            ].map((social, index) => (
+              <button
+                key={index}
+                onClick={() => window.open(social.url, "_blank")}
+                className="px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200 text-sm font-sans flex items-center gap-2"
+              >
+                <Icon icon={social.icon} className="w-4 h-4 text-white" />
+                {social.label}
+              </button>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Bottom Energy Field */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#4367c9] to-transparent"></div>
+        {/* Copyright */}
+        <div className="text-right">
+          <p className="text-black font-sans text-sm">
+            COPYRIGHT © 2025 CHERRY AI. ALL RIGHTS RESERVED.
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };

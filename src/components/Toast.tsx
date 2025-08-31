@@ -116,7 +116,7 @@ const Toast: React.FC<ToastProps> = ({
                   {title}
                 </h3>
                 <p
-                  className={`winky-sans-font text-sm sm:text-base ${config.messageColor} leading-relaxed`}
+                  className={`winky-sans-font text-sm sm:text-sm ${config.messageColor} leading-relaxed`}
                 >
                   {message}
                 </p>
