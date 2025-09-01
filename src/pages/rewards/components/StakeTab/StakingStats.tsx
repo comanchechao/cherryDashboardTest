@@ -17,7 +17,6 @@ interface StakingStatsProps {
   pendingRewards?: string;
   apyEarned?: string;
   lockupTime?: number;
-  aibotEarned?: string;
   showUnstakeSection?: boolean;
   isUnlocking?: boolean;
   canStartUnlock?: boolean;
@@ -35,11 +34,9 @@ const StakingStats: React.FC<StakingStatsProps> = ({
   pendingRewards = "0",
   apyEarned = "5%",
   lockupTime = 0,
-  aibotEarned = "0",
   showUnstakeSection = false,
   isUnlocking = false,
-  canStartUnlock = true,
-  canCancelUnlock = false,
+
   canUnstake = false,
   onRefresh,
   onUnstakeSuccess,

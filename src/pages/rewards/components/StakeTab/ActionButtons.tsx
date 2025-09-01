@@ -4,7 +4,6 @@ import { ethers } from "ethers";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   startUnlock,
-  cancelUnlock,
   claimRewards,
   unstake,
   formatCooldownTime,

@@ -181,12 +181,13 @@ const StakeTab: React.FC<StakeTabProps> = ({
 
         setRemainingCooldown(newRemainingTime);
 
-        // Update button states based on remaining time
+        // When countdown completes, refresh contract data to get actual state
         if (newRemainingTime <= 0) {
-          setCanUnstake(true);
-          setCanCancelUnlock(false);
           clearInterval(interval);
           setCountdownInterval(null);
+
+          // ✅ Refresh contract data instead of hardcoding button states
+          fetchStakingDataLocal(false);
 
           // Show notification that unlock is complete
           showSuccess(
@@ -194,9 +195,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
             "You can now unstake your tokens.",
             5000
           );
-        } else {
-          setCanUnstake(false);
-          setCanCancelUnlock(true);
         }
       }, 1000);
 
