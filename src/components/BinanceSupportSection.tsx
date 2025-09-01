@@ -63,7 +63,7 @@ const BinanceSupportSection: React.FC = () => {
               <div className="flex items-center justify-between mt-8">
                 <div className="mb-6     rounded-full flex items-center justify-center  ">
                   <img
-                    src="https://storage.cherrybot.ai/cherryTextLogo.webp"
+                    src="/logoCherry.svg"
                     className="w-64 object-contain"
                     alt="CherryAI Logo"
                   />

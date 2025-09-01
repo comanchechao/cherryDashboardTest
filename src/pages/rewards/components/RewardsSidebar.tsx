@@ -22,7 +22,7 @@ const RewardsSidebar: React.FC<RewardsSidebarProps> = ({
       <div>
         <div className="maladroit-font text-xl text-black mb-4 px-2">
           <img
-            src="/logoCherry.png"
+            src="/logoCherry.svg"
             alt="CherryAI"
             className="w-full object-contain"
           />

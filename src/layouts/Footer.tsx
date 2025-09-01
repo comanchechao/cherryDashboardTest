@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           {/* Logo and Company Name */}
           <div className="flex items-center gap-3 mb-8">
             <img
-              src="/logoCherry.png"
+              src="/logoCherry.svg"
               loading="lazy"
               alt="Cherry logo"
               className="w-72 object-contain"

@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center group">
               <img
-                src="/logoCherry.png"
+                src="/logoCherry.svg"
                 className="w-44 object-contain"
                 alt=""
               />

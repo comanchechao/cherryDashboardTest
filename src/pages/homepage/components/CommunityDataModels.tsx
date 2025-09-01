@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Icon } from "@iconify/react";
+
+interface BenefitPoint {
+  icon?: string;
+  text: string;
+}
 
 interface InfoCard {
   id: string;
   title: string;
   image: string;
   imageAlt: string;
-  content: string;
+  benefits: BenefitPoint[];
 }
 
 const CommunityDataModels: React.FC = () => {
@@ -22,24 +28,72 @@ const CommunityDataModels: React.FC = () => {
       title: "Memetic Models Have Multiple Benefits",
       image: "/communityRobot.webp",
       imageAlt: "Robot holding a phone",
-      content:
-        "• Robots can quickly adapt to cultural shifts by recognizing trends and patterns in shared symbols or ideas.\n\n• Memetic learning enables more natural human-robot interaction by mirroring humor, slang, and collective behaviors.\n\n• It improves social integration, allowing robots to align with community norms and values faster.\n\n• Robots gain predictive insight into collective behavior, making them more effective in group settings or markets.",
+      benefits: [
+        {
+          icon: "/adapt.webp", // Placeholder for icon like "arcticons:cloud-mimedia"
+          text: "Robots can quickly adapt to cultural shifts by recognizing trends and patterns in shared symbols or ideas.",
+        },
+        {
+          icon: "arcticons:cloud-mimedia", // Placeholder for icon
+          text: "Memetic learning enables more natural human-robot interaction by mirroring humor, slang, and collective behaviors.",
+        },
+        {
+          icon: "solar:buildings-2-broken", // Placeholder for icon
+          text: "It improves social integration, allowing robots to align with community norms and values faster.",
+        },
+        {
+          icon: "solar:dna-broken", // Placeholder for icon
+          text: "Robots gain predictive insight into collective behavior, making them more effective in group settings or markets.",
+        },
+      ],
     },
     {
       id: "community-interaction",
       title: "Community Interaction Models Have Multiple Benefits",
       image: "/analyticsRobot.webp",
       imageAlt: "Robot holding a tablet",
-      content:
-        "• Robots can hold conversations that feel more natural and human-like, which builds stronger trust and engagement.\n\n• By learning tone, gestures, and timing, robots improve their ability to navigate complex social interactions.\n\n• Human interaction models allow robots to adapt to unique personalities, preferences, and communication styles.\n\n• Robots become more effective collaborators, anticipating needs and supporting teamwork in dynamic settings.",
+      benefits: [
+        {
+          icon: "token:paid", // Placeholder for icon
+          text: "Robots can hold conversations that feel more natural and human-like, which builds stronger trust and engagement.",
+        },
+        {
+          icon: "carbon:ibm-application-and-discovery-delivery-intelligence", // Placeholder for icon
+          text: "By learning tone, gestures, and timing, robots improve their ability to navigate complex social interactions.",
+        },
+        {
+          icon: "carbon:chart-custom", // Placeholder for icon
+          text: "Human interaction models allow robots to adapt to unique personalities, preferences, and communication styles.",
+        },
+        {
+          icon: "streamline-sharp:page-setting", // Placeholder for icon
+          text: "Robots become more effective collaborators, anticipating needs and supporting teamwork in dynamic settings.",
+        },
+      ],
     },
     {
       id: "community-sentiment",
       title: "Community Sentiment Models Have Multiple Benefits",
       image: "/sniperRobot.webp",
       imageAlt: "Robot on a laptop",
-      content:
-        "• Robots can gauge public mood, letting them respond in ways that align with collective emotions.\n\n• Sentiment models help robots avoid negative reactions by adapting tone and behavior to community feelings.\n\n• They allow robots to spot early shifts in opinion, useful for predicting social or market trends.\n\n• Robots become better mediators and assistants by fostering harmony within groups and communities.",
+      benefits: [
+        {
+          icon: "carbon:area-custom", // Placeholder for icon
+          text: "Robots can gauge public mood, letting them respond in ways that align with collective emotions.",
+        },
+        {
+          icon: "game-icons:avoidance", // Placeholder for icon
+          text: "Sentiment models help robots avoid negative reactions by adapting tone and behavior to community feelings.",
+        },
+        {
+          icon: "lucide:trending-up-down", // Placeholder for icon
+          text: "They allow robots to spot early shifts in opinion, useful for predicting social or market trends.",
+        },
+        {
+          icon: "token:harmony", // Placeholder for icon
+          text: "Robots become better mediators and assistants by fostering harmony within groups and communities.",
+        },
+      ],
     },
   ];
 
@@ -110,14 +164,47 @@ const CommunityDataModels: React.FC = () => {
               >
                 {activeCard?.title}
               </motion.h3>
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
-                className="winky-sans-font text-white text-sm md:text-base leading-relaxed whitespace-pre-line"
+                className="winky-sans-font text-white text-sm md:text-base leading-relaxed space-y-4"
               >
-                {activeCard?.content}
-              </motion.p>
+                {activeCard?.benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    {/* Icon Container */}
+                    <div className=" w-14 h-14 bg-white rounded-tr-xl rounded-bl-xl flex items-center justify-center">
+                      {benefit.icon ? (
+                        <div className="w-full flex items-center justify-center h-full text-white">
+                          {benefit.icon.startsWith("/") ||
+                          benefit.icon.startsWith("http") ? (
+                            // Image file
+                            <img
+                              src={benefit.icon}
+                              alt="benefit icon"
+                              className="w-10 h-10 object-contain"
+                            />
+                          ) : (
+                            // Icon library reference (like arcticons:cloud-mimedia)
+                            <Icon
+                              icon={benefit.icon}
+                              className="text-black"
+                              width={40}
+                              height={40}
+                            />
+                          )}
+                        </div>
+                      ) : (
+                        <div className="w-6 h-6 border border-white/30 rounded-full flex items-center justify-center">
+                          <span className="text-xs opacity-50">•</span>
+                        </div>
+                      )}
+                    </div>
+                    {/* Text Content */}
+                    <p className="flex-1">{benefit.text}</p>
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </motion.div>
         </AnimatePresence>

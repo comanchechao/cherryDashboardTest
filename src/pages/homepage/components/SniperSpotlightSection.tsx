@@ -11,25 +11,6 @@ const SniperSpotlightSection: React.FC = () => {
 
   return (
     <div className="section_sniper_spotlight py-24 relative overflow-hidden">
-      {/* Advanced Background Effects */}
-      <div className="absolute inset-0">
-        {/* Multi-layered Radial Gradients */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_65%,rgba(67,103,201,0.14)_0%,transparent_55%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(67,103,201,0.09)_0%,transparent_55%)]"></div>
-
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-18">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(67,103,201,0.09) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(67,103,201,0.09) 1px, transparent 1px)`,
-              backgroundSize: "70px 70px",
-            }}
-          ></div>
-        </div>
-      </div>
-
       {/* Floating Elements Layer */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Orbital Rings */}
@@ -138,10 +119,6 @@ const SniperSpotlightSection: React.FC = () => {
 
             {/* Tabs Section */}
             <div className="w-full  ">
-              {/* Floating Decorative Elements */}
-              <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-ping"></div>
-              <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/20 rounded-full animate-float"></div>
-
               <div className="relative z-10">
                 <div className="flex flex-col w-full gap-10 items-center justify-center">
                   <div className="flex w-full items-center justify-center gap-4">

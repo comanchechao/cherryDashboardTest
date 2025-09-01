@@ -1,24 +1,12 @@
 import { BigNumber, Contract, ethers } from "ethers";
 
 // Addresses from staking-react.ts
-export const STAKING_ADDRESS = "0xF33a3A93C787989aa45426fE77c04555B8452C43";
+export const STAKING_ADDRESS = "0x98aBda27FC27Ad5DF0555789824CE3780071a728";
 export const TOKEN_ADDRESS = "0x96AdaA33e175F4A7f20c099730bc78dd0B45745B";
 
-// BSC configuration with fallbacks
+// BSC configuration with QuickNode as main endpoint
 export const BSC_RPC_URLS = [
-  "https://bscrpc.pancakeswap.finance",
-  "https://bsc-dataseed1.binance.org",
-  "https://bsc-dataseed2.binance.org",
-  "https://bsc-dataseed3.binance.org",
-  "https://bsc-dataseed4.binance.org",
-  "https://bsc-dataseed1.defibit.io",
-  "https://bsc-dataseed2.defibit.io",
-  "https://bsc-dataseed3.defibit.io",
-  "https://bsc-dataseed4.defibit.io",
-  "https://bsc-dataseed1.ninicoin.io",
-  "https://bsc-dataseed2.ninicoin.io",
-  "https://bsc-dataseed3.ninicoin.io",
-  "https://bsc-dataseed4.ninicoin.io",
+  "https://boldest-fluent-yard.bsc.quiknode.pro/03f66e9b4ec1eb73d278a7951e1ee60b36353f63/",
 ];
 
 // Legacy export for backward compatibility
@@ -33,6 +21,9 @@ const stakingAbi = [
   "function getEarnedRewardTokens(address _staker) view returns (uint256)",
   "function stakeAmount(address _staker) view returns (uint256)",
   "function lockTimePeriod() view returns (uint48)",
+  "function startUnlock() returns (bool)",
+  "function cancelUnlock() returns (bool)",
+  "function getUnlockTime(address _staker) view returns (uint256)",
 ];
 
 const erc20Abi = [
@@ -52,6 +43,10 @@ export interface StakingData {
   cooldownStartTime: number;
   remainingCooldown: number;
   canUnstake: boolean;
+  isUnlocking: boolean;
+  unlockStartTime: number;
+  canStartUnlock: boolean;
+  canCancelUnlock: boolean;
 }
 
 export interface CooldownInfo {
@@ -142,7 +137,15 @@ export function getBestProvider(
   preferWeb3: boolean = true
 ): ethers.providers.Provider {
   if (preferWeb3 && window.ethereum) {
-    return new ethers.providers.Web3Provider(window.ethereum);
+    try {
+      return new ethers.providers.Web3Provider(window.ethereum);
+    } catch (error) {
+      console.warn(
+        "Failed to create Web3Provider, falling back to BSC RPC:",
+        error
+      );
+      return createBSCProvider();
+    }
   }
   return createBSCProvider();
 }
@@ -195,26 +198,45 @@ export async function fetchStakingData(
   userAddress: string
 ): Promise<StakingData> {
   try {
-    // Get user staked amount and earned rewards
-    const [stakedResult, earnedResult, lockTimePeriod] = await Promise.all([
-      getUserStaked(provider as ethers.providers.Web3Provider, userAddress),
-      getUserEarned(provider as ethers.providers.Web3Provider, userAddress),
-      getLockTimePeriod(provider as ethers.providers.Web3Provider),
-    ]);
+    console.log("🚀 [fetchStakingData] Starting data fetch for:", userAddress);
+
+    // Get user staked amount, earned rewards, and unlock status
+    const [stakedResult, earnedResult, lockTimePeriod, unlockStatus] =
+      await Promise.all([
+        getUserStaked(provider as ethers.providers.Web3Provider, userAddress),
+        getUserEarned(provider as ethers.providers.Web3Provider, userAddress),
+        getLockTimePeriod(provider as ethers.providers.Web3Provider),
+        getUnlockStatus(provider, userAddress),
+      ]);
 
     // Calculate cooldown info based on lock time period
     const cooldownInfo = getCooldownInfo(lockTimePeriod);
 
-    return {
+    const finalData = {
       stakedAmount: stakedResult.formatted,
       pendingRewards: earnedResult.formatted,
-      isInCooldown: cooldownInfo.isInCooldown,
-      cooldownStartTime: cooldownInfo.cooldownStartTime,
-      remainingCooldown: cooldownInfo.remainingCooldown,
-      canUnstake: cooldownInfo.remainingCooldown <= 0,
+      isInCooldown: unlockStatus.isUnlocking,
+      cooldownStartTime: unlockStatus.unlockStartTime,
+      remainingCooldown: unlockStatus.remainingCooldown,
+      canUnstake: unlockStatus.canUnstake,
+      isUnlocking: unlockStatus.isUnlocking,
+      unlockStartTime: unlockStatus.unlockStartTime,
+      canStartUnlock: unlockStatus.canStartUnlock,
+      canCancelUnlock: unlockStatus.canCancelUnlock,
     };
+
+    // LOG FINAL DATA BEING SENT TO UI
+    console.log("📤 [fetchStakingData] Final data being sent to UI:", {
+      ...finalData,
+      lockTimePeriodFromContract: lockTimePeriod,
+      cooldownInfoCalculated: cooldownInfo,
+      stakedResultRaw: stakedResult,
+      earnedResultRaw: earnedResult,
+    });
+
+    return finalData;
   } catch (error) {
-    console.error("Error fetching staking data:", error);
+    console.error("❌ [fetchStakingData] Error fetching staking data:", error);
     // Return default values on error
     return {
       stakedAmount: "0",
@@ -223,6 +245,10 @@ export async function fetchStakingData(
       cooldownStartTime: 0,
       remainingCooldown: 0,
       canUnstake: true,
+      isUnlocking: false,
+      unlockStartTime: 0,
+      canStartUnlock: true,
+      canCancelUnlock: false,
     };
   }
 }
@@ -348,6 +374,143 @@ export async function claimRewards(provider: ethers.providers.Web3Provider) {
   const staking = getStaking(signer);
   const tx = await staking.claim();
   return tx.wait();
+}
+
+// Start unlock cooldown
+export async function startUnlock(provider: ethers.providers.Web3Provider) {
+  console.log("🔓 [startUnlock] Starting unlock transaction...");
+  const signer = await getSigner(provider);
+  const staking = getStaking(signer);
+  const tx = await staking.startUnlock();
+  console.log("⏳ [startUnlock] Transaction sent:", tx.hash);
+  const receipt = await tx.wait();
+  console.log("✅ [startUnlock] Transaction confirmed:", {
+    transactionHash: receipt.transactionHash,
+    blockNumber: receipt.blockNumber,
+    gasUsed: receipt.gasUsed?.toString(),
+  });
+  return receipt;
+}
+
+// Cancel unlock cooldown
+export async function cancelUnlock(provider: ethers.providers.Web3Provider) {
+  console.log("❌ [cancelUnlock] Starting cancel unlock transaction...");
+  const signer = await getSigner(provider);
+  const staking = getStaking(signer);
+  const tx = await staking.cancelUnlock();
+  console.log("⏳ [cancelUnlock] Transaction sent:", tx.hash);
+  const receipt = await tx.wait();
+  console.log("✅ [cancelUnlock] Transaction confirmed:", {
+    transactionHash: receipt.transactionHash,
+    blockNumber: receipt.blockNumber,
+    gasUsed: receipt.gasUsed?.toString(),
+  });
+  return receipt;
+}
+
+// Get unlock status for a user
+export async function getUnlockStatus(
+  provider: ethers.providers.Provider,
+  userAddress: string
+): Promise<{
+  isUnlocking: boolean;
+  unlockStartTime: number;
+  canStartUnlock: boolean;
+  canCancelUnlock: boolean;
+  canUnstake: boolean;
+  remainingCooldown: number;
+}> {
+  try {
+    const staking = getStaking(provider);
+    const unlockTime = await staking.getUnlockTime(userAddress);
+
+    // LOG ALL RAW DATA
+    console.log("🔍 [getUnlockStatus] Raw contract data:", {
+      userAddress,
+      unlockTimeRaw: unlockTime,
+      unlockTimeString: unlockTime.toString(),
+      unlockTimeBigNumber: unlockTime.toBigInt?.() || "N/A",
+      unlockTimeHex: unlockTime.toHexString(),
+    });
+
+    const unlockTimeString = unlockTime.toString();
+    const MAX_UINT48 = "281474976710655"; // 0xffffffffffff
+
+    // Check if this is the max value (indicating no unlock time set or cancelled)
+    const isMaxValue =
+      unlockTimeString === MAX_UINT48 ||
+      unlockTime.eq(ethers.constants.MaxUint256);
+
+    console.log("🔍 [getUnlockStatus] Value analysis:", {
+      unlockTimeString,
+      MAX_UINT48,
+      isMaxValue,
+      isZero: unlockTime.isZero(),
+    });
+
+    let unlockEndTime: number;
+    let isUnlocking: boolean;
+
+    if (isMaxValue || unlockTime.isZero()) {
+      // No unlock time set or cancelled unlock
+      unlockEndTime = 0;
+      isUnlocking = false;
+    } else {
+      // Valid unlock end time (when unlock period completes)
+      unlockEndTime = unlockTime.toNumber();
+      isUnlocking = true;
+    }
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    const cooldownPeriod = 24 * 60 * 60; // 24 hours in seconds
+
+    // Calculate remaining cooldown time
+    // Note: unlockEndTime from contract is when the unlock period completes
+    const remainingCooldown = isUnlocking
+      ? Math.max(0, unlockEndTime - currentTime)
+      : 0;
+
+    const canUnstake = isUnlocking && remainingCooldown <= 0;
+    const canStartUnlock = !isUnlocking;
+    const canCancelUnlock = isUnlocking && remainingCooldown > 0;
+
+    // LOG ALL CALCULATED VALUES
+    console.log("📊 [getUnlockStatus] Calculated values:", {
+      unlockEndTime,
+      currentTime,
+      cooldownPeriod,
+      isUnlocking,
+      remainingCooldown,
+      canUnstake,
+      canStartUnlock,
+      canCancelUnlock,
+      timeDifference: isUnlocking ? unlockEndTime - currentTime : 0,
+      unlockEndTimeDate:
+        isUnlocking && unlockEndTime > 0
+          ? new Date(unlockEndTime * 1000).toISOString()
+          : "N/A",
+      currentTimeDate: new Date(currentTime * 1000).toISOString(),
+    });
+
+    return {
+      isUnlocking,
+      unlockStartTime: unlockEndTime, // Keep interface the same for compatibility
+      canStartUnlock,
+      canCancelUnlock,
+      canUnstake,
+      remainingCooldown,
+    };
+  } catch (error) {
+    console.error("❌ [getUnlockStatus] Error getting unlock status:", error);
+    return {
+      isUnlocking: false,
+      unlockStartTime: 0,
+      canStartUnlock: true,
+      canCancelUnlock: false,
+      canUnstake: false,
+      remainingCooldown: 0,
+    };
+  }
 }
 
 // Legacy function names for compatibility

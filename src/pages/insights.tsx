@@ -1615,7 +1615,7 @@ const Insights: React.FC = () => {
                     />
                     <p className="winky-sans-font text-lg text-cherry-cream">
                       Will be used to buy $AIBOT and offer unique staking
-                      opportunities with high APR. Stakers can access
+                      opportunities with high APY. Stakers can access
                       third-party airdrops, which will be delivered to the
                       highest stakers by pool size.
                     </p>

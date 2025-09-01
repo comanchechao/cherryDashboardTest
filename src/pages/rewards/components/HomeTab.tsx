@@ -72,7 +72,7 @@ const HomeTab: React.FC = () => {
             ) : cherryStats?.result?.holders ? (
               <div>{cherryStats.result.holders.toLocaleString()}</div>
             ) : (
-              <div>-</div>
+              <div>2,261</div>
             )}
           </div>
         </div>
@@ -97,10 +97,10 @@ const HomeTab: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
         <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">
           <div className="winky-sans-font text-black text-xs lg:text-sm mb-2">
-            APR
+            APY
           </div>
           <div className="maladroit-font text-2xl lg:text-3xl text-black">
-            5% - 17%
+            5%
           </div>
         </div>
         <div className="bg-white/5 border border-black/20 rounded-sm p-3 lg:p-4">

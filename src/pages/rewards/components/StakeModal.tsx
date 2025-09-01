@@ -116,7 +116,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
 
   // Initialize provider - use MetaMask if available, fallback to BSC RPC
   // Note: For transactions, we'll create fresh Web3Provider instances to avoid signer issues
-  const provider = getBestProvider();
+  const provider = React.useMemo(() => {
+    try {
+      return getBestProvider();
+    } catch (error) {
+      console.warn("Failed to initialize provider, using BSC fallback:", error);
+      return getBestProvider(false); // Force BSC fallback
+    }
+  }, []);
 
   // Progress steps configuration
   const steps: { key: ModalStep; label: string; icon: string }[] = [

@@ -405,20 +405,23 @@ class MarketDataService {
   // Helper method to get exchange logo based on exchange name
   getExchangeLogo(exchangeName: string): string {
     const exchangeLogos: { [key: string]: string } = {
-      "Binance Alpha": "/binanceAlpha.png",
-      MEXC: "/mexc.png",
-      Gate: "/gate.png",
-      "PancakeSwap v3 (BSC)": "/pancakeSwapLogo.png",
-      "Uniswap v3 (BSC)": "/pancakeSwapLogo.png", // Using PancakeSwap logo as fallback
-      BitMart: "/mexc.png", // Using MEXC logo as fallback
-      "XT.COM": "/mexc.png", // Using MEXC logo as fallback
-      Toobit: "/mexc.png", // Using MEXC logo as fallback
-      Ourbit: "/mexc.png", // Using MEXC logo as fallback
-      PancakeSwap: "/pancakeSwapLogo.png",
-      Uniswap: "/pancakeSwapLogo.png",
+      "Binance Alpha": "https://storage.cherrybot.ai/binanceAlpha.png",
+      MEXC: "https://storage.cherrybot.ai/mexc.png",
+      Gate: "https://storage.cherrybot.ai/gate.png",
+      "PancakeSwap v3 (BSC)":
+        "https://storage.cherrybot.ai/pancakeSwapLogo.png",
+      "Uniswap v3 (BSC)": "https://storage.cherrybot.ai/pancakeSwapLogo.png", // Using PancakeSwap logo as fallback
+      BitMart: "https://storage.cherrybot.ai/mexc.png", // Using MEXC logo as fallback
+      "XT.COM": "https://storage.cherrybot.ai/mexc.png", // Using MEXC logo as fallback
+      Toobit: "https://storage.cherrybot.ai/mexc.png", // Using MEXC logo as fallback
+      Ourbit: "https://storage.cherrybot.ai/mexc.png", // Using MEXC logo as fallback
+      PancakeSwap: "https://storage.cherrybot.ai/pancakeSwapLogo.png",
+      Uniswap: "https://storage.cherrybot.ai/pancakeSwapLogo.png",
     };
 
-    return exchangeLogos[exchangeName] || "/mexc.png";
+    return (
+      exchangeLogos[exchangeName] || "https://storage.cherrybot.ai/mexc.png"
+    );
   }
 
   // Helper method to format volume
