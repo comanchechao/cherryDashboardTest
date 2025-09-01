@@ -137,6 +137,11 @@ const StakingStats: React.FC<StakingStatsProps> = ({
 
   const displayLockupTime = (() => {
     if (showUnstakeSection) {
+      // Only show unlock data if wallet is connected
+      if (!isConnected) {
+        return "Connect wallet";
+      }
+
       if (isUnlocking && lockupTime && lockupTime > 0) {
         // Show remaining countdown time during unlock period
         return formatCooldownTime(lockupTime);
@@ -179,48 +184,47 @@ const StakingStats: React.FC<StakingStatsProps> = ({
             </span>
           </div>
 
-          <div className="flex flex-col justify-between items-start">
-            <span className="maladroit-font text-black/70 text-sm">
-              Your APY:
-            </span>
-            <span className="maladroit-font text-base lg:text-lg text-black/70">
-              {apyEarned}
-            </span>
-          </div>
+          {/* Only show APY, Lockup Time, and Status for APY Stake section */}
+          {showUnstakeSection && (
+            <>
+              <div className="flex flex-col justify-between items-start">
+                <span className="maladroit-font text-black/70 text-sm">
+                  Your APY:
+                </span>
+                <span className="maladroit-font text-base lg:text-lg text-black/70">
+                  {apyEarned}
+                </span>
+              </div>
 
-          <div className="flex flex-col justify-between items-start">
-            <span className="maladroit-font text-black/70 text-sm">
-              Lockup Time:
-            </span>
-            <span className="maladroit-font text-base lg:text-lg text-black/70">
-              {displayLockupTime}
-            </span>
-          </div>
+              <div className="flex flex-col justify-between items-start">
+                <span className="maladroit-font text-black/70 text-sm">
+                  Lockup Time:
+                </span>
+                <span className="maladroit-font text-base lg:text-lg text-black/70">
+                  {displayLockupTime}
+                </span>
+              </div>
 
-          <div className="flex flex-col justify-between items-start">
-            <span className="text-black/70 text-sm">
-              {showUnstakeSection ? "Status:" : "$AIBOT Earned:"}
-            </span>
-            <span className="maladroit-font text-base lg:text-lg text-black/70">
-              {showUnstakeSection ? (
-                <div className="flex items-center gap-2">
-                  {isUnlocking ? (
-                    <>
-                      <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
-                      <span className="text-orange-600">Unlocking</span>
-                    </>
-                  ) : (
-                    <>
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-green-600">Active</span>
-                    </>
-                  )}
-                </div>
-              ) : (
-                "Coming Soon"
-              )}
-            </span>
-          </div>
+              <div className="flex flex-col justify-between items-start">
+                <span className="text-black/70 text-sm">Status:</span>
+                <span className="maladroit-font text-base lg:text-lg text-black/70">
+                  <div className="flex items-center gap-2">
+                    {isUnlocking ? (
+                      <>
+                        <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                        <span className="text-orange-600">Unlocking</span>
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span className="text-green-600">Active</span>
+                      </>
+                    )}
+                  </div>
+                </span>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Unstake Section - Only show for APY staking */}

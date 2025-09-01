@@ -485,6 +485,14 @@ const StakeModal: React.FC<StakeModalProps> = ({
     }
   }, [isConnected, currentStep, setupSubStep]);
 
+  // Ensure modal always starts with wallet connection if not connected
+  useEffect(() => {
+    if (isOpen && !isConnected) {
+      setCurrentStep("setup");
+      setSetupSubStep("wallet");
+    }
+  }, [isOpen, isConnected]);
+
   useEffect(() => {
     if (
       currentStep === "setup" &&

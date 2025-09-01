@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import { ethers } from "ethers";
 import { motion, AnimatePresence } from "framer-motion";
+import { useWallet } from "../../../../components/BSCWalletProvider";
+import BSCWalletButton from "../../../../components/BSCWalletButton";
 import {
   startUnlock,
   claimRewards,
@@ -38,10 +40,25 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   onRefresh,
   onSuccess,
 }) => {
+  const { isConnected } = useWallet();
   const [isStartingUnlock, setIsStartingUnlock] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
   const [isWithdrawing, setIsWithdrawing] = useState(false);
   const [showClaimModal, setShowClaimModal] = useState(false);
+  const [showWalletModal, setShowWalletModal] = useState(false);
+
+  // Check wallet connection before proceeding
+  const checkWalletConnection = (callback: () => void) => {
+    if (!isConnected) {
+      setShowWalletModal(true);
+      return;
+    }
+    callback();
+  };
+
+  const handleStakeClick = () => {
+    checkWalletConnection(onStakeClick);
+  };
 
   const handleStartUnlock = async () => {
     setIsStartingUnlock(true);
@@ -61,7 +78,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   };
 
   const handleClaimClick = () => {
-    setShowClaimModal(true);
+    checkWalletConnection(() => setShowClaimModal(true));
   };
 
   const handleConfirmClaim = async () => {
@@ -127,7 +144,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         </button>
 
         <button
-          onClick={onStakeClick}
+          onClick={handleStakeClick}
           className="flex gap-2 items-center justify-center bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-6 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
         >
           <Icon
@@ -144,15 +161,15 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
     <div className="flex justify-center gap-3 flex-wrap">
       {/* Stake Button */}
       <button
-        onClick={onStakeClick}
+        onClick={handleStakeClick}
         className="flex items-center justify-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent)]/80 text-white px-4 py-3 rounded-sm border border-[var(--color-accent)] cursor-pointer winky-sans-font font-medium transition-all duration-200"
       >
         <Icon icon="mdi:lock" className="w-5 h-5 text-white" />
         <span>Stake $AIBOT</span>
       </button>
 
-      {/* Unstake/Unlock Buttons */}
-      {hasStakedTokens && (
+      {/* Unstake/Unlock Buttons - Only show when wallet is connected */}
+      {isConnected && hasStakedTokens && (
         <>
           {canStartUnlock && (
             <button
@@ -177,7 +194,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           {isUnlocking && remainingCooldown > 0 && (
             <div className="flex items-center justify-center gap-2 bg-orange-500/10 text-orange-600 border border-orange-500/20 px-4 py-3 rounded-sm winky-sans-font text-sm">
               <Icon icon="mdi:timer-sand" className="w-5 h-5" />
-              <span>Unlock: {formatCooldownTime(remainingCooldown)}</span>
+              <span>{formatCooldownTime(remainingCooldown)}</span>
             </div>
           )}
 
@@ -203,8 +220,8 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         </>
       )}
 
-      {/* Claim Button - Always show when user has staked tokens */}
-      {hasStakedTokens && (
+      {/* Claim Button - Only show when wallet connected and user has staked tokens */}
+      {isConnected && hasStakedTokens && (
         <button
           onClick={handleClaimClick}
           disabled={isClaiming}
@@ -322,6 +339,67 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
                   </div>
                 </>
               )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Wallet Connection Modal */}
+      <AnimatePresence>
+        {showWalletModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowWalletModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{
+                type: "spring",
+                damping: 25,
+                stiffness: 300,
+              }}
+              className="bg-[var(--color-bg-primary)] border border-[var(--color-glass-border)] rounded-lg p-8 max-w-md w-full backdrop-blur-sm relative overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Background decorative elements */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-4 right-4 w-12 h-12 bg-[var(--color-accent)]/10 rounded-full animate-float"></div>
+                <div className="absolute bottom-4 left-4 w-8 h-8 bg-[var(--color-accent)]/8 rounded-full animate-float-slow"></div>
+                <div
+                  className="absolute top-1/2 left-4 w-6 h-6 bg-[var(--color-accent)]/6 rounded-full animate-float"
+                  style={{ animationDelay: "2s" }}
+                ></div>
+              </div>
+
+              {/* Wallet Connection Required */}
+              <div className="text-center mb-6 relative z-10">
+                <Icon
+                  icon="mdi:wallet"
+                  width={60}
+                  height={60}
+                  className="text-[var(--color-accent)] mx-auto mb-4"
+                />
+                <h3 className="maladroit-font text-2xl text-[var(--color-text-primary)] mb-2">
+                  Connect Wallet
+                </h3>
+                <p className="winky-sans-font text-[var(--color-text-secondary)] text-sm mb-4">
+                  You need to connect your wallet to continue with this action.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 relative z-10">
+                <BSCWalletButton />
+                <button
+                  onClick={() => setShowWalletModal(false)}
+                  className="bg-[var(--color-glass)] hover:bg-[var(--color-glass-border)] text-[var(--color-text-primary)] px-6 py-3 rounded-sm border border-[var(--color-glass-border)] winky-sans-font transition-all duration-200"
+                >
+                  Cancel
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}

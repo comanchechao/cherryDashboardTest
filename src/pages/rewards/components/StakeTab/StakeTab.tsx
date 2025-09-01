@@ -8,6 +8,7 @@ import {
 
 // Import modular components
 import StakingStats from "./StakingStats";
+import StakingOverview from "./StakingOverview";
 import InformationBoxes from "./InformationBoxes";
 import ActionButtons from "./ActionButtons";
 import StakingChoice from "./StakingChoice";
@@ -340,55 +341,98 @@ const StakeTab: React.FC<StakeTabProps> = ({
     return (
       <div className="space-y-6">
         {/* Main Staking Section */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
-          <div>
-            <h3 className=" text-black text-xl font-bold mb-4 text-center">
-              Points Stake
-            </h3>
-            <StakingStats
-              isConnected={isConnected}
-              balance={currentBalance}
-              points={currentPoints}
-            />
-          </div>
-          <div>
-            <h3 className=" text-black text-xl font-bold mb-4 text-center">
-              APY Stake
-            </h3>
-            <StakingStats
-              isConnected={isConnected}
-              balance={currentBalance}
-              points={currentPoints}
+        {!isConnected ? (
+          // Not connected: Show StakingOverview on left, robot image on right, with info and buttons below
+          <>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
+              <div>
+                <h3 className="text-black text-xl font-bold mb-4 text-center">
+                  Staking Overview
+                </h3>
+                <StakingOverview balance={currentBalance} />
+              </div>
+              <div>
+                <h3 className="text-black text-xl font-bold mb-4 text-center">
+                  Connect Wallet
+                </h3>
+                <div className="rounded-sm w-full h-fit overflow-hidden flex flex-col items-center justify-center bg-white/5 border border-black/20 p-8">
+                  <img
+                    src="https://storage.cherrybot.ai/dashboardRobot.png"
+                    alt="Robot Image"
+                    className="h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* Information boxes when not connected */}
+            <InformationBoxes />
+            {/* Action buttons when not connected */}
+            <ActionButtons
+              onStakeClick={onStakeClick}
               stakedAmount={stakedAmount}
               pendingRewards={pendingRewards}
-              apyEarned="5%"
-              lockupTime={remainingCooldown}
-              aibotEarned={pendingRewards}
-              showUnstakeSection={true}
               isUnlocking={isInCooldown}
               canStartUnlock={canStartUnlock}
               canCancelUnlock={canCancelUnlock}
               canUnstake={canUnstake}
+              remainingCooldown={remainingCooldown}
               onRefresh={() => fetchStakingDataLocal(true)}
-              onUnstakeSuccess={handleUnstakeSuccess}
+              onSuccess={handleUnstakeSuccess}
             />
+          </>
+        ) : (
+          // Connected: Show Points Stake and APY Stake, with info and buttons under Points section
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-black text-xl font-bold mb-4 text-center">
+                  Points Stake
+                </h3>
+                <StakingStats
+                  isConnected={isConnected}
+                  balance={currentBalance}
+                  points={currentPoints}
+                />
+              </div>
+              {/* Information boxes under Points Stake only */}
+              <InformationBoxes />
+              {/* Action buttons under Points Stake only */}
+              <ActionButtons
+                onStakeClick={onStakeClick}
+                stakedAmount={stakedAmount}
+                pendingRewards={pendingRewards}
+                isUnlocking={isInCooldown}
+                canStartUnlock={canStartUnlock}
+                canCancelUnlock={canCancelUnlock}
+                canUnstake={canUnstake}
+                remainingCooldown={remainingCooldown}
+                onRefresh={() => fetchStakingDataLocal(true)}
+                onSuccess={handleUnstakeSuccess}
+              />
+            </div>
+            <div>
+              <h3 className="text-black text-xl font-bold mb-4 text-center">
+                APY Stake
+              </h3>
+              <StakingStats
+                isConnected={isConnected}
+                balance={currentBalance}
+                points={currentPoints}
+                stakedAmount={stakedAmount}
+                pendingRewards={pendingRewards}
+                apyEarned="5%"
+                lockupTime={remainingCooldown}
+                showUnstakeSection={true}
+                isUnlocking={isInCooldown}
+                canStartUnlock={canStartUnlock}
+                canCancelUnlock={canCancelUnlock}
+                canUnstake={canUnstake}
+                onRefresh={() => fetchStakingDataLocal(true)}
+                onUnstakeSuccess={handleUnstakeSuccess}
+              />
+            </div>
           </div>
-        </div>
-
-        <InformationBoxes />
-
-        <ActionButtons
-          onStakeClick={onStakeClick}
-          stakedAmount={stakedAmount}
-          pendingRewards={pendingRewards}
-          isUnlocking={isInCooldown}
-          canStartUnlock={canStartUnlock}
-          canCancelUnlock={canCancelUnlock}
-          canUnstake={canUnstake}
-          remainingCooldown={remainingCooldown}
-          onRefresh={() => fetchStakingDataLocal(true)}
-          onSuccess={handleUnstakeSuccess}
-        />
+        )}
       </div>
     );
   }
@@ -398,14 +442,22 @@ const StakeTab: React.FC<StakeTabProps> = ({
       <div className="space-y-6">
         {/* Main Staking Section */}
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
-          <div>
-            <h3 className="winky-sans-font text-black/70 text-sm mb-4 text-center">
-              Points Stake
-            </h3>
-            <StakingStats
-              isConnected={isConnected}
-              balance={currentBalance}
-              points={currentPoints}
+          <div className="space-y-6">
+            <div>
+              <h3 className="winky-sans-font text-black/70 text-sm mb-4 text-center">
+                Points Stake
+              </h3>
+              <StakingStats
+                isConnected={isConnected}
+                balance={currentBalance}
+                points={currentPoints}
+              />
+            </div>
+            {/* Information boxes under Points Stake only */}
+            <InformationBoxes />
+            {/* Back to Choice Button under Points Stake only */}
+            <StakingChoice
+              onBackToOptions={() => onStakingChoiceChange(null)}
             />
           </div>
           <div>
@@ -420,7 +472,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
               pendingRewards={pendingRewards}
               apyEarned="5%"
               lockupTime={remainingCooldown}
-              aibotEarned={pendingRewards}
               showUnstakeSection={true}
               isUnlocking={isInCooldown}
               canStartUnlock={canStartUnlock}
@@ -431,11 +482,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
             />
           </div>
         </div>
-
-        <InformationBoxes />
-
-        {/* Back to Choice Button */}
-        <StakingChoice onBackToOptions={() => onStakingChoiceChange(null)} />
       </div>
     );
   }
@@ -444,14 +490,33 @@ const StakeTab: React.FC<StakeTabProps> = ({
     <div className="space-y-6">
       {/* Main Staking Section */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 lg:gap-6">
-        <div>
-          <h3 className="winky-sans-font text-black/70 text-sm mb-4 text-center">
-            Points Stake
-          </h3>
-          <StakingStats
-            isConnected={isConnected}
-            balance={currentBalance}
-            points={currentPoints}
+        <div className="space-y-6">
+          <div>
+            <h3 className="winky-sans-font text-black/70 text-sm mb-4 text-center">
+              Points Stake
+            </h3>
+            <StakingStats
+              isConnected={isConnected}
+              balance={currentBalance}
+              points={currentPoints}
+            />
+          </div>
+          {/* Information boxes under Points Stake only */}
+          <InformationBoxes />
+          {/* Action Buttons under Points Stake only */}
+          <ActionButtons
+            onStakeClick={onStakeClick}
+            onBackToOptions={handleBackToOptions}
+            showBackButton={true}
+            stakedAmount={stakedAmount}
+            pendingRewards={pendingRewards}
+            isUnlocking={isInCooldown}
+            canStartUnlock={canStartUnlock}
+            canCancelUnlock={canCancelUnlock}
+            canUnstake={canUnstake}
+            remainingCooldown={remainingCooldown}
+            onRefresh={() => fetchStakingDataLocal(true)}
+            onSuccess={handleUnstakeSuccess}
           />
         </div>
         <div>
@@ -466,7 +531,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
             pendingRewards={pendingRewards}
             apyEarned="5%"
             lockupTime={remainingCooldown}
-            aibotEarned={pendingRewards}
             showUnstakeSection={true}
             isUnlocking={isInCooldown}
             canStartUnlock={canStartUnlock}
@@ -477,24 +541,6 @@ const StakeTab: React.FC<StakeTabProps> = ({
           />
         </div>
       </div>
-
-      <InformationBoxes />
-
-      {/* Action Buttons */}
-      <ActionButtons
-        onStakeClick={onStakeClick}
-        onBackToOptions={handleBackToOptions}
-        showBackButton={true}
-        stakedAmount={stakedAmount}
-        pendingRewards={pendingRewards}
-        isUnlocking={isInCooldown}
-        canStartUnlock={canStartUnlock}
-        canCancelUnlock={canCancelUnlock}
-        canUnstake={canUnstake}
-        remainingCooldown={remainingCooldown}
-        onRefresh={() => fetchStakingDataLocal(true)}
-        onSuccess={handleUnstakeSuccess}
-      />
     </div>
   );
 };

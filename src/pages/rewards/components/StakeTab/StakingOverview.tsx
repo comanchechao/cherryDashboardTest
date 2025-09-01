@@ -17,7 +17,7 @@ const StakingOverview: React.FC<StakingOverviewProps> = ({ balance }) => {
 
   return (
     <div className="flex flex-col bg gap-4">
-      <div className="bg-white/5 border h-full border-black/20 rounded-sm p-4 lg:p-6">
+      <div className="bg-white/5 border h-[28.7rem] border-black/20 rounded-sm p-4 lg:p-6">
         <h3 className="winky-sans-font text-black/70 text-sm mb-2">
           Total Staked
         </h3>
