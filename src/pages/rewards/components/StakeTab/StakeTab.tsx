@@ -386,7 +386,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
             <div className="space-y-6">
               <div>
                 <h3 className="text-black text-xl font-bold mb-4 text-center">
-                  Points Stake
+                  Points Staking
                 </h3>
                 <StakingStats
                   isConnected={isConnected}
@@ -412,7 +412,7 @@ const StakeTab: React.FC<StakeTabProps> = ({
             </div>
             <div>
               <h3 className="text-black text-xl font-bold mb-4 text-center">
-                APY Stake
+                APY + Point Staking
               </h3>
               <StakingStats
                 isConnected={isConnected}
