@@ -46,16 +46,6 @@ const StakingOverview: React.FC<StakingOverviewProps> = ({ balance }) => {
               10 points per 1000 $AIBOT
             </div>
           </div>
-          <div className="bg-white/5 flex border border-black/20 items-center justify-center rounded-sm p-2 lg:p-3 text-center">
-            <div className="maladroit-font text-xs text-black">
-              APY staking coming soon
-            </div>
-          </div>
-          <div className="bg-white/5 flex border border-black/20 items-center justify-center rounded-sm p-2 lg:p-3 text-center">
-            <div className="maladroit-font text-xs text-black">
-              Staking lockups coming soon
-            </div>
-          </div>
         </div>
       </div>
     </div>
